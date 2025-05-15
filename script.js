@@ -433,3 +433,12 @@ function initContactForm() {
         }
     });
 }
+if (typeof AOS !== 'undefined') {
+    AOS.init({
+        duration: 1000,
+        once: true
+    });
+} else {
+    console.warn('AOS library not loaded.');
+    document.body.classList.add('aos-fallback');
+}
