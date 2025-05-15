@@ -4,213 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking | Coastal Lodge</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- Fonts and Icons (Required by style.css) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Dependencies -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-        .page-banner {
-            background-size: cover;
-            background-position: center;
-            padding: 50px 0;
-            text-align: center;
-            color: white;
-        }
-        .booking-form, .available-rooms {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .form-wrapper {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .form-buttons {
-            display: flex;
-            gap: 10px;
-        }
-        .check-availability-btn, .view-calendar-btn {
-            background-color: #4b5eAA;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .view-calendar-btn {
-            background-color: #6b7280;
-        }
-        .form-message {
-            margin-top: 10px;
-            text-align: center;
-        }
-        .availability-table {
-            margin-top: 20px;
-            width: 100%;
-            border-collapse: collapse;
-            display: none;
-        }
-        .availability-table th, .availability-table td {
-            border: 1px solid #e5e7eb;
-            padding: 10px;
-            text-align: center;
-        }
-        .availability-table th {
-            background-color: #f3f4f6;
-        }
-        .availability-table .available {
-            color: green;
-        }
-        .availability-table .booked {
-            color: red;
-        }
-        .calendar-container {
-            margin-top: 20px;
-            display: none;
-        }
-        .flatpickr-day.fully-booked {
-            background-color: #ff4d4d !important;
-            color: #fff !important;
-            cursor: not-allowed !important;
-        }
-        .room-option {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-        }
-        .room-image img {
-            width: 300px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        .room-details {
-            flex: 1;
-        }
-        .room-pricing {
-            text-align: right;
-        }
-        .book-room-btn {
-            background-color: #4b5eAA;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .rates-modal, .booking-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .rates-modal-content, .modal-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-        .close-rates-modal, .close-modal {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        .guest-counter {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 10px 0;
-        }
-        .guest-counter button {
-            background-color: #e5e7eb;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .guest-counter input {
-            width: 40px;
-            text-align: center;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .pricing-details {
-            margin-top: 10px;
-            font-size: 0.9rem;
-        }
-        .book-now-btn {
-            background-color: #4b5eAA;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
-        .room-selection {
-            border-bottom: 1px solid #e5e7eb;
-            padding: 10px 0;
-            margin-bottom: 10px;
-        }
-        .room-selection:last-child {
-            border-bottom: none;
-        }
-        .add-room-btn {
-            background-color: #4b5eAA;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            margin: 10px 0;
-            cursor: pointer;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-    </style>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="bookingsStyles.css">
 </head>
 <body>
     <!-- Header -->
@@ -226,9 +27,17 @@
                     <li><a href="accommodation.html">Accommodation</a></li>
                     <li><a href="location.html">Location</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="booking.html" style="color: #4b5eAA;">Book Now</a></li>
+                    <li><a href="restaurant.html">Restaurant</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="booking.html" class="book-btn">Book Now</a></li>
+                    <li><a href="register-login.html" class="book-btn">Login</a></li>
                 </ul>
             </nav>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </div>
     </header>
 
@@ -254,11 +63,11 @@
                 </div>
                 <div class="form-group">
                     <label for="check-in">Check-In:</label>
-                    <input type="text" id="check-in" value="2025-05-15" required>
+                    <input type="text" id="check-in" placeholder="Select Check-In Date" required>
                 </div>
                 <div class="form-group">
                     <label for="check-out">Check-Out:</label>
-                    <input type="text" id="check-out" value="2025-05-16" required>
+                    <input type="text" id="check-out" placeholder="Select Check-Out Date" required>
                 </div>
                 <div class="form-group">
                     <label for="nights">Nights:</label>
@@ -274,8 +83,8 @@
                     <button type="submit" class="check-availability-btn">Check Availability & Book</button>
                     <button type="button" class="view-calendar-btn">View Calendar</button>
                 </div>
+                <div id="form-message" class="form-message"></div>
             </form>
-            <div id="form-message" class="form-message"></div>
             <table id="availability-table" class="availability-table">
                 <thead>
                     <tr>
@@ -294,7 +103,7 @@
 
     <!-- Available Rooms -->
     <section class="available-rooms">
-        <h2 style="text-align: center;">Available on These Dates</h2>
+        <h2>Available on These Dates</h2>
         <div class="room-option">
             <div class="room-image">
                 <img src="images/Ocean view suite.webp" alt="Ocean View Suite">
@@ -429,14 +238,71 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <p>© 2025 Coastal Lodge. All Rights Reserved.</p>
+            <div class="footer-column footer-about">
+                <h3>Coastal Lodge</h3>
+                <p>A luxury seaside accommodation offering unforgettable experiences in a breathtaking coastal setting.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            <div class="footer-column footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="accommodation.html">Rooms & Suites</a></li>
+                    <li><a href="location.html">Location</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column footer-contact">
+                <h3>Contact Us</h3>
+                <div class="contact-item"><i class="fas fa-map-marker-alt"></i><p>123 Coastal Road, Beachside Village</p></div>
+                <div class="contact-item"><i class="fas fa-phone"></i><p>+27 12 345 6789</p></div>
+                <div class="contact-item"><i class="fas fa-envelope"></i><p>info@coastallodge.com</p></div>
+                <div class="contact-item"><i class="fas fa-clock"></i><p>Reception: 07:00 - 22:00</p></div>
+            </div>
+            <div class="footer-column footer-subscribe">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for special offers and updates.</p>
+                <form>
+                    <input type="email" placeholder="Your Email Address">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Coastal Lodge. All Rights Reserved. | Designed with SyntaxSyndicates</p>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navUl = document.querySelector('nav ul');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navUl.classList.toggle('active');
+        });
 
         // Room data
         const roomsData = {
@@ -456,8 +322,8 @@
             }
         };
 
-        // Current date and time (11:29 AM SAST, May 15, 2025)
-        const currentDate = new Date('2025-05-15T11:29:00+02:00');
+        // Current date and time (03:00 PM SAST, May 15, 2025)
+        const currentDate = new Date('2025-05-15T15:00:00+02:00');
         const fullyBookedDates = ['2025-05-15', '2025-05-16', '2025-05-20', '2025-05-21', '2025-05-22', '2025-05-23', '2025-05-30', '2025-05-31'];
 
         // Booking Form
@@ -493,7 +359,7 @@
             const timeDiff = checkOutDate - checkInDate;
             let nights = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
             if (halfDayEvent) nights = 0.5;
-            nightsInput.value = nights;
+            nightsInput.value = nights || 1;
         }
 
         halfDayToggle.addEventListener('change', () => {
@@ -522,6 +388,7 @@
                     checkInInput.value = selectedDates[0].toISOString().split('T')[0];
                     checkOutInput.value = selectedDates[1].toISOString().split('T')[0];
                     updateNights();
+                    calendarContainer.style.display = 'none';
                 }
             }
         });
@@ -544,9 +411,9 @@
             const availabilityTable = document.getElementById('availability-table');
             const availabilityTableBody = document.getElementById('availability-table-body');
 
-            if (!roomType) {
-                document.getElementById('form-message').textContent = 'Please select a room type.';
-                document.getElementById('form-message').style.color = 'red';
+            if (!roomType || !checkInInput.value || !checkOutInput.value) {
+                document.getElementById('form-message').textContent = 'Please fill in all required fields.';
+                document.getElementById('form-message').classList.add('error');
                 return;
             }
 
@@ -566,7 +433,8 @@
 
             availabilityTable.style.display = 'table';
             document.getElementById('form-message').textContent = allAvailable ? 'Dates are available!' : 'Some dates are booked. Please choose different dates.';
-            document.getElementById('form-message').style.color = allAvailable ? 'green' : 'red';
+            document.getElementById('form-message').classList.add(allAvailable ? 'success' : 'error');
+            document.getElementById('form-message').classList.remove(allAvailable ? 'error' : 'success');
         });
 
         // Rates Modal
@@ -585,20 +453,20 @@
                 children = 0;
 
                 document.getElementById('rates-room-type').textContent = currentRoomType;
-                document.getElementById('rates-check-in').textContent = checkInInput.value;
-                document.getElementById('rates-check-out').textContent = checkOutInput.value;
-                document.getElementById('rates-nights').textContent = nightsInput.value;
+                document.getElementById('rates-check-in').textContent = checkInInput.value || 'N/A';
+                document.getElementById('rates-check-out').textContent = checkOutInput.value || 'N/A';
+                document.getElementById('rates-nights').textContent = nightsInput.value || '1';
                 document.getElementById('rates-adults').value = adults;
                 document.getElementById('rates-children').value = children;
 
                 updateRates();
-                ratesModal.style.display = 'flex';
+                ratesModal.classList.remove('hidden');
             });
         });
 
         function updateRates() {
-            const roomData = roomsData[currentRoomType];
-            const nights = parseFloat(nightsInput.value);
+            const roomData = roomsData[currentRoomType] || { basePrice: 0, additionalAdult: 0, maxGuests: 2 };
+            const nights = parseFloat(nightsInput.value) || 1;
             const additionalAdults = Math.max(0, adults - (currentRoomType === 'Ocean View Suite' ? 2 : 4));
             let pricePerNight = roomData.basePrice + (additionalAdults * roomData.additionalAdult);
             let totalPrice = pricePerNight * nights;
@@ -616,12 +484,13 @@
 
         document.getElementById('rates-adults-increment').addEventListener('click', () => {
             const totalGuests = adults + children;
-            if (totalGuests < roomsData[currentRoomType].maxGuests) {
+            const roomData = roomsData[currentRoomType] || { maxGuests: 2 };
+            if (totalGuests < roomData.maxGuests) {
                 adults++;
                 document.getElementById('rates-adults').value = adults;
                 updateRates();
             } else {
-                alert(`Maximum guests for ${currentRoomType} is ${roomsData[currentRoomType].maxGuests}.`);
+                alert(`Maximum guests for ${currentRoomType} is ${roomData.maxGuests}.`);
             }
         });
 
@@ -635,12 +504,13 @@
 
         document.getElementById('rates-children-increment').addEventListener('click', () => {
             const totalGuests = adults + children;
-            if (totalGuests < roomsData[currentRoomType].maxGuests) {
+            const roomData = roomsData[currentRoomType] || { maxGuests: 2 };
+            if (totalGuests < roomData.maxGuests) {
                 children++;
                 document.getElementById('rates-children').value = children;
                 updateRates();
             } else {
-                alert(`Maximum guests for ${currentRoomType} is ${roomsData[currentRoomType].maxGuests}.`);
+                alert(`Maximum guests for ${currentRoomType} is ${roomData.maxGuests}.`);
             }
         });
 
@@ -653,12 +523,12 @@
         });
 
         closeRatesModal.addEventListener('click', () => {
-            ratesModal.style.display = 'none';
+            ratesModal.classList.add('hidden');
         });
 
         window.addEventListener('click', (e) => {
             if (e.target === ratesModal) {
-                ratesModal.style.display = 'none';
+                ratesModal.classList.add('hidden');
             }
         });
 
@@ -676,13 +546,13 @@
             }];
 
             renderRoomSelections();
-            document.getElementById('modal-check-in').value = checkInInput.value;
-            document.getElementById('modal-check-out').value = checkOutInput.value;
-            document.getElementById('modal-nights').value = nightsInput.value;
+            document.getElementById('modal-check-in').value = checkInInput.value || '';
+            document.getElementById('modal-check-out').value = checkOutInput.value || '';
+            document.getElementById('modal-nights').value = nightsInput.value || '1';
             document.getElementById('modal-total').value = document.getElementById('rates-total').textContent;
 
-            ratesModal.style.display = 'none';
-            bookingModal.style.display = 'flex';
+            ratesModal.classList.add('hidden');
+            bookingModal.classList.remove('hidden');
         });
 
         function renderRoomSelections() {
@@ -712,13 +582,14 @@
                 btn.addEventListener('click', (e) => {
                     const index = parseInt(e.target.dataset.index);
                     const room = selectedRooms[index];
+                    const roomData = roomsData[room.roomType] || { maxGuests: 2 };
                     const totalGuests = room.adults + room.children;
-                    if (totalGuests < roomsData[room.roomType].maxGuests) {
+                    if (totalGuests < roomData.maxGuests) {
                         room.adults++;
                         renderRoomSelections();
                         updateBookingTotal();
                     } else {
-                        alert(`Maximum guests for ${room.roomType} is ${roomsData[room.roomType].maxGuests}.`);
+                        alert(`Maximum guests for ${room.roomType} is ${roomData.maxGuests}.`);
                     }
                 });
             });
@@ -739,13 +610,14 @@
                 btn.addEventListener('click', (e) => {
                     const index = parseInt(e.target.dataset.index);
                     const room = selectedRooms[index];
+                    const roomData = roomsData[room.roomType] || { maxGuests: 2 };
                     const totalGuests = room.adults + room.children;
-                    if (totalGuests < roomsData[room.roomType].maxGuests) {
+                    if (totalGuests < roomData.maxGuests) {
                         room.children++;
                         renderRoomSelections();
                         updateBookingTotal();
                     } else {
-                        alert(`Maximum guests for ${room.roomType} is ${roomsData[room.roomType].maxGuests}.`);
+                        alert(`Maximum guests for ${room.roomType} is ${roomData.maxGuests}.`);
                     }
                 });
             });
@@ -784,9 +656,9 @@
 
         function updateBookingTotal() {
             let totalPrice = 0;
-            const nights = parseFloat(nightsInput.value);
+            const nights = parseFloat(nightsInput.value) || 1;
             selectedRooms.forEach(room => {
-                const roomData = roomsData[room.roomType];
+                const roomData = roomsData[room.roomType] || { basePrice: 0, additionalAdult: 0 };
                 const additionalAdults = Math.max(0, room.adults - (room.roomType === 'Ocean View Suite' ? 2 : 4));
                 let pricePerNight = roomData.basePrice + (additionalAdults * roomData.additionalAdult);
                 let roomTotal = pricePerNight * nights;
@@ -799,13 +671,13 @@
         }
 
         closeBookingModal.addEventListener('click', () => {
-            bookingModal.style.display = 'none';
+            bookingModal.classList.add('hidden');
             document.getElementById('modal-message').textContent = '';
         });
 
         window.addEventListener('click', (e) => {
             if (e.target === bookingModal) {
-                bookingModal.style.display = 'none';
+                bookingModal.classList.add('hidden');
                 document.getElementById('modal-message').textContent = '';
             }
         });
@@ -856,6 +728,9 @@
             const queryString = new URLSearchParams(bookingDetails).toString();
             window.location.href = `register-login.html?${queryString}`;
         });
+
+        // Ensure initial state
+        updateNights();
     </script>
 </body>
 </html>
