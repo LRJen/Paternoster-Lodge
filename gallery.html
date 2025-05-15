@@ -8,36 +8,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.0/css/lightgallery.min.css" />
-    
 </head>
 <body>
     <!-- Header -->
-<!-- Header -->
-<header>
-    <div class="header-container">
-        <div class="logo">
-            <h1>Coastal Lodge</h1>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>Coastal Lodge</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="{{indexActive}}">Home</a></li>
+                    <li><a href="about.html" class="{{aboutActive}}">About</a></li>
+                    <li><a href="accommodation.html" class="{{accommodationActive}}">Accommodation</a></li>
+                    <li><a href="location.html" class="{{locationActive}}">Location</a></li>
+                    <li><a href="gallery.html" class="{{galleryActive}} active">Gallery</a></li>
+                    <li><a href="restaurant.html" class="{{restaurantActive}}">Restaurant</a></li>
+                    <li><a href="contact.html" class="{{contactActive}}">Contact</a></li>
+                    <li><a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a></li>
+                    <li><a href="register-login.html" class="{{registerLoginActive}} book-btn">Login</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="{{indexActive}}">Home</a></li>
-                <li><a href="about.html" class="{{aboutActive}}">About</a></li>
-                <li><a href="accommodation.html" class="{{accommodationActive}}">Accommodation</a></li>
-                <li><a href="location.html" class="{{locationActive}}">Location</a></li>
-                <li><a href="gallery.html" class="{{galleryActive}} active">Gallery</a></li>
-                <li><a href="restaurant.html" class="{{restaurantActive}}">Restaurant</a></li>
-                <li><a href="contact.html" class="{{contactActive}}">Contact</a></li>
-                <li><a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a></li>
-                <li><a href="register-login.html" class="{{registerLoginActive}} book-btn">Login</a></li>
-            </ul>
-        </nav>
-        <div class="hamburger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </div>
-</header>
+    </header>
 
     <!-- Page Banner -->
     <section class="page-banner" style="background-image: url('https://via.placeholder.com/1920x600?text=Restaurant+Hero')" data-aos="fade-up">
@@ -52,6 +50,9 @@
         <div class="container">
             <div class="section-title" data-aos="fade-up">
                 <h2>Capture the Experience</h2>
+            </div>
+            <div class="gallery-description" data-aos="fade-up">
+                <p>yourself in the tranquility of the West Coast while enjoying the comforts of our modern lodge.</p>
             </div>
             <div class="gallery-grid" id="lightgallery" data-aos="fade-up" data-aos-delay="100">
                 <a href="images/gallery1.jpg" class="gallery-item">
@@ -132,29 +133,61 @@
         </div>
     </footer>
 
-    <!-- Booking Modal 
-    <div class="booking-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Book Your Stay</h2>
-            <form>
-                <input type="date" id="check-in" required>
-                <input type="date" id="check-out" required>
-                <select required>
-                    <option value="">Select Room Type</option>
-                    <option value="oceanview">Ocean View Suite</option>
-                    <option value="family">Family Cottage</option>
-                    <option value="deluxe">Deluxe Room</option>
-                    <option value="premium">Premium Suite</option>
-                </select>
-                <button type="submit">Submit Booking</button>
-            </form>
-        </div>
-    </div>-->
-
     <!-- JavaScript -->
-    <script src="script.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.0/lightgallery.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize AOS
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 1000,
+                    once: true
+                });
+            } else {
+                console.warn('AOS library not loaded.');
+                document.body.classList.add('aos-fallback');
+            }
+
+            // Initialize LightGallery for the gallery
+            if (typeof lightGallery !== 'undefined') {
+                lightGallery(document.getElementById('lightgallery'), {
+                    speed: 500,
+                    download: false
+                });
+            } else {
+                console.warn('LightGallery library not loaded.');
+            }
+
+            // Auto-scroll functionality
+            const galleryGrid = document.querySelector('.gallery-grid');
+            let scrollPosition = 0;
+            const scrollSpeed = 0.1; // Very slow scroll speed in pixels per frame
+            let isScrolling = true;
+
+            function autoScroll() {
+                if (isScrolling && galleryGrid) {
+                    scrollPosition += scrollSpeed;
+                    if (scrollPosition >= galleryGrid.scrollWidth - galleryGrid.clientWidth) {
+                        scrollPosition = 0; // Loop back to start
+                    }
+                    galleryGrid.scrollLeft = scrollPosition;
+                    requestAnimationFrame(autoScroll);
+                }
+            }
+
+            // Start auto-scroll on load
+            autoScroll();
+
+            // Pause on hover
+            galleryGrid.addEventListener('mouseenter', () => {
+                isScrolling = false;
+            });
+            galleryGrid.addEventListener('mouseleave', () => {
+                isScrolling = true;
+                autoScroll();
+            });
+        });
+    </script>
 </body>
 </html>

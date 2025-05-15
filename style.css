@@ -2338,24 +2338,181 @@ footer {
     border-radius: 5px;
 }
 
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+/* Existing styles remain unchanged... */
+
+/* Gallery Description */
+/* Existing styles remain unchanged... */
+
+/* Gallery Description */
+.gallery-description {
+    text-align: center;
     margin-bottom: 2rem;
+    padding: 0 20px;
+    font-size: 1.1rem;
+    color: var(--text);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.gallery-grid img {
+/* Gallery Section (gallery.html) */
+.gallery {
+    padding: 100px 5%;
+    background-color: var(--white);
+}
+
+.gallery-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem; /* Adds space for better scrolling */
+    scroll-behavior: smooth;
+    max-width: 100%;
+    margin: 0 auto;
+    /* Ensure smooth scrolling */
+    -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+}
+
+.gallery-grid::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in Chrome, Safari, and Opera */
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: zoom-in;
+    flex: 0 0 auto; /* Prevents flex items from shrinking */
+    width: 400px; /* Increased from 300px to 400px for larger appearance */
+    height: 400px; /* Increased from 300px to 400px for larger appearance */
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-item img {
     width: 100%;
-    height: 150px;
+    height: 100%;
     object-fit: cover;
     border-radius: 8px;
-    transition: transform 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 
-.gallery-grid img:hover {
-    transform: scale(1.05);
+.gallery-item:hover img {
+    opacity: 0.8;
 }
+
+.gallery-item::after {
+    content: '\f00e'; /* Font Awesome magnifying glass */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    color: var(--white);
+    font-size: 2rem;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.gallery-item:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+/* LightGallery Overrides */
+.lg-backdrop {
+    background-color: rgba(0, 0, 0, 0.9) !important;
+}
+
+.lg-toolbar {
+    background-color: var(--primary) !important;
+}
+
+.lg-icon {
+    color: var(--white) !important;
+}
+
+.lg-icon:hover {
+    color: var(--secondary) !important;
+}
+
+.lg-img-wrap {
+    background-color: var(--white);
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        gap: 0.5rem;
+    }
+    .gallery-item {
+        width: 300px; /* Adjusted from 250px to 300px for larger size on smaller screens */
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-item {
+        width: 250px; /* Adjusted from 200px to 250px for larger size on very small screens */
+        height: 250px;
+    }
+    .gallery-description {
+        font-size: 1rem;
+    }
+}
+
+/* Existing styles below this line remain unchanged... */
+
+/* LightGallery Overrides */
+.lg-backdrop {
+    background-color: rgba(0, 0, 0, 0.9) !important;
+}
+
+.lg-toolbar {
+    background-color: var(--primary) !important;
+}
+
+.lg-icon {
+    color: var(--white) !important;
+}
+
+.lg-icon:hover {
+    color: var(--secondary) !important;
+}
+
+.lg-img-wrap {
+    background-color: var(--white);
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        gap: 0.5rem;
+    }
+    .gallery-item {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-item {
+        width: 200px;
+        height: 200px;
+    }
+    .gallery-description {
+        font-size: 1rem;
+    }
+}
+
+
 
 .contact-info {
     max-width: 800px;
