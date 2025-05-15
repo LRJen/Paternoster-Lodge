@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register/Login | Coastal Lodge</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            border-bottom: none;
+        }
+        .tab.active {
+            background-color: #fff;
+            border-top: 2px solid #2d6a4f;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 0 0 8px 8px;
+            background-color: #fff;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn {
+            background-color: #2d6a4f;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-align: center;
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #1b4332;
+        }
+        .booking-details {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            background-color: #f9fafb;
+        }
+        .booking-details h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+        .booking-details p {
+            margin: 5px 0;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>Coastal Lodge</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="accommodation.html">Accommodation</a></li>
+                    <li><a href="location.html">Location</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="booking.html" class="active book-btn">Book Now</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Register/Login Section -->
+    <section class="register-login" style="padding: 50px 0;">
+        <div class="container" style="max-width: 600px; margin: 0 auto;" data-aos="fade-up">
+            <h2 style="text-align: center; margin-bottom: 20px;">Register or Login to Confirm Booking</h2>
+
+            <!-- Booking Details -->
+            <div class="booking-details" id="booking-details">
+                <h3>Booking Summary</h3>
+                <p><strong>Room Type:</strong> <span id="summary-room-type"></span></p>
+                <p><strong>Check-In:</strong> <span id="summary-check-in"></span></p>
+                <p><strong>Check-Out:</strong> <span id="summary-check-out"></span></p>
+                <p><strong>Nights:</strong> <span id="summary-nights"></span></p>
+                <p><strong>Adults:</strong> <span id="summary-adults"></span></p>
+                <p><strong>Children (Age 0-5):</strong> <span id="summary-children"></span></p>
+                <p><strong>Total:</strong> R<span id="summary-total"></span></p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <div class="tab active" data-tab="login">Login</div>
+                <div class="tab" data-tab="register">Register</div>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login" class="tab-content active">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                </div>
+                <button type="button" class="btn" id="login-btn">Login and Proceed</button>
+                <p class="error-message" id="login-error"></p>
+            </div>
+
+            <!-- Register Form -->
+            <div id="register" class="tab-content">
+                <div class="form-group">
+                    <label for="register-name">Full Name</label>
+                    <input type="text" id="register-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm-password">Confirm Password</label>
+                    <input type="password" id="register-confirm-password" placeholder="Confirm your password" required>
+                </div>
+                <button type="button" class="btn" id="register-btn">Register and Proceed</button>
+                <p class="error-message" id="register-error"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column footer-about">
+                <h3>Coastal Lodge</h3>
+                <p>A luxury seaside accommodation offering unforgettable experiences in a breathtaking coastal setting.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            <div class="footer-column footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="accommodation.html">Rooms & Suites</a></li>
+                    <li><a href="location.html">Location</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Coastal Road, Beachside Village</p>
+                <p><i class="fas fa-phone"></i> +27 12 345 6789</p>
+                <p><i class="fas fa-envelope"></i> info@coastallodge.com</p>
+                <p><i class="fas fa-clock"></i> Reception: 07:00 - 22:00</p>
+            </div>
+            <div class="footer-column footer-subscribe">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for special offers and updates.</p>
+                <div>
+                    <input type="email" placeholder="Your Email Address">
+                    <button type="submit">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Coastal Lodge. All Rights Reserved. | Designed with SyntaxSyndicates</p>
+        </div>
+    </footer>
+
+    <!-- Add Supabase Client and script.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Tab Switching
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Populate Booking Details
+        const urlParams = new URLSearchParams(window.location.search);
+        const bookingData = {
+            roomType: urlParams.get('roomType') || 'N/A',
+            checkIn: urlParams.get('checkIn') || 'N/A',
+            checkOut: urlParams.get('checkOut') || 'N/A',
+            nights: urlParams.get('nights') || 'N/A',
+            adults: urlParams.get('adults') || 'N/A',
+            children: urlParams.get('children') || 'N/A',
+            total: urlParams.get('total') || 'N/A'
+        };
+
+        document.getElementById('summary-room-type').textContent = bookingData.roomType;
+        document.getElementById('summary-check-in').textContent = bookingData.checkIn;
+        document.getElementById('summary-check-out').textContent = bookingData.checkOut;
+        document.getElementById('summary-nights').textContent = bookingData.nights;
+        document.getElementById('summary-adults').textContent = bookingData.adults;
+        document.getElementById('summary-children').textContent = bookingData.children;
+        document.getElementById('summary-total').textContent = bookingData.total;
+
+        // Login Functionality
+        document.getElementById('login-btn').addEventListener('click', async () => {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const loginError = document.getElementById('login-error');
+
+            if (!email || !password) {
+                loginError.textContent = 'Please fill in all fields.';
+                loginError.style.display = 'block';
+                return;
+            }
+
+            const { data, error } = await window.supabase.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+
+            if (error) {
+                loginError.textContent = error.message;
+                loginError.style.display = 'block';
+            } else {
+                loginError.style.display = 'none';
+                window.location.href = 'booking-confirmation.html?' + urlParams.toString();
+            }
+        });
+
+        // Register Functionality
+        document.getElementById('register-btn').addEventListener('click', async () => {
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm-password').value;
+            const registerError = document.getElementById('register-error');
+
+            if (!name || !email || !password || !confirmPassword) {
+                registerError.textContent = 'Please fill in all fields.';
+                registerError.style.display = 'block';
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                registerError.textContent = 'Passwords do not match.';
+                registerError.style.display = 'block';
+                return;
+            }
+
+            const { data, error } = await window.supabase.auth.signUp({
+                email: email,
+                password: password,
+                options: {
+                    data: { full_name: name }
+                }
+            });
+
+            if (error) {
+                registerError.textContent = error.message;
+                registerError.style.display = 'block';
+            } else if (data.user) {
+                registerError.style.display = 'none';
+                window.location.href = 'booking-confirmation.html?' + urlParams.toString();
+            } else {
+                registerError.textContent = 'Please check your email to confirm registration.';
+                registerError.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

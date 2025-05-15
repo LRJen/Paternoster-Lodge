@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Paternoster Lodge</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: '#1b3c59',
+                secondary: '#d4af37',
+                light: '#f5f5f5',
+              },
+            },
+          },
+        };
+    </script>
+</head>
+<body>
+    <!-- Header -->
+  <header>
+     <div class="header-container">
+        <div class="logo">
+            <h1>Paternoster Lodge</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="accommodation.html">Accommodation</a></li>
+                <li><a href="location.html">Location</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="restaurant.html">Restaurant</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="booking.html" class="book-btn">Book Now</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </div>
+</header>
+
+    <!-- Page Banner -->
+    <section class="page-banner" style="background-image: url('https://via.placeholder.com/1920x600?text=Restaurant+Hero')" data-aos="fade-up">
+        <div class="banner-content">
+            <h1>About Us</h1>
+            <p>Discover our story and commitment to exceptional hospitality</p>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="about-story">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Our Story</h2>
+            </div>
+            <div class="story-content">
+                <div class="story-text fade-in">
+                    <h3>A Coastal Haven</h3>
+                    <p>Nestled in the heart of a charming fishing village, Paternoster Lodge offers a perfect blend of luxury and authentic coastal experiences. Founded in 2005 by the Johnson family, our lodge has been designed to provide guests with ultimate comfort while preserving the natural beauty and cultural heritage of the region.</p>
+                    <p>Each aspect of our lodge reflects our commitment to excellence, from the carefully curated interiors to the locally-inspired cuisine served at our restaurant. Whether you're seeking a peaceful retreat or a base to explore the stunning coastline, Paternoster Lodge provides an unforgettable experience for all our guests.</p>
+                    <p>Over the years, we have grown from a small guesthouse to a premium accommodation destination, while maintaining our dedication to personalized service and authentic experiences. Our team takes pride in creating memorable stays for each guest who walks through our doors.</p>
+                </div>
+                <div class="story-image fade-in">
+                    <img src="images/paaat.jpg" alt="Paternoster Lodge History">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Values Section -->
+    <section class="about-values">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Our Mission & Values</h2>
+            </div>
+            <div class="values-content fade-in">
+                <div class="values-item">
+                    <div class="values-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Excellence</h3>
+                    <p>We strive for excellence in every detail, from the quality of our accommodations to the warmth of our hospitality.</p>
+                </div>
+                <div class="values-item">
+                    <div class="values-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sustainability</h3>
+                    <p>We are committed to sustainable practices that preserve and protect the beautiful coastal environment we call home.</p>
+                </div>
+                <div class="values-item">
+                    <div class="values-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Authenticity</h3>
+                    <p>We celebrate the unique heritage of our region, offering genuine experiences that reflect local culture and traditions.</p>
+                </div>
+                <div class="values-item">
+                    <div class="values-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community</h3>
+                    <p>We support our local community through partnerships with local businesses and contributing to community initiatives.</p>
+                </div>
+            </div>
+            <div class="mission-statement fade-in">
+                <blockquote>
+                    "Our mission is to create an exceptional coastal retreat where guests can reconnect with nature, experience authentic local culture, and enjoy unparalleled comfort and service."
+                    <cite>— The Johnson Family, Founders</cite>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="about-team">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Meet Our Team</h2>
+            </div>
+            <div class="team-intro fade-in">
+                <p>Our dedicated team of professionals is committed to making your stay at Paternoster Lodge exceptional. With their extensive knowledge of the area and passion for hospitality, they ensure that every guest experiences the very best of coastal living.</p>
+            </div>
+            <div class="team-grid fade-in">
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="images/manager patt.jpg" alt="Team Member">
+                    </div>
+                    <div class="team-info">
+                        <h3>Michael Johnson</h3>
+                        <p class="team-role">General Manager</p>
+                        <p class="team-desc">With over 15 years in luxury hospitality, Michael ensures that every aspect of Paternoster Lodge meets our high standards.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="images/patt cartoon.jpg" alt="Team Member">
+                    </div>
+                    <div class="team-info">
+                        <h3>Sarah Williams</h3>
+                        <p class="team-role">Head Chef</p>
+                        <p class="team-desc">Sarah's innovative approach to cuisine combines local ingredients with international techniques for unforgettable dining experiences.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="images/manager 2 patt.avif" alt="Team Member">
+                    </div>
+                    <div class="team-info">
+                        <h3>Cecilia Kendricks</h3>
+                        <p class="team-role">Guest Relations Manager</p>
+                        <p class="team-desc">David's warm personality and extensive knowledge of the region help guests discover the best local experiences.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="images/house keepimng.png" alt="Team Member">
+                    </div>
+                    <div class="team-info">
+                        <h3>Lisa Thompson</h3>
+                        <p class="team-role">Housekeeping Manager</p>
+                        <p class="team-desc">Lisa's attention to detail ensures that all our accommodations maintain the highest standards of cleanliness and comfort.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recognition Section -->
+    <section class="about-recognition">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Recognition & Awards</h2>
+            </div>
+            <div class="recognition-content fade-in">
+                <div class="recognition-text">
+                    <p>Over the years, Paternoster Lodge has been recognized for its exceptional service, sustainable practices, and contribution to the local community. We are honored to have received the following accolades:</p>
+                    <ul class="awards-list">
+                        <li><i class="fas fa-award"></i> Best Boutique Accommodation - Tourism Excellence Awards (2023)</li>
+                        <li><i class="fas fa-award"></i> Sustainable Tourism Leader - Green Hospitality Awards (2022)</li>
+                        <li><i class="fas fa-award"></i> Outstanding Coastal Retreat - Travel & Leisure Awards (2021)</li>
+                        <li><i class="fas fa-award"></i> Excellence in Local Cuisine - Regional Food Awards (2020)</li>
+                        <li><i class="fas fa-award"></i> Top-Rated Accommodation - TripAdvisor Certificate of Excellence (2018-2023)</li>
+                    </ul>
+                </div>
+                <div class="recognition-logos">
+                    <img src="images/cert patt.PNG" alt="Award Logo">
+                    <img src="images/badge patter.avif" alt="Award Logo">
+                    <img src="images/award-3.jpg" alt="Award Logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <div class="cta-content fade-in">
+                <h2>Experience the Paternoster Lodge Difference</h2>
+                <p>Book your stay today and discover why our guests return year after year.</p>
+                <a href="booking.html" class="cta-btn">Book Your Stay</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column footer-about">
+                <h3>Paternoster Lodge</h3>
+                <p>A luxury seaside accommodation offering unforgettable experiences in a breathtaking coastal setting.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            <div class="footer-column footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="accommodation.html">Rooms & Suites</a></li>
+                    <li><a href="location.html">Location</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="booking.html">Book Now</a></li>
+                </ul>
+            </div>
+            <div class="footer-column footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Coastal Road, Beachside Village</p>
+                <p><i class="fas fa-phone"></i> +27 12 345 6789</p>
+                <p><i class="fas fa-envelope"></i> info@Paternoster.com</p>
+                <p><i class="fas fa-clock"></i> Reception: 07:00 - 22:00</p>
+            </div>
+            <div class="footer-column footer-subscribe">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for special offers and updates.</p>
+                <form>
+                    <input type="email" placeholder="Your Email Address">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Paternoster Lodge. All Rights Reserved. | Designed by Syntax Syndicate</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+    </script>
+</body>
+</html>

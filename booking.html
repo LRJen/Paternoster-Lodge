@@ -1,0 +1,658 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking | Coastal Lodge</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .rates-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .rates-modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+        }
+        .close-rates-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .room-image-preview img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .guest-counter {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .guest-counter button {
+            background-color: #e5e7eb;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .book-now-btn {
+            background-color: #2d6a4f;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-align: center;
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+        .book-now-btn:hover {
+            background-color: #1b4332;
+        }
+        #booking-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1100;
+            overflow: auto;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 24px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>Coastal Lodge</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="accommodation.html">Accommodation</a></li>
+                    <li><a href="location.html">Location</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="booking.html" class="active book-btn">Book Now</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Booking Header -->
+    <section class="page-banner" style="background-image: url('images/booking-banner.jpg');" data-aos="fade-up">
+        <div class="banner-content">
+            <h1>Book Your Stay</h1>
+            <p>Reserve your perfect coastal getaway today</p>
+        </div>
+    </section>
+
+    <!-- Booking Form -->
+    <section class="booking-form">
+        <div class="container">
+            <div class="form-wrapper" data-aos="fade-up">
+                <form id="booking-form">
+                    <div class="form-group">
+                        <label for="room-type">Room Type:</label>
+                        <select id="room-type" required>
+                            <option value="">Select Room Type</option>
+                            <option value="Ocean View Suite">Ocean View Suite</option>
+                            <option value="Family Cottage">Family Cottage</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="check-in">Check-In:</label>
+                        <input type="date" id="check-in" value="2025-04-30" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="check-out">Check-Out:</label>
+                        <input type="date" id="check-out" value="2025-05-01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nights">Nights:</label>
+                        <input type="number" id="nights" value="1" min="1" readonly>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="submit" class="check-availability-btn">Check Availability & Book</button>
+                        <a href="#" class="view-calendar-btn">View Calendar</a>
+                    </div>
+                </form>
+                <div id="form-message" class="form-message"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Bookings -->
+    <section class="user-bookings">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Your Bookings</h2>
+            </div>
+            <div id="bookings-list" class="bookings-list" data-aos="fade-up">
+                <p>No bookings found.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Available Rooms -->
+    <section class="available-rooms">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Available on These Dates</h2>
+            </div>
+            <div class="room-option" data-aos="fade-up" data-aos-delay="100">
+                <div class="room-image">
+                    <img src="images/ocean-view-suite.jpg" alt="Ocean View Suite">
+                </div>
+                <div class="room-details">
+                    <h3>Ocean View Suite</h3>
+                    <p>Spacious suite with private balcony and stunning ocean views. Includes air conditioning, Smart TV with selected channels, and a shared patio with access to the plunge pool.</p>
+                    <a href="#" class="show-more">Show More <i class="fas fa-ellipsis-h"></i></a>
+                </div>
+                <div class="room-pricing">
+                    <div class="price">From R2,150.00 per night for 2 adults</div>
+                    <p>Max Guests: 2 (Max 2 adults)</p>
+                    <p>Children: 0 - 5 years free</p>
+                    <button class="book-room-btn" data-room-type="Ocean View Suite">View Rates and Book</button>
+                </div>
+            </div>
+            <div class="room-option" data-aos="fade-up" data-aos-delay="200">
+                <div class="room-image">
+                    <img src="images/family-cottage.jpg" alt="Family Cottage">
+                </div>
+                <div class="room-details">
+                    <h3>Family Cottage</h3>
+                    <p>Cozy cottage perfect for families, with garden access. Features two bedrooms, a kitchenette, and a Smart TV.</p>
+                    <a href="#" class="show-more">Show More <i class="fas fa-ellipsis-h"></i></a>
+                </div>
+                <div class="room-pricing">
+                    <div class="price">From R3,000.00 per night for 4 adults</div>
+                    <p>Max Guests: 4 (Max 4 adults)</p>
+                    <p>Children: 0 - 5 years free</p>
+                    <button class="book-room-btn" data-room-type="Family Cottage">View Rates and Book</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rates Modal -->
+    <div id="rates-modal" class="rates-modal">
+        <div class="rates-modal-content">
+            <span class="close-rates-modal">×</span>
+            <div class="room-image-preview">
+                <img id="rates-room-image" src="" alt="Room Image">
+            </div>
+            <h2 id="rates-room-title" class="text-xl font-bold mt-4"></h2>
+            <p id="rates-room-description" class="text-sm text-gray-600 mt-2"></p>
+            <div class="guest-info mt-4">
+                <p id="rates-max-guests" class="text-sm"></p>
+                <p id="rates-children-policy" class="text-sm"></p>
+            </div>
+            <div class="guest-selection mt-4">
+                <h3 class="text-sm font-medium">Select number of guests and rate</h3>
+                <div class="guest-counter">
+                    <span>Adults</span>
+                    <button type="button" id="rates-adults-decrement">-</button>
+                    <input type="number" id="rates-adults" value="2" min="1" readonly>
+                    <button type="button" id="rates-adults-increment">+</button>
+                    <span>Children (Age 0-5)</span>
+                    <button type="button" id="rates-children-decrement">-</button>
+                    <input type="number" id="rates-children" value="0" min="0" readonly>
+                    <button type="button" id="rates-children-increment">+</button>
+                </div>
+            </div>
+            <div class="pricing mt-4">
+                <p><span id="rates-price" class="text-lg font-bold">R0.00</span> per night</p>
+                <p><strong>Total:</strong> <span id="rates-total" class="text-lg font-bold">R0.00</span></p>
+            </div>
+            <button class="book-now-btn" id="book-now-btn">Book Now</button>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="modal-content bg-white p-6 rounded-lg max-w-md w-full">
+            <span class="close-modal text-2xl cursor-pointer float-right">×</span>
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Booking Information</h2>
+            <div id="booking-modal-form">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Check-in</label>
+                    <input type="date" id="modal-check-in" class="w-full p-2 border rounded-md" required readonly>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Check-out</label>
+                    <input type="date" id="modal-check-out" class="w-full p-2 border rounded-md" required readonly>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Nights</label>
+                    <input type="number" id="modal-nights" class="w-full p-2 border rounded-md" readonly>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Room Type</label>
+                    <input type="text" id="modal-room-type" class="w-full p-2 border rounded-md bg-gray-100" readonly>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Select Number of Guests and Rate</label>
+                    <div class="flex items-center space-x-2">
+                        <label class="text-sm">Adults</label>
+                        <button type="button" id="modal-adults-decrement" class="px-2 py-1 bg-gray-200 rounded">-</button>
+                        <input type="number" id="modal-adults" value="2" min="1" max="4" class="w-12 text-center border rounded-md" readonly>
+                        <button type="button" id="modal-adults-increment" class="px-2 py-1 bg-gray-200 rounded">+</button>
+                        <label class="text-sm">Children (Age 0-5)</label>
+                        <button type="button" id="modal-children-decrement" class="px-2 py-1 bg-gray-200 rounded">-</button>
+                        <input type="number" id="modal-children" value="0" min="0" max="4" class="w-12 text-center border rounded-md" readonly>
+                        <button type="button" id="modal-children-increment" class="px-2 py-1 bg-gray-200 rounded">+</button>
+                    </div>
+                    <div class="mt-2">
+                        <span id="modal-rate" class="text-lg font-semibold">R2,150.00</span> <span class="text-sm">per night for 2 adults</span>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Total</label>
+                    <input type="text" id="modal-total" class="w-full p-2 border rounded-md bg-gray-100" readonly>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Personal Information</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <input type="text" id="first-name" placeholder="First Name" class="p-2 border rounded-md">
+                        <input type="text" id="surname" placeholder="Surname" class="p-2 border rounded-md">
+                        <input type="email" id="email" placeholder="Email" class="p-2 border rounded-md">
+                        <input type="email" id="retype-email" placeholder="Re-type Email" class="p-2 border rounded-md">
+                        <input type="tel" id="phone-number" placeholder="Phone Number" class="p-2 border rounded-md">
+                        <input type="text" id="special-requests" placeholder="Special Requests" class="p-2 border rounded-md col-span-2">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Payment & Confirmation</label>
+                    <select id="payment-method" class="w-full p-2 border rounded-md mb-2">
+                        <option value="">Select the method</option>
+                        <option value="credit_card">Credit Card</option>
+                        <option value="bank_transfer">Bank Transfer</option>
+                    </select>
+                    <label class="flex items-center">
+                        <input type="checkbox" id="terms-checkbox" class="mr-2">
+                        <span>I have read and accepted the terms and conditions below</span>
+                    </label>
+                </div>
+                <div class="mb-4">
+                    <h3 class="text-sm font-medium text-gray-700">Terms & Conditions</h3>
+                    <div class="border p-2">
+                        <h4 class="text-sm font-medium">Cancellation Policy</h4>
+                        <p class="text-sm">If cancelling 7 days before arrival, forfeit 100% of the booking total</p>
+                        <p class="text-sm">If cancelling 30 days before arrival, forfeit 50% of the booking total</p>
+                        <p class="text-sm">If cancelling 60 days before arrival, forfeit 10% of the booking total</p>
+                        <h4 class="text-sm font-medium">Conditions</h4>
+                        <p class="text-sm">One-night bookings over weekends and in peak season won't be confirmed. EFT payments - it is the responsibility of guest to ensure we receive proof of payment. We have a no-pay, no-stay policy.</p>
+                        <p class="text-sm">The Lodge is not pet-friendly.</p>
+                        <p class="text-sm">We appreciate no loud noise or drunkenness on the property.</p>
+                    </div>
+                </div>
+                <button type="button" id="confirm-booking-btn" class="w-full bg-green-700 text-white p-2 rounded-md hover:bg-green-800 transition duration-300">Confirm Booking</button>
+                <p id="modal-message" class="text-center mt-2"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Information -->
+    <section class="additional-info">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>About Coastal Lodge</h2>
+            </div>
+            <div class="info-content" data-aos="fade-up" data-aos-delay="100">
+                <p>Coastal Lodge offers luxury seaside accommodation designed by top architects, with panoramic ocean views. Enjoy a serene escape with modern amenities and warm hospitality.</p>
+            </div>
+            <div class="facilities" data-aos="fade-up" data-aos-delay="200">
+                <h3>General Facilities</h3>
+                <ul>
+                    <li>Air Conditioning</li>
+                    <li>Wi-Fi</li>
+                    <li>Plunge Pool</li>
+                    <li>Beach Access</li>
+                    <li>Restaurant</li>
+                    <li>Room Service</li>
+                </ul>
+            </div>
+            <div class="gallery-grid" data-aos="fade-up" data-aos-delay="300">
+                <img src="images/gallery-1.jpg" alt="Gallery Image">
+                <img src="images/gallery-2.jpg" alt="Gallery Image">
+                <img src="images/gallery-3.jpg" alt="Gallery Image">
+                <img src="images/gallery-4.jpg" alt="Gallery Image">
+                <img src="images/gallery-5.jpg" alt="Gallery Image">
+                <img src="images/gallery-6.jpg" alt="Gallery Image">
+            </div>
+            <div class="contact-info" data-aos="fade-up" data-aos-delay="400">
+                <h3>Contact Information</h3>
+                <p><i class="fas fa-phone"></i> Telephone: +27 22 880 0970</p>
+                <p><i class="fas fa-envelope"></i> Email: info@coastallodge.com</p>
+                <p><i class="fas fa-star"></i> Guest Reviews: 4.5/5</p>
+            </div>
+            <div class="reviews" data-aos="fade-up" data-aos-delay="500">
+                <h3>Guest Reviews</h3>
+                <div class="review">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>"An unforgettable stay! The ocean views were breathtaking, and the staff were incredibly welcoming. Can't wait to return!"</p>
+                    <p class="reviewer">— Jane D., May 2024</p>
+                </div>
+                <div class="review">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Perfect family getaway. The cottage was spacious and well-equipped, and the kids loved the beach access."</p>
+                    <p class="reviewer">— Mark S., April 2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column footer-about">
+                <h3>Coastal Lodge</h3>
+                <p>A luxury seaside accommodation offering unforgettable experiences in a breathtaking coastal setting.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            <div class="footer-column footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="accommodation.html">Rooms & Suites</a></li>
+                    <li><a href="location.html">Location</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Coastal Road, Beachside Village</p>
+                <p><i class="fas fa-phone"></i> +27 12 345 6789</p>
+                <p><i class="fas fa-envelope"></i> info@coastallodge.com</p>
+                <p><i class="fas fa-clock"></i> Reception: 07:00 - 22:00</p>
+            </div>
+            <div class="footer-column footer-subscribe">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for special offers and updates.</p>
+                <div>
+                    <input type="email" placeholder="Your Email Address">
+                    <button type="submit">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Coastal Lodge. All Rights Reserved. | Designed with SyntaxSyndicates</p>
+        </div>
+    </footer>
+
+    <!-- View Calendar Modal -->
+    <div class="calendar-modal">
+        <div class="modal-content">
+            <span class="close-modal">×</span>
+            <h2>Availability Calendar</h2>
+            <div class="calendar-placeholder">
+                <p>Calendar functionality to be implemented. This will show available dates for booking.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Supabase JavaScript Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- JavaScript -->
+    <script src="scriptbooking.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Rates Modal Handling
+        const ratesModal = document.getElementById('rates-modal');
+        const bookingModal = document.getElementById('booking-modal');
+        const bookRoomButtons = document.querySelectorAll('.book-room-btn');
+        const closeRatesModal = document.querySelector('.close-rates-modal');
+        const bookNowBtn = document.getElementById('book-now-btn');
+        const confirmBookingBtn = document.getElementById('confirm-booking-btn');
+        const termsCheckbox = document.getElementById('terms-checkbox');
+        const modalMessage = document.getElementById('modal-message');
+
+        // Room data
+        const roomsData = {
+            'Ocean View Suite': {
+                image: 'images/ocean-view-suite.jpg',
+                description: 'Spacious suite with private balcony and stunning ocean views. Includes air conditioning, Smart TV with selected channels, and a shared patio with access to the plunge pool.',
+                maxGuests: 2,
+                pricePerNight: 2150,
+            },
+            'Family Cottage': {
+                image: 'images/family-cottage.jpg',
+                description: 'Cozy cottage perfect for families, with garden access. Features two bedrooms, a kitchenette, and a Smart TV.',
+                maxGuests: 4,
+                pricePerNight: 3000,
+            }
+        };
+
+        // Guest counters in rates modal
+        const ratesAdultsInput = document.getElementById('rates-adults');
+        const ratesChildrenInput = document.getElementById('rates-children');
+        const ratesAdultsDecrement = document.getElementById('rates-adults-decrement');
+        const ratesAdultsIncrement = document.getElementById('rates-adults-increment');
+        const ratesChildrenDecrement = document.getElementById('rates-children-decrement');
+        const ratesChildrenIncrement = document.getElementById('rates-children-increment');
+
+        let currentRoomType = '';
+        let adults = 2;
+        let children = 0;
+
+        function updateRates() {
+            const roomData = roomsData[currentRoomType];
+            const checkIn = document.getElementById('check-in').value;
+            const checkOut = document.getElementById('check-out').value;
+            const nights = document.getElementById('nights').value;
+            const totalGuests = parseInt(adults) + parseInt(children);
+
+            if (totalGuests > roomData.maxGuests) {
+                alert(`Maximum guests for ${currentRoomType} is ${roomData.maxGuests}.`);
+                adults = roomData.maxGuests - children;
+                if (adults < 1) {
+                    adults = 1;
+                    children = roomData.maxGuests - 1;
+                }
+                ratesAdultsInput.value = adults;
+                ratesChildrenInput.value = children;
+            }
+
+            const totalPrice = roomData.pricePerNight * parseInt(nights);
+            document.getElementById('rates-price').textContent = `R${roomData.pricePerNight.toFixed(2)}`;
+            document.getElementById('rates-total').textContent = `R${totalPrice.toFixed(2)}`;
+        }
+
+        bookRoomButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                currentRoomType = button.getAttribute('data-room-type');
+                const roomData = roomsData[currentRoomType];
+
+                // Populate rates modal
+                document.getElementById('rates-room-image').src = roomData.image;
+                document.getElementById('rates-room-title').textContent = currentRoomType;
+                document.getElementById('rates-room-description').textContent = roomData.description;
+                document.getElementById('rates-max-guests').textContent = `Max Guests: ${roomData.maxGuests}`;
+                document.getElementById('rates-children-policy').textContent = 'Children: 0 - 5 years free';
+
+                adults = currentRoomType === 'Ocean View Suite' ? 2 : 4;
+                children = 0;
+                ratesAdultsInput.value = adults;
+                ratesChildrenInput.value = children;
+
+                updateRates();
+                ratesModal.style.display = 'flex';
+                bookingModal.style.display = 'none'; // Ensure Booking Modal is hidden
+            });
+        });
+
+        closeRatesModal.addEventListener('click', () => {
+            ratesModal.style.display = 'none';
+            bookingModal.style.display = 'none'; // Ensure Booking Modal is hidden
+        });
+
+        ratesAdultsIncrement.addEventListener('click', () => {
+            adults = parseInt(ratesAdultsInput.value) + 1;
+            ratesAdultsInput.value = adults;
+            updateRates();
+        });
+
+        ratesAdultsDecrement.addEventListener('click', () => {
+            if (adults > 1) {
+                adults = parseInt(ratesAdultsInput.value) - 1;
+                ratesAdultsInput.value = adults;
+                updateRates();
+            }
+        });
+
+        ratesChildrenIncrement.addEventListener('click', () => {
+            children = parseInt(ratesChildrenInput.value) + 1;
+            ratesChildrenInput.value = children;
+            updateRates();
+        });
+
+        ratesChildrenDecrement.addEventListener('click', () => {
+            if (children > 0) {
+                children = parseInt(ratesChildrenInput.value) - 1;
+                ratesChildrenInput.value = children;
+                updateRates();
+            }
+        });
+
+        bookNowBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            ratesModal.style.display = 'none'; // Close Rates Modal
+            document.getElementById('modal-room-type').value = currentRoomType;
+            document.getElementById('modal-check-in').value = document.getElementById('check-in').value;
+            document.getElementById('modal-check-out').value = document.getElementById('check-out').value;
+            document.getElementById('modal-nights').value = document.getElementById('nights').value;
+            document.getElementById('modal-adults').value = adults;
+            document.getElementById('modal-children').value = children;
+            document.getElementById('modal-rate').textContent = `R${roomsData[currentRoomType].pricePerNight.toFixed(2)}`;
+            document.getElementById('modal-total').value = `R${(roomsData[currentRoomType].pricePerNight * parseInt(document.getElementById('nights').value)).toFixed(2)}`;
+            bookingModal.style.display = 'flex'; // Open Booking Modal
+        });
+
+        // Close Booking Modal
+        document.querySelector('#booking-modal .close-modal').addEventListener('click', () => {
+            bookingModal.style.display = 'none';
+            ratesModal.style.display = 'none'; // Ensure Rates Modal is hidden
+            modalMessage.textContent = '';
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === ratesModal) {
+                ratesModal.style.display = 'none';
+                bookingModal.style.display = 'none';
+                console.log('Rates Modal closed via outside click');
+            }
+            if (e.target === bookingModal) {
+                bookingModal.style.display = 'none';
+                ratesModal.style.display = 'none';
+                modalMessage.textContent = '';
+                console.log('Booking Modal closed via outside click');
+            }
+        });
+
+        // Confirm Booking Button Redirect
+        confirmBookingBtn.addEventListener('click', () => {
+            if (!termsCheckbox.checked) {
+                modalMessage.textContent = 'Please accept the terms and conditions.';
+                modalMessage.style.color = 'red';
+                return;
+            }
+
+            const firstName = document.getElementById('first-name').value;
+            const surname = document.getElementById('surname').value;
+            const email = document.getElementById('email').value;
+            const retypeEmail = document.getElementById('retype-email').value;
+            const phoneNumber = document.getElementById('phone-number').value;
+            const specialRequests = document.getElementById('special-requests').value;
+            const paymentMethod = document.getElementById('payment-method').value;
+
+            if (!firstName || !surname || !email || !retypeEmail || !phoneNumber || !paymentMethod) {
+                modalMessage.textContent = 'Please fill in all required fields.';
+                modalMessage.style.color = 'red';
+                return;
+            }
+
+            if (email !== retypeEmail) {
+                modalMessage.textContent = 'Emails do not match.';
+                modalMessage.style.color = 'red';
+                return;
+            }
+
+            const bookingDetails = {
+                roomType: currentRoomType,
+                checkIn: document.getElementById('modal-check-in').value,
+                checkOut: document.getElementById('modal-check-out').value,
+                nights: document.getElementById('modal-nights').value,
+                adults: document.getElementById('modal-adults').value,
+                children: document.getElementById('modal-children').value,
+                total: document.getElementById('modal-total').value.replace('R', ''),
+                firstName: firstName,
+                surname: surname,
+                email: email,
+                phoneNumber: phoneNumber,
+                specialRequests: specialRequests,
+                paymentMethod: paymentMethod
+            };
+
+            const queryString = new URLSearchParams(bookingDetails).toString();
+            window.location.href = `register-login.html?${queryString}`;
+        });
+    </script>
+</body>

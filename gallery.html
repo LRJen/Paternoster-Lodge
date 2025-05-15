@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Coastal Lodge</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.0/css/lightgallery.min.css" />
+    
+</head>
+<body>
+    <!-- Header -->
+        <div class="header-container">
+        <div class="logo">
+            <h1>Paternoster Lodge</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="accommodation.html">Accommodation</a></li>
+                <li><a href="location.html">Location</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="restaurant.html">Restaurant</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="booking.html" class="book-btn">Book Now</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </div>
+</header>
+
+    <!-- Page Banner -->
+    <section class="page-banner" style="background-image: url('https://via.placeholder.com/1920x600?text=Restaurant+Hero')" data-aos="fade-up">
+        <div class="banner-content">
+            <h1>Our Gallery</h1>
+            <p>Explore the beauty of Coastal Lodge</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Capture the Experience</h2>
+            </div>
+            <div class="gallery-grid" id="lightgallery" data-aos="fade-up" data-aos-delay="100">
+                <a href="images/gallery1.jpg" class="gallery-item">
+                    <img src="images/gallery pat.PNG" alt="Coastal Lodge">
+                </a>
+                <a href="images/gallery2.jpg" class="gallery-item">
+                    <img src="images/patt callery.PNG" alt="Coastal Lodge">
+                </a>
+                <a href="images/gallery3.jpg" class="gallery-item">
+                    <img src="images/gall p.PNG" alt="Coastal Lodge">
+                </a>
+                <a href="images/gaaall.PNG" class="gallery-item">
+                    <img src="images/gall gall.PNG" alt="Coastal Lodge">
+                </a>
+                <a href="images/gallery5.jpg" class="gallery-item">
+                    <img src="images/gaaall.PNG" alt="Coastal Lodge">
+                </a>
+                <a href="images/gallery6.jpg" class="gallery-item">
+                    <img src="images/daaa.PNG" alt="Coastal Lodge">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <div class="cta-content" data-aos="fade-up">
+                <h2>Experience Coastal Lodge</h2>
+                <p>Book your stay and create your own memories.</p>
+                <a href="booking.html" class="cta-btn">Book Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column footer-about">
+                <h3>Coastal Lodge</h3>
+                <p>A luxury seaside accommodation offering unforgettable experiences in a breathtaking coastal setting.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            <div class="footer-column footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="accommodation.html">Rooms & Suites</a></li>
+                    <li><a href="location.html">Location</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Coastal Road, Beachside Village</p>
+                <p><i class="fas fa-phone"></i> +27 12 345 6789</p>
+                <p><i class="fas fa-envelope"></i> info@coastallodge.com</p>
+                <p><i class="fas fa-clock"></i> Reception: 07:00 - 22:00</p>
+            </div>
+            <div class="footer-column footer-subscribe">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for special offers and updates.</p>
+                <form>
+                    <input type="email" placeholder="Your Email Address">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Coastal Lodge. All Rights Reserved. | Designed with SyntaxSyndicates</p>
+        </div>
+    </footer>
+
+    <!-- Booking Modal 
+    <div class="booking-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Book Your Stay</h2>
+            <form>
+                <input type="date" id="check-in" required>
+                <input type="date" id="check-out" required>
+                <select required>
+                    <option value="">Select Room Type</option>
+                    <option value="oceanview">Ocean View Suite</option>
+                    <option value="family">Family Cottage</option>
+                    <option value="deluxe">Deluxe Room</option>
+                    <option value="premium">Premium Suite</option>
+                </select>
+                <button type="submit">Submit Booking</button>
+            </form>
+        </div>
+    </div>-->
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.0/lightgallery.min.js"></script>
+</body>
+</html>
