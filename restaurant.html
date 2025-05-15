@@ -10,30 +10,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <div class="logo">
-                <h1>Paternoster Lodge</h1>
-            </div>
-            <nav>
-                <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="accommodation.html" >Accommodation</a></li>
-        <li><a href="location.html">Location</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="restaurant.html"class="active">Restaurant</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="booking.html">Book Now</a></li>
-                </ul>
-            </nav>
-            <div class="hamburger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
-            </div>
+    <!-- Header -->
+<header>
+    <div class="header-container">
+        <div class="logo">
+            <h1>Coastal Lodge</h1>
         </div>
-    </header>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="{{indexActive}}">Home</a></li>
+                <li><a href="about.html" class="{{aboutActive}}">About</a></li>
+                <li><a href="accommodation.html" class="{{accommodationActive}}">Accommodation</a></li>
+                <li><a href="location.html" class="{{locationActive}}">Location</a></li>
+                <li><a href="gallery.html" class="{{galleryActive}}">Gallery</a></li>
+                <li><a href="restaurant.html" class="{{restaurantActive}} active">Restaurant</a></li>
+                <li><a href="contact.html" class="{{contactActive}}">Contact</a></li>
+                <li><a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a></li>
+                <li><a href="register-login.html" class="{{registerLoginActive}} book-btn">Login</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </div>
+</header>
 
     <section class="page-banner" style="background-image: url('https://via.placeholder.com/1920x600?text=Restaurant+Hero')" data-aos="fade-up">
         <div class="banner-content">
