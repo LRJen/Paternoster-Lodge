@@ -372,14 +372,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Initialize AOS
-    if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
-    } else {
-        console.warn('AOS library not loaded.');
-    }
+if (typeof AOS !== 'undefined') {
+    AOS.init({
+        duration: 1000,
+        once: true
+    });
+} else {
+    console.warn('AOS library not loaded.');
+    document.body.classList.add('aos-fallback');
+}
 });
 
 // Header Scroll Effect
@@ -431,4 +432,13 @@ function initContactForm() {
             submitBtn.textContent = 'Send Message';
         }
     });
+}
+if (typeof AOS !== 'undefined') {
+    AOS.init({
+        duration: 1000,
+        once: true
+    });
+} else {
+    console.warn('AOS library not loaded.');
+    document.body.classList.add('aos-fallback');
 }
