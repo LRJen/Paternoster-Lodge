@@ -6,41 +6,41 @@
     <title>Location | Coastal Lodge</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link rel="stylesheet" href="https://un```pkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
 </head>
 <body>
     <!-- Header -->
-  <!-- Header -->
-<header>
-    <div class="header-container">
-        <div class="logo">
-            <h1>Coastal Lodge</h1>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>Coastal Lodge</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="">Home</a></li>
+                    <li><a href="about.html" class="">About</a></li>
+                    <li><a href="accommodation.html" class="">Accommodation</a></li>
+                    <li><a href="location.html" class="active">Location</a></li>
+                    <li><a href="gallery.html" class="">Gallery</a></li>
+                    <li><a href="restaurant.html" class="">Restaurant</a></li>
+                    <li><a href="contact.html" class="">Contact</a></li>
+                    <li><a href="booking.html" class="book-btn">Book Now</a></li>
+                    <li><a href="register-login.html" class="book-btn">Register/Login</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="{{indexActive}}">Home</a></li>
-                <li><a href="about.html" class="{{aboutActive}}">About</a></li>
-                <li><a href="accommodation.html" class="{{accommodationActive}}">Accommodation</a></li>
-                <li><a href="location.html" class="{{locationActive}} active" >Location</a></li>
-                <li><a href="gallery.html" class="{{galleryActive}}">Gallery</a></li>
-                <li><a href="restaurant.html" class="{{restaurantActive}}">Restaurant</a></li>
-                <li><a href="contact.html" class="{{contactActive}}">Contact</a></li>
-                <li><a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a></li>
-                <li><a href="register-login.html" class="{{registerLoginActive}} book-btn">Login</a></li>
-            </ul>
-        </nav>
-        <div class="hamburger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </div>
-</header>
+    </header>
+
     <!-- Page Banner -->
-    <section class="page-banner" style="background-image: url('https://via.placeholder.com/1920x600?text=Location+Hero')" data-aos="fade-up">
+    <section class="page-banner" style="background-image: url('https://via.placeholder.com/1920x600?text=Location+Banner')" data-aos="fade-up">
         <div class="banner-content">
             <h1>Our Location</h1>
-            <p>Discover our picturesque coastal village</p>
+            <p>Explore the beautiful coastal surroundings of Coastal Lodge</p>
         </div>
     </section>
 
@@ -50,14 +50,14 @@
             <div class="section-title" data-aos="fade-up">
                 <h2>Find Us</h2>
             </div>
-            <div class="location-content">
-                <div class="map-container" data-aos="fade-up" data-aos-delay="100">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.9537363153167!3d-37.81627997975171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf5779f12b4c8f8e0!2s123%20Coastal%20Road%2C%20Beachside%20Village!5e0!3m2!1sen!2sau!4v1635781234567!5m2!1sen!2sau" allowfullscreen="" loading="lazy"></iframe>
+            <div class="location-content" data-aos="fade-up" data-aos-delay="100">
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019393114235!2d-122.4194156846812!3d37.77492977975966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808f5c2b7b7b%3A0x9c5c4a9c8f8c9c7c!2sSan+Francisco%2C+CA%2C+USA!5e0!3m2!1sen!2sza!4v1625098765432!5m2!1sen!2sza" allowfullscreen="" loading="lazy"></iframe>
+                    <p class="map-fallback" style="display: none; text-align: center; color: var(--text);">Map unavailable. Please visit our address at 123 Coastal Road, Beachside Village.</p>
                 </div>
-                <div class="location-info" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Our Coastal Haven</h3>
-                    <p>Coastal Lodge is nestled in a charming fishing village, just a 2-hour drive from the nearest international airport. Our location offers serene beaches, vibrant marine life, and a rich local culture.</p>
-                    <p>Explore nearby restaurants, art galleries, and coastal trails, all within walking distance from the lodge.</p>
+                <div class="location-info">
+                    <h3>Coastal Lodge</h3>
+                    <p>Located in the heart of Beachside Village, our lodge offers easy access to pristine beaches, local attractions, and scenic coastal trails.</p>
                     <div class="contact-details">
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
@@ -77,13 +77,13 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- CTA Surface -->
     <section class="cta-section">
         <div class="cta-container">
             <div class="cta-content" data-aos="fade-up">
                 <h2>Plan Your Visit</h2>
-                <p>Book your stay today and experience the beauty of Coastal Lodge.</p>
-                <a href="contact.html" class="cta-btn">Book Now</a>
+                <p>Experience the beauty of the coast with a stay at Coastal Lodge.</p>
+                <a href="booking.html" class="cta-btn">Book Now</a>
             </div>
         </div>
     </section>
@@ -107,7 +107,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="accommodation.html">Rooms & Suites</a></li>
-                    <li><a href="location.html" class="active">Location</a></li>
+                    <li><a href="location.html">Location</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
@@ -133,28 +133,8 @@
         </div>
     </footer>
 
-    <!-- Booking Modal 
-    <div class="booking-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Book Your Stay</h2>
-            <form>
-                <input type="date" id="check-in" required>
-                <input type="date" id="check-out" required>
-                <select required>
-                    <option value="">Select Room Type</option>
-                    <option value="oceanview">Ocean View Suite</option>
-                    <option value="family">Family Cottage</option>
-                    <option value="deluxe">Deluxe Room</option>
-                    <option value="premium">Premium Suite</option>
-                </select>
-                <button type="submit">Submit Booking</button>
-            </form>
-        </div>
-    </div>-->
-
-    <!-- JavaScript -->
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script src="script.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 </body>
 </html>
