@@ -2651,3 +2651,8 @@ footer {
         font-size: 0.9rem;
     }
 }
+/* Fallback for AOS failure */
+body.aos-fallback [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+}

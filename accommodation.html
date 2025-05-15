@@ -3,193 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accommodation - Coastal Haven Hotel</title>
+    <title>Accommodation | Coastal Lodge</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
 </head>
 <body>
- <header>
-    <div class="header-container">
-        <div class="logo">
-            <h1>Coastal Lodge</h1>
+    <!-- Header (Updated from previous task) -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>Coastal Lodge</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="">Home</a></li>
+                    <li><a href="about.html" class="">About</a></li>
+                    <li><a href="accommodation.html" class="active">Accommodation</a></li>
+                    <li><a href="location.html" class="">Location</a></li>
+                    <li><a href="gallery.html" class="">Gallery</a></li>
+                    <li><a href="restaurant.html" class="">Restaurant</a></li>
+                    <li><a href="contact.html" class="">Contact</a></li>
+                    <li><a href="booking.html" class="book-btn">Book Now</a></li>
+                    <li><a href="register-login.html" class="book-btn">Register/Login</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="{{indexActive}} ">Home</a></li>
-                <li><a href="about.html" class="{{aboutActive}}">About</a></li>
-                <li><a href="accommodation.html" class="{{accommodationActive}} active">Accommodation</a></li>
-                <li><a href="location.html" class="{{locationActive}}">Location</a></li>
-                <li><a href="gallery.html" class="{{galleryActive}}">Gallery</a></li>
-                <li><a href="restaurant.html" class="{{restaurantActive}}">Restaurant</a></li>
-                <li><a href="contact.html" class="{{contactActive}}">Contact</a></li>
-                <li><a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a></li>
-                <li><a href="register-login.html" class="{{registerLoginActive}} book-btn">Login</a></li>
-            </ul>
-        </nav>
-        <div class="hamburger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </div>
-</header>
+    </header>
+
+    <!-- Page Banner -->
     <section class="page-banner" style="background-image: url('https://via.placeholder.com/1920x600?text=Accommodation+Hero')" data-aos="fade-up">
         <div class="banner-content">
-            <h1>Our Rooms & Suites</h1>
-            <p>Experience unparalleled comfort in our luxurious accommodations, designed to make your stay unforgettable.</p>
+            <h1>Our Accommodation</h1>
+            <p>Discover luxurious rooms and suites with stunning ocean views</p>
         </div>
     </section>
 
-    <section class="room-categories" data-aos="fade-up">
+    <!-- Room Categories Section -->
+    <section class="room-categories">
         <div class="container">
-            <div class="section-title">
-                <h2>Explore Our Accommodations</h2>
+            <div class="section-title" data-aos="fade-up">
+                <h2>Explore Our Rooms</h2>
             </div>
-            <div class="category-tabs">
+            <div class="category-tabs" data-aos="fade-up" data-aos-delay="100">
                 <button class="tab-btn active" data-category="all">All</button>
-                <button class="tab-btn" data-category="standard">Standard</button>
-                <button class="tab-btn" data-category="deluxe">Deluxe</button>
-                <button class="tab-btn" data-category="suite">Suite</button>
+                <button class="tab-btn" data-category="suite">Suites</button>
+                <button class="tab-btn" data-category="cottage">Cottages</button>
+                <button class="tab-btn" data-category="room">Rooms</button>
             </div>
             <div class="room-grid">
-                <div class="room-card" data-type="standard" data-aos="fade-up" data-aos-delay="100">
+                <div class="room-card" data-type="suite" data-aos="fade-up" data-aos-delay="100">
                     <div class="room-card-inner">
                         <div class="room-card-front">
-                            <img src="images/standard room.jpg" alt="Standard Room">
-                            <h3 style="background: #1B3C59; color: #fff;">Standard Room</h3>
+                            <img src="https://via.placeholder.com/300x200?text=Ocean+View+Suite" alt="Ocean View Suite">
+                            <h3 style="background-color: rgb(6, 33, 75); color: white;">Ocean View Suite</h3>
                         </div>
                         <div class="room-card-back">
-                            <h3>Standard Room</h3>
-                            <p>Cozy and comfortable, perfect for solo travelers or couples.</p>
+                            <h3>Ocean View Suite</h3>
+                            <p>Spacious suite with private balcony and stunning ocean views.</p>
                             <ul>
-                                <li><i class="fas fa-bed"></i> Queen Bed</li>
+                                <li><i class="fas fa-bed"></i> King Bed</li>
+                                <li><i class="fas fa-bath"></i> Ensuite Bathroom</li>
                                 <li><i class="fas fa-wifi"></i> Free Wi-Fi</li>
-                                <li><i class="fas fa-tv"></i> Smart TV</li>
                             </ul>
                             <div>
-                                <a href="#" class="book-room-btn">Book Now</a>
+                                <a href="#" class="book-room-btn" data-room="oceanview">Book Now</a>
                                 <a href="#" class="details-btn">Details</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="room-card" data-type="deluxe" data-aos="fade-up" data-aos-delay="200">
+                <div class="room-card" data-type="cottage" data-aos="fade-up" data-aos-delay="200">
                     <div class="room-card-inner">
                         <div class="room-card-front">
-                            <img src="images/delxe hotel room.jpg" alt="Deluxe Room">
-                            <h3 style="background: #1B3C59; color: #fff;">Deluxe Suite</h3>
+                            <img src="https://via.placeholder.com/300x200?text=Family+Cottage" alt="Family Cottage">
+                            <h3 style="background-color: rgb(6, 33, 75); color: white;">Family Cottage</h3>
+                        </div>
+                        <div class="room-card-back">
+                            <h3>Family Cottage</h3>
+                            <p>Cozy cottage perfect for families, with garden access.</p>
+                            <ul>
+                                <li><i class="fas fa-bed"></i> 2 Queen Beds</li>
+                                <li><i class="fas fa-bath"></i> Shared Bathroom</li>
+                                <li><i class="fas fa-wifi"></i> Free Wi-Fi</li>
+                            </ul>
+                            <div>
+                                <a href="#" class="book-room-btn" data-room="family">Book Now</a>
+                                <a href="#" class="details-btn">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="room-card" data-type="room" data-aos="fade-up" data-aos-delay="300">
+                    <div class="room-card-inner">
+                        <div class="room-card-front">
+                            <img src="https://via.placeholder.com/300x200?text=Deluxe+Room" alt="Deluxe Room">
+                            <h3 style="background-color: rgb(6, 33, 75); color: white;">Deluxe Room</h3>
                         </div>
                         <div class="room-card-back">
                             <h3>Deluxe Room</h3>
-                            <p>Spacious rooms with stunning ocean views and modern amenities.</p>
+                            <p>Comfortable room with modern amenities and sea views.</p>
                             <ul>
-                                <li><i class="fas fa-bed"></i> King Bed</li>
-                                <li><i class="fas fa-water"></i> Ocean View</li>
-                                <li><i class="fas fa-coffee"></i> Coffee Maker</li>
+                                <li><i class="fas fa-bed"></i> Queen Bed</li>
+                                <li><i class="fas fa-bath"></i> Ensuite Bathroom</li>
+                                <li><i class="fas fa-wifi"></i> Free Wi-Fi</li>
                             </ul>
                             <div>
-                                <a href="#" class="book-room-btn">Book Now</a>
+                                <a href="#" class="book-room-btn" data-room="deluxe">Book Now</a>
                                 <a href="#" class="details-btn">Details</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="room-card" data-type="suite" data-aos="fade-up" data-aos-delay="300">
-                    <div class="room-card-inner">
-                        <div class="room-card-front">
-                            <img src="images/atr.royalmansion-bedroom2-mr.webp" alt="Suite">
-
-                            <h3 style="background: #1B3C59; color: #fff;"> Suite</h3>
-                        </div>
-                        <div class="room-card-back">
-                            <h3>Suite</h3>
-                            <p>Luxurious suites with private balconies and premium amenities.</p>
-                            <ul>
-                                <li><i class="fas fa-bed"></i> King Bed</li>
-                                <li><i class="fas fa-hot-tub"></i> Jacuzzi</li>
-                                <li><i class="fas fa-concierge-bell"></i> Butler Service</li>
-                            </ul>
-                            <div>
-                                <a href="#" class="book-room-btn">Book Now</a>
-                                <a href="#" class="details-btn">Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <p class="fallback-message" style="display: none; text-align: center; color: var(--text);">No rooms available in this category.</p>
             </div>
         </div>
     </section>
 
-    <section class="cta-section" data-aos="fade-up">
+    <!-- CTA Section -->
+    <section class="cta-section">
         <div class="cta-container">
-            <h2>Book Your Stay Today</h2>
-            <p>Reserve your room now and enjoy exclusive offers and unparalleled hospitality.</p>
-            <a href="#" class="cta-btn">Book Now</a>
+            <div class="cta-content" data-aos="fade-up">
+                <h2>Book Your Stay</h2>
+                <p>Experience luxury and comfort at Coastal Lodge.</p>
+                <a href="booking.html" class="cta-btn">Book Now</a>
+            </div>
         </div>
     </section>
 
+    <!-- Booking Modal -->
     <div class="booking-modal hidden">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Book Your Room</h2>
+            <span class="close-modal">×</span>
+            <h2>Book Your Stay</h2>
             <form>
-                <input type="text" placeholder="Full Name" required>
-                <input type="email" placeholder="Email" required>
-                <input type="date" required>
-                <select required>
-                    <option value="" disabled selected>Room Type</option>
-                    <option value="standard">Standard</option>
-                    <option value="deluxe">Deluxe</option>
-                    <option value="suite">Suite</option>
+                <input type="date" id="check-in-modal" required>
+                <input type="date" id="check-out-modal" required>
+                <input type="number" id="nights-modal" placeholder="Nights" readonly>
+                <select id="room-type" required>
+                    <option value="" disabled selected>Select Room Type</option>
+                    <option value="oceanview">Ocean View Suite</option>
+                    <option value="family">Family Cottage</option>
+                    <option value="deluxe">Deluxe Room</option>
+                    <option value="premium">Premium Suite</option>
                 </select>
-                <button type="submit">Submit</button>
+                <input type="text" id="name" placeholder="Full Name" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <button type="submit">Submit Booking</button>
             </form>
         </div>
     </div>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="footer-column">
-                <h3>About Coastal Haven</h3>
-                <p>Experience luxury and tranquility at Coastal Haven Hotel, where the ocean meets unparalleled hospitality.</p>
+            <div class="footer-column footer-about">
+                <h3>Coastal Lodge</h3>
+                <p>A luxury seaside accommodation offering unforgettable experiences in a breathtaking coastal setting.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
             </div>
-            <div class="footer-column">
+            <div class="footer-column footer-links">
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="accommodation.html">Accommodation</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="accommodation.html">Rooms & Suites</a></li>
                     <li><a href="location.html">Location</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
-            <div class="footer-column">
+            <div class="footer-column footer-contact">
                 <h3>Contact Us</h3>
-                <div class="contact-item"><i class="fas fa-phone"></i><p>+1 (555) 123-4567</p></div>
-                <div class="contact-item"><i class="fas fa-envelope"></i><p>info@coastalhaven.com</p></div>
-                <div class="contact-item"><i class="fas fa-map-marker-alt"></i><p>123 Ocean Drive, Coastal City</p></div>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Coastal Road, Beachside Village</p>
+                <p><i class="fas fa-phone"></i> +27 12 345 6789</p>
+                <p><i class="fas fa-envelope"></i> info@coastallodge.com</p>
+                <p><i class="fas fa-clock"></i> Reception: 07:00 - 22:00</p>
             </div>
             <div class="footer-column footer-subscribe">
-                <h3>Stay Updated</h3>
-                <p>Subscribe to our newsletter for exclusive offers.</p>
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for special offers and updates.</p>
                 <form>
-                    <input type="email" placeholder="Your Email" required>
+                    <input type="email" placeholder="Your Email Address">
                     <button type="submit">Subscribe</button>
                 </form>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Coastal Haven Hotel. All rights reserved.</p>
+            <p>© 2025 Coastal Lodge. All Rights Reserved. | Designed with SyntaxSyndicates</p>
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <!--<script src="scriptbooking.js"></script> -->
 </body>
 </html>
