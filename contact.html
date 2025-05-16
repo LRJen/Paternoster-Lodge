@@ -7,35 +7,81 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .modal-content.success {
+            border-top: 4px solid #28a745;
+        }
+        .modal-content.error {
+            border-top: 4px solid #dc3545;
+        }
+        .modal-content p {
+            margin: 0 0 20px;
+            font-size: 16px;
+        }
+        .modal-content button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .modal-content button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
- <!-- Header -->
-<header>
-    <div class="header-container">
-        <div class="logo">
-            <h1>Coastal Lodge</h1>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>Coastal Lodge</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="{{indexActive}}">Home</a></li>
+                    <li><a href="about.html" class="{{aboutActive}}">About</a></li>
+                    <li><a href="accommodation.html" class="{{accommodationActive}}">Accommodation</a></li>
+                    <li><a href="location.html" class="{{locationActive}}">Location</a></li>
+                    <li><a href="gallery.html" class="{{galleryActive}}">Gallery</a></li>
+                    <li><a href="restaurant.html" class="{{restaurantActive}}">Restaurant</a></li>
+                    <li><a href="contact.html" class="{{contactActive}} active">Contact</a></li>
+                    <li><a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a></li>
+                    <li><a href="register-login.html" class="{{registerLoginActive}} book-btn">Login</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="{{indexActive}}">Home</a></li>
-                <li><a href="about.html" class="{{aboutActive}}">About</a></li>
-                <li><a href="accommodation.html" class="{{accommodationActive}}">Accommodation</a></li>
-                <li><a href="location.html" class="{{locationActive}}">Location</a></li>
-                <li><a href="gallery.html" class="{{galleryActive}}">Gallery</a></li>
-                <li><a href="restaurant.html" class="{{restaurantActive}}">Restaurant</a></li>
-                <li><a href="contact.html" class="{{contactActive}} active">Contact</a></li>
-                <li><a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a></li>
-                <li><a href="register-login.html" class="{{registerLoginActive}} book-btn">Login</a></li>
-            </ul>
-        </nav>
-        <div class="hamburger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </div>
-</header>
+    </header>
 
     <!-- Page Banner -->
     <section class="page-banner" style="background-image: url('https://via.placeholder.com/1920x600?text=Restaurant+Hero')" data-aos="fade-up">
@@ -55,22 +101,21 @@
                 <form class="contact-form" id="contact-form">
                     <div class="form-group">
                         <label for="full-name">Full Name</label>
-                        <input type="text" id="full-name" placeholder="Full Name" required>
+                        <input type="text" id="full-name" name="full-name" placeholder="Full Name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" placeholder="Email Address" required>
+                        <input type="email" id="email" name="email" placeholder="Email Address" required>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" placeholder="Phone Number" required>
+                        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
                     </div>
                     <div class="form-group">
                         <label for="message">Your Message or Booking Request</label>
-                        <textarea id="message" placeholder="Your Message or Booking Request" required></textarea>
+                        <textarea id="message" name="message" placeholder="Your Message or Booking Request" required></textarea>
                     </div>
                     <button type="submit">Send Message</button>
-                    <div class="form-message" id="form-message"></div>
                 </form>
             </div>
         </div>
@@ -102,6 +147,14 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal for Pop-up Message -->
+    <div class="modal" id="form-modal">
+        <div class="modal-content" id="modal-content">
+            <p id="modal-message"></p>
+            <button id="modal-close">OK</button>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -150,6 +203,60 @@
 
     <!-- JavaScript -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="script.js"></script>
+    <script>
+        // Initialize EmailJS with your User ID
+        (function() {
+            emailjs.init("zsFfl2EelqcjuPTDz"); // Your EmailJS User ID
+        })();
+
+        // Modal Elements
+        const modal = document.getElementById('form-modal');
+        const modalContent = document.getElementById('modal-content');
+        const modalMessage = document.getElementById('modal-message');
+        const modalClose = document.getElementById('modal-close');
+
+        // Function to show modal
+        function showModal(message, isSuccess) {
+            modalMessage.textContent = message;
+            modalContent.className = 'modal-content'; // Reset classes
+            modalContent.classList.add(isSuccess ? 'success' : 'error');
+            modal.style.display = 'flex';
+        }
+
+        // Close modal on button click
+        modalClose.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = {
+                'full-name': document.getElementById('full-name').value,
+                'email': document.getElementById('email').value,
+                'phone': document.getElementById('phone').value,
+                'message': document.getElementById('message').value
+            };
+
+            // Send email using EmailJS
+            emailjs.send("service_lu0fwop", "template_l5ix3q8", formData)
+                .then(function(response) {
+                    showModal('Thank you! Your message has been sent.', true);
+                    document.getElementById('contact-form').reset();
+                }, function(error) {
+                    showModal('Oops! Something went wrong. Please try again.', false);
+                });
+        });
+
+        // Initialize AOS
+        AOS.init();
+    </script>
 </body>
 </html>
