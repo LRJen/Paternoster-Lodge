@@ -69,6 +69,7 @@ img {
 
 [data-aos].aos-animate {
     opacity: 1;
+    
 }
 
 [data-aos="fade-up"] {
@@ -77,6 +78,7 @@ img {
 
 [data-aos="fade-up"].aos-animate {
     transform: translateY(0);
+    align-items: center;
 }
 
 /* Header */
@@ -618,6 +620,8 @@ nav ul li a.active::after {
     height: 100%;
     backface-visibility: hidden;
     border-radius: 8px;
+    padding: 1rem;
+    overflow-y: auto;
 }
 
 .room-card-front {
@@ -655,19 +659,20 @@ nav ul li a.active::after {
 }
 
 .room-card-back h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
 }
 
 .room-card-back p {
-    margin-bottom: 1rem;
-    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
     color: var(--text);
+    line-height: 1.4;
 }
 
 .room-card-back ul {
     list-style: none;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
@@ -675,9 +680,11 @@ nav ul li a.active::after {
 
 .room-card-back ul li {
     margin: 0.5rem 0;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     display: flex;
     align-items: center;
+    margin-bottom: 0.3rem; /* Reduced from 0.5rem */
+
 }
 
 .room-card-back i {
@@ -695,12 +702,13 @@ nav ul li a.active::after {
 
 .book-room-btn,
 .details-btn {
-    padding: 0.75rem 1.5rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 9999px;
     font-size: 0.9rem;
     text-align: center;
     flex: 1;
     min-width: 120px;
+    align-self: center;
 }
 
 .book-room-btn {
@@ -2757,7 +2765,7 @@ footer {
     }
 
     .room-card-inner {
-        min-height: 320px;
+        min-height: 400px;
     }
 
     .room-card-front img {

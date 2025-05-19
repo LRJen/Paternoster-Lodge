@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
 </head>
 <body>
-    <!-- Header (Updated from previous task) -->
+    <!-- Header -->
     <header>
         <div class="header-container">
             <div class="logo">
@@ -57,14 +57,14 @@
                 <button class="tab-btn" data-category="room">Rooms</button>
             </div>
             <div class="room-grid">
-                <div class="room-card" data-type="suite" data-aos="fade-up" data-aos-delay="100">
+                <div class="room-card" data-type="suite" data-aos="fade-up" data-aos-delay="100" onclick="openRoomModal('oceanview')">
                     <div class="room-card-inner">
                         <div class="room-card-front">
                             <img src="images/Ocean view suite.webp" alt="Ocean View Suite">
                             <h3 style="background-color: rgb(6, 33, 75); color: white;">Ocean View Suite</h3>
                         </div>
                         <div class="room-card-back">
-                            <h3>Queen Deluxe Room</h3>
+                            <h3>Ocean View Suite</h3>
                             <p>Indulge in our deluxe double room with en-suite, offering a semi-self-catering experience. This room features a convenient kitchenette equipped with a microwave, mini-fridge, and basin. Enjoy modern comforts with air conditioning, a Smart TV featuring selected DStv channels, and complimentary WiFi. The en-suite includes a walk-in shower, and guests have exclusive access to the refreshing plunge pool. Elevate your stay with us for a perfect blend of comfort and convenience.</p>
                             <ul>
                                 <li><i class="fas fa-bed"></i> King size Bed</li>
@@ -72,42 +72,40 @@
                                 <li><i class="fas fa-wifi"></i> Free Wi-Fi</li>
                             </ul>
                             <div>
-                                <a href="#" class="book-room-btn" data-room="oceanview">Book Now</a>
-                                <a href="#" class="details-btn">Details</a>
+                                <a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="room-card" data-type="cottage" data-aos="fade-up" data-aos-delay="200">
+                <div class="room-card" data-type="cottage" data-aos="fade-up" data-aos-delay="200" onclick="openRoomModal('family')">
                     <div class="room-card-inner">
                         <div class="room-card-front">
                             <img src="images/family cottage.jpg" alt="Family Cottage">
                             <h3 style="background-color: rgb(6, 33, 75); color: white;">Family Cottage</h3>
                         </div>
                         <div class="room-card-back">
-                            <h3>Family Room</h3>
+                            <h3>Family Cottage</h3>
                             <p>Unwind in our inviting double family room with en-suite, where luxury meets versatility. This spacious accommodation offers the option of a luxury coach conversion into a bunk for children, providing flexibility for family stays. A camping cot, subject to availability, is an additional convenience.</p>
-                            <p>All our rooms feature air-conditioning for optimal comfort, ensuring a pleasant stay. Entertainment is at your fingertips with a Smart TV featuring selected DStv channels. Guests of this room also enjoy access to our refreshing plunge pool. Make the most of your family getaway with us, where thoughtful amenities and relaxation seamlessly come together.”</p>
+                            <p>All our rooms feature air-conditioning for optimal comfort, ensuring a pleasant stay. Entertainment is at your fingertips with a Smart TV featuring selected DStv channels. Guests of this room also enjoy access to our refreshing plunge pool. Make the most of your family getaway with us, where thoughtful amenities and relaxation seamlessly come together.</p>
                             <ul>
                                 <li><i class="fas fa-bed"></i> 2 Queen Beds</li>
                                 <li><i class="fas fa-bath"></i> Shared Bathroom</li>
                                 <li><i class="fas fa-wifi"></i> Free Wi-Fi</li>
                             </ul>
                             <div>
-                                <a href="#" class="book-room-btn" data-room="family">Book Now</a>
-                                <a href="#" class="details-btn">Details</a>
+                                <a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="room-card" data-type="room" data-aos="fade-up" data-aos-delay="300">
+                <div class="room-card" data-type="room" data-aos="fade-up" data-aos-delay="300" onclick="openRoomModal('deluxe')">
                     <div class="room-card-inner">
                         <div class="room-card-front">
                             <img src="images/deluxe room.jpg" alt="Deluxe Room">
                             <h3 style="background-color: rgb(6, 33, 75); color: white;">Deluxe Room</h3>
                         </div>
                         <div class="room-card-back">
-                            <h3>Standard Rooms</h3>
+                            <h3>Deluxe Room</h3>
                             <p>Embrace tranquility in our comfortable double room with en-suite shower. Enjoy the convenience of a camping cot, subject to availability, ensuring a restful stay. All our rooms feature air conditioning for optimal comfort, along with a Smart TV boasting selected DStv channels for your entertainment.</p>
                             <p>Indulge in the picturesque surroundings as this room offers a shared patio with a captivating view over Paternoster Beach. Guests also have exclusive access to our refreshing plunge pool, adding to the allure of your coastal retreat. Experience the perfect blend of comfort and charm in this inviting accommodation.</p>
                             <ul>
@@ -116,9 +114,16 @@
                                 <li><i class="fas fa-wifi"></i> Free Wi-Fi</li>
                             </ul>
                             <div>
-                                <a href="#" class="book-room-btn" data-room="deluxe">Book Now</a>
-                                <a href="#" class="details-btn">Details</a>
+                                <a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="room-card" data-type="suite" data-aos="fade-up" data-aos-delay="400" onclick="openRoomModal('honeymoon')">
+                    <div class="room-card-inner">
+                        <div class="room-card-front">
+                            <img src="images/honeymoon suite.jpg" alt="Honeymoon Suite">
+                            <h3 style="background-color: rgb(6, 33, 75); color: white;">Honeymoon Suite</h3>
                         </div>
                         <div class="room-card-back">
                             <h3>Honeymoon Suite</h3>
@@ -130,8 +135,7 @@
                                 <li><i class="fas fa-wifi"></i> Free Wi-Fi</li>
                             </ul>
                             <div>
-                                <a href="#" class="book-room-btn" data-room="deluxe">Book Now</a>
-                                <a href="#" class="details-btn">Details</a>
+                                <a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a>
                             </div>
                         </div>
                     </div>
@@ -140,6 +144,66 @@
             </div>
         </div>
     </section>
+
+    <!-- Room Modals -->
+    <div class="room-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden" id="oceanview-modal">
+        <div class="modal-content bg-white p-8 rounded-lg max-w-lg w-full">
+            <span class="close-room-modal text-2xl cursor-pointer float-right" onclick="closeRoomModal('oceanview')">×</span>
+            <h2 class="text-3xl font-bold text-[#1b3c59] mb-4">Ocean View Suite</h2>
+            <div class="modal-img" style="background-image: url('images/Ocean view suite.webp'); height: 200px; background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 1rem;"></div>
+            <p class="text-[#555] mb-4">Indulge in our deluxe double room with en-suite, offering a semi-self-catering experience. This room features a convenient kitchenette equipped with a microwave, mini-fridge, and basin. Enjoy modern comforts with air conditioning, a Smart TV featuring selected DStv channels, and complimentary WiFi. The en-suite includes a walk-in shower, and guests have exclusive access to the refreshing plunge pool. Elevate your stay with us for a perfect blend of comfort and convenience.</p>
+            <ul class="room-features mb-4">
+                <li><i class="fas fa-bed"></i> King size Bed</li>
+                <li><i class="fas fa-bath"></i> Ensuite Bathroom</li>
+                <li><i class="fas fa-wifi"></i> Free Wi-Fi</li>
+            </ul>
+            <a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a>
+        </div>
+    </div>
+
+    <div class="room-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden" id="family-modal">
+        <div class="modal-content bg-white p-8 rounded-lg max-w-lg w-full">
+            <span class="close-room-modal text-2xl cursor-pointer float-right" onclick="closeRoomModal('family')">×</span>
+            <h2 class="text-3xl font-bold text-[#1b3c59] mb-4">Family Cottage</h2>
+            <div class="modal-img" style="background-image: url('images/family cottage.jpg'); height: 200px; background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 1rem;"></div>
+            <p class="text-[#555] mb-4">Unwind in our inviting double family room with en-suite, where luxury meets versatility. This spacious accommodation offers the option of a luxury coach conversion into a bunk for children, providing flexibility for family stays. A camping cot, subject to availability, is an additional convenience. All our rooms feature air-conditioning for optimal comfort, ensuring a pleasant stay. Entertainment is at your fingertips with a Smart TV featuring selected DStv channels. Guests of this room also enjoy access to our refreshing plunge pool. Make the most of your family getaway with us, where thoughtful amenities and relaxation seamlessly come together.</p>
+            <ul class="room-features mb-4">
+                <li><i class="fas fa-bed"></i> 2 Queen Beds</li>
+                <li><i class="fas fa-bath"></i> Shared Bathroom</li>
+                <li><i class="fas fa-wifi"></i> Free Wi-Fi</li>
+            </ul>
+            <a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a>
+        </div>
+    </div>
+
+    <div class="room-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden" id="deluxe-modal">
+        <div class="modal-content bg-white p-8 rounded-lg max-w-lg w-full">
+            <span class="close-room-modal text-2xl cursor-pointer float-right" onclick="closeRoomModal('deluxe')">×</span>
+            <h2 class="text-3xl font-bold text-[#1b3c59] mb-4">Deluxe Room</h2>
+            <div class="modal-img" style="background-image: url('images/deluxe room.jpg'); height: 200px; background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 1rem;"></div>
+            <p class="text-[#555] mb-4">Embrace tranquility in our comfortable double room with en-suite shower. Enjoy the convenience of a camping cot, subject to availability, ensuring a restful stay. All our rooms feature air conditioning for optimal comfort, along with a Smart TV boasting selected DStv channels for your entertainment. Indulge in the picturesque surroundings as this room offers a shared patio with a captivating view over Paternoster Beach. Guests also have exclusive access to our refreshing plunge pool, adding to the allure of your coastal retreat. Experience the perfect blend of comfort and charm    <ul class="room-features mb-4">
+                <li><i class="fas fa-bed"></i> Queen Bed</li>
+                <li><i class="fas fa-bath"></i> Ensuite Bathroom</li>
+                <li><i class="fas fa-wifi"></i> Free Wi-Fi</li>
+            </ul>
+            <a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a>
+        </div>
+    </div>
+
+    <div class="room-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden" id="honeymoon-modal">
+        <div class="modal-content bg-white p-8 rounded-lg max-w-lg w-full">
+            <span class="close-room-modal text-2xl cursor-pointer float-right" onclick="closeRoomModal('honeymoon')">×</span>
+            <h2 class="text-3xl font-bold text-[#1b3c59] mb-4">Honeymoon Suite</h2>
+            <div class="modal-img" style="background-image: url('images/honeymoon suite.jpg'); height: 200px; background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 1rem;"></div>
+            <p class="text-[#555] mb-4">Celebrate your love in our enchanting Honeymoon En-Suite, designed for an intimate escape. This indulgent room features a semi-self-catering experience with a convenient kitchenette, including a microwave, mini-fridge, and basin. Enjoy modern comforts with air conditioning, a Smart TV featuring selected DStv channels, and complimentary Wi-Fi. Revel in the luxury of a double walk-in shower, adding a touch of elegance to your stay. Step outside and bask in the private ambiance of our plunge pool, offering the perfect retreat for you and your loved one. Make your honeymoon unforgettable with us, where every detail is crafted to enhance the magic of your special moments.</p>
+            <ul class="room-features mb-4">
+                <li><i class="fas fa-bed"></i> Queen Bed</li>
+                <li><i class="fas fa-bath"></i> Ensuite Bathroom</li>
+                <li><i class="fas fa-wifi"></i> Free Wi-Fi</li>
+            </ul>
+            <a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a>
+        </div>
+    </div>
 
     <!-- CTA Section -->
     <section class="cta-section">
@@ -166,7 +230,7 @@
                     <option value="oceanview">Ocean View Suite</option>
                     <option value="family">Family Cottage</option>
                     <option value="deluxe">Deluxe Room</option>
-                    <option value="premium">Premium Suite</option>
+                    <option value="honeymoon">Honeymoon Suite</option>
                 </select>
                 <input type="text" id="name" placeholder="Full Name" required>
                 <input type="email" id="email" placeholder="Email" required>
@@ -203,7 +267,7 @@
                 <h3>Contact Us</h3>
                 <p><i class="fas fa-map-marker-alt"></i> 64 St Augustine Rd,Kliprug,Paternoster,7381</p>
                 <p><i class="fas fa-phone"></i> +2722 880 0970</p>
-                <p><i class="fas fa-envelope"></i>  info@paternosterlodge.co.za</p>
+                <p><i class="fas fa-envelope"></i> info@paternosterlodge.co.za</p>
                 <p><i class="fas fa-clock"></i> Reception: 07:00 - 22:00</p>
             </div>
             <div class="footer-column footer-subscribe">
@@ -224,6 +288,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <!--<script src="scriptbooking.js"></script> -->
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+    </script>
 </body>
 </html>
