@@ -274,7 +274,7 @@ nav ul li a.active::after {
     justify-content: center;
     text-align: center;
     color: var(--white);
-    background: var(--gradient), url('/images/hero-bg.jpg') center/cover no-repeat;
+    background: var(--gradient), url('/images/daaa.PNG') center/cover no-repeat;
     background-blend-mode: overlay;
     background-color: var(--primary); /* Fallback */
     overflow: hidden;
@@ -494,7 +494,7 @@ nav ul li a.active::after {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
