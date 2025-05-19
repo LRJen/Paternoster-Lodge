@@ -57,7 +57,11 @@
                     <label for="room-type">Room Type:</label>
                     <select id="room-type" required>
                         <option value="">Select Room Type</option>
-                        <option value="Ocean View Suite">Ocean View Suite</option>
+                        <option value="Ocean View Suite">Queen Deluxe Room</option>
+                        <option value="Family Cottage">Family Room</option>
+                        <option value="Family Cottage">Standard Rooms</option>
+                        <option value="Family Cottage">Standard Double Room</option>
+                        <option value="Family Cottage">Honeymoon Suite</option>
                         <option value="Family Cottage">Family Cottage</option>
                     </select>
                 </div>
@@ -109,11 +113,11 @@
                 <img src="images/Ocean view suite.webp" alt="Ocean View Suite">
             </div>
             <div class="room-details">
-                <h3>Ocean View Suite</h3>
+                <h3>Honeymoon Suite</h3>
                 <p>Spacious suite with private balcony and stunning ocean views. Includes air conditioning, Smart TV with selected channels, and a shared patio with access to the plunge pool.</p>
             </div>
             <div class="room-pricing">
-                <div class="price">From R2,150.00 per night for 2 adults</div>
+                <div class="price">From R2000.00 per night for 2 adults</div>
                 <p>Max Guests: 2 (Max 2 adults)</p>
                 <p>Children: 0 - 5 years free</p>
                 <button class="book-room-btn" data-room-type="Ocean View Suite">View Rates and Book</button>
@@ -121,17 +125,47 @@
         </div>
         <div class="room-option">
             <div class="room-image">
-                <img src="images/family cottage.jpg" alt="Family Cottage">
+                <img src="images/family cottage.jpg" alt="Family Room">
             </div>
             <div class="room-details">
-                <h3>Family Cottage</h3>
+                <h3>Family Room</h3>
                 <p>Cozy cottage perfect for families, with garden access. Features two bedrooms, a kitchenette, and a Smart TV.</p>
             </div>
             <div class="room-pricing">
-                <div class="price">From R3,000.00 per night for 4 adults</div>
+                <div class="price">From R6880.00 per night for 4 adults</div>
                 <p>Max Guests: 4 (Max 4 adults)</p>
                 <p>Children: 0 - 5 years free</p>
                 <button class="book-room-btn" data-room-type="Family Cottage">View Rates and Book</button>
+            </div>
+        </div>
+        <div class="room-option">
+            <div class="room-image">
+                <img src="images/Ocean view suite.webp" alt="Ocean View Suite">
+            </div>
+            <div class="room-details">
+                <h3>Deluxe King Room</h3>
+                <p>Spacious suite with private balcony and stunning ocean views. Includes air conditioning, Smart TV with selected channels, and a shared patio with access to the plunge pool.</p>
+            </div>
+            <div class="room-pricing">
+                <div class="price">From R1892.00 per night for 2 adults</div>
+                <p>Max Guests: 2 (Max 2 adults)</p>
+                <p>Children: 0 - 5 years free</p>
+                <button class="book-room-btn" data-room-type="Ocean View Suite">View Rates and Book</button>
+            </div>
+        </div>
+        <div class="room-option">
+            <div class="room-image">
+                <img src="images/Ocean view suite.webp" alt="Standard Double Room">
+            </div>
+            <div class="room-details">
+                <h3>Standard Double Room</h3>
+                <p>Spacious suite with private balcony and stunning ocean views. Includes air conditioning, Smart TV with selected channels, and a shared patio with access to the plunge pool.</p>
+            </div>
+            <div class="room-pricing">
+                <div class="price">From R1720.00 per night for 2 adults</div>
+                <p>Max Guests: 2 (Max 2 adults)</p>
+                <p>Children: 0 - 5 years free</p>
+                <button class="book-room-btn" data-room-type="Ocean View Suite">View Rates and Book</button>
             </div>
         </div>
     </section>
@@ -306,19 +340,40 @@
 
         // Room data
         const roomsData = {
-            'Ocean View Suite': {
-                basePrice: 2150,
-                additionalAdult: 500,
+            'Deluxe King Room': {
+                basePrice: 1892,
+                //additionalAdult: 500,
                 additionalChild: 0,
                 maxGuests: 2,
                 maxAdults: 2
             },
-            'Family Cottage': {
-                basePrice: 3000,
-                additionalAdult: 600,
+            'Family Room': {
+                basePrice: 6080,
+                //additionalAdult: 600,
                 additionalChild: 0,
                 maxGuests: 4,
                 maxAdults: 4
+            },
+            'Honeymoon Suite': {
+                basePrice: 2000,
+                //additionalAdult: 600,
+                additionalChild: 0,
+                maxGuests: 2,
+                maxAdults: 2
+            },
+            'Standard Room': {
+                basePrice: 3000,
+                //additionalAdult: 600,
+                additionalChild: 0,
+                maxGuests: 4,
+                maxAdults: 4
+            },
+            'Standard Double Room': {
+                basePrice: 1720,
+                //additionalAdult: 600,
+                additionalChild: 0,
+                maxGuests: 2,
+                maxAdults: 2
             }
         };
 
