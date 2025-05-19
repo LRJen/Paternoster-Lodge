@@ -252,6 +252,251 @@
     </div>
 </section>
 
+<!-- <section class="testimonials">
+    <div class="section-title" data-aos="fade-up">
+        <h2>Guest Testimonials</h2>
+    </div>
+    <div class="testimonial-slider" data-aos="fade-up" data-aos-delay="100">
+        <!-- Testimonial 1 --
+        <div class="testimonial-slide active">
+            <div class="testimonial-content">
+                <p>"Our stay at Paternoster Lodge exceeded all expectations. The rooms are beautifully appointed, the staff attentive, and the location simply breathtaking. We'll definitely be returning!"</p>
+            </div>
+            <div class="testimonial-author">
+                <img src="/images/3cb4ba00-1d7a-49f6-9696-470f6a323489.JPG" alt="Tulani Qwesha smiling warmly while seated in a bright and welcoming lodge interior with coastal decor and natural light creating a relaxed and friendly atmosphere">
+                <h4>Tulani Qwesha</h4>
+                <p>Cape Town, South Africa</p>
+            </div>
+        </div>
+
+        <!-- Testimonial 2 --
+        <div class="testimonial-slide">
+            <div class="testimonial-content">
+                <p>"What a hidden gem! The attention to detail in every aspect of this lodge is impressive. From the gourmet breakfast to the sunset views from our private balcony - everything was perfect."</p>
+            </div>
+            <div class="testimonial-author">
+                <img src="images/Caleb Holloway 2222.jfif" alt="Smiling guest Caleb Holloway facing the camera in a warmly lit lodge interior with soft furnishings and coastal decor, conveying a welcoming and relaxed atmosphere">
+                <h4>Caleb Holloway</h4>
+                <p>Cape Town, South Africa</p>
+            </div>
+        </div>
+
+        <!-- Testimonial 3 --
+        <div class="testimonial-slide">
+            <div class="testimonial-content">
+                <p>"We came for a weekend getaway and ended up staying an extra two days! The peaceful atmosphere, friendly staff, and beautiful surroundings made it impossible to leave. Highly recommended."</p>
+            </div>
+            <div class="testimonial-author">
+                <img src="images/xhanti mbula.jfif" alt="Xhanti Mbula smiling warmly at the camera in a cozy lodge lounge with soft lighting and coastal decor creating a welcoming and relaxed atmosphere">
+                <h4>Xhanti Mbula</h4>
+                <p>Cape Town, South Africa</p>
+            </div>
+        </div>
+
+        <!-- Testimonial Navigation --
+        <div class="testimonial-nav">
+            <span class="testimonial-dot active" data-slide="0"></span>
+            <span class="testimonial-dot" data-slide="1"></span>
+            <span class="testimonial-dot" data-slide="2"></span>
+        </div>
+    </div>
+</section> -->
+<style>
+.testimonials {
+    padding: 5rem 2rem;
+    background: #f5f5f5;
+    text-align: center;
+}
+
+.section-title {
+    margin-bottom: 3rem;
+}
+
+.section-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #1b3c59;
+}
+
+.testimonial-slider {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.testimonial-slide {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.testimonial-slide.active {
+    display: block;
+    opacity: 1;
+}
+
+.testimonial-content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-content p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+    color: #555;
+    font-style: italic;
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.testimonial-author img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    object-fit: cover;
+}
+
+.testimonial-author h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: #1b3c59;
+    margin-bottom: 0.3rem;
+}
+
+.testimonial-author p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.testimonial-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.testimonial-dot {
+    width: 12px;
+    height: 12px;
+    background: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.testimonial-dot.active {
+    background: #d4af37;
+}
+
+.testimonial-dot:hover {
+    background: #e5c07b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .testimonials {
+        padding: 3rem 1rem;
+    }
+
+    .section-title h2 {
+        font-size: 2rem;
+    }
+
+    .testimonial-content {
+        padding: 1.5rem;
+    }
+
+    .testimonial-content p {
+        font-size: 1rem;
+    }
+
+    .testimonial-author img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .testimonial-author h4 {
+        font-size: 1.2rem;
+    }
+
+    .testimonial-author p {
+        font-size: 0.85rem;
+    }
+}
+</style>
+
+<!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+
+        // Testimonial Slider
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const dots = document.querySelectorAll('.testimonial-dot');
+            let currentSlide = 0;
+            let slideInterval = null;
+
+            function showSlide(index) {
+                // Remove active class from all slides and dots
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+
+                // Add active class to current slide and dot
+                slides[index].classList.add('active');
+                dots[index].classList.add('active');
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            // Start auto-rotation
+            function startSlider() {
+                slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+            }
+
+            // Stop auto-rotation
+            function stopSlider() {
+                clearInterval(slideInterval);
+            }
+
+            // Initialize slider
+            if (slides.length > 0 && dots.length > 0) {
+                showSlide(currentSlide);
+                startSlider();
+
+                // Dot navigation
+                dots.forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        stopSlider();
+                        const slideIndex = parseInt(dot.getAttribute('data-slide'));
+                        showSlide(slideIndex);
+                        // Resume auto-rotation after 10 seconds
+                        setTimeout(startSlider, 10000);
+                    });
+                });
+            } else {
+                console.error('Testimonial slides or dots not found');
+            }
+        });
+    </script>
 <!-- Location Section -->
 <section class="location" id="location">
     <div class="section-title fade-in">
