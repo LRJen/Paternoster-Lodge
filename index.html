@@ -25,9 +25,207 @@
     </script>
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <style>
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #e5e7eb;
+        }
+        .review-container {
+            max-height: 60px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .review-container.expanded {
+            max-height: 120px;
+        }
+        .review-slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .review-slide.active {
+            display: block;
+            opacity: 1;
+        }
+        .review-dot {
+            width: 8px;
+            height: 8px;
+            background: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .review-dot.active {
+            background: #d4af37;
+            transform: scale(1.2);
+        }
+        .review-dot:hover {
+            background: #e5c07b;
+        }
+        .testimonials {
+            background: linear-gradient(180deg, #f5f5f5 0%, #e8ecef 100%);
+        }
+        .review-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        .star-label {
+            transition: transform 0.2s ease, color 0.2s ease;
+            cursor: pointer;
+        }
+        .star-label:hover {
+            transform: scale(1.2);
+            color: #d4af37 !important;
+        }
+        .star-input:checked + .star-label {
+            color: #d4af37 !important;
+        }
+        .submit-button:hover {
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .read-more:hover {
+            text-decoration: underline;
+        }
+        .submission-message {
+            display: none;
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+        .submission-message.success {
+            display: block;
+            background-color: #10b981;
+            color: white;
+        }
+        .submission-message.error {
+            display: block;
+            background-color: #ef4444;
+            color: white;
+        }
+        /* Amenities Slider Styles */
+        .amenities-slider {
+            background: linear-gradient(180deg, #f5e8d8 0%, #f5f5f5 100%);
+            padding: 2rem 0;
+        }
+        .amenities-slider .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .amenities-slider .slider {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        .amenities-slider .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .amenities-slider .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+        .amenities-slider .slider-controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            pointer-events: none;
+        }
+        .amenities-slider .slider-controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto;
+            transition: background-color 0.3s ease;
+        }
+        .amenities-slider .slider-controls button:hover {
+            background-color: #d4af37;
+        }
+        .amenities-slider .info-box {
+            position: absolute;
+            top: 80px;
+            left: 50px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            max-width: 400px;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+        .amenities-slider .info-box h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #1b3c59;
+            font-family: 'Playfair_Display', serif;
+        }
+        .amenities-slider .info-box p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            font-family: 'Open_Sans', sans-serif;
+        }
+        .amenities-slider .thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .amenities-slider .thumbnail {
+            width: 200px;
+            height: 120px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        .amenities-slider .thumbnail.active {
+            border-color: #1b3c59;
+        }
+        .amenities-slider .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
 </head>
 <body>
- <!-- Header -->
+<!-- Header -->
 <header>
     <div class="header-container">
         <div class="logo">
@@ -42,7 +240,7 @@
                 <li><a href="gallery.html" class="{{galleryActive}}">Gallery</a></li>
                 <li><a href="restaurant.html" class="{{restaurantActive}}">Restaurant</a></li>
                 <li><a href="contact.html" class="{{contactActive}}">Contact</a></li>
-                <li><a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a></li>
+                <li><a href="booking.html" class="{{bookingActive}} inline-block bg-primary text-white font-normal text-lg px-6 py-2 rounded-lg hover:bg-secondary transition duration-300">Book Now</a></li>
                 <li><a href="register-login.html" class="{{registerLoginActive}} book-btn">Login</a></li>
             </ul>
         </nav>
@@ -54,16 +252,32 @@
     </div>
 </header>
 
-<section class="hero">
-    <div class="hero-slideshow">
-        <div class="hero-slide" style="background-image: url('images/PATENOSTA\ FROMT.PNG');"></div>
-        <div class="hero-slide" style="background-image: url('images/partneso.PNG');"></div>
-        <div class="hero-slide" style="background-image: url('images/New\ partenosta.PNG');"></div>
+<!-- Hero Section with Sliding Pages -->
+<section class="hero relative w-full h-[600px] text-white overflow-hidden cursor-pointer" id="carousel-container" aria-label="Pause slideshow">
+    <div id="carousel" class="carousel">
+        <div class="carousel-item flex items-center justify-center h-[600px]" style="background-image: url('images/PATENOSTA FROMT.PNG');">
+            <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg" data-aos="fade-up">
+                <h2 class="text-4xl font-bold font-['Playfair_Display']">Welcome to Paternoster</h2>
+                <p class="mt-2 text-lg">Experience luxury by the sea</p>
+            </div>
+        </div>
+        <div class="carousel-item flex items-center justify-center h-[600px]" style="background-image: url('images/partneso.PNG');">
+            <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg" data-aos="fade-up">
+                <h2 class="text-4xl font-bold font-['Playfair_Display']">Coastal Tranquility</h2>
+                <p class="mt-2 text-lg">Relax in our ocean-view suites</p>
+            </div>
+        </div>
+        <div class="carousel-item flex items-center justify-center h-[600px]" style="background-image: url('images/New partenosta.PNG');">
+            <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg" data-aos="fade-up">
+                <a href="booking.html">
+                    <h2 class="text-4xl font-bold font-['Playfair_Display'] hover:text-secondary">Unforgettable Stays</h2>
+                </a>
+                <p class="mt-2 text-lg">Book your coastal escape today</p>
+            </div>
+        </div>
     </div>
-    <div class="hero-content">
-        <h2 data-aos="fade-up">Welcome to Paternoster</h2>
-        <p data-aos="fade-up" data-aos-delay="100">Experience luxury by the sea</p>
-        <a href="booking.html" class="cta-btn" data-aos="fade-up" data-aos-delay="200">Book Now</a>
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2" data-aos="fade-up" data-aos-delay="200">
+        <a href="booking.html" class="inline-block bg-primary text-white font-normal text-lg px-6 py-3 rounded-lg border-2 border-secondary hover:bg-secondary hover:text-primary transition duration-300">Book Now</a>
     </div>
 </section>
 
@@ -96,7 +310,7 @@
     <div class="rooms-container">
         <!-- Room 1 -->
         <div class="room-card fade-in">
-            <div class="room-img" style="background-image: url('images/OCIEAN\ VIEW\ SUITE.PNG')"></div>
+            <div class="room-img" style="background-image: url('images/OCIEAN VIEW SUITE.PNG')"></div>
             <div class="room-details">
                 <h3>Ocean View Suite</h3>
                 <p>Luxurious suite with panoramic views of the ocean, offering ultimate comfort and relaxation.</p>
@@ -108,14 +322,13 @@
                 <div class="room-price">
                     From R 1600 per night
                 </div>
-                <!--<button onclick="openRoomModal('oceanview')" class="room-btn">View Accommodation</button>-->
-                <a href="accommodation.html" class="cta-btn">View accommodation</a>
+                <a href="accommodation.html" class="inline-block bg-primary text-white font-normal text-lg px-6 py-3 rounded-lg hover:bg-secondary transition duration-300">View accommodation</a>
             </div>
         </div>
 
         <!-- Room 2 -->
         <div class="room-card fade-in">
-            <div class="room-img" style="background-image: url('images/COTTAGE\ NEW.PNG')"></div>
+            <div class="room-img" style="background-image: url('images/COTTAGE NEW.PNG')"></div>
             <div class="room-details">
                 <h3>Family Cottage</h3>
                 <p>Spacious cottage perfect for families, featuring a private patio and comfortable living areas.</p>
@@ -127,13 +340,13 @@
                 <div class="room-price">
                     From R 1000 per night
                 </div>
-                <a href="accommodation.html" class="cta-btn">View accommodation</a>
+                <a href="accommodation.html" class="inline-block bg-primary text-white font-normal text-lg px-6 py-3 rounded-lg hover:bg-secondary transition duration-300">View accommodation</a>
             </div>
         </div>
 
         <!-- Room 3 -->
         <div class="room-card fade-in">
-            <div class="room-img" style="background-image: url('images/DELUX\ NEW.PNG')"></div>
+            <div class="room-img" style="background-image: url('images/DELUX NEW.PNG')"></div>
             <div class="room-details">
                 <h3>Deluxe Room</h3>
                 <p>Elegant and cozy room with modern amenities and a sophisticated coastal-inspired design.</p>
@@ -145,375 +358,161 @@
                 <div class="room-price">
                     From R 1400 per night
                 </div>
-                <a href="accommodation.html" class="cta-btn">View accommodation</a>
+                <a href="accommodation.html" class="inline-block bg-primary text-white font-normal text-lg px-6 py-3 rounded-lg hover:bg-secondary transition duration-300">View accommodation</a>
             </div>
         </div>
-
     </div>
 </section>
 
 <!-- Room Modals -->
 <div class="room-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden" id="oceanview-modal">
     <div class="modal-content bg-white p-8 rounded-lg max-w-lg w-full">
-        <span class="close-room-modal text-2xl cursor-pointer float-right" onclick="closeRoomModal('oceanview')">&times;</span>
-        <h2 class="text-3xl font-bold text-[#1b3c59] mb-4">Ocean View Suite</h2>
-        <div class="modal-img" style="background-image: url('images/OCIEAN\ VIEW\ SUITE.PNG'); height: 200px; background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 1rem;"></div>
+        <span class="close-room-modal text-2xl cursor-pointer float-right" onclick="closeRoomModal('oceanview')">×</span>
+        <h2 class="text-3xl font-bold text-primary mb-4">Ocean View Suite</h2>
+        <div class="modal-img" style="background-image: url('images/OCIEAN VIEW SUITE.PNG'); height: 200px; background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 1rem;"></div>
         <p class="text-[#555] mb-4">Luxurious suite with panoramic views of the ocean, offering ultimate comfort and relaxation. Enjoy a spacious room with modern amenities and direct access to stunning sea vistas.</p>
         <div class="room-features mb-4">
             <span><i class="fas fa-user"></i> 2 Guests</span>
             <span><i class="fas fa-bed"></i> King Bed</span>
             <span><i class="fas fa-bath"></i> En-suite</span>
         </div>
-        <div class="room-price text-[#d4af37] font-semibold mb-4">From R 1600 per night</div>
-        <a href="booking.html?room=oceanview" class="cta-btn">Book Now</a>
+        <div class="room-price text-secondary font-semibold mb-4">From R 1600 per night</div>
+        <a href="booking.html?room=oceanview" class="inline-block bg-primary text-white font-normal text-lg px-6 py-3 rounded-lg hover:bg-secondary transition duration-300">Book Now</a>
     </div>
 </div>
 
 <div class="room-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden" id="family-modal">
     <div class="modal-content bg-white p-8 rounded-lg max-w-lg w-full">
-        <span class="close-room-modal text-2xl cursor-pointer float-right" onclick="closeRoomModal('family')">&times;</span>
-        <h2 class="text-3xl font-bold text-[#1b3c59] mb-4">Family Cottage</h2>
-        <div class="modal-img" style="background-image: url('images/COTTAGE\ NEW.PNG'); height: 200px; background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 1rem;"></div>
+        <span class="close-room-modal text-2xl cursor-pointer float-right" onclick="closeRoomModal('family')">×</span>
+        <h2 class="text-3xl font-bold text-primary mb-4">Family Cottage</h2>
+        <div class="modal-img" style="background-image: url('images/COTTAGE NEW.PNG'); height: 200px; background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 1rem;"></div>
         <p class="text-[#555] mb-4">Spacious cottage perfect for families, featuring a private patio and comfortable living areas. Ideal for a relaxing getaway with loved ones.</p>
         <div class="room-features mb-4">
             <span><i class="fas fa-user"></i> 4 Guests</span>
             <span><i class="fas fa-bed"></i> 2 Bedrooms</span>
             <span><i class="fas fa-bath"></i> 2 Bathrooms</span>
         </div>
-        <div class="room-price text-[#d4af37] font-semibold mb-4">From R 1000 per night</div>
-        <a href="booking.html?room=family" class="cta-btn">Book Now</a>
+        <div class="room-price text-secondary font-semibold mb-4">From R 1000 per night</div>
+        <a href="booking.html?room=family" class="inline-block bg-primary text-white font-normal text-lg px-6 py-3 rounded-lg hover:bg-secondary transition duration-300">Book Now</a>
     </div>
 </div>
 
 <div class="room-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden" id="deluxe-modal">
     <div class="modal-content bg-white p-8 rounded-lg max-w-lg w-full">
-        <span class="close-room-modal text-2xl cursor-pointer float-right" onclick="closeRoomModal('deluxe')">&times;</span>
-        <h2 class="text-3xl font-bold text-[#1b3c59] mb-4">Deluxe Room</h2>
-        <div class="modal-img" style="background-image: url('images/DELUX\ NEW.PNG'); height: 200px; background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 1rem;"></div>
+        <span class="close-room-modal text-2xl cursor-pointer float-right" onclick="closeRoomModal('deluxe')">×</span>
+        <h2 class="text-3xl font-bold text-primary mb-4">Deluxe Room</h2>
+        <div class="modal-img" style="background-image: url('images/DELUX NEW.PNG'); height: 200px; background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 1rem;"></div>
         <p class="text-[#555] mb-4">Elegant and cozy room with modern amenities and a sophisticated coastal-inspired design. Perfect for a romantic or relaxing escape.</p>
         <div class="room-features mb-4">
             <span><i class="fas fa-user"></i> 2 Guests</span>
             <span><i class="fas fa-bed"></i> Queen Bed</span>
             <span><i class="fas fa-bath"></i> En-suite</span>
         </div>
-        <div class="room-price text-[#d4af37] font-semibold mb-4">From R 1400 per night</div>
-        <a href="booking.html?room=deluxe" class="cta-btn">Book Now</a>
+        <div class="room-price text-secondary font-semibold mb-4">From R 1400 per night</div>
+        <a href="booking.html?room=deluxe" class="inline-block bg-primary text-white font-normal text-lg px-6 py-3 rounded-lg hover:bg-secondary transition duration-300">Book Now</a>
     </div>
 </div>
 
-<!-- Testimonials Section -->
-<section class="testimonials">
-    <div class="section-title fade-in">
-        <h2>Guest Testimonials</h2>
-    </div>
-    <div class="testimonial-slider fade-in">
-        <!-- Testimonial 1 -->
-        <div class="testimonial-slide active">
-            <div class="testimonial-content">
-                <p>"Our stay at Paternoster Lodge exceeded all expectations. The rooms are beautifully appointed, the staff attentive, and the location simply breathtaking. We'll definitely be returning!"</p>
+<!-- Amenities Slider Section -->
+<section class="amenities-slider" data-aos="fade-up">
+    <div class="container">
+        <div class="slider">
+            <div class="slide active" data-index="0">
+                <img src="images/PATENOSTA FROMT.PNG" alt="Villa Interior" style="width:100%;height:100%;object-fit:cover;">
             </div>
-            <div class="testimonial-author">
-                <img src="/images/3cb4ba00-1d7a-49f6-9696-470f6a323489.JPG" alt="Tulani Qwesha smiling warmly while seated in a bright and welcoming lodge interior with coastal decor and natural light creating a relaxed and friendly atmosphere">
-                <h4>Tulani Qwesha</h4>
-                <p>Cape Town, South Africa</p>
+            <div class="slide" data-index="1">
+                <img src="images/partneso.PNG" alt="Outdoor Terrace" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="slide" data-index="2">
+                <img src="images/New partenosta.PNG" alt="Swimming Pool" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="slide" data-index="3">
+                <img src="images/pate table view.PNG" alt="Bedroom" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+
+            <div class="slider-controls">
+                <button class="prev-btn">❮</button>
+                <button class="next-btn">❯</button>
             </div>
         </div>
 
-        <!-- Testimonial 2 -->
-        <div class="testimonial-slide">
-            <div class="testimonial-content">
-                <p>"What a hidden gem! The attention to detail in every aspect of this lodge is impressive. From the gourmet breakfast to the sunset views from our private balcony - everything was perfect."</p>
-            </div>
-            <div class="testimonial-author">
-                <img src="images/Caleb Holloway 2222.jfif" alt="Smiling guest Caleb Holloway facing the camera in a warmly lit lodge interior with soft furnishings and coastal decor, conveying a welcoming and relaxed atmosphere">
-                <h4>Caleb Holloway</h4>
-                <p>Cape Town, South Africa</p>
-            </div>
+        <div class="info-box">
+            <h1>TOP-CLASS AMENITIES</h1>
+            <p id="slide-description">Luxury amenities offer every pleasure and convenience. The villa is at once state-of-the-art and discreetly in harmony with your natural surroundings.</p>
         </div>
 
-        <!-- Testimonial 3 -->
-        <div class="testimonial-slide">
-            <div class="testimonial-content">
-                <p>"We came for a weekend getaway and ended up staying an extra two days! The peaceful atmosphere, friendly staff, and beautiful surroundings made it impossible to leave. Highly recommended."</p>
+        <div class="thumbnails">
+            <div class="thumbnail active" data-index="0">
+                <img src="images/PATENOSTA FROMT.PNG" alt="Living Room">
             </div>
-            <div class="testimonial-author">
-                <img src="images/xhanti mbula.jfif" alt="Xhanti Mbula smiling warmly at the camera in a cozy lodge lounge with soft lighting and coastal decor creating a welcoming and relaxed atmosphere">
-                <h4>Xhanti Mbula</h4>
-                <p>Cape Town, South Africa</p>
+            <div class="thumbnail" data-index="1">
+                <img src="images/partneso.PNG" alt="Outdoor Terrace">
             </div>
-        </div>
-
-        <!-- Testimonial Navigation -->
-        <div class="testimonial-nav">
-            <span class="testimonial-dot active" data-slide="0"></span>
-            <span class="testimonial-dot" data-slide="1"></span>
-            <span class="testimonial-dot" data-slide="2"></span>
+            <div class="thumbnail" data-index="2">
+                <img src="images/New partenosta.PNG" alt="Swimming Pool">
+            </div>
+            <div class="thumbnail" data-index="3">
+                <img src="images/pate table view.PNG" alt="Bedroom">
+            </div>
         </div>
     </div>
 </section>
 
-<!-- <section class="testimonials">
-    <div class="section-title" data-aos="fade-up">
-        <h2>Guest Testimonials</h2>
+<!-- Tripadvisor-Style Review Section -->
+<section class="testimonials py-8 bg-light text-center">
+    <div class="section-title fade-in" data-aos="fade-up">
+        <h2 class="text-2xl font-['Playfair_Display'] text-primary">Guest Reviews</h2>
     </div>
-    <div class="testimonial-slider" data-aos="fade-up" data-aos-delay="100">
-        <!-- Testimonial 1 --
-        <div class="testimonial-slide active">
-            <div class="testimonial-content">
-                <p>"Our stay at Paternoster Lodge exceeded all expectations. The rooms are beautifully appointed, the staff attentive, and the location simply breathtaking. We'll definitely be returning!"</p>
-            </div>
-            <div class="testimonial-author">
-                <img src="/images/3cb4ba00-1d7a-49f6-9696-470f6a323489.JPG" alt="Tulani Qwesha smiling warmly while seated in a bright and welcoming lodge interior with coastal decor and natural light creating a relaxed and friendly atmosphere">
-                <h4>Tulani Qwesha</h4>
-                <p>Cape Town, South Africa</p>
-            </div>
-        </div>
-
-        <!-- Testimonial 2 --
-        <div class="testimonial-slide">
-            <div class="testimonial-content">
-                <p>"What a hidden gem! The attention to detail in every aspect of this lodge is impressive. From the gourmet breakfast to the sunset views from our private balcony - everything was perfect."</p>
-            </div>
-            <div class="testimonial-author">
-                <img src="images/Caleb Holloway 2222.jfif" alt="Smiling guest Caleb Holloway facing the camera in a warmly lit lodge interior with soft furnishings and coastal decor, conveying a welcoming and relaxed atmosphere">
-                <h4>Caleb Holloway</h4>
-                <p>Cape Town, South Africa</p>
-            </div>
-        </div>
-
-        <!-- Testimonial 3 --
-        <div class="testimonial-slide">
-            <div class="testimonial-content">
-                <p>"We came for a weekend getaway and ended up staying an extra two days! The peaceful atmosphere, friendly staff, and beautiful surroundings made it impossible to leave. Highly recommended."</p>
-            </div>
-            <div class="testimonial-author">
-                <img src="images/xhanti mbula.jfif" alt="Xhanti Mbula smiling warmly at the camera in a cozy lodge lounge with soft lighting and coastal decor creating a welcoming and relaxed atmosphere">
-                <h4>Xhanti Mbula</h4>
-                <p>Cape Town, South Africa</p>
-            </div>
-        </div>
-
-        <!-- Testimonial Navigation --
-        <div class="testimonial-nav">
-            <span class="testimonial-dot active" data-slide="0"></span>
-            <span class="testimonial-dot" data-slide="1"></span>
-            <span class="testimonial-dot" data-slide="2"></span>
+    <!-- Review Submission Form -->
+    <div class="max-w-2xl mx-auto mb-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+            <h3 class="text-lg font-bold text-primary mb-3 font-['Playfair_Display']">Share Your Experience</h3>
+            <form id="review-form" class="space-y-3">
+                <input type="text" id="review-name" placeholder="Your Name" required class="w-full p-2 text-sm border rounded-md focus:ring-2 focus:ring-secondary focus:outline-none">
+                <div class="flex justify-center">
+                    <div class="flex items-center">
+                        <input type="radio" id="star1" name="rating" value="1" required class="hidden star-input">
+                        <label for="star1" class="star-label cursor-pointer text-xl text-gray-300 hover:text-secondary">★</label>
+                        <input type="radio" id="star2" name="rating" value="2" class="hidden star-input">
+                        <label for="star2" class="star-label cursor-pointer text-xl text-gray-300 hover:text-secondary">★</label>
+                        <input type="radio" id="star3" name="rating" value="3" class="hidden star-input">
+                        <label for="star3" class="star-label cursor-pointer text-xl text-gray-300 hover:text-secondary">★</label>
+                        <input type="radio" id="star4" name="rating" value="4" class="hidden star-input">
+                        <label for="star4" class="star-label cursor-pointer text-xl text-gray-300 hover:text-secondary">★</label>
+                        <input type="radio" id="star5" name="rating" value="5" class="hidden star-input">
+                        <label for="star5" class="star-label cursor-pointer text-xl text-gray-300 hover:text-secondary">★</label>
+                    </div>
+                </div>
+                <textarea id="review-text" placeholder="Your Review" required class="w-full p-2 text-sm border rounded-md h-16 focus:ring-2 focus:ring-secondary focus:outline-none"></textarea>
+                <button type="submit" class="submit-button w-full bg-primary text-white font-normal text-sm p-2 rounded-md hover:bg-secondary transition duration-300">Submit Review</button>
+                <div id="submission-message" class="submission-message"></div>
+            </form>
         </div>
     </div>
-</section> -->
-<style>
-.testimonials {
-    padding: 5rem 2rem;
-    background: #f5f5f5;
-    text-align: center;
-}
+    <!-- Review Slider -->
+    <div class="max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+        <div id="review-slider"></div>
+        <div id="review-dots" class="flex justify-center gap-2 mt-3"></div>
+    </div>
+</section>
 
-.section-title {
-    margin-bottom: 3rem;
-}
-
-.section-title h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    color: #1b3c59;
-}
-
-.testimonial-slider {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.testimonial-slide {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-.testimonial-slide.active {
-    display: block;
-    opacity: 1;
-}
-
-.testimonial-content {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1.5rem;
-}
-
-.testimonial-content p {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1.1rem;
-    color: #555;
-    font-style: italic;
-}
-
-.testimonial-author {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.testimonial-author img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-    object-fit: cover;
-}
-
-.testimonial-author h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    color: #1b3c59;
-    margin-bottom: 0.3rem;
-}
-
-.testimonial-author p {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 0.9rem;
-    color: #777;
-}
-
-.testimonial-nav {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-}
-
-.testimonial-dot {
-    width: 12px;
-    height: 12px;
-    background: #ccc;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.testimonial-dot.active {
-    background: #d4af37;
-}
-
-.testimonial-dot:hover {
-    background: #e5c07b;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .testimonials {
-        padding: 3rem 1rem;
-    }
-
-    .section-title h2 {
-        font-size: 2rem;
-    }
-
-    .testimonial-content {
-        padding: 1.5rem;
-    }
-
-    .testimonial-content p {
-        font-size: 1rem;
-    }
-
-    .testimonial-author img {
-        width: 60px;
-        height: 60px;
-    }
-
-    .testimonial-author h4 {
-        font-size: 1.2rem;
-    }
-
-    .testimonial-author p {
-        font-size: 0.85rem;
-    }
-}
-</style>
-
-<!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 1000,
-            once: true,
-        });
-
-        // Testimonial Slider
-        document.addEventListener('DOMContentLoaded', () => {
-            const slides = document.querySelectorAll('.testimonial-slide');
-            const dots = document.querySelectorAll('.testimonial-dot');
-            let currentSlide = 0;
-            let slideInterval = null;
-
-            function showSlide(index) {
-                // Remove active class from all slides and dots
-                slides.forEach(slide => slide.classList.remove('active'));
-                dots.forEach(dot => dot.classList.remove('active'));
-
-                // Add active class to current slide and dot
-                slides[index].classList.add('active');
-                dots[index].classList.add('active');
-                currentSlide = index;
-            }
-
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % slides.length;
-                showSlide(currentSlide);
-            }
-
-            // Start auto-rotation
-            function startSlider() {
-                slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-            }
-
-            // Stop auto-rotation
-            function stopSlider() {
-                clearInterval(slideInterval);
-            }
-
-            // Initialize slider
-            if (slides.length > 0 && dots.length > 0) {
-                showSlide(currentSlide);
-                startSlider();
-
-                // Dot navigation
-                dots.forEach(dot => {
-                    dot.addEventListener('click', () => {
-                        stopSlider();
-                        const slideIndex = parseInt(dot.getAttribute('data-slide'));
-                        showSlide(slideIndex);
-                        // Resume auto-rotation after 10 seconds
-                        setTimeout(startSlider, 10000);
-                    });
-                });
-            } else {
-                console.error('Testimonial slides or dots not found');
-            }
-        });
-    </script>
 <!-- Location Section -->
 <section class="location" id="location">
     <div class="section-title fade-in">
         <h2>Our Location</h2>
     </div>
-    <!-- <div class="location-content">
+    <div class="location-content">
         <div class="map-container" data-aos="fade-up" data-aos-delay="100">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3309.361436389223!2d17.889632315206787!3d-32.81018108096227!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNjQgU3QgQXVndXN0aW5lIFJkLCBLbGlwcnVnLCBQYXRlcm5vc3RlciwgNzM4MQ!5e0!3m2!1sen!2sza!4v1698765432100!5m2!1sen!2sza" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3353.3456021342695!2d17.885458483924307!3d-32.809606697022645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1c34984e92ce5db9%3A0xdf1e528d78a4ed3!2sPaternoster%20Lodge!5e0!3m2!1sen!2sza!4v1747402533777!5m2!1sen!2sza" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="location-info fade-in">
-            <h3>Finding Us</h3>
+            
             <p>Paternoster Lodge is situated in a picturesque fishing village, just a 2-hour drive from the nearest international airport. Our location offers the perfect balance of seclusion and accessibility.</p>
             <p>The area is known for its pristine beaches, rich marine life, and colorful local culture. Within walking distance, you'll find charming restaurants, art galleries, and opportunities to experience authentic coastal life.</p>
             <div class="contact-details">
                 <div class="contact-item">
                     <i class="fas fa-map-marker-alt"></i>
-                    <p>64 St Augustine Rd, Kliprug, Paternoster, 7381</p>
+                    <p>64 St Augustine Rd,Kliprug,Paternoster,7381</p>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-phone"></i>
@@ -521,30 +520,7 @@
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-envelope"></i>
-                    <p>info@paternosterlodge.co.za</p> -->
-
-        <div class="location-content">
-        <!-- Google Maps Iframe -->
-        <div class="map-container" data-aos="fade-up" data-aos-delay="100">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3353.3456021342695!2d17.885458483924307!3d-32.809606697022645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1c34984e92ce5db9%3A0xdf1e528d78a4ed3!2sPaternoster%20Lodge!5e0!3m2!1sen!2sza!4v1747402533777!5m2!1sen!2sza" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-            <div class="location-info fade-in">
-                <h3>Finding Us</h3>
-                <p>Paternoster Lodge is situated in a picturesque fishing village, just a 2-hour drive from the nearest international airport. Our location offers the perfect balance of seclusion and accessibility.</p>
-                <p>The area is known for its pristine beaches, rich marine life, and colorful local culture. Within walking distance, you'll find charming restaurants, art galleries, and opportunities to experience authentic coastal life.</p>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <p>64 St Augustine Rd,Kliprug,Paternoster,7381</p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <p>+2722 880 0970</p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <p>info@paternosterlodge.co.za</p>
-                    </div>
+                    <p>info@paternosterlodge.co.za</p>
                 </div>
             </div>
         </div>
@@ -599,8 +575,8 @@
 <!-- Booking Modal -->
 <div class="booking-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
     <div class="modal-content bg-white p-8 rounded-lg max-w-md w-full">
-        <span class="close-modal text-2xl cursor-pointer float-right">&times;</span>
-        <h2 class="text-3xl font-bold text-[#1b3c59] mb-6">Book Your Stay</h2>
+        <span class="close-modal text-2xl cursor-pointer float-right">×</span>
+        <h2 class="text-3xl font-bold text-primary mb-6">Book Your Stay</h2>
         <form class="space-y-4">
             <input type="date" id="check-in" required class="w-full p-2 border rounded-md">
             <input type="date" id="check-out" required class="w-full p-2 border rounded-md">
@@ -612,7 +588,7 @@
                 <option value="deluxe">Deluxe Room</option>
                 <option value="premium">Premium Suite</option>
             </select>
-            <button type="submit" class="w-full bg-[#d4af37] text-[#1b3c59] p-2 rounded-md hover:bg-[#e5e5e5] transition duration-300">Submit Booking</button>
+            <button type="submit" class="w-full bg-primary text-white font-normal text-lg p-2 rounded-md hover:bg-secondary transition duration-300">Submit Booking</button>
         </form>
     </div>
 </div>
@@ -624,6 +600,285 @@
         duration: 1000,
         once: true,
     });
+
+    // Hero Carousel Logic
+    const carousel = document.getElementById('carousel');
+    const carouselContainer = document.getElementById('carousel-container');
+    let currentIndex = 0;
+    let isPaused = false;
+    let slideInterval = setInterval(nextSlide, 5000);
+
+    function slideTo(index) {
+        carousel.style.transform = `translateX(-${index * 100}%)`;
+        currentIndex = index;
+    }
+
+    function nextSlide() {
+        if (!isPaused) {
+            if (currentIndex < 2) slideTo(currentIndex + 1);
+            else slideTo(0);
+        }
+    }
+
+    carouselContainer.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+        isPaused = !isPaused;
+        carouselContainer.setAttribute('aria-label', isPaused ? 'Play slideshow' : 'Pause slideshow');
+    });
+
+    // Review Slider Logic
+    let currentReviewIndex = 0;
+    let reviewInterval;
+
+    function showReviewSlide(index, slides, dots) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        currentReviewIndex = index;
+    }
+
+    function nextReviewSlide() {
+        const slides = document.querySelectorAll('.review-slide');
+        const dots = document.querySelectorAll('.review-dot');
+        currentReviewIndex = (currentReviewIndex + 1) % slides.length;
+        showReviewSlide(currentReviewIndex, slides, dots);
+    }
+
+    function setupReviewSlider() {
+        const slides = document.querySelectorAll('.review-slide');
+        const dotsContainer = document.getElementById('review-dots');
+        if (slides.length === 0) return;
+        dotsContainer.innerHTML = '';
+        slides.forEach((_, i) => {
+            const dot = document.createElement('span');
+            dot.classList.add('review-dot');
+            dot.setAttribute('data-slide', i);
+            if (i === 0) dot.classList.add('active');
+            dotsContainer.appendChild(dot);
+        });
+        const dots = document.querySelectorAll('.review-dot');
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                clearInterval(reviewInterval);
+                const slideIndex = parseInt(dot.getAttribute('data-slide'));
+                showReviewSlide(slideIndex, slides, dots);
+                reviewInterval = setInterval(nextReviewSlide, 7000);
+            });
+        });
+        clearInterval(reviewInterval);
+        reviewInterval = setInterval(nextReviewSlide, 7000);
+    }
+
+    function setupReadMore() {
+        document.querySelectorAll('.read-more').forEach(button => {
+            button.addEventListener('click', () => {
+                const container = button.previousElementSibling;
+                if (container.classList.contains('expanded')) {
+                    container.classList.remove('expanded');
+                    button.textContent = 'Read more';
+                } else {
+                    container.classList.add('expanded');
+                    button.textContent = 'Hide';
+                }
+            });
+        });
+    }
+
+    // Supabase Setup
+    const supabase = Supabase.createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY');
+
+    async function fetchReviews() {
+        try {
+            const { data, error } = await supabase
+                .from('reviews')
+                .select('*')
+                .order('created_at', { ascending: false });
+            if (error) {
+                console.error('Error fetching reviews:', error);
+                return;
+            }
+            const slider = document.getElementById('review-slider');
+            slider.innerHTML = '';
+            if (data.length === 0) {
+                slider.innerHTML = '<p class="text-gray-500 text-sm">No reviews yet. Be the first to share your experience!</p>';
+                return;
+            }
+            data.forEach((review, index) => {
+                const slide = document.createElement('div');
+                slide.classList.add('review-slide');
+                if (index === 0) slide.classList.add('active');
+                const stars = Array(5).fill().map((_, i) => 
+                    `<img src="https://cdn.trustindex.io/assets/platform/Tripadvisor/star/${i < review.rating ? 'f' : 'e'}.svg" alt="Star" class="w-3 h-3">`
+                ).join('');
+                slide.innerHTML = `
+                    <div class="review-card bg-white p-4 rounded-lg shadow-sm">
+                        <div class="flex items-start">
+                            <img src="https://cdn.trustindex.io/assets/platform/Tripadvisor/icon.svg" alt="Tripadvisor" class="w-4 h-4 mr-2 mt-1">
+                            <div class="flex items-center">
+                                <img src="https://media-cdn.tripadvisor.com/media/photo-o/1a/f6/e8/5b/default-avatar-2020-61.jpg" alt="${review.name}" class="w-8 h-8 rounded-full mr-2">
+                                <div>
+                                    <div class="font-bold text-primary text-sm">${review.name}</div>
+                                    <div class="text-xs text-gray-500">${new Date(review.created_at).toLocaleDateString()}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex mt-2">${stars}</div>
+                        <div class="review-container mt-2 text-gray-700 text-sm font-['Open_Sans']">
+                            <strong>${review.review.slice(0, 20)}...</strong><br>
+                            ${review.review}
+                        </div>
+                        <span class="read-more text-secondary cursor-pointer mt-2 inline-block text-xs font-['Open_Sans']" role="button">Read more</span>
+                    </div>
+                `;
+                slider.appendChild(slide);
+            });
+            setupReviewSlider();
+            setupReadMore();
+        } catch (err) {
+            console.error('Unexpected error fetching reviews:', err);
+        }
+    }
+
+    document.getElementById('review-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const messageDiv = document.getElementById('submission-message');
+        const name = document.getElementById('review-name').value;
+        const rating = document.querySelector('input[name="rating"]:checked')?.value;
+        const review = document.getElementById('review-text').value;
+
+        if (!rating) {
+            messageDiv.textContent = 'Please select a star rating.';
+            messageDiv.className = 'submission-message error';
+            setTimeout(() => { messageDiv.className = 'submission-message'; messageDiv.textContent = ''; }, 5000);
+            return;
+        }
+
+        try {
+            const { data, error } = await supabase
+                .from('reviews')
+                .insert([{ name, rating: parseInt(rating), review }]);
+            if (error) {
+                console.error('Error submitting review:', error);
+                messageDiv.textContent = 'Failed to submit review. Please try again.';
+                messageDiv.className = 'submission-message error';
+                setTimeout(() => { messageDiv.className = 'submission-message'; messageDiv.textContent = ''; }, 5000);
+                return;
+            }
+            messageDiv.textContent = 'Review submitted successfully!';
+            messageDiv.className = 'submission-message success';
+            setTimeout(() => { messageDiv.className = 'submission-message'; messageDiv.textContent = ''; }, 5000);
+            document.getElementById('review-form').reset();
+            document.querySelectorAll('.star-label').forEach(label => label.style.color = '#d1d5db');
+            fetchReviews();
+        } catch (err) {
+            console.error('Unexpected error submitting review:', err);
+            messageDiv.textContent = 'Unexpected error. Please try again.';
+            messageDiv.className = 'submission-message error';
+            setTimeout(() => { messageDiv.className = 'submission-message'; messageDiv.textContent = ''; }, 5000);
+        }
+    });
+
+    document.querySelectorAll('.star-input').forEach(star => {
+        star.addEventListener('change', () => {
+            const value = parseInt(star.value);
+            document.querySelectorAll('.star-label').forEach((label, index) => {
+                label.style.color = index < value ? '#d4af37' : '#d1d5db';
+            });
+        });
+    });
+
+    // Amenities Slider Logic
+    function initAmenitiesSlider() {
+        console.log('Initializing Amenities Slider...');
+        const slides = document.querySelectorAll('.amenities-slider .slide');
+        const thumbnails = document.querySelectorAll('.amenities-slider .thumbnail');
+        const prevBtn = document.querySelector('.amenities-slider .prev-btn');
+        const nextBtn = document.querySelector('.amenities-slider .next-btn');
+        const slideDesc = document.getElementById('slide-description');
+
+        // Debug logs
+        console.log('Slides found:', slides.length);
+        console.log('Thumbnails found:', thumbnails.length);
+        console.log('Prev Button:', prevBtn);
+        console.log('Next Button:', nextBtn);
+        console.log('Slide Description:', slideDesc);
+
+        if (!slides.length || !thumbnails.length || !prevBtn || !nextBtn || !slideDesc) {
+            console.error('One or more slider elements not found. Aborting initialization.');
+            return;
+        }
+
+        // Array of slide descriptions
+        const slideContent = [
+            "Luxury amenities offer every pleasure and convenience. The villa is at once state-of-the-art and discreetly in harmony with your natural surroundings.",
+            "Experience the perfect blend of indoor and outdoor living with expansive glass walls that frame breathtaking ocean views.",
+            "Cool off in the infinity pool with panoramic views that stretch to the horizon. Perfect for relaxing or entertaining guests.",
+            "Elegantly appointed bedroom spaces feature premium linens and thoughtful design elements that ensure ultimate comfort."
+        ];
+
+        // Current slide index
+        let currentAmenityIndex = 0;
+
+        // Update slide function
+        function updateAmenitySlide(index) {
+            console.log('Updating to slide index:', index);
+            // Remove active class from all slides and thumbnails
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+                console.log('Slide classList after removing active:', slide.classList);
+            });
+            thumbnails.forEach(thumbnail => {
+                thumbnail.classList.remove('active');
+                console.log('Thumbnail classList after removing active:', thumbnail.classList);
+            });
+
+            // Add active class to the current slide and thumbnail
+            slides[index].classList.add('active');
+            thumbnails[index].classList.add('active');
+            console.log('Active slide classList:', slides[index].classList);
+            console.log('Active thumbnail classList:', thumbnails[index].classList);
+
+            // Update description
+            slideDesc.textContent = slideContent[index];
+            console.log('Updated description:', slideDesc.textContent);
+
+            currentAmenityIndex = index;
+        }
+
+        // Thumbnail click events
+        thumbnails.forEach((thumbnail, idx) => {
+            thumbnail.addEventListener('click', () => {
+                console.log('Thumbnail clicked, index:', idx);
+                updateAmenitySlide(idx);
+            });
+        });
+
+        // Button click events
+        prevBtn.addEventListener('click', () => {
+            let newIndex = (currentAmenityIndex - 1 + slides.length) % slides.length;
+            console.log('Prev button clicked, new index:', newIndex);
+            updateAmenitySlide(newIndex);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            let newIndex = (currentAmenityIndex + 1) % slides.length;
+            console.log('Next button clicked, new index:', newIndex);
+            updateAmenitySlide(newIndex);
+        });
+
+        // Initialize the slider
+        console.log('Initializing slider with index 0');
+        updateAmenitySlide(0);
+    }
+
+    // Run the slider initialization after the DOM is fully loaded
+    window.addEventListener('load', () => {
+        console.log('Window loaded, starting slider initialization');
+        initAmenitiesSlider();
+    });
+
+    fetchReviews();
 </script>
 </body>
 </html>

@@ -6,7 +6,7 @@
     <title>Gallery | Paternoster Lodge</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.0/css/lightgallery.min.css" />
 </head>
 <body>
@@ -18,15 +18,15 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html" class="{{indexActive}}">Home</a></li>
-                    <li><a href="about.html" class="{{aboutActive}}">About</a></li>
-                    <li><a href="accommodation.html" class="{{accommodationActive}}">Accommodation</a></li>
-                    <li><a href="location.html" class="{{locationActive}}">Location</a></li>
-                    <li><a href="gallery.html" class="{{galleryActive}} active">Gallery</a></li>
-                    <li><a href="restaurant.html" class="{{restaurantActive}}">Restaurant</a></li>
-                    <li><a href="contact.html" class="{{contactActive}}">Contact</a></li>
-                    <li><a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a></li>
-                    <li><a href="register-login.html" class="{{registerLoginActive}} book-btn">Login</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="accommodation.html">Accommodation</a></li>
+                    <li><a href="location.html">Location</a></li>
+                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="restaurant.html">Restaurant</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="booking.html" class="book-btn">Book Now</a></li>
+                    <li><a href="register-login.html" class="book-btn">Login</a></li>
                 </ul>
             </nav>
             <div class="hamburger">
@@ -38,7 +38,7 @@
     </header>
 
     <!-- Page Banner -->
-    <section class="page-banner" style="background-image: url('https://via.placeholder.com/1920x600?text=Restaurant+Hero')" data-aos="fade-up">
+    <section class="page-banner" style="background-image: url('https://via.placeholder.com/1920x600?text=Gallery+Hero')" data-aos="fade-up">
         <div class="banner-content">
             <h1>Our Gallery</h1>
             <p>Explore the beauty of Paternoster Lodge</p>
@@ -52,33 +52,53 @@
                 <h2>Capture the Experience</h2>
             </div>
             <div class="gallery-description" data-aos="fade-up">
-                <p>yourself in the tranquility of the West Coast while enjoying the comforts of our modern lodge.</p>
+                <p>Immerse yourself in the tranquility of the West Coast while enjoying the comforts of our modern lodge.</p>
             </div>
-            <div class="gallery-grid" id="lightgallery" data-aos="fade-up" data-aos-delay="100">
-                <a href="images/gallery1.jpg" class="gallery-item">
-                    <img src="images/gallery pat.PNG" alt="Coastal Lodge">
-                </a>
-                <a href="images/gallery2.jpg" class="gallery-item">
-                    <img src="images/patt callery.PNG" alt="Coastal Lodge">
-                </a>
-                <a href="images/gallery3.jpg" class="gallery-item">
-                    <img src="images/gall p.PNG" alt="Coastal Lodge">
-                </a>
-                <a href="images/gaaall.PNG" class="gallery-item">
-                    <img src="images/gall gall.PNG" alt="Coastal Lodge">
-                </a>
-                <a href="images/gallery5.jpg" class="gallery-item">
-                    <img src="images/gaaall.PNG" alt="Coastal Lodge">
-                </a>
-                <a href="images/gallery6.jpg" class="gallery-item">
-                    <img src="images/daaa.PNG" alt="Coastal Lodge">
-                </a>
+            <div class="gallery-controls" data-aos="fade-up" data-aos-delay="100">
+                <button class="gallery-arrow gallery-arrow-left" aria-label="Scroll gallery left" tabindex="0">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="gallery-grid" id="lightgallery">
+                    <a href="images/14736_0_4_15_breakfast-area-2048x1152.jpg" class="gallery-item">
+                        <img src="images/14736_0_4_15_breakfast-area-2048x1152.jpg" alt="Breakfast area with coastal decor">
+                    </a>
+                    <a href="images/patt-gallery.jpg" class="gallery-item">
+                        <img src="images/patt-gallery.jpg" alt="Lodge exterior with ocean view">
+                    </a>
+                    <a href="images/gall-p.jpg" class="gallery-item">
+                        <img src="images/gall-p.jpg" alt="Sunset over Paternoster Beach">
+                    </a>
+                    <a href="images/gall-gall.jpg" class="gallery-item">
+                        <img src="images/gall-gall.jpg" alt="Plunge pool overlooking the coast">
+                    </a>
+                    <a href="images/14736_0_4_16_dining-area-2048x709.jpg" class="gallery-item">
+                        <img src="images/14736_0_4_16_dining-area-2048x709.jpg" alt="Dining area with panoramic views">
+                    </a>
+                    <a href="images/honeymoon-suite.jpg" class="gallery-item">
+                        <img src="images/honeymoon-suite.jpg" alt="Honeymoon suite interior">
+                    </a>
+                    <a href="images/lodge-lounge.jpg" class="gallery-item">
+                        <img src="images/lodge-lounge.jpg" alt="Cozy lodge lounge with fireplace">
+                    </a>
+                    <a href="images/ocean-balcony.jpg" class="gallery-item">
+                        <img src="images/ocean-balcony.jpg" alt="Private balcony with ocean view">
+                    </a>
+                    <a href="images/restaurant-terrace.jpg" class="gallery-item">
+                        <img src="images/restaurant-terrace.jpg" alt="Restaurant terrace at sunset">
+                    </a>
+                    <a href="images/coastal-path.jpg" class="gallery-item">
+                        <img src="images/coastal-path.jpg" alt="Scenic coastal path near lodge">
+                    </a>
+                </div>
+                <button class="gallery-arrow gallery-arrow-right" aria-label="Scroll gallery right" tabindex="0">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <!-- <section class="cta-section">
+    <section class="cta-section">
         <div class="cta-container">
             <div class="cta-content" data-aos="fade-up">
                 <h2>Experience Paternoster Lodge</h2>
@@ -86,7 +106,7 @@
                 <a href="booking.html" class="cta-btn">Book Now</a>
             </div>
         </div>
-    </section> -->
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -114,9 +134,9 @@
             </div>
             <div class="footer-column footer-contact">
                 <h3>Contact Us</h3>
-                <p><i class="fas fa-map-marker-alt"></i> 64 St Augustine Rd,Kliprug,Paternoster,7381</p>
+                <p><i class="fas fa-map-marker-alt"></i> 64 St Augustine Rd, Kliprug, Paternoster, 7381</p>
                 <p><i class="fas fa-phone"></i> +2722 880 0970</p>
-                <p><i class="fas fa-envelope"></i>  info@paternosterlodge.co.za</p>
+                <p><i class="fas fa-envelope"></i> info@paternosterlodge.co.za</p>
                 <p><i class="fas fa-clock"></i> Reception: 07:00 - 22:00</p>
             </div>
             <div class="footer-column footer-subscribe">
@@ -134,7 +154,7 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.0/lightgallery.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -149,7 +169,7 @@
                 document.body.classList.add('aos-fallback');
             }
 
-            // Initialize LightGallery for the gallery
+            // Initialize LightGallery
             if (typeof lightGallery !== 'undefined') {
                 lightGallery(document.getElementById('lightgallery'), {
                     speed: 500,
@@ -159,34 +179,99 @@
                 console.warn('LightGallery library not loaded.');
             }
 
-            // Auto-scroll functionality
+            // Auto-scroll and arrow navigation
             const galleryGrid = document.querySelector('.gallery-grid');
-            let scrollPosition = 0;
-            const scrollSpeed = 0.5; // Slow scroll speed in pixels per frame
-            let isScrolling = true;
+            const leftArrow = document.querySelector('.gallery-arrow-left');
+            const rightArrow = document.querySelector('.gallery-arrow-right');
+            if (galleryGrid && galleryGrid.scrollWidth > galleryGrid.clientWidth) {
+                let scrollPosition = 0;
+                const scrollSpeed = 1; // Pixels per frame for auto-scroll
+                const scrollAmountDesktop = 300; // Desktop image width
+                const scrollAmountMobile = 200; // Mobile image width
+                const isMobile = window.innerWidth <= 768;
+                const scrollAmount = isMobile ? scrollAmountMobile : scrollAmountDesktop;
+                let isScrolling = true;
+                let isLooping = false;
 
-            function autoScroll() {
-                if (isScrolling && galleryGrid) {
-                    scrollPosition += scrollSpeed;
-                    if (scrollPosition >= galleryGrid.scrollWidth - galleryGrid.clientWidth) {
-                        scrollPosition = 0; // Loop back to start
+                function autoScroll() {
+                    if (isScrolling && !isLooping) {
+                        scrollPosition += scrollSpeed;
+                        if (scrollPosition >= galleryGrid.scrollWidth - galleryGrid.clientWidth - scrollSpeed) {
+                            // Smooth loop transition
+                            isLooping = true;
+                            galleryGrid.style.transition = 'opacity 0.3s ease';
+                            galleryGrid.style.opacity = '0';
+                            setTimeout(() => {
+                                scrollPosition = 0;
+                                galleryGrid.scrollTo({
+                                    left: scrollPosition,
+                                    behavior: 'auto'
+                                });
+                                galleryGrid.style.opacity = '1';
+                                isLooping = false;
+                            }, 300);
+                        } else {
+                            galleryGrid.scrollTo({
+                                left: scrollPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                        requestAnimationFrame(autoScroll);
                     }
-                    galleryGrid.scrollLeft = scrollPosition;
-                    requestAnimationFrame(autoScroll);
                 }
-            }
 
-            // Start auto-scroll on load
-            autoScroll();
-
-            // Pause on hover
-            galleryGrid.addEventListener('mouseenter', () => {
-                isScrolling = false;
-            });
-            galleryGrid.addEventListener('mouseleave', () => {
-                isScrolling = true;
+                // Start auto-scroll
                 autoScroll();
-            });
+
+                // Pause on hover
+                galleryGrid.addEventListener('mouseenter', () => {
+                    isScrolling = false;
+                });
+                galleryGrid.addEventListener('mouseleave', () => {
+                    isScrolling = true;
+                    autoScroll();
+                });
+
+                // Arrow navigation
+                leftArrow.addEventListener('click', () => {
+                    isScrolling = false;
+                    scrollPosition = Math.max(0, scrollPosition - scrollAmount);
+                    galleryGrid.scrollTo({
+                        left: scrollPosition,
+                        behavior: 'smooth'
+                    });
+                    setTimeout(() => {
+                        isScrolling = true;
+                        autoScroll();
+                    }, 10000);
+                });
+
+                rightArrow.addEventListener('click', () => {
+                    isScrolling = false;
+                    scrollPosition = Math.min(
+                        galleryGrid.scrollWidth - galleryGrid.clientWidth,
+                        scrollPosition + scrollAmount
+                    );
+                    galleryGrid.scrollTo({
+                        left: scrollPosition,
+                        behavior: 'smooth'
+                    });
+                    setTimeout(() => {
+                        isScrolling = true;
+                        autoScroll();
+                    }, 10000);
+                });
+
+                // Update scrollAmount on window resize
+                window.addEventListener('resize', () => {
+                    const newIsMobile = window.innerWidth <= 768;
+                    scrollAmount = newIsMobile ? scrollAmountMobile : scrollAmountDesktop;
+                });
+            } else {
+                console.warn('Gallery grid not scrollable or not found.');
+                if (leftArrow) leftArrow.style.display = 'none';
+                if (rightArrow) rightArrow.style.display = 'none';
+            }
         });
     </script>
 </body>
