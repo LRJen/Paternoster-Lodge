@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Fallback script for Supabase, defined first to avoid timing issues -->
+    <script>
+        function fallbackSupabaseScript() {
+            console.log('Attempting to load Supabase script from jsDelivr as fallback...');
+            const fallbackScript = document.createElement('script');
+            fallbackScript.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.umd.js';
+            fallbackScript.onerror = () => {
+                console.error('Both Supabase script sources failed to load. Please check your network or host the script locally.');
+                const slider = document.getElementById('review-slider');
+                if (slider) {
+                    slider.innerHTML = '<p class="text-gray-500 text-sm">Failed to load review system. Please try again later.</p>';
+                }
+            };
+            fallbackScript.onload = () => console.log('Supabase script loaded successfully from jsDelivr');
+            document.head.appendChild(fallbackScript);
+        }
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paternoster Lodge</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_ACTUAL_API_KEY&libraries=places&callback=initMap"></script>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=stylesheet">
     <script>
         tailwind.config = {
           theme: {
@@ -25,6 +42,10 @@
     </script>
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <!-- Supabase script with fallback -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.umd.js" onerror="console.error('Failed to load Supabase script from unpkg'); fallbackSupabaseScript()"></script>
+
     <style>
         .carousel {
             display: flex;
@@ -72,6 +93,8 @@
         }
         .testimonials {
             background: linear-gradient(180deg, #f5f5f5 0%, #e8ecef 100%);
+            display: block !important;
+            min-height: 200px;
         }
         .review-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -120,7 +143,6 @@
             background-color: #ef4444;
             color: white;
         }
-        /* Amenities Slider Styles */
         .amenities-slider {
             background: linear-gradient(180deg, #f5e8d8 0%, #f5f5f5 100%);
             padding: 2rem 0;
@@ -222,6 +244,42 @@
             height: 100%;
             object-fit: cover;
         }
+        .grootbos-nav-item {
+    width: 150px;
+    height: 180px;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    background-size: cover; /* Ensures the image fills the hexagon */
+    background-position: center; /* Centers the image within the hexagon */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Aligns text to the bottom */
+    align-items: center;
+    text-align: center;
+    position: relative; /* For text overlay */
+}
+
+.grootbos-nav-text {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
+    width: 100%;
+    padding: 5px 0;
+    font-size: 0.875rem; /* 14px */
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Shadow for better contrast */
+}
+
+@media (max-width: 768px) {
+    .grootbos-nav-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .grootbos-nav-item {
+        width: 120px;
+        height: 140px;
+    }
+    .grootbos-nav-text {
+        font-size: 0.75rem; /* 12px for smaller screens */
+    }
+}   
     </style>
 </head>
 <body>
@@ -264,7 +322,7 @@
         </div>
         <div class="carousel-item flex items-center justify-center h-[600px]" style="background-image: url('images/partneso.PNG');">
             <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg" data-aos="fade-up">
-                <h2 class="text-4xl font-bold font-['Playfair_Display']">MAGNIFICENT VIEWS OF THE ALANTIC OCEAN</h2>
+                <h2 class="text-4xl font-bold font-['Playfair_Display']">MAGNIFICENT VIEWS OF THE ATLANTIC OCEAN</h2>
                 <p class="mt-2 text-lg">Paternoster Lodge</p>
             </div>
         </div>
@@ -451,16 +509,16 @@
     <div class="container">
         <div class="slider">
             <div class="slide active" data-index="0">
-                <img src="images/PATENOSTA FROMT.PNG" alt="Villa Interior" style="width:100%;height:100%;object-fit:cover;">
+                <img src="images/20210502_085438-2048x1536.jpg" alt="Villa Interior" style="width:100%;height:100%;object-fit:cover;">
             </div>
             <div class="slide" data-index="1">
-                <img src="images/partneso.PNG" alt="Outdoor Terrace" style="width:100%;height:100%;object-fit:cover;">
+                <img src="images/20210502_091213-2048x1536.jpg" alt="Outdoor Terrace" style="width:100%;height:100%;object-fit:cover;">
             </div>
             <div class="slide" data-index="2">
-                <img src="images/New partenosta.PNG" alt="Swimming Pool" style="width:100%;height:100%;object-fit:cover;">
+                <img src="images/20220626_113917-2048x946.jpg" alt="Swimming Pool" style="width:100%;height:100%;object-fit:cover;">
             </div>
             <div class="slide" data-index="3">
-                <img src="images/pate table view.PNG" alt="Bedroom" style="width:100%;height:100%;object-fit:cover;">
+                <img src="images/14736_5_3_4_tv-and-multimedia-2048x1152.jpg" alt="Bedroom" style="width:100%;height:100%;object-fit:cover;">
             </div>
 
             <div class="slider-controls">
@@ -476,16 +534,16 @@
 
         <div class="thumbnails">
             <div class="thumbnail active" data-index="0">
-                <img src="images/PATENOSTA FROMT.PNG" alt="Living Room">
+                <img src="images/20210502_085438-2048x1536.jpg" alt="Living Room">
             </div>
             <div class="thumbnail" data-index="1">
-                <img src="images/partneso.PNG" alt="Outdoor Terrace">
+                <img src="images/20210502_091213-2048x1536.jpg" alt="Outdoor Terrace">
             </div>
             <div class="thumbnail" data-index="2">
-                <img src="images/New partenosta.PNG" alt="Swimming Pool">
+                <img src="images/20220626_113917-2048x946.jpg" alt="Swimming Pool">
             </div>
             <div class="thumbnail" data-index="3">
-                <img src="images/pate table view.PNG" alt="Bedroom">
+                <img src="images/14736_5_3_4_tv-and-multimedia-2048x1152.jpg" alt="Bedroom">
             </div>
         </div>
     </div>
@@ -522,14 +580,16 @@
             </form>
         </div>
     </div>
-    <!-- Review Slider -->
+    <!-- Review Slider with Fallback -->
     <div class="max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-        <div id="review-slider"></div>
+        <div id="review-slider">
+            <p class="text-gray-500 text-sm">Loading reviews...</p>
+        </div>
         <div id="review-dots" class="flex justify-center gap-2 mt-3"></div>
     </div>
 </section>
 
-<!-- Location Section -->
+<!-- <!-- Location Section --
 <section class="location" id="location">
     <div class="section-title fade-in">
         <h2>Our Location</h2>
@@ -539,13 +599,12 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3353.3456021342695!2d17.885458483924307!3d-32.809606697022645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1c34984e92ce5db9%3A0xdf1e528d78a4ed3!2sPaternoster%20Lodge!5e0!3m2!1sen!2sza!4v1747402533777!5m2!1sen!2sza" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="location-info fade-in">
-            
             <p>Paternoster Lodge is situated in a picturesque fishing village, just a 2-hour drive from the nearest international airport. Our location offers the perfect balance of seclusion and accessibility.</p>
             <p>The area is known for its pristine beaches, rich marine life, and colorful local culture. Within walking distance, you'll find charming restaurants, art galleries, and opportunities to experience authentic coastal life.</p>
             <div class="contact-details">
                 <div class="contact-item">
                     <i class="fas fa-map-marker-alt"></i>
-                    <p>64 St Augustine Rd,Kliprug,Paternoster,7381</p>
+                    <p>64 St Augustine Rd, Kliprug, Paternoster, 7381</p>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-phone"></i>
@@ -557,6 +616,34 @@
                 </div>
             </div>
         </div>
+    </div>
+</section> -->
+
+<!-- Grootbos Private Villas Navigation Section -->
+<section class="grootbos-nav py-8 bg-light text-center">
+    <div class="section-title fade-in" data-aos="fade-up">
+        <h2 class="text-2xl font-['Playfair_Display'] text-primary">EXPLORE THE GROOTBOS PRIVATE VILLAS</h2>
+        <p class="mt-2 text-sm text-gray-600">Explore the site for a taste of what Grootbos Villas has to offer</p>
+    </div>
+    <div class="grootbos-nav-container flex justify-center gap-4 mt-6 flex-wrap" data-aos="fade-up" data-aos-delay="100">
+        <a href="#home" class="grootbos-nav-item text-white text-center hover:brightness-110 transition duration-300" style="background-image: url('images/14736_2_0_2_photo-of-the-whole-room-2048x1152.jpg');">
+            <span class="grootbos-nav-text">HOME</span>
+        </a>
+        <a href="#about" class="grootbos-nav-item text-white text-center hover:brightness-110 transition duration-300" style="background-image: url('images/20220628_142200-2048x946.jpg');">
+            <span class="grootbos-nav-text">FYNBOS VILLA</span>
+        </a>
+        <a href="#accommodation" class="grootbos-nav-item text-white text-center hover:brightness-110 transition duration-300" style="background-image: url('images/14736_0_4_16_dining-area-2048x709.jpg');">
+            <span class="grootbos-nav-text">SUNBIRD VILLA</span>
+        </a>
+        <a href="#amenities" class="grootbos-nav-item text-white text-center hover:brightness-110 transition duration-300" style="background-image: url('images/14736_5_3_3_seating-area-2048x1152.jpg');">
+            <span class="grootbos-nav-text">EXPERIENCES</span>
+        </a>
+        <a href="#restaurant" class="grootbos-nav-item text-white text-center hover:brightness-110 transition duration-300" style="background-image: url('images/14736_5_3_4_tv-and-multimedia-2048x1152.jpg');">
+            <span class="grootbos-nav-text">CULINARY & WINE</span>
+        </a>
+        <a href="#booking" class="grootbos-nav-item text-white text-center hover:brightness-110 transition duration-300" style="background-image: url('images/14736_4_2_1_bed-2048x709.jpg');">
+            <span class="grootbos-nav-text">RATES</span>
+        </a>
     </div>
 </section>
 
@@ -627,8 +714,21 @@
 </div>
 
 <!-- JavaScript -->
-<script src="js/script.js"></script>
 <script>
+    // Google Maps initialization
+    function initMap() {
+        if (!window.google) {
+            console.error('Google Maps API failed to load. Please ensure a valid API key is provided.');
+            const mapContainer = document.querySelector('.map-container');
+            if (mapContainer) {
+                mapContainer.innerHTML = '<p class="text-gray-500 text-sm">Unable to load map. Please try again later.</p>';
+            }
+            return;
+        }
+        console.log('Google Maps initialized with API key');
+    }
+
+    // Initialize AOS
     AOS.init({
         duration: 1000,
         once: true,
@@ -648,7 +748,7 @@
 
     function nextSlide() {
         if (!isPaused) {
-            if (currentIndex < 2) slideTo(currentIndex + 1);
+            if (currentIndex < 6) slideTo(currentIndex + 1);
             else slideTo(0);
         }
     }
@@ -674,6 +774,7 @@
     function nextReviewSlide() {
         const slides = document.querySelectorAll('.review-slide');
         const dots = document.querySelectorAll('.review-dot');
+        if (slides.length === 0) return;
         currentReviewIndex = (currentReviewIndex + 1) % slides.length;
         showReviewSlide(currentReviewIndex, slides, dots);
     }
@@ -718,26 +819,33 @@
         });
     }
 
-    // Supabase Setup
-    const supabase = Supabase.createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY');
-
+    // Fetch Reviews from Supabase
     async function fetchReviews() {
+        const slider = document.getElementById('review-slider');
+        if (!supabase) {
+            slider.innerHTML = '<p class="text-gray-500 text-sm">Unable to connect to the review system.</p>';
+            return;
+        }
+
         try {
-            const { data, error } = await supabase
+            const { data: reviews, error } = await supabase
                 .from('reviews')
                 .select('*')
                 .order('created_at', { ascending: false });
+
             if (error) {
-                console.error('Error fetching reviews:', error);
+                console.error('Error fetching reviews:', error.message);
+                slider.innerHTML = '<p class="text-gray-500 text-sm">Error loading reviews. Please try again later.</p>';
                 return;
             }
-            const slider = document.getElementById('review-slider');
+
             slider.innerHTML = '';
-            if (data.length === 0) {
+            if (reviews.length === 0) {
                 slider.innerHTML = '<p class="text-gray-500 text-sm">No reviews yet. Be the first to share your experience!</p>';
                 return;
             }
-            data.forEach((review, index) => {
+
+            reviews.forEach((review, index) => {
                 const slide = document.createElement('div');
                 slide.classList.add('review-slide');
                 if (index === 0) slide.classList.add('active');
@@ -766,13 +874,16 @@
                 `;
                 slider.appendChild(slide);
             });
+
             setupReviewSlider();
             setupReadMore();
-        } catch (err) {
-            console.error('Unexpected error fetching reviews:', err);
+        } catch (error) {
+            console.error('Unexpected error fetching reviews:', error);
+            slider.innerHTML = '<p class="text-gray-500 text-sm">Unable to load reviews at this time.</p>';
         }
     }
 
+    // Submit Review to Supabase
     document.getElementById('review-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const messageDiv = document.getElementById('submission-message');
@@ -780,33 +891,43 @@
         const rating = document.querySelector('input[name="rating"]:checked')?.value;
         const review = document.getElementById('review-text').value;
 
-        if (!rating) {
-            messageDiv.textContent = 'Please select a star rating.';
+        if (!name || !rating || !review) {
+            messageDiv.textContent = 'Please fill in all fields.';
+            messageDiv.className = 'submission-message error';
+            setTimeout(() => { messageDiv.className = 'submission-message'; messageDiv.textContent = ''; }, 5000);
+            return;
+        }
+
+        if (!supabase) {
+            messageDiv.textContent = 'Cannot submit review: Database connection failed.';
             messageDiv.className = 'submission-message error';
             setTimeout(() => { messageDiv.className = 'submission-message'; messageDiv.textContent = ''; }, 5000);
             return;
         }
 
         try {
-            const { data, error } = await supabase
+            const { error } = await supabase
                 .from('reviews')
                 .insert([{ name, rating: parseInt(rating), review }]);
+
             if (error) {
-                console.error('Error submitting review:', error);
-                messageDiv.textContent = 'Failed to submit review. Please try again.';
+                console.error('Error submitting review:', error.message);
+                messageDiv.textContent = 'Error submitting review. Please try again.';
                 messageDiv.className = 'submission-message error';
                 setTimeout(() => { messageDiv.className = 'submission-message'; messageDiv.textContent = ''; }, 5000);
                 return;
             }
+
             messageDiv.textContent = 'Review submitted successfully!';
             messageDiv.className = 'submission-message success';
             setTimeout(() => { messageDiv.className = 'submission-message'; messageDiv.textContent = ''; }, 5000);
+
             document.getElementById('review-form').reset();
             document.querySelectorAll('.star-label').forEach(label => label.style.color = '#d1d5db');
             fetchReviews();
-        } catch (err) {
-            console.error('Unexpected error submitting review:', err);
-            messageDiv.textContent = 'Unexpected error. Please try again.';
+        } catch (error) {
+            console.error('Unexpected error submitting review:', error);
+            messageDiv.textContent = 'Failed to submit review. Please try again later.';
             messageDiv.className = 'submission-message error';
             setTimeout(() => { messageDiv.className = 'submission-message'; messageDiv.textContent = ''; }, 5000);
         }
@@ -830,19 +951,11 @@
         const nextBtn = document.querySelector('.amenities-slider .next-btn');
         const slideDesc = document.getElementById('slide-description');
 
-        // Debug logs
-        console.log('Slides found:', slides.length);
-        console.log('Thumbnails found:', thumbnails.length);
-        console.log('Prev Button:', prevBtn);
-        console.log('Next Button:', nextBtn);
-        console.log('Slide Description:', slideDesc);
-
         if (!slides.length || !thumbnails.length || !prevBtn || !nextBtn || !slideDesc) {
             console.error('One or more slider elements not found. Aborting initialization.');
             return;
         }
 
-        // Array of slide descriptions
         const slideContent = [
             "Luxury amenities offer every pleasure and convenience. The villa is at once state-of-the-art and discreetly in harmony with your natural surroundings.",
             "Experience the perfect blend of indoor and outdoor living with expansive glass walls that frame breathtaking ocean views.",
@@ -850,68 +963,111 @@
             "Elegantly appointed bedroom spaces feature premium linens and thoughtful design elements that ensure ultimate comfort."
         ];
 
-        // Current slide index
         let currentAmenityIndex = 0;
 
-        // Update slide function
         function updateAmenitySlide(index) {
-            console.log('Updating to slide index:', index);
-            // Remove active class from all slides and thumbnails
-            slides.forEach(slide => {
-                slide.classList.remove('active');
-                console.log('Slide classList after removing active:', slide.classList);
-            });
-            thumbnails.forEach(thumbnail => {
-                thumbnail.classList.remove('active');
-                console.log('Thumbnail classList after removing active:', thumbnail.classList);
-            });
-
-            // Add active class to the current slide and thumbnail
+            slides.forEach(slide => slide.classList.remove('active'));
+            thumbnails.forEach(thumbnail => thumbnail.classList.remove('active'));
             slides[index].classList.add('active');
             thumbnails[index].classList.add('active');
-            console.log('Active slide classList:', slides[index].classList);
-            console.log('Active thumbnail classList:', thumbnails[index].classList);
-
-            // Update description
             slideDesc.textContent = slideContent[index];
-            console.log('Updated description:', slideDesc.textContent);
-
             currentAmenityIndex = index;
         }
 
-        // Thumbnail click events
         thumbnails.forEach((thumbnail, idx) => {
-            thumbnail.addEventListener('click', () => {
-                console.log('Thumbnail clicked, index:', idx);
-                updateAmenitySlide(idx);
-            });
+            thumbnail.addEventListener('click', () => updateAmenitySlide(idx));
         });
 
-        // Button click events
         prevBtn.addEventListener('click', () => {
             let newIndex = (currentAmenityIndex - 1 + slides.length) % slides.length;
-            console.log('Prev button clicked, new index:', newIndex);
             updateAmenitySlide(newIndex);
         });
 
         nextBtn.addEventListener('click', () => {
             let newIndex = (currentAmenityIndex + 1) % slides.length;
-            console.log('Next button clicked, new index:', newIndex);
             updateAmenitySlide(newIndex);
         });
 
-        // Initialize the slider
-        console.log('Initializing slider with index 0');
         updateAmenitySlide(0);
     }
 
-    // Run the slider initialization after the DOM is fully loaded
-    window.addEventListener('load', () => {
-        console.log('Window loaded, starting slider initialization');
-        initAmenitiesSlider();
+    // Initialize Supabase client
+    let supabase;
+    try {
+        setTimeout(() => {
+            if (typeof createClient === 'function') {
+                const supabaseUrl = 'https://fdpcmuwwbalwofxydsds.supabase.co';
+                const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZkcGNtdXd3YmFsd29meHlkc2RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcwNTA3OTUsImV4cCI6MjA2MjYyNjc5NX0.FmvbrFqPepMcxJbY6eGLeS7oMIfDzXnMPAjdF-8MWGY';
+                supabase = createClient(supabaseUrl, supabaseAnonKey);
+                console.log('Supabase client initialized successfully');
+                fetchReviews();
+            } else {
+                console.error('createClient is not defined after script load');
+                const slider = document.getElementById('review-slider');
+                if (slider) {
+                    slider.innerHTML = '<p class="text-gray-500 text-sm">Failed to load review system. Please try again later.</p>';
+                }
+            }
+        }, 100);
+    } catch (error) {
+        console.error('Failed to initialize Supabase client:', error);
+        const slider = document.getElementById('review-slider');
+        if (slider) {
+            slider.innerHTML = '<p class="text-gray-500 text-sm">Failed to load review system. Please try again later.</p>';
+        }
+    }
+
+    // Run the slider initialization and fetch reviews after the DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        try {
+            initAmenitiesSlider();
+            fetchReviews();
+        } catch (error) {
+            console.error('Error during initialization:', error);
+            const slider = document.getElementById('review-slider');
+            if (slider) {
+                slider.innerHTML = '<p class="text-gray-500 text-sm">Failed to load reviews due to an initialization error.</p>';
+            }
+        }
     });
 
-    fetchReviews();
+    // Room Modal Handlers
+    function closeRoomModal(roomId) {
+        document.getElementById(`${roomId}-modal`).classList.add('hidden');
+    }
+
+    document.querySelectorAll('.room-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const roomId = card.querySelector('h3').textContent.toLowerCase().replace(' ', '-');
+            document.getElementById(`${roomId}-modal`).classList.remove('hidden');
+        });
+    });
+
+    document.querySelectorAll('.close-room-modal, .close-modal').forEach(closeBtn => {
+        closeBtn.addEventListener('click', () => {
+            closeBtn.closest('.room-modal, .booking-modal').classList.add('hidden');
+        });
+    });
+
+    // Booking Modal Night Calculation
+    const checkIn = document.getElementById('check-in');
+    const checkOut = document.getElementById('check-out');
+    const nights = document.getElementById('nights');
+
+    checkIn.addEventListener('change', calculateNights);
+    checkOut.addEventListener('change', calculateNights);
+
+    function calculateNights() {
+        if (checkIn.value && checkOut.value) {
+            const checkInDate = new Date(checkIn.value);
+            const checkOutDate = new Date(checkOut.value);
+            const diffTime = Math.abs(checkOutDate - checkInDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            nights.value = diffDays;
+        } else {
+            nights.value = '';
+        }
+    }
 </script>
 </body>
 </html>
