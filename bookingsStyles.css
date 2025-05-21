@@ -443,7 +443,7 @@ nav ul li a.active::after {
     margin-top: 20px;
     width: 100%;
     border-collapse: collapse;
-    display: none;
+
 }
 
 .availability-table th,

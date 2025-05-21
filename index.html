@@ -23,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paternoster Lodge</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_ACTUAL_API_KEY&libraries=places&callback=initMap"></script>
+    <!--<script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_ACTUAL_API_KEY&libraries=places&callback=initMap"></script>-->
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=stylesheet">
@@ -728,6 +728,32 @@
         console.log('Google Maps initialized with API key');
     }
 
+     // Initialize Supabase client
+    let supabase;
+    try {
+        setTimeout(() => {
+            if (typeof createClient === 'function') {
+                const supabaseUrl = 'https://fdpcmuwwbalwofxydsds.supabase.co';
+                const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZkcGNtdXd3YmFsd29meHlkc2RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcwNTA3OTUsImV4cCI6MjA2MjYyNjc5NX0.FmvbrFqPepMcxJbY6eGLeS7oMIfDzXnMPAjdF-8MWGY';
+                supabase = createClient(supabaseUrl, supabaseAnonKey);
+                console.log('Supabase client initialized successfully');
+                fetchReviews();
+            } else {
+                console.error('createClient is not defined after script load');
+                const slider = document.getElementById('review-slider');
+                if (slider) {
+                    slider.innerHTML = '<p class="text-gray-500 text-sm">Failed to load review system. Please try again later.</p>';
+                }
+            }
+        }, 100);
+    } catch (error) {
+        console.error('Failed to initialize Supabase client:', error);
+        const slider = document.getElementById('review-slider');
+        if (slider) {
+            slider.innerHTML = '<p class="text-gray-500 text-sm">Failed to load review system. Please try again later.</p>';
+        }
+    }
+
     // Initialize AOS
     AOS.init({
         duration: 1000,
@@ -991,31 +1017,7 @@
         updateAmenitySlide(0);
     }
 
-    // Initialize Supabase client
-    let supabase;
-    try {
-        setTimeout(() => {
-            if (typeof createClient === 'function') {
-                const supabaseUrl = 'https://fdpcmuwwbalwofxydsds.supabase.co';
-                const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZkcGNtdXd3YmFsd29meHlkc2RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcwNTA3OTUsImV4cCI6MjA2MjYyNjc5NX0.FmvbrFqPepMcxJbY6eGLeS7oMIfDzXnMPAjdF-8MWGY';
-                supabase = createClient(supabaseUrl, supabaseAnonKey);
-                console.log('Supabase client initialized successfully');
-                fetchReviews();
-            } else {
-                console.error('createClient is not defined after script load');
-                const slider = document.getElementById('review-slider');
-                if (slider) {
-                    slider.innerHTML = '<p class="text-gray-500 text-sm">Failed to load review system. Please try again later.</p>';
-                }
-            }
-        }, 100);
-    } catch (error) {
-        console.error('Failed to initialize Supabase client:', error);
-        const slider = document.getElementById('review-slider');
-        if (slider) {
-            slider.innerHTML = '<p class="text-gray-500 text-sm">Failed to load review system. Please try again later.</p>';
-        }
-    }
+   
 
     // Run the slider initialization and fetch reviews after the DOM is loaded
     document.addEventListener('DOMContentLoaded', () => {
@@ -1029,7 +1031,7 @@
                 slider.innerHTML = '<p class="text-gray-500 text-sm">Failed to load reviews due to an initialization error.</p>';
             }
         }
-    });
+    });/////////
 
     // Room Modal Handlers
     function closeRoomModal(roomId) {

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking | PaternosterLodge</title>
-    <!-- Fonts and Icons (Required by style.css) -->
+    <!-- Fonts and Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Dependencies -->
@@ -12,6 +12,252 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="bookingsStyles.css">
+    <style>
+        /* Availability Section Styling */
+        .availability-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .availability-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .availability-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #1b3c59;
+        }
+
+        .availability-header .search-dates {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .availability-header .search-dates span {
+            background: #ffeb3b;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .availability-header .search-dates select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .availability-header .change-search-btn {
+            background: #0071c2;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .availability-header .change-search-btn:hover {
+            background: #005ea6;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .filters label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        .availability-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Open Sans', sans-serif;
+            border: #003580 12px solid;
+            margin-bottom: 1rem;
+        }
+
+        .availability-table th,
+        .availability-table td {
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .availability-table th {
+            background: #003580;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .availability-table td {
+            font-size: 0.85rem;
+        }
+
+        .room-type {
+            font-weight: bold;
+            color: #d32f2f;
+            margin-bottom: 5px;
+        }
+
+        .room-type span {
+            display: inline-block;
+            background: #d32f2f;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-left: 5px;
+        }
+
+        .room-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin: 5px 0;
+        }
+
+        .room-features span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .room-features i {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .price-note {
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        .choices {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .choices label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.75rem;
+        }
+
+        .choices label input[type="checkbox"] {
+            accent-color: #0071c2;
+        }
+
+        .choices label.green {
+            color: #2e7d32;
+        }
+
+        .choices a {
+            color: #0071c2;
+            text-decoration: none;
+            font-size: 0.75rem;
+        }
+
+        .choices a:hover {
+            text-decoration: underline;
+        }
+
+        .guest-counter {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 5px 0;
+        }
+
+        .guest-counter select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        .select-btn {
+            background: #0071c2;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .select-btn:hover {
+            background: #005ea6;
+        }
+
+        .more-link {
+            color: #0071c2;
+            text-decoration: none;
+            font-size: 0.75rem;
+        }
+
+        .more-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .availability-table th,
+            .availability-table td {
+                font-size: 0.75rem;
+                padding: 8px;
+            }
+
+            .availability-table th {
+                font-size: 0.8rem;
+            }
+
+            .guest-counter select,
+            .select-btn {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .room-features span {
+                font-size: 0.75rem;
+            }
+
+            .choices label,
+            .choices a,
+            .price-note {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -57,12 +303,10 @@
                     <label for="room-type">Room Type:</label>
                     <select id="room-type" required>
                         <option value="">Select Room Type</option>
-                        <option value="Ocean View Suite">Queen Deluxe Room</option>
-                        <option value="Family Cottage">Family Room</option>
-                        <option value="Family Cottage">Standard Rooms</option>
-                        <option value="Family Cottage">Standard Double Room</option>
-                        <option value="Family Cottage">Honeymoon Suite</option>
-                        <option value="Family Cottage">Family Cottage</option>
+                        <option value="Deluxe King Room">Deluxe King Room</option>
+                        <option value="Family Room">Family Room</option>
+                        <option value="Honeymoon Suite">Honeymoon Suite</option>
+                        <option value="Standard Double Room">Standard Double Room</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -105,68 +349,204 @@
         </div>
     </section>
 
-    <!-- Available Rooms -->
-    <section class="available-rooms">
-        <h2>Available on These Dates</h2>
-        <div class="room-option">
-            <div class="room-image">
-                <img src="images/Ocean view suite.webp" alt="Ocean View Suite">
-            </div>
-            <div class="room-details">
-                <h3>Honeymoon Suite</h3>
-                <p>Spacious suite with private balcony and stunning ocean views. Includes air conditioning, Smart TV with selected channels, and a shared patio with access to the plunge pool.</p>
-            </div>
-            <div class="room-pricing">
-                <div class="price">From R2000.00 per night for 2 adults</div>
-                <p>Max Guests: 2 (Max 2 adults)</p>
-                <p>Children: 0 - 5 years free</p>
-                <button class="book-room-btn" data-room-type="Ocean View Suite">View Rates and Book</button>
+    <!-- Availability Section (Replicating Booking.com Layout) -->
+    <section class="availability-section">
+        <div class="availability-header">
+            <h2>Availability</h2>
+            <div class="search-dates">
+                <span>Sat 31 May – Sun 1 Jun</span>
+                <span>2 adults • 0 children • 1 room</span>
+                <select>
+                    <option>Change search</option>
+                </select>
+                <button class="change-search-btn">Change search</button>
             </div>
         </div>
-        <div class="room-option">
-            <div class="room-image">
-                <img src="images/family cottage.jpg" alt="Family Room">
-            </div>
-            <div class="room-details">
-                <h3>Family Room</h3>
-                <p>Cozy cottage perfect for families, with garden access. Features two bedrooms, a kitchenette, and a Smart TV.</p>
-            </div>
-            <div class="room-pricing">
-                <div class="price">From R6880.00 per night for 4 adults</div>
-                <p>Max Guests: 4 (Max 4 adults)</p>
-                <p>Children: 0 - 5 years free</p>
-                <button class="book-room-btn" data-room-type="Family Cottage">View Rates and Book</button>
-            </div>
+        <div class="filters">
+            <label><input type="checkbox"> Apartments</label>
+            <label><input type="checkbox"> Studios</label>
+            <label><input type="checkbox"> Rooms</label>
         </div>
-        <div class="room-option">
-            <div class="room-image">
-                <img src="images/Ocean view suite.webp" alt="Ocean View Suite">
-            </div>
-            <div class="room-details">
-                <h3>Deluxe King Room</h3>
-                <p>Spacious suite with private balcony and stunning ocean views. Includes air conditioning, Smart TV with selected channels, and a shared patio with access to the plunge pool.</p>
-            </div>
-            <div class="room-pricing">
-                <div class="price">From R1892.00 per night for 2 adults</div>
-                <p>Max Guests: 2 (Max 2 adults)</p>
-                <p>Children: 0 - 5 years free</p>
-                <button class="book-room-btn" data-room-type="Ocean View Suite">View Rates and Book</button>
-            </div>
-        </div>
-        <div class="room-option">
-            <div class="room-image">
-                <img src="images/Ocean view suite.webp" alt="Standard Double Room">
-            </div>
-            <div class="room-details">
-                <h3>Standard Double Room</h3>
-                <p>Spacious suite with private balcony and stunning ocean views. Includes air conditioning, Smart TV with selected channels, and a shared patio with access to the plunge pool.</p>
-            </div>
-            <div class="room-pricing">
-                <div class="price">From R1720.00 per night for 2 adults</div>
-                <p>Max Guests: 2 (Max 2 adults)</p>
-                <p>Children: 0 - 5 years free</p>
-                <button class="book-room-btn" data-room-type="Ocean View Suite">View Rates and Book</button>
-            </div>
+        <div class="table-wrapper">
+            <table class="availability-table">
+                <thead>
+                    <tr>
+                        <th>Accommodation Type</th>
+                        <th>Number of Guests</th>
+                        <th>Today's Price</th>
+                        <th>Your Choices</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Deluxe King Room -->
+                    <tr>
+                        <td>
+                            <div class="room-type">Deluxe King Room</div>
+                            <p>1 double bed</p>
+                            <div class="room-features">
+                                <span><i class="fas fa-ruler-combined"></i> 18 m²</span>
+                                <span><i class="fas fa-kitchen-set"></i> Private kitchenette</span>
+                                <span><i class="fas fa-bath"></i> Private bathroom</span>
+                                <span><i class="fas fa-snowflake"></i> Air conditioning</span>
+                                <span><i class="fas fa-tv"></i> Flat-screen TV</span>
+                                <span><i class="fas fa-wifi"></i> Free WiFi</span>
+                            </div>
+                            <a href="#" class="more-link">MORE</a>
+                        </td>
+                        <td>
+                            <i class="fas fa-user-friends"></i> 2
+                        </td>
+                        <td>
+                            <div class="price">ZAR 1892</div>
+                            <div class="price-note">includes taxes and charges</div>
+                        </td>
+                        <td>
+                            <div class="choices">
+                                <label class="green"><input type="checkbox" checked> Free cancellation until 23:59 on 25 May 2025</label>
+                                <label><input type="checkbox"> Pay in advance</label>
+                                <p>Partner offer</p>
+                                <ul style="list-style-type: disc; padding-left: 20px; font-size: 0.75rem;">
+                                    <li>Facilitated by Booking.com partner company</li>
+                                    <li>No modifications</li>
+                                    <li>Confirmed within 2 minutes</li>
+                                    <li>Can't be combined with other offers</li>
+                                </ul>
+                                <a href="#">Learn more</a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="guest-counter">
+                                <select>
+                                    <option>0</option>
+                                    <option selected>1 room (ZAR 1892)</option>
+                                </select>
+                            </div>
+                            <button class="select-btn">I'll reserve</button>
+                        </td>
+                    </tr>
+                    <!-- Family Room -->
+                    <tr>
+                        <td>
+                            <div class="room-type">Family Room <span>Only 6 rooms left on our site</span></div>
+                            <p>1 double bed</p>
+                            <div class="room-features">
+                                <span><i class="fas fa-ruler-combined"></i> 18 m²</span>
+                                <span><i class="fas fa-kitchen-set"></i> Private kitchenette</span>
+                                <span><i class="fas fa-snowflake"></i> Air conditioning</span>
+                                <span><i class="fas fa-tv"></i> Flat-screen TV</span>
+                                <span><i class="fas fa-wifi"></i> Free WiFi</span>
+                            </div>
+                            <a href="#" class="more-link">MORE</a>
+                        </td>
+                        <td>
+                            <i class="fas fa-user-friends"></i> 4
+                        </td>
+                        <td>
+                            <div class="price">ZAR 6080</div>
+                            <div class="price-note">includes taxes and charges</div>
+                        </td>
+                        <td>
+                            <div class="choices">
+                                <label class="green"><input type="checkbox" checked> Flexible to reschedule if plans change</label>
+                                <label><input type="checkbox"> Non-refundable</label>
+                                <p>Genius discount may be available</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="guest-counter">
+                                <select>
+                                    <option>0</option>
+                                    <option selected>1 room (ZAR 6080)</option>
+                                </select>
+                            </div>
+                            <button class="select-btn">I'll reserve</button>
+                        </td>
+                    </tr>
+                    <!-- Honeymoon Suite -->
+                    <tr>
+                        <td>
+                            <div class="room-type">Honeymoon Suite</div>
+                            <p>1 double bed</p>
+                            <div class="room-features">
+                                <span><i class="fas fa-ruler-combined"></i> 18 m²</span>
+                                <span><i class="fas fa-kitchen-set"></i> Private kitchenette</span>
+                                <span><i class="fas fa-bath"></i> Private bathroom</span>
+                                <span><i class="fas fa-snowflake"></i> Air conditioning</span>
+                                <span><i class="fas fa-tv"></i> Flat-screen TV</span>
+                                <span><i class="fas fa-wifi"></i> Free WiFi</span>
+                                <span><i class="fas fa-toilet-paper"></i> Free toiletries</span>
+                                <span><i class="fas fa-shower"></i> Shower</span>
+                                <span><i class="fas fa-toilet"></i> Toilet</span>
+                                <span><i class="fas fa-tshirt"></i> Towels</span>
+                                <span><i class="fas fa-tshirt"></i> Linen</span>
+                                <span><i class="fas fa-snowflake"></i> Refrigerator</span>
+                            </div>
+                            <a href="#" class="more-link">MORE</a>
+                        </td>
+                        <td>
+                            <i class="fas fa-user-friends"></i> 2
+                        </td>
+                        <td>
+                            <div class="price">ZAR 2000</div>
+                            <div class="price-note">includes taxes and charges</div>
+                        </td>
+                        <td>
+                            <div class="choices">
+                                <label class="green"><input type="checkbox" checked> Free cancellation before 26 May 2025</label>
+                                <label><input type="checkbox"> Pay nothing until 24 May 2025</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="guest-counter">
+                                <select>
+                                    <option>0</option>
+                                    <option selected>1 room (ZAR 2000)</option>
+                                </select>
+                            </div>
+                            <button class="select-btn">I'll reserve</button>
+                        </td>
+                    </tr>
+                    <!-- Standard Double Room -->
+                    <tr>
+                        <td>
+                            <div class="room-type">Standard Double Room</div>
+                            <p>1 double bed</p>
+                            <div class="room-features">
+                                <span><i class="fas fa-ruler-combined"></i> 18 m²</span>
+                                <span><i class="fas fa-kitchen-set"></i> Private kitchenette</span>
+                                <span><i class="fas fa-bath"></i> Private bathroom</span>
+                                <span><i class="fas fa-snowflake"></i> Air conditioning</span>
+                                <span><i class="fas fa-tv"></i> Flat-screen TV</span>
+                                <span><i class="fas fa-wifi"></i> Free WiFi</span>
+                            </div>
+                            <a href="#" class="more-link">MORE</a>
+                        </td>
+                        <td>
+                            <i class="fas fa-user-friends"></i> 2
+                        </td>
+                        <td>
+                            <div class="price">ZAR 1720</div>
+                            <div class="price-note">includes taxes and charges</div>
+                        </td>
+                        <td>
+                            <div class="choices">
+                                <label class="green"><input type="checkbox" checked> Free cancellation before 26 May 2025</label>
+                                <label><input type="checkbox"> Pay nothing until 24 May 2025</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="guest-counter">
+                                <select>
+                                    <option>0</option>
+                                    <option selected>1 room (ZAR 1720)</option>
+                                </select>
+                            </div>
+                            <button class="select-btn">I'll reserve</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
@@ -342,43 +722,32 @@
         const roomsData = {
             'Deluxe King Room': {
                 basePrice: 1892,
-                //additionalAdult: 500,
                 additionalChild: 0,
                 maxGuests: 2,
                 maxAdults: 2
             },
             'Family Room': {
                 basePrice: 6080,
-                //additionalAdult: 600,
                 additionalChild: 0,
                 maxGuests: 4,
                 maxAdults: 4
             },
             'Honeymoon Suite': {
                 basePrice: 2000,
-                //additionalAdult: 600,
                 additionalChild: 0,
                 maxGuests: 2,
                 maxAdults: 2
             },
-            'Standard Room': {
-                basePrice: 3000,
-                //additionalAdult: 600,
-                additionalChild: 0,
-                maxGuests: 4,
-                maxAdults: 4
-            },
             'Standard Double Room': {
                 basePrice: 1720,
-                //additionalAdult: 600,
                 additionalChild: 0,
                 maxGuests: 2,
                 maxAdults: 2
             }
         };
 
-        // Current date and time (03:00 PM SAST, May 15, 2025)
-        const currentDate = new Date('2025-05-15T15:00:00+02:00');
+        // Current date and time (02:54 PM SAST, May 21, 2025)
+        const currentDate = new Date('2025-05-21T14:54:00+02:00');
         const fullyBookedDates = ['2025-05-15', '2025-05-16', '2025-05-20', '2025-05-21', '2025-05-22', '2025-05-23', '2025-05-30', '2025-05-31'];
 
         // Booking Form
@@ -492,9 +861,9 @@
             document.getElementById('form-message').classList.remove(allAvailable ? 'error' : 'success');
         });
 
-        // Rates Modal
+        // Rates Modal (Triggered by "I'll reserve" buttons)
         const ratesModal = document.getElementById('rates-modal');
-        const bookRoomButtons = document.querySelectorAll('.book-room-btn');
+        const bookRoomButtons = document.querySelectorAll('.select-btn');
         const closeRatesModal = document.querySelector('.close-rates-modal');
         let currentRoomType = '';
         let adults = 2;
@@ -503,8 +872,9 @@
         bookRoomButtons.forEach(button => {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
-                currentRoomType = button.getAttribute('data-room-type');
-                adults = currentRoomType === 'Ocean View Suite' ? 2 : 4;
+                const row = button.closest('tr');
+                currentRoomType = row.querySelector('.room-type').textContent.split(' ')[0] + ' ' + row.querySelector('.room-type').textContent.split(' ')[1];
+                adults = currentRoomType === 'Family Room' ? 4 : 2;
                 children = 0;
 
                 document.getElementById('rates-room-type').textContent = currentRoomType;
@@ -520,10 +890,9 @@
         });
 
         function updateRates() {
-            const roomData = roomsData[currentRoomType] || { basePrice: 0, additionalAdult: 0, maxGuests: 2 };
+            const roomData = roomsData[currentRoomType] || { basePrice: 0, maxGuests: 2 };
             const nights = parseFloat(nightsInput.value) || 1;
-            const additionalAdults = Math.max(0, adults - (currentRoomType === 'Ocean View Suite' ? 2 : 4));
-            let pricePerNight = roomData.basePrice + (additionalAdults * roomData.additionalAdult);
+            let pricePerNight = roomData.basePrice;
             let totalPrice = pricePerNight * nights;
             let discount = 0;
 
@@ -702,7 +1071,7 @@
         document.querySelector('.add-room-btn').addEventListener('click', () => {
             selectedRooms.push({
                 roomType: currentRoomType,
-                adults: currentRoomType === 'Ocean View Suite' ? 2 : 4,
+                adults: currentRoomType === 'Family Room' ? 4 : 2,
                 children: 0
             });
             renderRoomSelections();
@@ -713,9 +1082,8 @@
             let totalPrice = 0;
             const nights = parseFloat(nightsInput.value) || 1;
             selectedRooms.forEach(room => {
-                const roomData = roomsData[room.roomType] || { basePrice: 0, additionalAdult: 0 };
-                const additionalAdults = Math.max(0, room.adults - (room.roomType === 'Ocean View Suite' ? 2 : 4));
-                let pricePerNight = roomData.basePrice + (additionalAdults * roomData.additionalAdult);
+                const roomData = roomsData[room.roomType] || { basePrice: 0 };
+                let pricePerNight = roomData.basePrice;
                 let roomTotal = pricePerNight * nights;
                 if (nights > 3 && !halfDayEvent) {
                     roomTotal *= 0.9;
