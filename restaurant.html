@@ -4,38 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant - Paternoster Lodge</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="restaurantStyles.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
-<body>
+<body class="restaurant-page">
     <!-- Header -->
-<header>
-    <div class="header-container">
-        <div class="logo">
-            <h1>PaternosterLodge</h1>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>PaternosterLodge</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="{{indexActive}}">Home</a></li>
+                    <li><a href="about.html" class="{{aboutActive}}">About</a></li>
+                    <li><a href="accommodation.html" class="{{accommodationActive}}">Accommodation</a></li>
+                    <li><a href="location.html" class="{{locationActive}}">Location</a></li>
+                    <li><a href="gallery.html" class="{{galleryActive}}">Gallery</a></li>
+                    <li><a href="restaurant.html" class="{{restaurantActive}} active">Restaurant</a></li>
+                    <li><a href="contact.html" class="{{contactActive}}">Contact</a></li>
+                    <li><a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a></li>
+                    <li><a href="register-login.html" class="{{registerLoginActive}} book-btn">Login</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="{{indexActive}}">Home</a></li>
-                <li><a href="about.html" class="{{aboutActive}}">About</a></li>
-                <li><a href="accommodation.html" class="{{accommodationActive}}">Accommodation</a></li>
-                <li><a href="location.html" class="{{locationActive}}">Location</a></li>
-                <li><a href="gallery.html" class="{{galleryActive}}">Gallery</a></li>
-                <li><a href="restaurant.html" class="{{restaurantActive}} active">Restaurant</a></li>
-                <li><a href="contact.html" class="{{contactActive}}">Contact</a></li>
-                <li><a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a></li>
-                <li><a href="register-login.html" class="{{registerLoginActive}} book-btn">Login</a></li>
-            </ul>
-        </nav>
-        <div class="hamburger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </div>
-</header>
+    </header>
 
     <section class="page-banner" style="background-image: url('https://via.placeholder.com/1920x600?text=Restaurant+Hero')" data-aos="fade-up">
         <div class="banner-content">
@@ -53,6 +53,7 @@
                 <p>Experience culinary excellence at Paternoster Lodge Restaurant, where fresh, locally-sourced ingredients meet stunning ocean views. Our menu celebrates the flavors of the coast, offering a variety of dishes from seafood platters to hearty breakfasts.</p>
                 <p>Whether you're dining with family, friends, or that special someone, our restaurant provides the perfect ambiance for every occasion. Enjoy a glass of wine as you watch the sunset over the ocean, and let our attentive staff make your dining experience unforgettable.</p>
             </div>
+
             <div class="room-grid">
                 <div class="room-card" data-aos="fade-up" data-aos-delay="100">
                     <img src="images/our-well-known-seafood.jpg" alt="Seafood Platter">
@@ -70,16 +71,44 @@
                     <img src="images/cocktail.jpg" alt="Coastal Cocktail">
                     <h3>Coastal Cocktail</h3>
                 </div>
-                <div class="room-card" data-aos="fade-up" data-aos-delay="500">
-                    <img src="images/pizzzzzzz.jpg" alt="Pizza">
-                    <h3>Pizza</h3>
-                </div>
-                <div class="room-card" data-aos="fade-up" data-aos-delay="600">
-                    <img src="images/salad.jpg" alt="Salad">
-                    <h3>Salad</h3>
-                </div>
             </div>
         </div>
+
+    </section>
+<section>
+
+</section>
+    <section class="dining-experience" style="background-image: url('images/how-to-grill-steak-14-3.webp')" data-aos="fade-up">
+        <div class="container">
+            <div class="experience-grid">
+                <div class="image-gallery">
+                    <div class="gallery-item"><img src="images/steak-dish.jpg" alt="Steak Dish"></div>
+                    <div class="gallery-item"><img src="images/seafood-platter.jpg" alt="Seafood Platter"></div>
+                    <div class="gallery-item"><img src="images/cocktail-ocean.jpg" alt="Cocktail by Ocean"></div>
+                    <div class="gallery-item"><img src="images/breakfast-view.jpg" alt="Breakfast with View"></div>
+                    <div class="gallery-item"><img src="images/salad-fresh.jpg" alt="Fresh Salad"></div>
+                    <div class="gallery-item"><img src="images/pizza-ocean.jpg" alt="Pizza with Ocean View"></div>
+                </div>
+                <div class="experience-text">
+                    <div class="text-section">
+                        <h2>A Culinary Journey</h2>
+                        <p>Explore our delightful menu filled with a blend of flavors that everyone can enjoy! We offer savory appetizers and delectable main courses, each crafted with care to perfection. Every bite is a taste sensation that will delight your palate.</p>
+                    </div>
+                    <div class="text-section">
+                        <h2>Intimate Gatherings</h2>
+                        <p>Elevate your meal with a touch of romance or celebrate a special occasion against the stunning backdrop of the Atlantic. Our restaurant provides a cozy setting for creating memorable moments. We’re here to ensure your time with us is truly unforgettable.</p>
+                    </div>
+                    <div class="text-section">
+                        <h2>Relax and Relish</h2>
+                        <p>Whether you’re a local seeking a familiar spot or a tourist looking for an ideal dining experience, our restaurant welcomes you to unwind and savor the moment. Enjoy the serene ambiance and exceptional cuisine.</p>
+                    </div>
+                </div>
+            </div>
+<div class="view-menu" style="display: flex; justify-content: center; margin-top: 2rem; align-items: center;" data-aos="fade-up" data-aos-delay="100">
+    <a href="menu.html" class="cta-btn">View Menu</a>
+</div>
+        </div>
+
     </section>
 
     <!-- <section class="cta-section" data-aos="fade-up">
