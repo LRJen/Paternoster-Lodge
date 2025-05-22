@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (supabase) {
                     const session = await checkAuth();
                     if (!session) {
-                        alert('Please log in to book a room. (Note: Add login modal logic here)');
+                        alert('Please log in to book. (Note: Add login modal logic here)');
                         return;
                     }
                 }

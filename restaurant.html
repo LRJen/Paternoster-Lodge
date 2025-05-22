@@ -53,7 +53,6 @@
                 <p>Experience culinary excellence at Paternoster Lodge Restaurant, where fresh, locally-sourced ingredients meet stunning ocean views. Our menu celebrates the flavors of the coast, offering a variety of dishes from seafood platters to hearty breakfasts.</p>
                 <p>Whether you're dining with family, friends, or that special someone, our restaurant provides the perfect ambiance for every occasion. Enjoy a glass of wine as you watch the sunset over the ocean, and let our attentive staff make your dining experience unforgettable.</p>
             </div>
-
             <div class="room-grid">
                 <div class="room-card" data-aos="fade-up" data-aos-delay="100">
                     <img src="images/our-well-known-seafood.jpg" alt="Seafood Platter">
@@ -73,21 +72,18 @@
                 </div>
             </div>
         </div>
-
     </section>
-<section>
 
-</section>
     <section class="dining-experience" style="background-image: url('images/how-to-grill-steak-14-3.webp')" data-aos="fade-up">
         <div class="container">
             <div class="experience-grid">
                 <div class="image-gallery">
-                    <div class="gallery-item"><img src="images/steak-dish.jpg" alt="Steak Dish"></div>
-                    <div class="gallery-item"><img src="images/seafood-platter.jpg" alt="Seafood Platter"></div>
-                    <div class="gallery-item"><img src="images/cocktail-ocean.jpg" alt="Cocktail by Ocean"></div>
-                    <div class="gallery-item"><img src="images/breakfast-view.jpg" alt="Breakfast with View"></div>
-                    <div class="gallery-item"><img src="images/salad-fresh.jpg" alt="Fresh Salad"></div>
-                    <div class="gallery-item"><img src="images/pizza-ocean.jpg" alt="Pizza with Ocean View"></div>
+                    <div class="gallery-item"><img src="https://assets.epicurious.com/photos/5c6dc12afd08082d5c726d24/1:1/w_3323,h_3323,c_limit/Cook-From-Frozen-Steak-With-Burst-Cherry-Tomato-Sauce-6x9-120219.jpg" alt="Steak Dish"></div>
+                    <div class="gallery-item"><img src="https://img.taste.com.au/9-tT5J3N/taste/2016/11/grilled-seafood-platter-81225-1.jpeg" alt="Seafood Platter"></div>
+                    <div class="gallery-item"><img src="https://www.cocktail.fr/wp-content/uploads/2017/05/cocktail.fr-44098-1013x675.jpg.webp" alt="Cocktail by Ocean"></div>
+                    <div class="gallery-item"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/424400097.jpg?k=d90e7bbfecf7d4de716b46288a2ea9617bba65cf477ec8ef387d731d9c21d57d&o=&hp=1" alt="Breakfast with View"></div>
+                    <div class="gallery-item"><img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2023/01/IMG-20230118-WA0007.jpg" alt="Fresh Salad"></div>
+                    <div class="gallery-item"><img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2023/01/IMG-20230118-WA0004.jpg" alt="Pizza with Ocean View"></div>
                 </div>
                 <div class="experience-text">
                     <div class="text-section">
@@ -102,14 +98,22 @@
                         <h2>Relax and Relish</h2>
                         <p>Whether you’re a local seeking a familiar spot or a tourist looking for an ideal dining experience, our restaurant welcomes you to unwind and savor the moment. Enjoy the serene ambiance and exceptional cuisine.</p>
                     </div>
+                  <div class="view-menu" style="display: flex; justify-content: center; margin-top: 2rem;" data-aos="fade-up" data-aos-delay="100">
+                     <a class="cta-btn" onclick="showPDFModal()">View Menu</a>
+                   </div>
                 </div>
             </div>
-<div class="view-menu" style="display: flex; justify-content: center; margin-top: 2rem; align-items: center;" data-aos="fade-up" data-aos-delay="100">
-    <a href="menu.html" class="cta-btn">View Menu</a>
-</div>
         </div>
-
     </section>
+
+    <!-- PDF Modal -->
+    <div class="pdf-modal hidden">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closePDFModal()">×</span>
+            <h2>Restaurant Menu</h2>
+            <embed src="documents/menu.pdf" type="application/pdf" width="150%" height="590px">
+        </div>
+    </div>
 
     <!-- <section class="cta-section" data-aos="fade-up">
         <div class="cta-container">
@@ -183,9 +187,29 @@
             <p>© 2025 Paternoster Lodge. All rights reserved.</p>
         </div>
     </footer>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
-</body>
+    <script>
+function showPDFModal() {
+    const pdfModal = document.querySelector('.pdf-modal');
+    pdfModal.classList.remove('hidden');
+}
+
+function closePDFModal() {
+    const pdfModal = document.querySelector('.pdf-modal');
+    pdfModal.classList.add('hidden');
+}
+
+// Initialize AOS when DOM and scripts are loaded
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    }
+});
+    </script>
+</script></body>
 </html>
