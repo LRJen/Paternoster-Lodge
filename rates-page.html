@@ -275,17 +275,17 @@
                 <h3>Your Selection</h3>
                 <ul>
                     <li>
-                        <p><strong>Check-in:</strong> Sat, 31 May 2025 from 2:00 PM</p>
-                        <p><strong>Check-out:</strong> Sun, 1 Jun 2025 until 10:00 AM</p>
+                        <p><strong>Check-in:</strong> Sat, 24 May 2025 from 2:00 PM</p>
+                        <p><strong>Check-out:</strong> Tue, 27 May 2025 until 10:00 AM</p>
                     </li>
                     <li>
-                        <p><strong>1 night of stay</strong></p>
+                        <p><strong>3 nights of stay</strong></p>
                     </li>
                     <li>
-                        <p><strong>Deluxe Room</strong></p>
+                        <p><strong>Deluxe King Room</strong></p>
                     </li>
                     <li>
-                        <p><strong>Price for all guests:</strong> ZAR 742.29</p>
+                        <p><strong>Price for all guests:</strong> ZAR 11352.00</p>
                     </li>
                     <li>
                         <p><strong>How are you traveling?</strong></p>
@@ -294,26 +294,26 @@
                     </li>
                     <li>
                         <p><strong>Your offer</strong></p>
-                        <p>Free cancellation until Wed, 28 May 2025</p>
+                        <p>Free cancellation until Wed, 21 May 2025</p>
                         <p>8.5 Sparkly clean</p>
                     </li>
                 </ul>
                 <div class="section">
                     <h4>Your booking details</h4>
-                    <p>1 room, 2 adults</p>
-                    <p>Check-in: Sat, 31 May 2025</p>
-                    <p>Check-out: Sun, 1 Jun 2025</p>
+                    <p>2 rooms, 2 adults</p>
+                    <p>Check-in: Sat, 24 May 2025</p>
+                    <p>Check-out: Tue, 27 May 2025</p>
                 </div>
                 <div class="section">
                     <h4>Your price summary</h4>
-                    <p>Original price: ZAR 742.29</p>
+                    <p>Original price: ZAR 11352.00</p>
                     <p>Taxes and fees: Included</p>
-                    <p><strong>Total: ZAR 742.29</strong></p>
+                    <p><strong>Total: ZAR 11352.00</strong></p>
                 </div>
                 <div class="section">
                     <h4>How much will it cost to cancel</h4>
-                    <p>Free cancellation until Wed, 28 May 2025</p>
-                    <p>After that: ZAR 742.29</p>
+                    <p>Free cancellation until Wed, 21 May 2025</p>
+                    <p>After that: ZAR 11352.00</p>
                 </div>
                 <div class="section">
                     <h4>Review your booking conditions</h4>
@@ -333,16 +333,16 @@
                     <span class="language">English (South Africa)</span>
                 </div>
                 <div class="property-details">
-                    <img src="https://via.placeholder.com/300x200?text=Property+Image" alt="Property Image">
+                    <img src="https://placehold.co/300x200?text=Property+Image" alt="Property Image">
                     <div class="property-info">
-                        <p><strong>Deluxe Room</strong></p>
+                        <p><strong>Deluxe King Room</strong></p>
                         <p>9/9 George St, Cape Town CBD 8000, South Africa</p>
                         <p>This property is in a good location. Guests rated it 8.2</p>
                     </div>
                 </div>
                 <div class="booking-details">
                     <h3>Great choice! We're almost done.</h3>
-                    <p>Changes to your personal booking details will complete your reservation with Deluxe Room by Paternoster Lodge, facilitated by Paternoster Lodge. You agree that your booking is subject to the hotel's cancellation and prepayment policies, and that the travel company and the customer service team will be available to assist you.</p>
+                    <p>Changes to your personal booking details will complete your reservation with Deluxe King Room by Paternoster Lodge, facilitated by Paternoster Lodge. You agree that your booking is subject to the hotel's cancellation and prepayment policies, and that the travel company and the customer service team will be available to assist you.</p>
                 </div>
                 <div class="payment-options">
                     <h3>How do you want to pay?</h3>
@@ -368,7 +368,7 @@
                     </div>
                     <div class="form-group">
                         <select>
-                            <option value="Deluxe Room">Deluxe Room</option>
+                            <option value="Deluxe King Room">Deluxe King Room</option>
                         </select>
                     </div>
                     <button>Next: Final Details</button>
@@ -385,42 +385,93 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const checkIn = '2025-05-31';
-            const checkOut = '2025-06-01';
-            const currentDate = new Date('2025-05-22T14:39:00+02:00'); // 02:39 PM SAST, May 22, 2025
+            console.log('DOM loaded');
+
+            // Parse query parameters
+            const params = new URLSearchParams(window.location.search);
+            const checkIn = params.get('checkIn') || '2025-05-24';
+            const checkOut = params.get('checkOut') || '2025-05-27';
+            const roomType = params.get('roomType') || 'Deluxe King Room';
+            const nights = params.get('nights') || '3';
+            const price = params.get('price') || '11352.00';
+
+            // Calculate cancellation date (3 days before check-in)
+            const currentDate = new Date('2025-05-23T10:03:00+02:00'); // 10:03 AM SAST, May 23, 2025
             const checkInDate = new Date(checkIn);
             const cancelDate = new Date(checkInDate);
             cancelDate.setDate(cancelDate.getDate() - 3); // Free cancellation until 3 days before check-in
             const formattedCancelDate = cancelDate.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
-            document.querySelector('.left-panel ul li:last-child p:nth-child(2)').textContent = `Free cancellation until ${formattedCancelDate}`;
-            document.querySelector('.left-panel .section:nth-child(3) p:nth-child(1)').textContent = `Free cancellation until ${formattedCancelDate}`;
 
-            const nextButton = document.querySelector('button');
+            // Update cancellation date in DOM if elements exist
+            const cancelOfferElement = document.querySelector('.left-panel ul li:last-child p:nth-child(2)');
+            const cancelCostElement = document.querySelector('.left-panel .section:nth-child(3) p:nth-child(1)');
+            if (cancelOfferElement) {
+                cancelOfferElement.textContent = `Free cancellation until ${formattedCancelDate}`;
+            } else {
+                console.warn('Cancellation offer element not found');
+            }
+            if (cancelCostElement) {
+                cancelCostElement.textContent = `Free cancellation until ${formattedCancelDate}`;
+            } else {
+                console.warn('Cancellation cost element not found');
+            }
+
+            // Button functionality
+            const nextButton = document.querySelector('.payment-options button');
+            if (!nextButton) {
+                console.error('Button not found in DOM');
+                return;
+            }
+            console.log('Button found:', nextButton);
+
             nextButton.addEventListener('click', (e) => {
                 e.preventDefault();
+                console.log('Button clicked');
 
-                const firstName = document.querySelector('input[placeholder="First name"]').value.trim();
-                const lastName = document.querySelector('input[placeholder="Last name"]').value.trim();
-                const email = document.querySelector('input[placeholder="Email Address"]').value.trim();
-                const phone = document.querySelector('input[placeholder="Telephone (mobile number preferred)"]').value.trim();
+                try {
+                    const firstNameInput = document.querySelector('input[placeholder="First name"]');
+                    const lastNameInput = document.querySelector('input[placeholder="Last name"]');
+                    const emailInput = document.querySelector('input[placeholder="Email Address"]');
+                    const phoneInput = document.querySelector('input[placeholder="Telephone (mobile number preferred)"]');
 
-                if (!firstName || !lastName || !email || !phone) {
-                    alert('Please fill in all required fields.');
-                    return;
+                    if (!firstNameInput || !lastNameInput || !emailInput || !phoneInput) {
+                        console.error('One or more input fields not found');
+                        alert('Error: Input fields missing. Please check the form.');
+                        return;
+                    }
+
+                    const firstName = firstNameInput.value.trim();
+                    const lastName = lastNameInput.value.trim();
+                    const email = emailInput.value.trim();
+                    const phone = phoneInput.value.trim();
+                    console.log('Form values:', { firstName, lastName, email, phone });
+
+                    if (!firstName || !lastName || !email || !phone) {
+                        console.log('Validation failed: One or more fields are empty');
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+
+                    console.log('Validation passed');
+                    const redirectParams = new URLSearchParams({
+                        checkIn,
+                        checkOut,
+                        nights,
+                        roomType,
+                        price,
+                        firstName,
+                        lastName,
+                        email,
+                        phone
+                    }).toString();
+                    const redirectUrl = `final-details-page.html?${redirectParams}`;
+                    console.log('Attempting redirect to:', redirectUrl);
+
+                    window.location.href = redirectUrl;
+                } catch (error) {
+                    console.error('Error during button click handling:', error);
+                    alert('An error occurred. Please check the console for details.');
                 }
-
-                const params = new URLSearchParams({
-                    checkIn,
-                    checkOut,
-                    nights: '1',
-                    roomType: 'Deluxe Room',
-                    price: '742.29',
-                    firstName,
-                    lastName,
-                    email,
-                    phone
-                }).toString();
-                window.location.href = `final-details-page.html?${params}`;
             });
         });
     </script>
