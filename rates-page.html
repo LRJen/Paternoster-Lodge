@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paternoster Lodge</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            color: #333;
+            font-size: 14px;
+        }
+        /* Navigation Bar */
+        .nav-bar {
+            background: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e6e6e6;
+        }
+        .nav-bar .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #003580;
+        }
+        .nav-bar .auth-buttons a {
+            background: #007bff;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .nav-bar .auth-buttons a:hover {
+            background: #0056b3;
+        }
+        /* Stepper */
+        .stepper {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            background: white;
+            border-bottom: 1px solid #e6e6e6;
+        }
+        .stepper .step {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            color: #666;
+        }
+        .stepper .step.active {
+            color: #003580;
+        }
+        .stepper .step.completed .step-icon svg {
+            fill: #003580;
+        }
+        .stepper .step .step-icon {
+            margin-right: 8px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .stepper .step .step-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: #ccc;
+        }
+        .stepper .step .step-label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .stepper .step .step-label .step-number {
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: #003580;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .content {
+            display: flex;
+            padding: 20px;
+        }
+        .left-panel {
+            width: 30%;
+            padding-right: 20px;
+            border-right: 1px solid #e6e6e6;
+        }
+        .left-panel h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 10px;
+            color: #003580;
+        }
+        .left-panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .left-panel ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e6e6e6;
+        }
+        .left-panel ul li p {
+            margin: 0;
+            font-size: 14px;
+        }
+        .left-panel ul li p strong {
+            color: #003580;
+        }
+        .left-panel ul li:last-child {
+            border-bottom: none;
+        }
+        .left-panel .section {
+            margin-bottom: 20px;
+        }
+        .left-panel .section h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 0 10px;
+            color: #003580;
+        }
+        .left-panel .section p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .right-panel {
+            width: 70%;
+            padding-left: 20px;
+        }
+        .property-header {
+            background: #f1f1f1;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e6e6e6;
+        }
+        .property-header h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+            color: #003580;
+        }
+        .property-header .language {
+            font-size: 12px;
+            color: #666;
+        }
+        .property-details {
+            padding: 20px;
+            border-bottom: 1px solid #e6e6e6;
+        }
+        .property-details img {
+            max-width: 100%;
+            height: auto;
+        }
+        .property-info {
+            margin-top: 10px;
+        }
+        .property-info p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .property-info p strong {
+            color: #003580;
+        }
+        .booking-details {
+            padding: 20px;
+            border-bottom: 1px solid #e6e6e6;
+        }
+        .booking-details h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 10px;
+            color: #003580;
+        }
+        .booking-details p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .payment-options {
+            padding: 20px;
+        }
+        .payment-options h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 10px;
+            color: #003580;
+        }
+        .payment-options p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .payment-options .form-group {
+            margin-bottom: 15px;
+        }
+        .payment-options select, .payment-options input {
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .payment-options button {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .payment-options button:hover {
+            background: #0056b3;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #e6e6e6;
+        }
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <div class="logo">Paternoster Lodge</div>
+        <div class="auth-buttons">
+            <a href="register-login.html">Login/Register</a>
+        </div>
+    </div>
+    <!-- Stepper -->
+    <div class="stepper">
+        <div class="step completed">
+            <span class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="20px"><path d="M56.33 102a6 6 0 0 1-4.24-1.75L19.27 67.54A6.014 6.014 0 1 1 27.74 59l27.94 27.88 44-58.49a6 6 0 1 1 9.58 7.22l-48.17 64a6 6 0 0 1-4.34 2.39z"></path></svg></span>
+            <div class="step-label"><span class="step-number">1:</span>Your Selection</div>
+        </div>
+        <div class="step active">
+            <span class="step-icon">2</span>
+            <div class="step-label"><span class="step-number">2:</span>Enter your details</div>
+        </div>
+        <div class="step">
+            <span class="step-icon">3</span>
+            <div class="step-label"><span class="step-number">3:</span>Confirm your reservation</div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">Paternoster Lodge</div>
+        <div class="content">
+            <div class="left-panel">
+                <h3>Your Selection</h3>
+                <ul>
+                    <li>
+                        <p><strong>Check-in:</strong> Sat, 31 May 2025 from 2:00 PM</p>
+                        <p><strong>Check-out:</strong> Sun, 1 Jun 2025 until 10:00 AM</p>
+                    </li>
+                    <li>
+                        <p><strong>1 night of stay</strong></p>
+                    </li>
+                    <li>
+                        <p><strong>Deluxe Room</strong></p>
+                    </li>
+                    <li>
+                        <p><strong>Price for all guests:</strong> ZAR 742.29</p>
+                    </li>
+                    <li>
+                        <p><strong>How are you traveling?</strong></p>
+                        <p><label><input type="radio" name="travel" value="yes"> Yes, with work</label></p>
+                        <p><label><input type="radio" name="travel" value="no" checked> No</label></p>
+                    </li>
+                    <li>
+                        <p><strong>Your offer</strong></p>
+                        <p>Free cancellation until Wed, 28 May 2025</p>
+                        <p>8.5 Sparkly clean</p>
+                    </li>
+                </ul>
+                <div class="section">
+                    <h4>Your booking details</h4>
+                    <p>1 room, 2 adults</p>
+                    <p>Check-in: Sat, 31 May 2025</p>
+                    <p>Check-out: Sun, 1 Jun 2025</p>
+                </div>
+                <div class="section">
+                    <h4>Your price summary</h4>
+                    <p>Original price: ZAR 742.29</p>
+                    <p>Taxes and fees: Included</p>
+                    <p><strong>Total: ZAR 742.29</strong></p>
+                </div>
+                <div class="section">
+                    <h4>How much will it cost to cancel</h4>
+                    <p>Free cancellation until Wed, 28 May 2025</p>
+                    <p>After that: ZAR 742.29</p>
+                </div>
+                <div class="section">
+                    <h4>Review your booking conditions</h4>
+                    <p>No prepayment needed</p>
+                    <p>Pay at the property</p>
+                </div>
+                <div class="section">
+                    <h4>Location Highlights</h4>
+                    <p>Located in the heart of Cape Town CBD</p>
+                    <p>Close to V&A Waterfront (2 km)</p>
+                    <p>Near Table Mountain (5 km)</p>
+                </div>
+            </div>
+            <div class="right-panel">
+                <div class="property-header">
+                    <h2>Confirm your reservation</h2>
+                    <span class="language">English (South Africa)</span>
+                </div>
+                <div class="property-details">
+                    <img src="https://via.placeholder.com/300x200?text=Property+Image" alt="Property Image">
+                    <div class="property-info">
+                        <p><strong>Deluxe Room</strong></p>
+                        <p>9/9 George St, Cape Town CBD 8000, South Africa</p>
+                        <p>This property is in a good location. Guests rated it 8.2</p>
+                    </div>
+                </div>
+                <div class="booking-details">
+                    <h3>Great choice! We're almost done.</h3>
+                    <p>Changes to your personal booking details will complete your reservation with Deluxe Room by Paternoster Lodge, facilitated by Paternoster Lodge. You agree that your booking is subject to the hotel's cancellation and prepayment policies, and that the travel company and the customer service team will be available to assist you.</p>
+                </div>
+                <div class="payment-options">
+                    <h3>How do you want to pay?</h3>
+                    <p>Are you signing in with used details or registering to manage your bookings on the go?</p>
+                    <div class="form-group">
+                        <select>
+                            <option value="mr">Mr</option>
+                            <option value="mrs">Mrs</option>
+                            <option value="ms">Ms</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="First name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Last name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Telephone (mobile number preferred)" required>
+                    </div>
+                    <div class="form-group">
+                        <select>
+                            <option value="Deluxe Room">Deluxe Room</option>
+                        </select>
+                    </div>
+                    <button>Next: Final Details</button>
+                    <p>Don't worry: you won't be charged</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>More than 1 million people last month said they'd recommend Paternoster Lodge to their family and friends.</p>
+            <p><a href="#">About Paternoster Lodge</a> | <a href="#">Customer Service</a> | <a href="#">Terms & Conditions</a> | <a href="#">Privacy & cookie statement</a></p>
+            <p>© 1996-2025 Paternoster Lodge™. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkIn = '2025-05-31';
+            const checkOut = '2025-06-01';
+            const currentDate = new Date('2025-05-22T14:39:00+02:00'); // 02:39 PM SAST, May 22, 2025
+            const checkInDate = new Date(checkIn);
+            const cancelDate = new Date(checkInDate);
+            cancelDate.setDate(cancelDate.getDate() - 3); // Free cancellation until 3 days before check-in
+            const formattedCancelDate = cancelDate.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
+            document.querySelector('.left-panel ul li:last-child p:nth-child(2)').textContent = `Free cancellation until ${formattedCancelDate}`;
+            document.querySelector('.left-panel .section:nth-child(3) p:nth-child(1)').textContent = `Free cancellation until ${formattedCancelDate}`;
+
+            const nextButton = document.querySelector('button');
+            nextButton.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                const firstName = document.querySelector('input[placeholder="First name"]').value.trim();
+                const lastName = document.querySelector('input[placeholder="Last name"]').value.trim();
+                const email = document.querySelector('input[placeholder="Email Address"]').value.trim();
+                const phone = document.querySelector('input[placeholder="Telephone (mobile number preferred)"]').value.trim();
+
+                if (!firstName || !lastName || !email || !phone) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+
+                const params = new URLSearchParams({
+                    checkIn,
+                    checkOut,
+                    nights: '1',
+                    roomType: 'Deluxe Room',
+                    price: '742.29',
+                    firstName,
+                    lastName,
+                    email,
+                    phone
+                }).toString();
+                window.location.href = `final-details-page.html?${params}`;
+            });
+        });
+    </script>
+</body>
+</html>

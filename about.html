@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Paternoster Lodge</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: '#1b3c59',
+                secondary: '#d4af37',
+                light: '#f5f5f5',
+              },
+            },
+          },
+        };
+    </script>
+</head>
+<body>
+    <!-- Header -->
+<header>
+    <div class="header-container">
+        <div class="logo">
+            <h1>Paternoster Lodge</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="{{indexActive}} ">Home</a></li>
+                <li><a href="about.html" class="{{aboutActive}} active">About</a></li>
+                <li><a href="accommodation.html" class="{{accommodationActive}}">Accommodation</a></li>
+                <li><a href="location.html" class="{{locationActive}}">Location</a></li>
+                <li><a href="gallery.html" class="{{galleryActive}}">Gallery</a></li>
+                <li><a href="restaurant.html" class="{{restaurantActive}}">Restaurant</a></li>
+                <li><a href="contact.html" class="{{contactActive}}">Contact</a></li>
+                <li><a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a></li>
+                <li><a href="register-login.html" class="{{registerLoginActive}} book-btn">Login</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </div>
+</header>
+
+    <!-- Page Banner -->
+    <section class="page-banner" style="background-image: url('https://via.placeholder.com/1920x600?text=Restaurant+Hero')" data-aos="fade-up">
+        <div class="banner-content">
+            <h1 style="color: white"> ABOUT PASTERNOSTER LODGE</h1>
+            
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="about-story">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Our Story</h2>
+                <h3>The story about Paternoster Lodge starts in a quaint West Coast town surrounded by pristine beaches, ocean views, and charming fishermen cottages. Paternoster invites you to immerse yourself in the unique culture and breathtaking sunsets of this coastal gem. Home to a variety of sea life, wildlife, and over 200 bird species. Paternoster offers a tranquil escape. <br/>In spring, witness the enchanting bloom of wildflowers, transforming the region into a floral paradise. Discover the Cape Columbine Nature Reserve’s 263ha of coastal beauty, featuring the last manually controlled lighthouse in South Africa—the Cape Columbine Lighthouse—perched on Castle Rock since 1936.</h3>
+            </div>
+            
+            <div class="story-content">
+                <div class="story-text fade-in">
+                    <h3>180 Degree Sea View</h3>
+                    <p>Immerse yourself in coastal elegance in the heart of the charming fishing village. Our modern yet cozy west coast style accommodation offers a perfect blend of comfort and style. Elevate your events with our top-notch 20-seater conference facility and 50-seater wedding/function venue, boasting panoramic ocean vistas. </p>
+                    <p>Perfect for intimate gatherings, our venue is conveniently located, just a 90-minute drive from Cape Town and Paarl. Make your occasion unforgettable with Paternoster Lodge.”</p>
+                    <!--<p>Over the years, we have grown from a small guesthouse to a premium accommodation destination, while maintaining our dedication to personalized service and authentic experiences. Our team takes pride in creating memorable stays for each guest who walks through our doors.</p>-->
+                </div>
+                <div class="story-image fade-in">
+                    <img src="images/ABOUT.PNG" alt="Paternoster Lodge History">
+                </div>
+            </div>
+            <div class="section-title fade-in">
+                
+            </div>
+            <div class="story-content">
+                <div class="story-image fade-in">
+                    <img src="images/paaat.jpg" alt="Paternoster Lodge History">
+                </div>
+                <div class="story-text fade-in">
+                    <h3>Relax With A Glass Of Wine</h3>
+                    <p>Dive into relaxation with our sparkling pool offering scenic views of colorful fishing boats and the ocean. Unwind by the fire pit on the pool terrace, gazing at the 180-degree panorama of the Atlantic ocean. A 10-kilometer stretch of pristine white beach – just a 3-minute stroll away. </p>
+                    <p>Sip on fine wine from our on-site bar, immerse yourself in the coastal ambiance. Enjoy the serenity accompanied by the soothing sounds of seagulls. Experience ultimate leisure at Paternoster Lodge.</p>
+                    <!--<p>Over the years, we have grown from a small guesthouse to a premium accommodation destination, while maintaining our dedication to personalized service and authentic experiences. Our team takes pride in creating memorable stays for each guest who walks through our doors.</p>-->
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Values Section -->
+    <section class="about-values">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>YOUR HOSTS</h2>
+                <h1>General Facilities</h1>
+            </div>
+            <div class="values-content fade-in">
+                <div class="values-item">
+                    <div class="values-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Wheelchair Access</h3>
+                    <p>Elevate your experience with our wheelchair-accessible spaces, ensuring everyone can enjoy the charm of Paternoster Lodge effortlessly.</p>
+                </div>
+                <div class="values-item">
+                    <div class="values-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Bar/Lounge</h3>
+                    <p>Unwind in our stylish bar/lounge, where every sip is a taste of relaxation in the heart of coastal luxury.</p>
+                </div>
+                <div class="values-item">
+                    <div class="values-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Conference Facilities</h3>
+                    <p>Elevate your events with state-of-the-art conference facilities, combining coastal beauty with a conducive environment for successful meetings.</p>
+                </div>
+                <div class="values-item">
+                    <div class="values-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Free Parking</h3>
+                    <p>Enjoy the convenience of complimentary parking, making your arrival at Paternoster Lodge stress-free and effortless.</p>
+                </div>
+                <div class="values-item">
+                    <div class="values-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Outdoor Pool</h3>
+                    <p>Immerse yourself in relaxation by our outdoor pool, where the sun, sea, and serenity create the perfect coastal oasis.</p>
+                </div>
+                <div class="values-item">
+                    <div class="values-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Restaurant</h3>
+                    <p>Indulge in the finest West Coast cuisine at our restaurant, where every dish is a celebration of flavor and ocean-inspired culinary artistry.</p>
+                </div>
+                <div class="values-item">
+                    <div class="values-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Room Services</h3>
+                    <p>Experience the epitome of comfort with our room services, ensuring your stay is tailored to your every need and desire.</p>
+                </div>
+                <div class="values-item">
+                    <div class="values-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Free WiFi</h3>
+                    <p>Enjoy seamless connectivity during your stay with complimentary WiFi, keeping you connected to both work and the breathtaking surroundings of Paternoster.</p>
+                </div>
+            </div>
+            <div class="mission-statement fade-in">
+                <blockquote>
+                    "Experience genuine warmth and hospitality at Paternoster Lodge, where our hosts, Mario and Glenda, welcome you with open arms and sincere smiles. With a commitment to meeting all your needs, they ensure your stay is as memorable as the charming allure of Paternoster. Discover a retreat where genuine care and personalised service make every moment unforgettable."
+                    <cite>— The Johnson Family, Founders</cite>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <!-- <section class="about-team">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Meet Our Team</h2>
+            </div>
+            <div class="team-intro fade-in">
+                <p>Our dedicated team of professionals is committed to making your stay at Paternoster Lodge exceptional. With their extensive knowledge of the area and passion for hospitality, they ensure that every guest experiences the very best of coastal living.</p>
+            </div>
+            <div class="team-grid fade-in">
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="images/manager patt.jpg" alt="Team Member">
+                    </div>
+                    <div class="team-info">
+                        <h3>Michael Johnson</h3>
+                        <p class="team-role">General Manager</p>
+                        <p class="team-desc">With over 15 years in luxury hospitality, Michael ensures that every aspect of Paternoster Lodge meets our high standards.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="images/patt cartoon.jpg" alt="Team Member">
+                    </div>
+                    <div class="team-info">
+                        <h3>Sarah Williams</h3>
+                        <p class="team-role">Head Chef</p>
+                        <p class="team-desc">Sarah's innovative approach to cuisine combines local ingredients with international techniques for unforgettable dining experiences.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="images/manager 2 patt.avif" alt="Team Member">
+                    </div>
+                    <div class="team-info">
+                        <h3>Cecilia Kendricks</h3>
+                        <p class="team-role">Guest Relations Manager</p>
+                        <p class="team-desc">David's warm personality and extensive knowledge of the region help guests discover the best local experiences.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="images/house keepimng.png" alt="Team Member">
+                    </div>
+                    <div class="team-info">
+                        <h3>Lisa Thompson</h3>
+                        <p class="team-role">Housekeeping Manager</p>
+                        <p class="team-desc">Lisa's attention to detail ensures that all our accommodations maintain the highest standards of cleanliness and comfort.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Recognition Section -->
+    <section class="about-recognition">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Recognition & Awards</h2>
+            </div>
+            <div class="recognition-content fade-in">
+                <div class="recognition-text">
+                    <p>Over the years, Paternoster Lodge has been recognized for its exceptional service, sustainable practices, and contribution to the local community. We are honored to have received the following accolades:</p>
+                    <ul class="awards-list">
+                        <li><i class="fas fa-award"></i> Best Boutique Accommodation - Tourism Excellence Awards (2023)</li>
+                        <li><i class="fas fa-award"></i> Sustainable Tourism Leader - Green Hospitality Awards (2022)</li>
+                        <li><i class="fas fa-award"></i> Outstanding Coastal Retreat - Travel & Leisure Awards (2021)</li>
+                        <li><i class="fas fa-award"></i> Excellence in Local Cuisine - Regional Food Awards (2020)</li>
+                        <li><i class="fas fa-award"></i> Top-Rated Accommodation - TripAdvisor Certificate of Excellence (2018-2023)</li>
+                    </ul>
+                </div>
+                <div class="recognition-logos">
+                    <img src="images/cert patt.PNG" alt="Award Logo">
+                    <img src="images/badge patter.avif" alt="Award Logo">
+                    <img src="images/award.jpg" alt="Award Logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <!-- <section class="cta-section">
+        <div class="cta-container">
+            <div class="cta-content fade-in">
+                <h2>Experience the Paternoster Lodge Difference</h2>
+                <p>Book your stay today and discover why our guests return year after year.</p>
+                <a href="booking.html" class="cta-btn">Book Your Stay</a>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column footer-about">
+                <h3>Paternoster Lodge</h3>
+                <p>A luxury seaside accommodation offering unforgettable experiences in a breathtaking coastal setting.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            <div class="footer-column footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="accommodation.html">Rooms & Suites</a></li>
+                    <li><a href="location.html">Location</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="booking.html">Book Now</a></li>
+                </ul>
+            </div>
+            <div class="footer-column footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i>64 St Augustine Rd,Kliprug,Paternoster,7381</p>
+                <p><i class="fas fa-phone"></i> +2722 880 0970</p>
+                <p><i class="fas fa-envelope"></i> info@paternosterlodge.co.za</p>
+                <p><i class="fas fa-clock"></i> Reception: 07:00 - 22:00</p>
+            </div>
+            <div class="footer-column footer-subscribe">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for special offers and updates.</p>
+                <form>
+                    <input type="email" placeholder="Your Email Address">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Paternoster Lodge. All Rights Reserved. | Designed by Syntax Syndicate</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+    </script>
+</body>
+</html>
