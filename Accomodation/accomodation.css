@@ -1,0 +1,337 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;;
+}
+
+
+.book-btn {
+    background-color: #006633;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+
+
+.page-banner {
+    height: 800px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.banner-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.banner-content p {
+    font-size: 1.2rem;
+}
+
+.room-sections {
+    padding: 1rem 2rem;
+    
+}
+
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    
+}
+
+.room-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    background-color: #fff;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    
+}
+
+.room-gallery {
+    flex: 1;
+    min-width: 300px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.room-gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.room-info {
+    flex: 1;
+    min-width: 300px;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+.room-info h2 {
+    color: #006633;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.room-info p {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.view-btn {
+    background-color: #006633;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.book-now-btn {
+    background-color: #004d2a;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.view-btn:hover, .book-now-btn:hover {
+    background-color: #003d22;
+}
+
+/* Modal Styles */
+.room-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.room-modal:not(.hidden) {
+    display: flex;
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 10px;
+    max-width: 900px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    font-weight: bold;
+}
+
+.modal-title {
+    color: #006633;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.modal-body {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.modal-gallery {
+    flex: 1;
+    min-width: 300px;
+}
+
+.modal-main-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.modal-thumbnails {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+}
+
+.modal-thumbnails img {
+    width: 100px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.modal-thumbnails img:hover {
+    opacity: 0.8;
+}
+
+.modal-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.modal-info h3 {
+    color: #006633;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.modal-description {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.amenities-list {
+    list-style: none;
+    columns: 2;
+    gap: 2rem;
+}
+
+.amenities-list li {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.cta-section {
+    background-color: #006633;
+    text-align: center;
+    padding: 3rem 2rem;
+    color: #fff;
+}
+
+.cta-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.cta-btn {
+    background-color: #fff;
+    color: #006633;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.cta-btn:hover {
+    background-color: #e8f0e8;
+}
+body.aos-fallback [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+   
+
+    .room-section {
+        flex-direction: column;
+    }
+
+    .room-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-banner {
+        height: 300px;
+    }
+
+    .banner-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .banner-content p {
+        font-size: 1rem;
+    }
+
+    .modal-body {
+        flex-direction: column;
+    }
+
+    .modal-main-image {
+        height: 200px;
+    }
+
+    .amenities-list {
+        columns: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .room-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .room-info h2 {
+        font-size: 1.5rem;
+    }
+
+    .room-gallery img {
+        height: 150px;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .view-btn, .book-now-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+}

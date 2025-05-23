@@ -1,24 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Fallback script for Supabase, defined first to avoid timing issues -->
-    <script>
-        function fallbackSupabaseScript() {
-            console.log('Attempting to load Supabase script from jsDelivr as fallback...');
-            const fallbackScript = document.createElement('script');
-            fallbackScript.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.umd.js';
-            fallbackScript.onerror = () => {
-                console.error('Both Supabase script sources failed to load. Please check your network or host the script locally.');
-                const slider = document.getElementById('review-slider');
-                if (slider) {
-                    slider.innerHTML = '<p class="text-gray-500 text-sm">Failed to load review system. Please try again later.</p>';
-                }
-            };
-            fallbackScript.onload = () => console.log('Supabase script loaded successfully from jsDelivr');
-            document.head.appendChild(fallbackScript);
-        }
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paternoster Lodge</title>
@@ -714,6 +696,24 @@
 </div>
 
 <!-- JavaScript -->
+ <!-- Fallback script for Supabase, defined first to avoid timing issues -->
+    <script>
+        function fallbackSupabaseScript() {
+            console.log('Attempting to load Supabase script from jsDelivr as fallback...');
+            const fallbackScript = document.createElement('script');
+            fallbackScript.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.umd.js';
+            fallbackScript.onerror = () => {
+                console.error('Both Supabase script sources failed to load. Please check your network or host the script locally.');
+                const slider = document.getElementById('review-slider');
+                if (slider) {
+                    slider.innerHTML = '<p class="text-gray-500 text-sm">Failed to load review system. Please try again later.</p>';
+                }
+            };
+            fallbackScript.onload = () => console.log('Supabase script loaded successfully from jsDelivr');
+            document.head.appendChild(fallbackScript);
+        }
+    </script>
+    
 <script>
     // Google Maps initialization
     function initMap() {
