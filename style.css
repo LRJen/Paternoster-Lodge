@@ -39,7 +39,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Links */
-
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
 
 /* Images */
 img {
@@ -247,6 +251,8 @@ nav ul li a.active::after {
     }
 } 
 */
+
+
 
 /* Container */
 .container {
@@ -1575,6 +1581,8 @@ footer {
     min-width: 300px;
     padding: 0 20px;
 }
+
+
 
 .recognition-text p {
     font-size: 1.1rem;

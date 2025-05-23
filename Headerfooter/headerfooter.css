@@ -23,6 +23,17 @@ header.scrolled .container:first-child {
     background: #ffffff;
 }
 /*-------------------*/
+/* Ensure desktop navigation links are visible */
+nav.hidden.lg\:flex a.nav-link {
+    color: #1f2937 !important; /* Force Tailwind's text-gray-800 */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Adjust for scrolled state */
+header.scrolled nav.hidden.lg\:flex a.nav-link {
+    color: #ffffff !important; /* White when scrolled */
+}
 
 header.scrolled {
     background: #ffffff;
