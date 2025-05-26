@@ -358,11 +358,16 @@ nav ul li a.active::after {
     .banner-content h1 {
         font-size: 3.5rem;
     }
+
+    .page-banner{
+        height: 50vh;
+        
+    }
 }
 
 /* Section Title */
 .section-title {
-    text-align: left;
+    text-align: center;
     margin-bottom: 2rem;
 }
 
@@ -1057,12 +1062,15 @@ nav ul li a.active::after {
 }
 
 /* Footer */
+
 footer {
     background: var(--primary);
     color: var(--white);
     padding: 60px 5% 20px;
     position: relative;
     z-index: 10;
+    position: relative;
+    bottom: 0;
 }
 
 .footer-content {
@@ -1434,13 +1442,12 @@ footer {
 
 /* About Values Section */
 .about-values {
-    padding: 100px 5%;
+    
     background-color: var(--light);
     background-image:url('https://paternosterlodge.co.za/wp/wp-content/uploads/2025/03/IMG-20250320-WA0016.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    backdrop-filter:blur(100px);
     background-attachment: fixed;
 }
 
@@ -1995,6 +2002,9 @@ footer {
         display: grid;
         grid-template-columns: 1fr;
     } */
+     .page-banner {
+        min-height: 40vh;
+    }
 }
 
 @media (min-width: 768px) {
@@ -2025,7 +2035,7 @@ footer {
     }
     */
     .page-banner { 
-        min-height: 35vh;
+        min-height: 50vh;
     }
 
     .banner-content h1 {
