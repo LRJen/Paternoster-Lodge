@@ -34,7 +34,7 @@
            
             background-color: rgba(27, 60, 89, 0.0);
             width: 100%;
-            margin-top: 0; /* Ensure no overlap with header */
+             /* Ensure no overlap with header */
         }
         .container {
              
@@ -343,3 +343,4 @@
                 font-size: 0.9rem;
             }
         }
+    
