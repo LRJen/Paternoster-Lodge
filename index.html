@@ -430,49 +430,51 @@
 </section>
 
 <!-- Footer -->
-<footer id="contact">
-    <div class="footer-content">
-        <div class="footer-column footer-about">
-            <h3>Paternoster Lodge</h3>
-            <p>A luxury seaside accommodation offering unforgettable experiences in a breathtaking coastal setting.</p>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-tripadvisor"></i></a>
+    <footer class="bg-primary text-white pt-12 pb-6">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Paternoster Lodge</h3>
+                <p class="text-gray-300 text-sm">A luxury seaside accommodation offering unforgettable experiences in a breathtaking coastal setting.</p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#home" class="text-gray-300 hover:text-secondary transition text-sm">Home</a></li>
+                    <li><a href="about.html" class="text-gray-300 hover:text-secondary transition text-sm">About Us</a></li>
+                    <li><a href="accommodation.html" class="text-gray-300 hover:text-secondary transition text-sm">Rooms & Suites</a></li>
+                    <li><a href="location.html" class="text-gray-300 hover:text-secondary transition text-sm">Location</a></li>
+                    <li><a href="gallery.html" class="text-gray-300 hover:text-secondary transition text-sm">Gallery</a></li>
+                    <li><a href="booking.html" class="text-gray-300 hover:text-secondary transition text-sm">Book Now</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Contact Us</h3>
+                <ul class="space-y-2">
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-map-marker-alt mr-2 text-secondary"></i> 64 St Augustine Rd, Kliprug, Paternoster, 7381</li>
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-phone mr-2 text-secondary"></i> 2722 880 0970</li>
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-envelope mr-2 text-secondary"></i> info@paternosterlodge.co.za</li>
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-clock mr-2 text-secondary"></i> Reception: 07:00 - 22:00</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Newsletter</h3>
+                <p class="text-gray-300 text-sm mb-4">Subscribe to our newsletter for special offers and updates.</p>
+                <div class="flex space-x-2">
+                    <input type="email" placeholder="Your Email Address" class="flex-1 p-2 bg-white/10 border border-secondary/50 rounded text-white placeholder-gray-400 text-sm focus:outline-none focus:border-secondary">
+                    <button type="button" class="bg-secondary text-primary px-4 py-2 rounded hover:bg-white transition text-sm">Subscribe</button>
+                </div>
             </div>
         </div>
-        <div class="footer-column footer-links">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="accommodation.html">Rooms & Suites</a></li>
-                <li><a href="location.html">Location</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="booking.html">Book Now</a></li>
-            </ul>
+        <div class="border-t border-white/10 mt-8 pt-4 text-center">
+            <p class="text-gray-300 text-sm">© 2025 Paternoster Lodge. All Rights Reserved. | Designed by Syntax Syndicate</p>
         </div>
-        <div class="footer-column footer-contact">
-            <h3>Contact Us</h3>
-            <p><i class="fas fa-map-marker-alt"></i> 64 St Augustine Rd, Kliprug, Paternoster, 7381</p>
-            <p><i class="fas fa-phone"></i> +2722 880 0970</p>
-            <p><i class="fas fa-envelope"></i> info@paternosterlodge.co.za</p>
-            <p><i class="fas fa-clock"></i> Reception: 07:00 - 22:00</p>
-        </div>
-        <div class="footer-column footer-subscribe">
-            <h3>Newsletter</h3>
-            <p>Subscribe to our newsletter for special offers and updates.</p>
-            <form>
-                <input type="email" placeholder="Your Email Address">
-                <button type="submit">Subscribe</button>
-            </form>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>© 2025 Paternoster Lodge. All Rights Reserved. | Designed by Syntax Syndicate</p>
-    </div>
-</footer>
+    </footer>
 
 <!-- Booking Modal -->
 <div class="booking-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">

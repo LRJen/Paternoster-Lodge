@@ -28,7 +28,7 @@ body {
     color: var(--text);
     background: var(--light);
     overflow-x: hidden;
-    padding-bottom: 60px; /* Increased to ensure footer visibility */
+    /* Increased to ensure footer visibility */
 }
 
 /* Headings */
@@ -1062,7 +1062,7 @@ nav ul li a.active::after {
 }
 
 /* Footer */
-
+/* 
 footer {
     background: var(--primary);
     color: var(--white);
@@ -1102,14 +1102,14 @@ footer {
     height: 3px;
     background: var(--secondary);
     animation: waveUnderline 3s infinite ease-in-out;
-}
+} */
 
 @keyframes waveUnderline {
     0% { transform: scaleX(1); }
     50% { transform: scaleX(1.2); }
     100% { transform: scaleX(1); }
 }
-
+/* 
 .footer-column p,
 .footer-column ul li a {
     color: #ccc;
@@ -1205,7 +1205,7 @@ footer {
 .footer-bottom p {
     font-size: 0.9rem;
     color: #ccc;
-}
+} */
 
 /* Hero Section (index.html) */
 .hero {
