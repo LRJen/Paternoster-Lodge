@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="./Headerfooter/headerfooter.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
@@ -27,7 +30,7 @@
 </head>
 <body>
  <!-- Header (Unchanged) -->
-     <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 w-full z-50 transition-all duration-300">
+     <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 w-full z-50 transition-all duration-300 text-gray-300 ">
     <!-- New Contact and Stars Section -->
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-2 border-b border-gray-200">
         <div class="flex justify-between items-center">
@@ -62,7 +65,7 @@
             <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
         </button>
     </div>
-    <nav class="mobile-nav lg:hidden w-3/4 max-w-sm bg-primary/90 text-white flex-col z-40 transition-all duration-500 hidden">
+    <nav class="mobile-nav lg:hidden w-3/4 max-w-sm bg-primary/90 text-gray-300 flex-col z-40 transition-all duration-500 hidden">
         <ul class="flex flex-col items-start space-y-4 py-6 px-6">
             <li><a href="index.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Home</a></li>
             <li><a href="about.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>About</a></li>
@@ -79,9 +82,9 @@
 
 
     <!-- Page Banner -->
-    <section class="page-banner" style="background-image: url('https://via.placeholder.com/1920x600?text=Restaurant+Hero')" data-aos="fade-up">
+    <section class="page-banner" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/20220724_082655-2048x946.jpg')" data-aos="fade-up">
         <div class="banner-content">
-            <h1 style="color: white"> ABOUT PASTERNOSTER LODGE</h1>
+            <h1 style="color: white; font-family: Roboto;font-weight:  100;">PASTERNOSTER LODGE</h1>
             
         </div>
     </section>
@@ -90,14 +93,26 @@
     <section class="about-story">
         <div class="container">
             <div class="section-title fade-in">
-                <h2>Our Story</h2>
-                <h3>The story about Paternoster Lodge starts in a quaint West Coast town surrounded by pristine beaches, ocean views, and charming fishermen cottages. Paternoster invites you to immerse yourself in the unique culture and breathtaking sunsets of this coastal gem. Home to a variety of sea life, wildlife, and over 200 bird species. Paternoster offers a tranquil escape. <br/>In spring, witness the enchanting bloom of wildflowers, transforming the region into a floral paradise. Discover the Cape Columbine Nature Reserve’s 263ha of coastal beauty, featuring the last manually controlled lighthouse in South Africa—the Cape Columbine Lighthouse—perched on Castle Rock since 1936.</h3>
+                <h2 style="text-align: center; font-size: 80px; ">Our Story</h2>
+                <p style="padding-bottom: 20px;">The story about Paternoster Lodge starts in a quaint West
+                     Coast town surrounded by pristine beaches, ocean views, and
+                      charming fishermen cottages. Paternoster invites you to
+                    immerse yourself in the unique culture and breathtaking 
+                    sunsets of this coastal gem. Home to a variety of sea life,
+                    wildlife, and over 200 bird species. Paternoster offers a
+                     tranquil escape. <br/>In spring, witness the enchanting
+                     bloom of wildflowers, transforming the region into a floral paradise. Discover the Cape Columbine
+                      Nature Reserve’s 263ha of coastal beauty, featuring the last manuall
+                      y controlled lighthouse in South Africa—the Cape Columbine Lighthouse—perched
+                       on Castle Rock since 1936.</p>
             </div>
             
-            <div class="story-content">
+            <div class="story-content" style="background-color: rgb(112, 247, 213, .4);">
                 <div class="story-text fade-in">
                     <h3>180 Degree Sea View</h3>
-                    <p>Immerse yourself in coastal elegance in the heart of the charming fishing village. Our modern yet cozy west coast style accommodation offers a perfect blend of comfort and style. Elevate your events with our top-notch 20-seater conference facility and 50-seater wedding/function venue, boasting panoramic ocean vistas. </p>
+                    <p>Immerse yourself in coastal elegance in the heart of the
+                         charming fishing village. Our modern yet cozy west coast
+                          style accommodation offers a perfect blend of comfort and style. Elevate your events with our top-notch 20-seater conference facility and 50-seater wedding/function venue, boasting panoramic ocean vistas. </p>
                     <p>Perfect for intimate gatherings, our venue is conveniently located, just a 90-minute drive from Cape Town and Paarl. Make your occasion unforgettable with Paternoster Lodge.”</p>
                     <!--<p>Over the years, we have grown from a small guesthouse to a premium accommodation destination, while maintaining our dedication to personalized service and authentic experiences. Our team takes pride in creating memorable stays for each guest who walks through our doors.</p>-->
                 </div>
