@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Links */
 a {
     text-decoration: none;
-    color: inherit;
+    
     transition: color 0.3s ease;
 }
 
@@ -1854,9 +1854,9 @@ footer {
 
 /* Hidden Class for Animations */
 .hidden {
-    opacity: 0;
+    /* opacity: 0;
     transform: translateY(20px);
-    display: none;
+    display: none; */
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 

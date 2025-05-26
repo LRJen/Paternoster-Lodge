@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Paternoster Lodge</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./Headerfooter/headerfooter.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -25,32 +26,57 @@
     </script>
 </head>
 <body>
-    <!-- Header -->
-<header>
-    <div class="header-container">
-        <div class="logo">
-            <h1>Paternoster Lodge</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="{{indexActive}} ">Home</a></li>
-                <li><a href="about.html" class="{{aboutActive}} active">About</a></li>
-                <li><a href="accommodation.html" class="{{accommodationActive}}">Accommodation</a></li>
-                <li><a href="location.html" class="{{locationActive}}">Location</a></li>
-                <li><a href="gallery.html" class="{{galleryActive}}">Gallery</a></li>
-                <li><a href="restaurant.html" class="{{restaurantActive}}">Restaurant</a></li>
-                <li><a href="contact.html" class="{{contactActive}}">Contact</a></li>
-                <li><a href="booking.html" class="{{bookingActive}} book-btn">Book Now</a></li>
-                <li><a href="register-login.html" class="{{registerLoginActive}} book-btn">Login</a></li>
-            </ul>
-        </nav>
-        <div class="hamburger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
+ <!-- Header (Unchanged) -->
+     <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <!-- New Contact and Stars Section -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-2 border-b border-gray-200">
+        <div class="flex justify-between items-center">
+            <span class="text-gray-600 text-sm">+27 22 880 0970</span>
+            <div class="flex space-x-1">
+                <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/08/STARS_HEADER.png" alt="" srcset="">
+            </div>
         </div>
     </div>
+
+    <!-- Existing Header Content -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between py-4">
+        <a href="index.html" class="logo flex items-center">
+            <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/08/PL_LOGO.png" alt="Paternoster Lodge Logo" class="h-16 sm:h-20 lg:h-24 w-auto">
+        </a>
+        <nav class="hidden lg:flex items-center space-x-6">
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Home</a></li>
+                <li><a href="about.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">About</a></li>
+                <li><a href="accommodation.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative active">Accommodation</a></li>
+                <li><a href="location.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Location</a></li>
+                <li><a href="gallery.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative ">Gallery</a></li>
+                <li><a href="restaurant.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Restaurant</a></li>
+                <li><a href="contact.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Contact</a></li>
+                <li><a href="booking.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base">Book Now</a></li>
+                <li><a href="register-login.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base">Login</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger lg:hidden flex flex-col justify-center items-center space-y-1.5 p-2" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+            <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+            <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        </button>
+    </div>
+    <nav class="mobile-nav lg:hidden w-3/4 max-w-sm bg-primary/90 text-white flex-col z-40 transition-all duration-500 hidden">
+        <ul class="flex flex-col items-start space-y-4 py-6 px-6">
+            <li><a href="index.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Home</a></li>
+            <li><a href="about.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>About</a></li>
+            <li><a href="accommodation.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative active" data-nav-item>Accommodation</a></li>
+            <li><a href="location.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Location</a></li>
+            <li><a href="gallery.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Gallery</a></li>
+            <li><a href="restaurant.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Restaurant</a></li>
+            <li><a href="contact.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Contact</a></li>
+            <li><a href="booking.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Book Now</a></li>
+            <li><a href="register-login.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Login</a></li>
+        </ul>
+    </nav>
 </header>
+
 
     <!-- Page Banner -->
     <section class="page-banner" style="background-image: url('https://via.placeholder.com/1920x600?text=Restaurant+Hero')" data-aos="fade-up">
@@ -309,6 +335,7 @@
 
     <!-- JavaScript -->
     <script src="js/script.js"></script>
+    <script src="./Headerfooter/headerfooter.js"></script>
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({
