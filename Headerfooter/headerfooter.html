@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Location | Paternoster Lodge</title>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <title>Paternoster Lodge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap"></script>
+    <link rel="stylesheet" href="headerfooter.css">
+    
+    <link rel="stylesheet" href="gallery.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
     <script>
         tailwind.config = {
           theme: {
@@ -25,15 +25,13 @@
           },
         };
     </script>
-
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./Headerfooter/headerfooter.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
     <!-- Header -->
-     <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 w-full z-50 transition-all duration-300">
+   <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 w-full z-50 transition-all duration-300">
     <!-- New Contact and Stars Section -->
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-2 border-b border-gray-200">
         <div class="flex justify-between items-center">
@@ -51,15 +49,15 @@
         </a>
         <nav class="hidden lg:flex items-center space-x-6">
             <ul class="flex space-x-4">
-                <li><a href="../index.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Home</a></li>
-                <li><a href="../about.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">About</a></li>
-                <li><a href="../Accomodation/accomodation.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Accommodation</a></li>
-                <li><a href="../location.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative active">Location</a></li>
-                <li><a href="../gallery.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative ">Gallery</a></li>
+                <li><a href="index.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Home</a></li>
+                <li><a href="about.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">About</a></li>
+                <li><a href="accommodation.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Accommodation</a></li>
+                <li><a href="location.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Location</a></li>
+                <li><a href="gallery.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative active">Gallery</a></li>
                 <li><a href="restaurant.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Restaurant</a></li>
-                <li><a href="../Contact/contact.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Contact</a></li>
-                <li><a href="../booking.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base">Book Now</a></li>
-                <li><a href="../register-login.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base">Login</a></li>
+                <li><a href="contact.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Contact</a></li>
+                <li><a href="booking.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base">Book Now</a></li>
+                <li><a href="register-login.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base">Login</a></li>
             </ul>
         </nav>
         <button class="hamburger lg:hidden flex flex-col justify-center items-center space-y-1.5 p-2" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,70 +68,23 @@
     </div>
     <nav class="mobile-nav lg:hidden w-3/4 max-w-sm bg-primary/90 text-white flex-col z-40 transition-all duration-500 hidden">
         <ul class="flex flex-col items-start space-y-4 py-6 px-6">
-            <li><a href="../index.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Home</a></li>
-            <li><a href="../about.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>About</a></li>
-            <li><a href="../Accomodation/accomodation.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Accommodation</a></li>
-            <li><a href="../location.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative active" data-nav-item>Location</a></li>
-            <li><a href="../gallery.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Gallery</a></li>
-            <li><a href="../restaurant.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Restaurant</a></li>
-            <li><a href="../Contact/contact.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Contact</a></li>
-            <li><a href="../booking.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Book Now</a></li>
-            <li><a href="../register-login.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Login</a></li>
+            <li><a href="index.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Home</a></li>
+            <li><a href="about.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>About</a></li>
+            <li><a href="accommodation.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Accommodation</a></li>
+            <li><a href="location.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Location</a></li>
+            <li><a href="gallery.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative active" data-nav-item>Gallery</a></li>
+            <li><a href="restaurant.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Restaurant</a></li>
+            <li><a href="contact.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Contact</a></li>
+            <li><a href="booking.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Book Now</a></li>
+            <li><a href="register-login.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Login</a></li>
         </ul>
     </nav>
 </header>
-
-    <!-- Page Banner -->
-    <section class="page-banner" style="background-image: url('https://via.placeholder.com/1920x600?text=Location+Banner')" data-aos="fade-up">
-        <div class="banner-content">
-            <h1>Our Location</h1>
-            <p>Explore the beautiful coastal surroundings of Paternoster Lodge</p>
-        </div>
-    </section>
-
-    <!-- Location Section -->
-    <section class="location">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2>Find Us</h2>
-            </div>
-            <div class="location-content" data-aos="fade-up" data-aos-delay="100">
-        <!-- Google Maps Iframe -->
-        <div class="map-container" data-aos="fade-up" data-aos-delay="100">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3353.3456021342695!2d17.885458483924307!3d-32.809606697022645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1c34984e92ce5db9%3A0xdf1e528d78a4ed3!2sPaternoster%20Lodge!5e0!3m2!1sen!2sza!4v1747402533777!5m2!1sen!2sza" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-                <div class="location-info">
-                    <h3>Paternoster Lodge</h3>
-                    <p>Located in the heart of Beachside Village, our lodge offers easy access to pristine beaches, local attractions, and scenic coastal trails.</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <p>64 St Augustine Rd,Kliprug,Paternoster,7381</p>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <p>+2722 880 0970</p>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <p> info@paternosterlodge.co.za</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Surface -->
-    <!-- <section class="cta-section">
-        <div class="cta-container">
-            <div class="cta-content" data-aos="fade-up">
-                <h2>Plan Your Visit</h2>
-                <p>Experience the beauty of the coast with a stay at Paternoster Lodge.</p>
-                <a href="booking.html" class="cta-btn">Book Now</a>
-            </div>
-        </div>
-    </section> -->
+    <!-- Main Content Placeholder -->
+    <main class="flex-grow">
+        <!-- Your existing main content goes here -->
+    
+    </main>
 
     <!-- Footer -->
     <footer class="bg-primary text-white pt-12 pb-6">
@@ -182,9 +133,6 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script src="script.js"></script>
-    <script src="./Headerfooter/headerfooter.js"></script>
+    <script src="headerfooter.js"></script>
 </body>
 </html>

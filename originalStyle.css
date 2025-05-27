@@ -28,7 +28,7 @@ body {
     color: var(--text);
     background: var(--light);
     overflow-x: hidden;
-    /* Increased to ensure footer visibility */
+    padding-bottom: 60px; /* Increased to ensure footer visibility */
 }
 
 /* Headings */
@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Links */
 a {
     text-decoration: none;
-    
+    color: inherit;
     transition: color 0.3s ease;
 }
 
@@ -252,8 +252,6 @@ nav ul li a.active::after {
 } 
 */
 
-
-
 /* Container */
 .container {
     max-width: 1300px;
@@ -264,7 +262,7 @@ nav ul li a.active::after {
 /* Page Banner */
 .page-banner {
     position: relative;
-    min-height: 80vh;
+    min-height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -324,7 +322,7 @@ nav ul li a.active::after {
     max-width: 800px;
     padding: 2rem;
     background: rgba(27, 60, 89, 0.8);
-    border-radius: 0;
+    border-radius: 10px;
 }
 
 .banner-content h1 {
@@ -357,11 +355,6 @@ nav ul li a.active::after {
 @media (min-width: 768px) {
     .banner-content h1 {
         font-size: 3.5rem;
-    }
-
-    .page-banner{
-        height: 50vh;
-        
     }
 }
 
@@ -1062,15 +1055,12 @@ nav ul li a.active::after {
 }
 
 /* Footer */
-/* 
 footer {
     background: var(--primary);
     color: var(--white);
     padding: 60px 5% 20px;
     position: relative;
     z-index: 10;
-    position: relative;
-    bottom: 0;
 }
 
 .footer-content {
@@ -1102,14 +1092,14 @@ footer {
     height: 3px;
     background: var(--secondary);
     animation: waveUnderline 3s infinite ease-in-out;
-} */
+}
 
 @keyframes waveUnderline {
     0% { transform: scaleX(1); }
     50% { transform: scaleX(1.2); }
     100% { transform: scaleX(1); }
 }
-/* 
+
 .footer-column p,
 .footer-column ul li a {
     color: #ccc;
@@ -1205,7 +1195,7 @@ footer {
 .footer-bottom p {
     font-size: 0.9rem;
     color: #ccc;
-} */
+}
 
 /* Hero Section (index.html) */
 .hero {
@@ -1306,7 +1296,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: var(--dark);
+    color: var(--white);
     font-size: 0.9rem;
 }
 
@@ -1355,12 +1345,6 @@ footer {
 .about {
     padding: 100px 5%;
     background-color: var(--white);
-    background-image: url('	https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/20220628_142200-2048x946.jpg');
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
-    background-repeat:no-repeat;
-    backdrop-filter: blur(5px);
 }
 
 .about-content {
@@ -1412,9 +1396,8 @@ footer {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    max-width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-    padding-block: 30px;
 }
 
 .story-text {
@@ -1448,13 +1431,8 @@ footer {
 
 /* About Values Section */
 .about-values {
-    
+    padding: 100px 5%;
     background-color: var(--light);
-    background-image:url('https://paternosterlodge.co.za/wp/wp-content/uploads/2025/03/IMG-20250320-WA0016.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
 }
 
 .values-content {
@@ -1602,8 +1580,6 @@ footer {
     padding: 0 20px;
 }
 
-
-
 .recognition-text p {
     font-size: 1.1rem;
     line-height: 1.6;
@@ -1658,7 +1634,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -1874,9 +1850,9 @@ footer {
 
 /* Hidden Class for Animations */
 .hidden {
-    /* opacity: 0;
+    opacity: 0;
     transform: translateY(20px);
-    display: none; */
+    display: none;
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
@@ -2008,9 +1984,6 @@ footer {
         display: grid;
         grid-template-columns: 1fr;
     } */
-     .page-banner {
-        min-height: 40vh;
-    }
 }
 
 @media (min-width: 768px) {
@@ -2041,7 +2014,7 @@ footer {
     }
     */
     .page-banner { 
-        min-height: 50vh;
+        min-height: 35vh;
     }
 
     .banner-content h1 {

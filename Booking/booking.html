@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking | PaternosterLodge</title>
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Dependencies -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="bookingsStyles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: '#1b3c59',
+                secondary: '#d4af37',
+                light: '#f5f5f5',
+              },
+            },
+          },
+        };
+    </script>
+
+    <style>
+        /* Header Styling */
+
+
+        /* Page Banner Styling */
+        .page-banner {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .banner-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .banner-content p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        /* Booking Form Styling */
+        .booking-form {
+            padding: 40px 20px;
+            background: #f5f5f5;
+        }
+
+        .form-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        #booking-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .form-buttons {
+            grid-column: span 2;
+            display: flex;
+            gap: 10px;
+        }
+
+        .check-availability-btn,
+        .view-calendar-btn {
+            background: #0071c2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .check-availability-btn:hover,
+        .view-calendar-btn:hover {
+            background: #005ea6;
+        }
+
+        .form-message {
+            grid-column: span 2;
+            text-align: center;
+            margin-top: 10px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        #availability-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            display: table;
+        }
+
+        #availability-table th,
+        #availability-table td {
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            text-align: left;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+        }
+
+        #availability-table th {
+            background: #003580;
+            color: white;
+        }
+
+        .calendar-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        #calendar {
+            width: 100%;
+            min-height: 300px;
+        }
+
+        #close-calendar-btn {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Availability Section Styling */
+        .availability-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .filters label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        .availability-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Open Sans', sans-serif;
+            border: #003580 12px solid;
+            margin-bottom: 1rem;
+        }
+
+        .availability-table th,
+        .availability-table td {
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 0.85rem;
+            min-width: 100px;
+        }
+
+        .availability-table th {
+            background: #003580;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .room-type {
+            font-weight: bold;
+            color: #d32f2f;
+            margin-bottom: 5px;
+        }
+
+        .room-features {
+            display: none;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin: 5px 0;
+        }
+
+        .room-features.show {
+            display: flex;
+        }
+
+        .room-features span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .room-features i {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .more-link {
+            color: #0071c2;
+            text-decoration: none;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        .more-link:hover {
+            text-decoration: underline;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .price-note {
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        .choices {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .choices label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.75rem;
+        }
+
+        .choices label input[type="checkbox"] {
+            accent-color: #0071c2;
+        }
+
+        .choices label.green {
+            color: #2e7d32;
+        }
+
+        .guest-counter {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 5px 0;
+            flex-wrap: wrap;
+        }
+
+        .guest-counter button {
+            background: #0071c2;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .guest-counter button:hover {
+            background: #005ea6;
+        }
+
+        .guest-counter input {
+            width: 40px;
+            text-align: center;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .guest-counter span {
+            font-size: 0.8rem;
+        }
+
+        .room-quantity {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            width: 100px;
+        }
+
+        .select-btn {
+            background: #0071c2;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            width: 100%;
+        }
+
+        .select-btn:hover {
+            background: #005ea6;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .booked {
+            color: red;
+        }
+
+        .available {
+            color: green;
+        }
+
+        /* Footer Styling */
+/*         
+        footer {
+            background: #003580;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .footer-column h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-column p,
+        .footer-column ul li a {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            text-decoration: none;
+        } */
+/* 
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .contact-item i {
+            font-size: 1.2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .footer-subscribe form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-subscribe input {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            flex: 1;
+        }
+
+        .footer-subscribe button {
+            background: #ffeb3b;
+            color: #003580;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-bottom p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8rem;
+            margin: 0;
+        }
+ */
+        @media (max-width: 768px) {
+            #booking-form {
+                grid-template-columns: 1fr;
+            }
+
+            .form-buttons {
+                grid-column: span 1;
+                flex-direction: column;
+            }
+
+            .availability-table th,
+            .availability-table td {
+                font-size: 0.75rem;
+                padding: 8px;
+                min-width: 80px;
+            }
+
+            .guest-counter {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .room-quantity,
+            .select-btn {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+                width: 100%;
+            }
+
+            .room-features span {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+ <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <!-- New Contact and Stars Section -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-2 border-b border-gray-200">
+        <div class="flex justify-between items-center">
+            <span class="text-gray-600 text-sm">+27 22 880 0970</span>
+            <div class="flex space-x-1">
+                <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/08/STARS_HEADER.png" alt="" srcset="">
+            </div>
+        </div>
+    </div>
+
+    <!-- Existing Header Content -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between py-4">
+        <a href="index.html" class="logo flex items-center">
+            <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/08/PL_LOGO.png" alt="Paternoster Lodge Logo" class="h-16 sm:h-20 lg:h-24 w-auto">
+        </a>
+        <nav class="hidden lg:flex items-center space-x-6">
+            <ul class="flex space-x-4">
+                <li><a href="../index.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Home</a></li>
+                <li><a href="../about.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">About</a></li>
+                <li><a href="../Accomodation/accomodation.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Accommodation</a></li>
+                <li><a href="../location.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Location</a></li>
+                <li><a href="../gallery.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative ">Gallery</a></li>
+                <li><a href="restaurant.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Restaurant</a></li>
+                <li><a href="../Contact/contact.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Contact</a></li>
+                <li><a href="./booking.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base">Book Now</a></li>
+                <li><a href="../register-login.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base">Login</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger lg:hidden flex flex-col justify-center items-center space-y-1.5 p-2" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+            <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+            <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        </button>
+    </div>
+    <nav class="mobile-nav lg:hidden w-3/4 max-w-sm bg-primary/90 text-white flex-col z-40 transition-all duration-500 hidden">
+        <ul class="flex flex-col items-start space-y-4 py-6 px-6">
+            <li><a href="../index.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Home</a></li>
+            <li><a href="../about.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>About</a></li>
+            <li><a href="../Accomodation/accomodation.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Accommodation</a></li>
+            <li><a href="../location.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Location</a></li>
+            <li><a href="../gallery.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Gallery</a></li>
+            <li><a href="../restaurant.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Restaurant</a></li>
+            <li><a href="../Contact/contact.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Contact</a></li>
+            <li><a href="./booking.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Book Now</a></li>
+            <li><a href="../register-login.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+    <!-- Booking Header -->
+    <section class="page-banner" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/20220628_142200-2048x946.jpg');">
+        <div class="banner-content">
+            <h1 style="color: white; font-family: Roboto;font-weight:  100;">Book Your Stay</h1>
+            <p>Reserve your perfect coastal getaway today</p>
+        </div>
+    </section>
+
+    <!-- Booking Form -->
+    <section class="booking-form">
+        <div class="form-wrapper">
+            <form id="booking-form">
+                <div class="form-group">
+                    <label for="room-type">Room Type:</label>
+                    <select id="room-type" required>
+                        <option value="">Select Room Type</option>
+                        <option value="Deluxe King Room">Deluxe King Room</option>
+                        <option value="Family Room">Family Room</option>
+                        <option value="Honeymoon Suite">Honeymoon Suite</option>
+                        <option value="Standard Double Room">Standard Double Room</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="check-in">Check-In:</label>
+                    <input type="text" id="check-in" placeholder="Select Check-In Date" required>
+                </div>
+                <div class="form-group">
+                    <label for="check-out">Check-Out:</label>
+                    <input type="text" id="check-out" placeholder="Select Check-Out Date" required>
+                </div>
+                <div class="form-group">
+                    <label for="nights">Nights:</label>
+                    <input type="number" id="nights" value="1" min="0.5" step="0.5" readonly>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="half-day-event">
+                        Half-Day Event (e.g., Wedding, Meeting)
+                    </label>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="check-availability-btn">Check Availability & Book</button>
+                    <button type="button" class="view-calendar-btn">View Calendar</button>
+                </div>
+                <div id="form-message" class="form-message"></div>
+            </form>
+            <table id="availability-table" class="availability-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="availability-table-body"></tbody>
+            </table>
+            <div id="calendar-container" class="calendar-container">
+                <div id="calendar"></div>
+                <button id="close-calendar-btn">Close Calendar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Availability Section -->
+    <section class="availability-section">
+        <div class="filters">
+            <label><input type="checkbox"> Apartments</label>
+            <label><input type="checkbox"> Studios</label>
+            <label><input type="checkbox"> Rooms</label>
+        </div>
+        <div class="table-wrapper">
+            <table class="availability-table">
+                <thead>
+                    <tr>
+                        <th>Accommodation Type</th>
+                        <th>Number of Guests</th>
+                        <th>Today's Price</th>
+                        <th>Your Choices</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody id="main-availability-table-body">
+                    <!-- Populated dynamically by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Footer -->
+  <footer class="bg-primary text-white pt-12 pb-6">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Paternoster Lodge</h3>
+                <p class="text-gray-300 text-sm">A luxury seaside accommodation offering unforgettable experiences in a breathtaking coastal setting.</p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#home" class="text-gray-300 hover:text-secondary transition text-sm">Home</a></li>
+                    <li><a href="about.html" class="text-gray-300 hover:text-secondary transition text-sm">About Us</a></li>
+                    <li><a href="accommodation.html" class="text-gray-300 hover:text-secondary transition text-sm">Rooms & Suites</a></li>
+                    <li><a href="location.html" class="text-gray-300 hover:text-secondary transition text-sm">Location</a></li>
+                    <li><a href="gallery.html" class="text-gray-300 hover:text-secondary transition text-sm">Gallery</a></li>
+                    <li><a href="booking.html" class="text-gray-300 hover:text-secondary transition text-sm">Book Now</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Contact Us</h3>
+                <ul class="space-y-2">
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-map-marker-alt mr-2 text-secondary"></i> 64 St Augustine Rd, Kliprug, Paternoster, 7381</li>
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-phone mr-2 text-secondary"></i> 2722 880 0970</li>
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-envelope mr-2 text-secondary"></i> info@paternosterlodge.co.za</li>
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-clock mr-2 text-secondary"></i> Reception: 07:00 - 22:00</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Newsletter</h3>
+                <p class="text-gray-300 text-sm mb-4">Subscribe to our newsletter for special offers and updates.</p>
+                <div class="flex space-x-2">
+                    <input type="email" placeholder="Your Email Address" class="flex-1 p-2 bg-white/10 border border-secondary/50 rounded text-white placeholder-gray-400 text-sm focus:outline-none focus:border-secondary">
+                    <button type="button" class="bg-secondary text-primary px-4 py-2 rounded hover:bg-white transition text-sm">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-white/10 mt-8 pt-4 text-center">
+            <p class="text-gray-300 text-sm">© 2025 Paternoster Lodge. All Rights Reserved. | Designed by Syntax Syndicate</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="booking.js"></script>
+    <script src="./Headerfooter/headerfooter.js"></script>
+</body>
+</html>

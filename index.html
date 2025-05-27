@@ -1,32 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Fallback script for Supabase, defined first to avoid timing issues -->
-    <script>
-        function fallbackSupabaseScript() {
-            console.log('Attempting to load Supabase script from jsDelivr as fallback...');
-            const fallbackScript = document.createElement('script');
-            fallbackScript.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.umd.js';
-            fallbackScript.onerror = () => {
-                console.error('Both Supabase script sources failed to load. Please check your network or host the script locally.');
-                const slider = document.getElementById('review-slider');
-                if (slider) {
-                    slider.innerHTML = '<p class="text-gray-500 text-sm">Failed to load review system. Please try again later.</p>';
-                }
-            };
-            fallbackScript.onload = () => console.log('Supabase script loaded successfully from jsDelivr');
-            document.head.appendChild(fallbackScript);
-        }
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paternoster Lodge</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <!--<script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_ACTUAL_API_KEY&libraries=places&callback=initMap"></script>-->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./Headerfooter/headerfooter.css">
+    <link rel="stylesheet" href="./Home/home.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=stylesheet">
+    
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+   
+    
     <script>
         tailwind.config = {
           theme: {
@@ -40,342 +30,241 @@
           },
         };
     </script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
-    <!-- Supabase script with fallback -->
     <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.umd.js" onerror="console.error('Failed to load Supabase script from unpkg'); fallbackSupabaseScript()"></script>
-
     <style>
-        .carousel {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
+        @media (min-width: 1024px) {
+            nav.hidden.lg\:flex {
+                display: flex !important;
+            }
         }
-        .carousel-item {
-            min-width: 100%;
-            box-sizing: border-box;
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-color: #e5e7eb;
-        }
-        .review-container {
-            max-height: 60px;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        .review-container.expanded {
-            max-height: 120px;
-        }
-        .review-slide {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        .review-slide.active {
-            display: block;
-            opacity: 1;
-        }
-        .review-dot {
-            width: 8px;
-            height: 8px;
-            background: #ccc;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease;
-        }
-        .review-dot.active {
-            background: #d4af37;
-            transform: scale(1.2);
-        }
-        .review-dot:hover {
-            background: #e5c07b;
-        }
-        .testimonials {
-            background: linear-gradient(180deg, #f5f5f5 0%, #e8ecef 100%);
-            display: block !important;
-            min-height: 200px;
-        }
-        .review-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .review-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-        .star-label {
-            transition: transform 0.2s ease, color 0.2s ease;
-            cursor: pointer;
-        }
-        .star-label:hover {
-            transform: scale(1.2);
-            color: #d4af37 !important;
-        }
-        .star-input:checked + .star-label {
-            color: #d4af37 !important;
-        }
-        .submit-button:hover {
-            animation: pulse 1s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        .read-more:hover {
-            text-decoration: underline;
-        }
-        .submission-message {
-            display: none;
-            margin-top: 1rem;
-            padding: 0.75rem;
-            border-radius: 0.375rem;
-            text-align: center;
-            font-size: 0.875rem;
-        }
-        .submission-message.success {
-            display: block;
-            background-color: #10b981;
-            color: white;
-        }
-        .submission-message.error {
-            display: block;
-            background-color: #ef4444;
-            color: white;
-        }
-        .amenities-slider {
-            background: linear-gradient(180deg, #f5e8d8 0%, #f5f5f5 100%);
-            padding: 2rem 0;
-        }
-        .amenities-slider .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            position: relative;
-        }
-        .amenities-slider .slider {
-            width: 100%;
-            height: 500px;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 30px;
-        }
-        .amenities-slider .slide {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-        .amenities-slider .slide.active {
-            opacity: 1;
-            z-index: 1;
-        }
-        .amenities-slider .slider-controls {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-            pointer-events: none;
-        }
-        .amenities-slider .slider-controls button {
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 24px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: auto;
-            transition: background-color 0.3s ease;
-        }
-        .amenities-slider .slider-controls button:hover {
-            background-color: #d4af37;
-        }
-        .amenities-slider .info-box {
-            position: absolute;
-            top: 80px;
-            left: 50px;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 30px;
-            max-width: 400px;
-            z-index: 10;
-            transition: all 0.5s ease;
-        }
-        .amenities-slider .info-box h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: #1b3c59;
-            font-family: 'Playfair_Display', serif;
-        }
-        .amenities-slider .info-box p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            font-family: 'Open_Sans', sans-serif;
-        }
-        .amenities-slider .thumbnails {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        .amenities-slider .thumbnail {
-            width: 200px;
-            height: 120px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: border-color 0.3s ease;
-        }
-        .amenities-slider .thumbnail.active {
-            border-color: #1b3c59;
-        }
-        .amenities-slider .thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .grootbos-nav-item {
-    width: 150px;
-    height: 180px;
-    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-    background-size: cover; /* Ensures the image fills the hexagon */
-    background-position: center; /* Centers the image within the hexagon */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end; /* Aligns text to the bottom */
-    align-items: center;
-    text-align: center;
-    position: relative; /* For text overlay */
-}
 
-.grootbos-nav-text {
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
-    width: 100%;
-    padding: 5px 0;
-    font-size: 0.875rem; /* 14px */
-    font-weight: 600;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Shadow for better contrast */
-}
-
-@media (max-width: 768px) {
-    .grootbos-nav-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    .grootbos-nav-item {
-        width: 120px;
-        height: 140px;
-    }
-    .grootbos-nav-text {
-        font-size: 0.75rem; /* 12px for smaller screens */
-    }
-}   
+        .carousel-text{
+            
+            font-family: Roboto;
+            font-weight: 100;
+            text-transform: uppercase;
+            font-size: larger;
+        }
     </style>
 </head>
-<body>
-<!-- Header -->
-<header>
-    <div class="header-container">
-        <div class="logo">
-            <h1>Paternoster Lodge</h1>
+<body class="flex flex-col min-h-screen">
+<!-- Header (unchanged) -->
+<header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-2 border-b border-gray-200">
+        <div class="flex justify-between items-center">
+            <span class="text-gray-600 text-sm">+27 22 880 0970</span>
+            <div class="flex space-x-1">
+                <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/08/STARS_HEADER.png" alt="" srcset="">
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="{{indexActive}} active">Home</a></li>
-                <li><a href="about.html" class="{{aboutActive}}">About</a></li>
-                <li><a href="accommodation.html" class="{{accommodationActive}}">Accommodation</a></li>
-                <li><a href="location.html" class="{{locationActive}}">Location</a></li>
-                <li><a href="gallery.html" class="{{galleryActive}}">Gallery</a></li>
-                <li><a href="restaurant.html" class="{{restaurantActive}}">Restaurant</a></li>
-                <li><a href="contact.html" class="{{contactActive}}">Contact</a></li>
-                <li><a href="booking.html" class="{{bookingActive}} inline-block bg-primary text-white font-normal text-lg px-6 py-2 rounded-lg hover:bg-secondary transition duration-300">Book Now</a></li>
-                <li><a href="register-login.html" class="{{registerLoginActive}} book-btn">Login</a></li>
+    </div>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between py-4">
+        <a href="index.html" class="logo flex items-center">
+            <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/08/PL_LOGO.png" alt="Paternoster Lodge Logo" class="h-16 sm:h-20 lg:h-24 w-auto">
+        </a>
+        <nav class="hidden lg:flex items-center space-x-6">
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative active">Home</a></li>
+                <li><a href="about.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">About</a></li>
+                <li><a href="./Accomodation/accomodation.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Accommodation</a></li>
+                <li><a href="location.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Location</a></li>
+                <li><a href="gallery.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative ">Gallery</a></li>
+                <li><a href="restaurant.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Restaurant</a></li>
+                <li><a href="./Contact/contact.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Contact</a></li>
+                <li><a href="booking.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base">Book Now</a></li>
+                <li><a href="register-login.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base">Login</a></li>
             </ul>
         </nav>
-        <div class="hamburger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
+        <button class="hamburger lg:hidden flex flex-col justify-center items-center space-y-1.5 p-2" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+            <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+            <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        </button>
     </div>
+    <nav class="mobile-nav lg:hidden w-3/4 max-w-sm bg-primary/90 text-white flex-col z-40 transition-all duration-500 hidden">
+        <ul class="flex flex-col items-start space-y-4 py-6 px-6">
+            <li><a href="index.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative active" data-nav-item>Home</a></li>
+            <li><a href="about.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>About</a></li>
+            <li><a href="./Accomodation/accomodation.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Accommodation</a></li>
+            <li><a href="location.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Location</a></li>
+            <li><a href="gallery.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Gallery</a></li>
+            <li><a href="restaurant.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Restaurant</a></li>
+            <li><a href="./Contact/contact.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Contact</a></li>
+            <li><a href="booking.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Book Now</a></li>
+            <li><a href="register-login.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Login</a></li>
+        </ul>
+    </nav>
 </header>
 
-<!-- Hero Section with Sliding Pages -->
-<section class="hero relative w-full h-[600px] text-white overflow-hidden cursor-pointer" id="carousel-container" aria-label="Pause slideshow">
-    <div id="carousel" class="carousel">
-        <div class="carousel-item flex items-center justify-center h-[600px]" style="background-image: url('images/PATENOSTA FROMT.PNG');">
-            <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg" data-aos="fade-up">
-                <h2 class="text-4xl font-bold font-['Playfair_Display']">Welcome to Paternoster</h2>
-                <p class="mt-2 text-lg">Experience luxury by the sea</p>
-                <h3 class="text-4xl font-bold font-['Playfair_Display']">Paternoster Lodge</h3>
+<!-- Hero Section with Enhanced Carousel -->
+<section class="hero relative w-full h-[800px] text-white overflow-hidden cursor-pointer" id="carousel-container" aria-label="Pause slideshow">
+    <div id="carousel" class="carousel relative h-full">
+        <div class="carousel-item absolute w-full h-full flex items-center justify-center" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2023/01/IMG-20230118-WA0013.jpg');">
+            <div class="text-center bg-gradient-to-t from-primary/20 to-transparent p-8 " data-aos="fade-up" data-aos-duration="1200">
+                <h2 class="text-5xl md:text-6xl  text-white drop-shadow-lg animate-slide-up carousel-text">Welcome to Paternoster</h2>
+                <p class="mt-4 text-xl md:text-2xl font-['Open_Sans'] text-light drop-shadow-md">Experience luxury by the sea</p>
+                <!-- <h3 class="text-4xl md:text-5xl font-bold font-['Playfair_Display'] mt-2 text-secondary drop-shadow-lg">Paternoster Lodge</h3> -->
             </div>
         </div>
-        <div class="carousel-item flex items-center justify-center h-[600px]" style="background-image: url('images/partneso.PNG');">
-            <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg" data-aos="fade-up">
-                <h2 class="text-4xl font-bold font-['Playfair_Display']">MAGNIFICENT VIEWS OF THE ATLANTIC OCEAN</h2>
-                <p class="mt-2 text-lg">Paternoster Lodge</p>
+        <div class="carousel-item absolute w-full h-full flex items-center justify-center" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2023/01/IMG-20230118-WA0017.jpg');">
+            <div class="text-center bg-gradient-to-t from-primary/20 to-transparent p-8 " data-aos="fade-up" data-aos-duration="1200">
+                <h2 class="text-5xl md:text-6xl  text-white drop-shadow-lg animate-slide-up carousel-text">Magnificent Ocean Views</h2>
+                <!-- <p class="mt-4 text-xl md:text-2xl font-['Open_Sans'] text-light drop-shadow-md">Paternoster Lodge</p> -->
             </div>
         </div>
-        <div class="carousel-item flex items-center justify-center h-[600px]" style="background-image: url('images/New partenosta.PNG');">
-            <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg" data-aos="fade-up">
-                <a href="booking.html">
-                    <h2 class="text-4xl font-bold font-['Playfair_Display'] hover:text-secondary">BEST ROOMS</h2>
+        <div class="carousel-item absolute w-full h-full flex items-center justify-center" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/20220628_1420381-2048x946.jpg');">
+            <div class="text-center bg-gradient-to-t from-primary/20 to-transparent p-8 " data-aos="fade-up" data-aos-duration="1200">
+                <a href="./Booking/booking.html" class="hover:text-secondary transition-colors duration-300">
+                    <h2 class="text-5xl md:text-6xl  text-white drop-shadow-lg animate-slide-up carousel-text">Best Rooms</h2>
                 </a>
-                <p class="mt-2 text-lg">Paternoster Lodge</p>
+                <!-- <p class="mt-4 text-xl md:text-2xl font-['Open_Sans'] text-light drop-shadow-md">Paternoster Lodge</p> -->
             </div>
         </div>
-        <div class="carousel-item flex items-center justify-center h-[600px]" style="background-image: url('images/New partenosta.PNG');">
-            <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg" data-aos="fade-up">
-                <a href="booking.html">
-                    <h2 class="text-4xl font-bold font-['Playfair_Display'] hover:text-secondary">SLEEP AND WAKE UP IN A DREAM</h2>
+        <div class="carousel-item absolute w-full h-full flex items-center justify-center" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/20220628_142200-2048x946.jpg');">
+            <div class="text-center bg-gradient-to-t from-primary/20 to-transparent p-8 " data-aos="fade-up" data-aos-duration="1200">
+                <a href="./Booking/booking.html" class="hover:text-secondary transition-colors duration-300">
+                    <h2 class="text-5xl md:text-6xl  text-white drop-shadow-lg animate-slide-up carousel-text">Sleep in a Dream</h2>
                 </a>
-                <p class="mt-2 text-lg">Paternoster Lodge</p>
+                <!-- <p class="mt-4 text-xl md:text-2xl font-['Open_Sans'] text-light drop-shadow-md">Paternoster Lodge</p> -->
             </div>
         </div>
-        <div class="carousel-item flex items-center justify-center h-[600px]" style="background-image: url('images/New partenosta.PNG');">
-            <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg" data-aos="fade-up">
-                <a href="booking.html">
-                    <h2 class="text-4xl font-bold font-['Playfair_Display'] hover:text-secondary"></h2>
+        <div class="carousel-item absolute w-full h-full flex items-center justify-center" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/20220702_175208-2048x946.jpg');">
+            <div class="text-center bg-gradient-to-t from-primary/20 to-transparent p-8 " data-aos="fade-up" data-aos-duration="1200">
+                <a href="./Booking/booking.html" class="hover:text-secondary transition-colors duration-300">
+                    <h2 class="text-5xl md:text-6xl text-white drop-shadow-lg animate-slide-up carousel-text">Coastal Serenity</h2>
                 </a>
-                <p class="mt-2 text-lg">Paternoster Lodge</p>
+                <!-- <p class="mt-4 text-xl md:text-2xl font-['Open_Sans'] text-light drop-shadow-md">Paternoster Lodge</p> -->
             </div>
         </div>
-        <div class="carousel-item flex items-center justify-center h-[600px]" style="background-image: url('images/New partenosta.PNG');">
-            <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg" data-aos="fade-up">
-                <a href="booking.html">
-                    <h2 class="text-4xl font-bold font-['Playfair_Display'] hover:text-secondary">MAGICAL PLACE</h2>
+        <div class="carousel-item absolute w-full h-full flex items-center justify-center" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/IMG-20220827-WA0011.jpg');">
+            <div class="text-center bg-gradient-to-t from-primary/20 to-transparent p-8" data-aos="fade-up" data-aos-duration="1200">
+                <a href="./Booking/booking.html" class="hover:text-secondary transition-colors duration-300">
+                    <h2 class="text-5xl md:text-6xl font-bold font-['Playfair_Display'] text-white drop-shadow-lg animate-slide-up">Magical Place</h2>
                 </a>
-                <p class="mt-2 text-lg">Paternoster Lodge</p>
+                <!-- <p class="mt-4 text-xl md:text-2xl font-['Open_Sans'] text-light drop-shadow-md">Paternoster Lodge</p> -->
             </div>
         </div>
-        <div class="carousel-item flex items-center justify-center h-[600px]" style="background-image: url('images/New partenosta.PNG');">
-            <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg" data-aos="fade-up">
-                <a href="booking.html">
-                    <h2 class="text-4xl font-bold font-['Playfair_Display'] hover:text-secondary">EVERYTHING YOU NEED</h2>
+        <div class="carousel-item absolute w-full h-full flex items-center justify-center" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/IMG-20220827-WA0017.jpg');">
+            <div class="text-center bg-gradient-to-t from-primary/20 to-transparent p-8" data-aos="fade-up" data-aos-duration="1200">
+                <a href="./Booking/booking.html" class="hover:text-secondary transition-colors duration-300">
+                    <h2 class="text-5xl md:text-6xl  text-white drop-shadow-lg animate-slide-up carousel-text">Everything You Need</h2>
                 </a>
-                <p class="mt-2 text-lg">Paternoster Lodge</p>
+                <!-- <p class="mt-4 text-xl md:text-2xl font-['Open_Sans'] text-light drop-shadow-md">Paternoster Lodge</p> -->
             </div>
         </div>
     </div>
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2" data-aos="fade-up" data-aos-delay="200">
-        <a href="booking.html" class="inline-block bg-primary text-white font-normal text-lg px-6 py-3 rounded-lg border-2 border-secondary hover:bg-secondary hover:text-primary transition duration-300">Book Now</a>
+    <!-- Carousel Controls -->
+    <div class="carousel-controls absolute top-1/2 left-0 right-0 flex justify-between px-4 sm:px-8 transform -translate-y-1/2 z-10">
+        <button class="carousel-prev bg-primary/70 text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-secondary transition duration-300" aria-label="Previous slide">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-next bg-primary/70 text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-secondary transition duration-300" aria-label="Next slide">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+    <!-- Carousel Indicators -->
+    <div class="carousel-indicators absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2" data-aos="fade-up" data-aos-delay="200">
+        <span class="carousel-dot w-3 h-3 bg-white/50 rounded-full cursor-pointer hover:bg-secondary transition duration-300" data-slide="0"></span>
+        <span class="carousel-dot w-3 h-3 bg-white/50 rounded-full cursor-pointer hover:bg-secondary transition duration-300" data-slide="1"></span>
+        <span class="carousel-dot w-3 h-3 bg-white/50 rounded-full cursor-pointer hover:bg-secondary transition duration-300" data-slide="2"></span>
+        <span class="carousel-dot w-3 h-3 bg-white/50 rounded-full cursor-pointer hover:bg-secondary transition duration-300" data-slide="3"></span>
+        <span class="carousel-dot w-3 h-3 bg-white/50 rounded-full cursor-pointer hover:bg-secondary transition duration-300" data-slide="4"></span>
+        <span class="carousel-dot w-3 h-3 bg-white/50 rounded-full cursor-pointer hover:bg-secondary transition duration-300" data-slide="5"></span>
+        <span class="carousel-dot w-3 h-3 bg-white/50 rounded-full cursor-pointer hover:bg-secondary transition duration-300" data-slide="6"></span>
+    </div>
+    <!-- Book Now Button -->
+    <div class="absolute bottom-16 left-1/2 transform -translate-x-1/2" data-aos="fade-up" data-aos-delay="400">
+        <a href="./Booking/booking.html" class="bg-secondary text-primary px-6 py-3 rounded-full font-['Open_Sans'] text-lg hover:bg-white hover:text-primary transition duration-300 shadow-lg">Book Now</a>
     </div>
 </section>
 
-<!-- About Section -->
+<section class="pat-info" style="padding: 60px 20px; background-color: #fff; text-align: center; font-family: 'Roboto';">
+  
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <!-- Heading and Description -->
+        <h1 style="font-size: 4.5rem; font-weight: 700; color: #333; margin-bottom: 10px; text-transform: uppercase; font-family: 'Roboto';">
+            Paternoster Lodge
+        </h1>
+        <h2 style="font-size: 2.5rem; font-weight: 400; color: #4a8a7a; margin-bottom: 15px; font-family: Roboto;">
+            Coastal Comfort and Ocean Views
+        </h2>
+        <p style="font-size: 1rem; color: #666; line-height: 1.6; max-width: 800px; margin: 0 auto 40px;">
+            Escape to the tranquil beauty of Paternoster Lodge, where West Coast accommodation meets modern comfort.
+        </p>
+
+        <!-- Cards Container -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; padding: 0 20px;">
+            <!-- Accommodation Card -->
+            <div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                    <svg style="width: 40px; height: 40px; fill: #4a8a7a;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M21 16V6c0-1.1-.9-2-2-2H7c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2zM5 20v-2h14v2H5z"/>
+                    </svg>
+                </div>
+                <h3 style="font-size: 1.25rem; font-weight: 600; color: #4a8a7a; margin-bottom: 15px; text-transform: uppercase;font-family: 'Roboto'">
+                    Accommodation
+                </h3>
+                <p style="font-size: 0.95rem; color: #666; line-height: 1.6;">
+                    In our cozy retreat, each en-suite room at Paternoster Lodge is a haven of coastal tranquility. Nestled by the Atlantic Ocean, our West Coast accommodations offer a perfect blend of comfort and scenic beauty. Wake up to breathtaking ocean views and indulge in the serene ambiance that defines our Lodge.
+                </p>
+            </div>
+
+            <!-- Restaurant Card -->
+            <div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                    <svg style="width: 40px; height: 40px; fill: #4a8a7a;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M11 9H9V2H7v7H5V2H3v7c-1.1 0-2 .9-2 2v9c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2v-9c0-1.1-.9-2-2-2h-8V2h-2v7zm-6 3h2v2H5v-2zm4 0h2v2H9v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2z"/>
+                    </svg>
+                </div>
+                <h3 style="font-size: 1.25rem;font-family: 'Roboto'; font-weight: 600; color: #4a8a7a; margin-bottom: 15px; text-transform: uppercase;">
+                    Restaurant
+                </h3>
+                <p style="font-size: 0.95rem; color: #666; line-height: 1.6;">
+                    Savor the goodness at Paternoster Lodge Restaurant, where we mix West Coast flavors with a touch of culinary creativity. Nestled by the beautiful Atlantic Ocean, our dining experience is all about warmth and coziness.
+                </p>
+            </div>
+
+            <!-- Conference Card -->
+            <div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                    <svg style="width: 40px; height: 40px; fill: #4a8a7a;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M21 6h-2V4c0-1.1-.9-2-2-2H7c-1.1 0-2 .9-2 2v2H3c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-14 0V4h10v2H7z"/>
+                    </svg>
+                </div>
+                <h3 style="font-size: 1.25rem; font-family: 'Roboto'; font-weight: 600; color: #4a8a7a; margin-bottom: 15px; text-transform: uppercase;">
+                    Conference
+                </h3>
+                <p style="font-size: 0.95rem; color: #666; line-height: 1.6;">
+                    Plan your business gatherings and events at Paternoster Lodge, where our conference facility brings a seaside touch to professionalism. Set by the Atlantic Ocean, our top-notch venue creates a perfect setting for productive meetings, conferences, and special events with a laid-back charm.
+                </p>
+            </div>
+
+            <!-- Events Card -->
+            <div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                    <svg style="width: 40px; height: 40px; fill: #4a8a7a;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M17 12h-2v-2h2v2zm-4 0h-2v-2h2v2zm-4 0H7v-2h2v2zm8 6H7c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2z"/>
+                    </svg>
+                </div>
+                <h3 style="font-size: 1.25rem; font-family: 'Roboto'; font-weight: 600; color: #4a8a7a; margin-bottom: 15px; text-transform: uppercase;">
+                    Events
+                </h3>
+                <p style="font-size: 0.95rem; color: #666; line-height: 1.6;">
+                    Celebrate your special moments at Paternoster Lodge, where our event spaces are crafted to turn your occasions into lasting memories. By the Atlantic Ocean, our versatile venue offers a cozy backdrop for weddings, birthdays, and various special events, making each gathering truly special.
+                </p>
+            </div>
+        </div>
+    </div>
+     </div>
+</section>
+
+<!-- Rest of the HTML remains unchanged -->
 <section class="about" id="about">
+      <div class="x" style="backdrop-filter:blur(5px); background-attachment: fixed; background-color: rgba(255, 255, 255, 0.2);
+    ; border-radius: 5px; padding-block: 20px; width: 100%; height: 100%;">
     <div class="section-title fade-in">
-        <h2>About Us</h2>
+        <h2 style="font-family: Roboto; font-weight: 200; font-size: 4.5rem;">About Us</h2>
     </div>
     <div class="about-content">
         <div class="about-text fade-in">
@@ -387,19 +276,18 @@
             <img src="images/pate table view.PNG" alt="Outdoor dining table set for guests on a patio at Paternoster Lodge with wooden chairs arranged around the table overlooking the ocean. The scene is surrounded by lush coastal plants and bathed in bright natural light, creating a welcoming and tranquil atmosphere. The wider environment features open sky and a sense of relaxation by the sea.">
         </div>
     </div>
+    </div>
 </section>
 
-<!-- Accommodation Section -->
 <section class="accommodation" id="accommodation">
     <div class="section-title fade-in">
-        <h2>Our Accommodation</h2>
+        <h2 style="font-family: Roboto; font-weight: 200; font-size: 4.5rem;">Our Accommodation</h2>
         <h5>Paternoster Lodge</h5>
     </div>
     <div class="about-text fade-in">
         <p>In our cozy retreat, each en-suite room at Paternoster Lodge is a haven of coastal tranquility. Nestled by the Atlantic Ocean, our West Coast accommodations offer a perfect blend of comfort and scenic beauty. Wake up to breathtaking ocean views and indulge in the serene ambiance that defines our lodge.</p>
     </div>
     <div class="rooms-container">
-        <!-- Room 1 -->
         <div class="room-card fade-in">
             <div class="room-img" style="background-image: url('images/OCIEAN VIEW SUITE.PNG')"></div>
             <div class="room-details">
@@ -416,8 +304,6 @@
                 <a href="accommodation.html" class="inline-block bg-primary text-white font-normal text-lg px-6 py-3 rounded-lg hover:bg-secondary transition duration-300">View accommodation</a>
             </div>
         </div>
-
-        <!-- Room 2 -->
         <div class="room-card fade-in">
             <div class="room-img" style="background-image: url('images/COTTAGE NEW.PNG')"></div>
             <div class="room-details">
@@ -434,8 +320,22 @@
                 <a href="accommodation.html" class="inline-block bg-primary text-white font-normal text-lg px-6 py-3 rounded-lg hover:bg-secondary transition duration-300">View accommodation</a>
             </div>
         </div>
-
-        <!-- Room 3 -->
+        <div class="room-card fade-in">
+            <div class="room-img" style="background-image: url('images/COTTAGE NEW.PNG')"></div>
+            <div class="room-details">
+                <h3>Family Cottage</h3>
+                <p>Spacious cottage perfect for families, featuring a private patio and comfortable living areas.</p>
+                <div class="room-features">
+                    <span><i class="fas fa-user"></i> 4 Guests</span>
+                    <span><i class="fas fa-bed"></i> 2 Bedrooms</span>
+                    <span><i class="fas fa-bath"></i> 2 Bathrooms</span>
+                </div>
+                <div class="room-price">
+                    From R 1000 per night
+                </div>
+                <a href="accommodation.html" class="inline-block bg-primary text-white font-normal text-lg px-6 py-3 rounded-lg hover:bg-secondary transition duration-300">View accommodation</a>
+            </div>
+        </div>
         <div class="room-card fade-in">
             <div class="room-img" style="background-image: url('images/DELUX NEW.PNG')"></div>
             <div class="room-details">
@@ -455,7 +355,6 @@
     </div>
 </section>
 
-<!-- Room Modals -->
 <div class="room-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden" id="oceanview-modal">
     <div class="modal-content bg-white p-8 rounded-lg max-w-lg w-full">
         <span class="close-room-modal text-2xl cursor-pointer float-right" onclick="closeRoomModal('oceanview')">×</span>
@@ -504,7 +403,6 @@
     </div>
 </div>
 
-<!-- Amenities Slider Section -->
 <section class="amenities-slider" data-aos="fade-up">
     <div class="container">
         <div class="slider">
@@ -520,18 +418,15 @@
             <div class="slide" data-index="3">
                 <img src="images/14736_5_3_4_tv-and-multimedia-2048x1152.jpg" alt="Bedroom" style="width:100%;height:100%;object-fit:cover;">
             </div>
-
             <div class="slider-controls">
                 <button class="prev-btn">❮</button>
                 <button class="next-btn">❯</button>
             </div>
         </div>
-
         <div class="info-box">
             <h1>TOP-CLASS AMENITIES</h1>
             <p id="slide-description">Luxury amenities offer every pleasure and convenience. The villa is at once state-of-the-art and discreetly in harmony with your natural surroundings.</p>
         </div>
-
         <div class="thumbnails">
             <div class="thumbnail active" data-index="0">
                 <img src="images/20210502_085438-2048x1536.jpg" alt="Living Room">
@@ -549,12 +444,12 @@
     </div>
 </section>
 
-<!-- Tripadvisor-Style Review Section -->
 <section class="testimonials py-8 bg-light text-center">
+      <div class="x" style="backdrop-filter:blur(2px); background-attachment: fixed; background-color: rgba(255, 255, 255, 0.2);
+    padding-block: 20px;">
     <div class="section-title fade-in" data-aos="fade-up">
         <h2 class="text-2xl font-['Playfair_Display'] text-primary">Guest Reviews</h2>
     </div>
-    <!-- Review Submission Form -->
     <div class="max-w-2xl mx-auto mb-6" data-aos="fade-up" data-aos-delay="100">
         <div class="bg-white p-4 rounded-lg shadow-sm">
             <h3 class="text-lg font-bold text-primary mb-3 font-['Playfair_Display']">Share Your Experience</h3>
@@ -580,46 +475,15 @@
             </form>
         </div>
     </div>
-    <!-- Review Slider with Fallback -->
     <div class="max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
         <div id="review-slider">
             <p class="text-gray-500 text-sm">Loading reviews...</p>
         </div>
         <div id="review-dots" class="flex justify-center gap-2 mt-3"></div>
     </div>
+    </div>
 </section>
 
-<!-- <!-- Location Section --
-<section class="location" id="location">
-    <div class="section-title fade-in">
-        <h2>Our Location</h2>
-    </div>
-    <div class="location-content">
-        <div class="map-container" data-aos="fade-up" data-aos-delay="100">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3353.3456021342695!2d17.885458483924307!3d-32.809606697022645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1c34984e92ce5db9%3A0xdf1e528d78a4ed3!2sPaternoster%20Lodge!5e0!3m2!1sen!2sza!4v1747402533777!5m2!1sen!2sza" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-        <div class="location-info fade-in">
-            <p>Paternoster Lodge is situated in a picturesque fishing village, just a 2-hour drive from the nearest international airport. Our location offers the perfect balance of seclusion and accessibility.</p>
-            <p>The area is known for its pristine beaches, rich marine life, and colorful local culture. Within walking distance, you'll find charming restaurants, art galleries, and opportunities to experience authentic coastal life.</p>
-            <div class="contact-details">
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <p>64 St Augustine Rd, Kliprug, Paternoster, 7381</p>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <p>+2722 880 0970</p>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <p>info@paternosterlodge.co.za</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
-
-<!-- Grootbos Private Villas Navigation Section -->
 <section class="grootbos-nav py-8 bg-light text-center">
     <div class="section-title fade-in" data-aos="fade-up">
         <h2 class="text-2xl font-['Playfair_Display'] text-primary">EXPLORE THE Paternoster Lodge PRIVATE VILLAS</h2>
@@ -647,52 +511,52 @@
     </div>
 </section>
 
-<!-- Footer -->
-<footer id="contact">
-    <div class="footer-content">
-        <div class="footer-column footer-about">
-            <h3>Paternoster Lodge</h3>
-            <p>A luxury seaside accommodation offering unforgettable experiences in a breathtaking coastal setting.</p>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-tripadvisor"></i></a>
+<footer class="bg-primary text-white pt-12 pb-6">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="footer-column">
+            <h3 class="text-xl font-semibold text-secondary mb-4 relative">Paternoster Lodge</h3>
+            <p class="text-gray-300 text-sm">A luxury seaside accommodation offering unforgettable experiences in a breathtaking coastal setting.</p>
+            <div class="flex space-x-4 mt-4">
+                <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-tripadvisor"></i></a>
             </div>
         </div>
-        <div class="footer-column footer-links">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="accommodation.html">Rooms & Suites</a></li>
-                <li><a href="location.html">Location</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="booking.html">Book Now</a></li>
+        <div class="footer-column">
+            <h3 class="text-xl font-semibold text-secondary mb-4 relative">Quick Links</h3>
+            <ul class="space-y-2">
+                <li><a href="#home" class="text-gray-300 hover:text-secondary transition text-sm">Home</a></li>
+                <li><a href="about.html" class="text-gray-300 hover:text-secondary transition text-sm">About Us</a></li>
+                <li><a href="accommodation.html" class="text-gray-300 hover:text-secondary transition text-sm">Rooms & Suites</a></li>
+                <li><a href="location.html" class="text-gray-300 hover:text-secondary transition text-sm">Location</a></li>
+                <li><a href="gallery.html" class="text-gray-300 hover:text-secondary transition text-sm">Gallery</a></li>
+                <li><a href="booking.html" class="text-gray-300 hover:text-secondary transition text-sm">Book Now</a></li>
             </ul>
         </div>
-        <div class="footer-column footer-contact">
-            <h3>Contact Us</h3>
-            <p><i class="fas fa-map-marker-alt"></i> 64 St Augustine Rd, Kliprug, Paternoster, 7381</p>
-            <p><i class="fas fa-phone"></i> +2722 880 0970</p>
-            <p><i class="fas fa-envelope"></i> info@paternosterlodge.co.za</p>
-            <p><i class="fas fa-clock"></i> Reception: 07:00 - 22:00</p>
+        <div class="footer-column">
+            <h3 class="text-xl font-semibold text-secondary mb-4 relative">Contact Us</h3>
+            <ul class="space-y-2">
+                <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-map-marker-alt mr-2 text-secondary"></i> 64 St Augustine Rd, Kliprug, Paternoster, 7381</li>
+                <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-phone mr-2 text-secondary"></i> 2722 880 0970</li>
+                <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-envelope mr-2 text-secondary"></i> info@paternosterlodge.co.za</li>
+                <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-clock mr-2 text-secondary"></i> Reception: 07:00 - 22:00</li>
+            </ul>
         </div>
-        <div class="footer-column footer-subscribe">
-            <h3>Newsletter</h3>
-            <p>Subscribe to our newsletter for special offers and updates.</p>
-            <form>
-                <input type="email" placeholder="Your Email Address">
-                <button type="submit">Subscribe</button>
-            </form>
+        <div class="footer-column">
+            <h3 class="text-xl font-semibold text-secondary mb-4 relative">Newsletter</h3>
+            <p class="text-gray-300 text-sm mb-4">Subscribe to our newsletter for special offers and updates.</p>
+            <div class="flex space-x-2">
+                <input type="email" placeholder="Your Email Address" class="flex-1 p-2 bg-white/10 border border-secondary/50 rounded text-white placeholder-gray-400 text-sm focus:outline-none focus:border-secondary">
+                <button type="button" class="bg-secondary text-primary px-4 py-2 rounded hover:bg-white transition text-sm">Subscribe</button>
+            </div>
         </div>
     </div>
-    <div class="footer-bottom">
-        <p>© 2025 Paternoster Lodge. All Rights Reserved. | Designed by Syntax Syndicate</p>
+    <div class="border-t border-white/10 mt-8 pt-4 text-center">
+        <p class="text-gray-300 text-sm">© 2025 Paternoster Lodge. All Rights Reserved. | Designed by Syntax Syndicate</p>
     </div>
 </footer>
 
-<!-- Booking Modal -->
 <div class="booking-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
     <div class="modal-content bg-white p-8 rounded-lg max-w-md w-full">
         <span class="close-modal text-2xl cursor-pointer float-right">×</span>
@@ -713,363 +577,23 @@
     </div>
 </div>
 
-<!-- JavaScript -->
 <script>
-    // Google Maps initialization
-    function initMap() {
-        if (!window.google) {
-            console.error('Google Maps API failed to load. Please ensure a valid API key is provided.');
-            const mapContainer = document.querySelector('.map-container');
-            if (mapContainer) {
-                mapContainer.innerHTML = '<p class="text-gray-500 text-sm">Unable to load map. Please try again later.</p>';
-            }
-            return;
-        }
-        console.log('Google Maps initialized with API key');
-    }
-
-     // Initialize Supabase client
-    let supabase;
-    try {
-        setTimeout(() => {
-            if (typeof createClient === 'function') {
-                const supabaseUrl = 'https://fdpcmuwwbalwofxydsds.supabase.co';
-                const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZkcGNtdXd3YmFsd29meHlkc2RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcwNTA3OTUsImV4cCI6MjA2MjYyNjc5NX0.FmvbrFqPepMcxJbY6eGLeS7oMIfDzXnMPAjdF-8MWGY';
-                supabase = createClient(supabaseUrl, supabaseAnonKey);
-                console.log('Supabase client initialized successfully');
-                fetchReviews();
-            } else {
-                console.error('createClient is not defined after script load');
-                const slider = document.getElementById('review-slider');
-                if (slider) {
-                    slider.innerHTML = '<p class="text-gray-500 text-sm">Failed to load review system. Please try again later.</p>';
-                }
-            }
-        }, 100);
-    } catch (error) {
-        console.error('Failed to initialize Supabase client:', error);
-        const slider = document.getElementById('review-slider');
-        if (slider) {
-            slider.innerHTML = '<p class="text-gray-500 text-sm">Failed to load review system. Please try again later.</p>';
-        }
-    }
-
-    // Initialize AOS
-    AOS.init({
-        duration: 1000,
-        once: true,
-    });
-
-    // Hero Carousel Logic
-    const carousel = document.getElementById('carousel');
-    const carouselContainer = document.getElementById('carousel-container');
-    let currentIndex = 0;
-    let isPaused = false;
-    let slideInterval = setInterval(nextSlide, 5000);
-
-    function slideTo(index) {
-        carousel.style.transform = `translateX(-${index * 100}%)`;
-        currentIndex = index;
-    }
-
-    function nextSlide() {
-        if (!isPaused) {
-            if (currentIndex < 6) slideTo(currentIndex + 1);
-            else slideTo(0);
-        }
-    }
-
-    carouselContainer.addEventListener('click', (e) => {
-        if (e.target.closest('a')) return;
-        isPaused = !isPaused;
-        carouselContainer.setAttribute('aria-label', isPaused ? 'Play slideshow' : 'Pause slideshow');
-    });
-
-    // Review Slider Logic
-    let currentReviewIndex = 0;
-    let reviewInterval;
-
-    function showReviewSlide(index, slides, dots) {
-        slides.forEach(slide => slide.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-        slides[index].classList.add('active');
-        dots[index].classList.add('active');
-        currentReviewIndex = index;
-    }
-
-    function nextReviewSlide() {
-        const slides = document.querySelectorAll('.review-slide');
-        const dots = document.querySelectorAll('.review-dot');
-        if (slides.length === 0) return;
-        currentReviewIndex = (currentReviewIndex + 1) % slides.length;
-        showReviewSlide(currentReviewIndex, slides, dots);
-    }
-
-    function setupReviewSlider() {
-        const slides = document.querySelectorAll('.review-slide');
-        const dotsContainer = document.getElementById('review-dots');
-        if (slides.length === 0) return;
-        dotsContainer.innerHTML = '';
-        slides.forEach((_, i) => {
-            const dot = document.createElement('span');
-            dot.classList.add('review-dot');
-            dot.setAttribute('data-slide', i);
-            if (i === 0) dot.classList.add('active');
-            dotsContainer.appendChild(dot);
-        });
-        const dots = document.querySelectorAll('.review-dot');
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                clearInterval(reviewInterval);
-                const slideIndex = parseInt(dot.getAttribute('data-slide'));
-                showReviewSlide(slideIndex, slides, dots);
-                reviewInterval = setInterval(nextReviewSlide, 7000);
-            });
-        });
-        clearInterval(reviewInterval);
-        reviewInterval = setInterval(nextReviewSlide, 7000);
-    }
-
-    function setupReadMore() {
-        document.querySelectorAll('.read-more').forEach(button => {
-            button.addEventListener('click', () => {
-                const container = button.previousElementSibling;
-                if (container.classList.contains('expanded')) {
-                    container.classList.remove('expanded');
-                    button.textContent = 'Read more';
-                } else {
-                    container.classList.add('expanded');
-                    button.textContent = 'Hide';
-                }
-            });
-        });
-    }
-
-    // Fetch Reviews from Supabase
-    async function fetchReviews() {
-        const slider = document.getElementById('review-slider');
-        if (!supabase) {
-            slider.innerHTML = '<p class="text-gray-500 text-sm">Unable to connect to the review system.</p>';
-            return;
-        }
-
-        try {
-            const { data: reviews, error } = await supabase
-                .from('reviews')
-                .select('*')
-                .order('created_at', { ascending: false });
-
-            if (error) {
-                console.error('Error fetching reviews:', error.message);
-                slider.innerHTML = '<p class="text-gray-500 text-sm">Error loading reviews. Please try again later.</p>';
-                return;
-            }
-
-            slider.innerHTML = '';
-            if (reviews.length === 0) {
-                slider.innerHTML = '<p class="text-gray-500 text-sm">No reviews yet. Be the first to share your experience!</p>';
-                return;
-            }
-
-            reviews.forEach((review, index) => {
-                const slide = document.createElement('div');
-                slide.classList.add('review-slide');
-                if (index === 0) slide.classList.add('active');
-                const stars = Array(5).fill().map((_, i) => 
-                    `<img src="https://cdn.trustindex.io/assets/platform/Tripadvisor/star/${i < review.rating ? 'f' : 'e'}.svg" alt="Star" class="w-3 h-3">`
-                ).join('');
-                slide.innerHTML = `
-                    <div class="review-card bg-white p-4 rounded-lg shadow-sm">
-                        <div class="flex items-start">
-                            <img src="https://cdn.trustindex.io/assets/platform/Tripadvisor/icon.svg" alt="Tripadvisor" class="w-4 h-4 mr-2 mt-1">
-                            <div class="flex items-center">
-                                <img src="https://media-cdn.tripadvisor.com/media/photo-o/1a/f6/e8/5b/default-avatar-2020-61.jpg" alt="${review.name}" class="w-8 h-8 rounded-full mr-2">
-                                <div>
-                                    <div class="font-bold text-primary text-sm">${review.name}</div>
-                                    <div class="text-xs text-gray-500">${new Date(review.created_at).toLocaleDateString()}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex mt-2">${stars}</div>
-                        <div class="review-container mt-2 text-gray-700 text-sm font-['Open_Sans']">
-                            <strong>${review.review.slice(0, 20)}...</strong><br>
-                            ${review.review}
-                        </div>
-                        <span class="read-more text-secondary cursor-pointer mt-2 inline-block text-xs font-['Open_Sans']" role="button">Read more</span>
-                    </div>
-                `;
-                slider.appendChild(slide);
-            });
-
-            setupReviewSlider();
-            setupReadMore();
-        } catch (error) {
-            console.error('Unexpected error fetching reviews:', error);
-            slider.innerHTML = '<p class="text-gray-500 text-sm">Unable to load reviews at this time.</p>';
-        }
-    }
-
-    // Submit Review to Supabase
-    document.getElementById('review-form').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const messageDiv = document.getElementById('submission-message');
-        const name = document.getElementById('review-name').value;
-        const rating = document.querySelector('input[name="rating"]:checked')?.value;
-        const review = document.getElementById('review-text').value;
-
-        if (!name || !rating || !review) {
-            messageDiv.textContent = 'Please fill in all fields.';
-            messageDiv.className = 'submission-message error';
-            setTimeout(() => { messageDiv.className = 'submission-message'; messageDiv.textContent = ''; }, 5000);
-            return;
-        }
-
-        if (!supabase) {
-            messageDiv.textContent = 'Cannot submit review: Database connection failed.';
-            messageDiv.className = 'submission-message error';
-            setTimeout(() => { messageDiv.className = 'submission-message'; messageDiv.textContent = ''; }, 5000);
-            return;
-        }
-
-        try {
-            const { error } = await supabase
-                .from('reviews')
-                .insert([{ name, rating: parseInt(rating), review }]);
-
-            if (error) {
-                console.error('Error submitting review:', error.message);
-                messageDiv.textContent = 'Error submitting review. Please try again.';
-                messageDiv.className = 'submission-message error';
-                setTimeout(() => { messageDiv.className = 'submission-message'; messageDiv.textContent = ''; }, 5000);
-                return;
-            }
-
-            messageDiv.textContent = 'Review submitted successfully!';
-            messageDiv.className = 'submission-message success';
-            setTimeout(() => { messageDiv.className = 'submission-message'; messageDiv.textContent = ''; }, 5000);
-
-            document.getElementById('review-form').reset();
-            document.querySelectorAll('.star-label').forEach(label => label.style.color = '#d1d5db');
-            fetchReviews();
-        } catch (error) {
-            console.error('Unexpected error submitting review:', error);
-            messageDiv.textContent = 'Failed to submit review. Please try again later.';
-            messageDiv.className = 'submission-message error';
-            setTimeout(() => { messageDiv.className = 'submission-message'; messageDiv.textContent = ''; }, 5000);
-        }
-    });
-
-    document.querySelectorAll('.star-input').forEach(star => {
-        star.addEventListener('change', () => {
-            const value = parseInt(star.value);
-            document.querySelectorAll('.star-label').forEach((label, index) => {
-                label.style.color = index < value ? '#d4af37' : '#d1d5db';
-            });
-        });
-    });
-
-    // Amenities Slider Logic
-    function initAmenitiesSlider() {
-        console.log('Initializing Amenities Slider...');
-        const slides = document.querySelectorAll('.amenities-slider .slide');
-        const thumbnails = document.querySelectorAll('.amenities-slider .thumbnail');
-        const prevBtn = document.querySelector('.amenities-slider .prev-btn');
-        const nextBtn = document.querySelector('.amenities-slider .next-btn');
-        const slideDesc = document.getElementById('slide-description');
-
-        if (!slides.length || !thumbnails.length || !prevBtn || !nextBtn || !slideDesc) {
-            console.error('One or more slider elements not found. Aborting initialization.');
-            return;
-        }
-
-        const slideContent = [
-            "Luxury amenities offer every pleasure and convenience. The villa is at once state-of-the-art and discreetly in harmony with your natural surroundings.",
-            "Experience the perfect blend of indoor and outdoor living with expansive glass walls that frame breathtaking ocean views.",
-            "Cool off in the infinity pool with panoramic views that stretch to the horizon. Perfect for relaxing or entertaining guests.",
-            "Elegantly appointed bedroom spaces feature premium linens and thoughtful design elements that ensure ultimate comfort."
-        ];
-
-        let currentAmenityIndex = 0;
-
-        function updateAmenitySlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            thumbnails.forEach(thumbnail => thumbnail.classList.remove('active'));
-            slides[index].classList.add('active');
-            thumbnails[index].classList.add('active');
-            slideDesc.textContent = slideContent[index];
-            currentAmenityIndex = index;
-        }
-
-        thumbnails.forEach((thumbnail, idx) => {
-            thumbnail.addEventListener('click', () => updateAmenitySlide(idx));
-        });
-
-        prevBtn.addEventListener('click', () => {
-            let newIndex = (currentAmenityIndex - 1 + slides.length) % slides.length;
-            updateAmenitySlide(newIndex);
-        });
-
-        nextBtn.addEventListener('click', () => {
-            let newIndex = (currentAmenityIndex + 1) % slides.length;
-            updateAmenitySlide(newIndex);
-        });
-
-        updateAmenitySlide(0);
-    }
-
-   
-
-    // Run the slider initialization and fetch reviews after the DOM is loaded
-    document.addEventListener('DOMContentLoaded', () => {
-        try {
-            initAmenitiesSlider();
-            fetchReviews();
-        } catch (error) {
-            console.error('Error during initialization:', error);
+    function fallbackSupabaseScript() {
+        console.log('Attempting to load Supabase script from jsDelivr as fallback...');
+        const fallbackScript = document.createElement('script');
+        fallbackScript.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.umd.js';
+        fallbackScript.onerror = () => {
+            console.error('Both Supabase script sources failed to load. Please check your network or host the script locally.');
             const slider = document.getElementById('review-slider');
             if (slider) {
-                slider.innerHTML = '<p class="text-gray-500 text-sm">Failed to load reviews due to an initialization error.</p>';
+                slider.innerHTML = '<p class="text-gray-500 text-sm">Failed to load review system. Please try again later.</p>';
             }
-        }
-    });/////////
-
-    // Room Modal Handlers
-    function closeRoomModal(roomId) {
-        document.getElementById(`${roomId}-modal`).classList.add('hidden');
-    }
-
-    document.querySelectorAll('.room-card').forEach(card => {
-        card.addEventListener('click', () => {
-            const roomId = card.querySelector('h3').textContent.toLowerCase().replace(' ', '-');
-            document.getElementById(`${roomId}-modal`).classList.remove('hidden');
-        });
-    });
-
-    document.querySelectorAll('.close-room-modal, .close-modal').forEach(closeBtn => {
-        closeBtn.addEventListener('click', () => {
-            closeBtn.closest('.room-modal, .booking-modal').classList.add('hidden');
-        });
-    });
-
-    // Booking Modal Night Calculation
-    const checkIn = document.getElementById('check-in');
-    const checkOut = document.getElementById('check-out');
-    const nights = document.getElementById('nights');
-
-    checkIn.addEventListener('change', calculateNights);
-    checkOut.addEventListener('change', calculateNights);
-
-    function calculateNights() {
-        if (checkIn.value && checkOut.value) {
-            const checkInDate = new Date(checkIn.value);
-            const checkOutDate = new Date(checkOut.value);
-            const diffTime = Math.abs(checkOutDate - checkInDate);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            nights.value = diffDays;
-        } else {
-            nights.value = '';
-        }
+        };
+        fallbackScript.onload = () => console.log('Supabase script loaded successfully from jsDelivr');
+        document.head.appendChild(fallbackScript);
     }
 </script>
+<script src="./Headerfooter/headerfooter.js"></script>
+<script src="./Home/index.js"></script>
 </body>
 </html>
