@@ -5,14 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paternoster Lodge</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./Headerfooter/headerfooter.css">
     <link rel="stylesheet" href="./Home/home.css">
-
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=stylesheet">
+    
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+   
+    
     <script>
         tailwind.config = {
           theme: {
@@ -26,24 +30,27 @@
           },
         };
     </script>
-   
-    
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.umd.js" onerror="console.error('Failed to load Supabase script from unpkg'); fallbackSupabaseScript()"></script>
     <style>
         @media (min-width: 1024px) {
-    nav.hidden.lg\:flex {
-        display: flex !important;
-    }
-}
+            nav.hidden.lg\:flex {
+                display: flex !important;
+            }
+        }
 
-
+        .carousel-text{
+            
+            font-family: Roboto;
+            font-weight: 100;
+            text-transform: uppercase;
+            font-size: larger;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
-<!-- Header -->
+<!-- Header (unchanged) -->
 <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 w-full z-50 transition-all duration-300">
-    <!-- New Contact and Stars Section -->
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-2 border-b border-gray-200">
         <div class="flex justify-between items-center">
             <span class="text-gray-600 text-sm">+27 22 880 0970</span>
@@ -52,8 +59,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Existing Header Content -->
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between py-4">
         <a href="index.html" class="logo flex items-center">
             <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/08/PL_LOGO.png" alt="Paternoster Lodge Logo" class="h-16 sm:h-20 lg:h-24 w-auto">
@@ -92,69 +97,93 @@
     </nav>
 </header>
 
-<!-- Hero Section with Sliding Pages -->
-<section class="hero relative w-full h-[600px] text-white overflow-hidden cursor-pointer" id="carousel-container" aria-label="Pause slideshow">
-    <div id="carousel" class="carousel">
-        <div class="carousel-item flex items-center justify-center h-[600px]" style="background-image: url('images/PATENOSTA FROMT.PNG');">
-            <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg" data-aos="fade-up">
-                <h2 class="text-4xl font-bold font-['Playfair_Display']">Welcome to Paternoster</h2>
-                <p class="mt-2 text-lg">Experience luxury by the sea</p>
-                <h3 class="text-4xl font-bold font-['Playfair_Display']">Paternoster Lodge</h3>
+<!-- Hero Section with Enhanced Carousel -->
+<section class="hero relative w-full h-[800px] text-white overflow-hidden cursor-pointer" id="carousel-container" aria-label="Pause slideshow">
+    <div id="carousel" class="carousel relative h-full">
+        <div class="carousel-item absolute w-full h-full flex items-center justify-center" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2023/01/IMG-20230118-WA0013.jpg');">
+            <div class="text-center bg-gradient-to-t from-primary/20 to-transparent p-8 " data-aos="fade-up" data-aos-duration="1200">
+                <h2 class="text-5xl md:text-6xl  text-white drop-shadow-lg animate-slide-up carousel-text">Welcome to Paternoster</h2>
+                <p class="mt-4 text-xl md:text-2xl font-['Open_Sans'] text-light drop-shadow-md">Experience luxury by the sea</p>
+                <!-- <h3 class="text-4xl md:text-5xl font-bold font-['Playfair_Display'] mt-2 text-secondary drop-shadow-lg">Paternoster Lodge</h3> -->
             </div>
         </div>
-        <div class="carousel-item flex items-center justify-center h-[600px]" style="background-image: url('images/partneso.PNG');">
-            <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg" data-aos="fade-up">
-                <h2 class="text-4xl font-bold font-['Playfair_Display']">MAGNIFICENT VIEWS OF THE ATLANTIC OCEAN</h2>
-                <p class="mt-2 text-lg">Paternoster Lodge</p>
+        <div class="carousel-item absolute w-full h-full flex items-center justify-center" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2023/01/IMG-20230118-WA0017.jpg');">
+            <div class="text-center bg-gradient-to-t from-primary/20 to-transparent p-8 " data-aos="fade-up" data-aos-duration="1200">
+                <h2 class="text-5xl md:text-6xl  text-white drop-shadow-lg animate-slide-up carousel-text">Magnificent Ocean Views</h2>
+                <!-- <p class="mt-4 text-xl md:text-2xl font-['Open_Sans'] text-light drop-shadow-md">Paternoster Lodge</p> -->
             </div>
         </div>
-        <div class="carousel-item flex items-center justify-center h-[600px]" style="background-image: url('images/New partenosta.PNG');">
-            <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg" data-aos="fade-up">
-                <a href="booking.html">
-                    <h2 class="text-4xl font-bold font-['Playfair_Display'] hover:text-secondary">BEST ROOMS</h2>
+        <div class="carousel-item absolute w-full h-full flex items-center justify-center" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/20220628_1420381-2048x946.jpg');">
+            <div class="text-center bg-gradient-to-t from-primary/20 to-transparent p-8 " data-aos="fade-up" data-aos-duration="1200">
+                <a href="./Booking/booking.html" class="hover:text-secondary transition-colors duration-300">
+                    <h2 class="text-5xl md:text-6xl  text-white drop-shadow-lg animate-slide-up carousel-text">Best Rooms</h2>
                 </a>
-                <p class="mt-2 text-lg">Paternoster Lodge</p>
+                <!-- <p class="mt-4 text-xl md:text-2xl font-['Open_Sans'] text-light drop-shadow-md">Paternoster Lodge</p> -->
             </div>
         </div>
-        <div class="carousel-item flex items-center justify-center h-[600px]" style="background-image: url('images/New partenosta.PNG');">
-            <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg" data-aos="fade-up">
-                <a href="booking.html">
-                    <h2 class="text-4xl font-bold font-['Playfair_Display'] hover:text-secondary">SLEEP AND WAKE UP IN A DREAM</h2>
+        <div class="carousel-item absolute w-full h-full flex items-center justify-center" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/20220628_142200-2048x946.jpg');">
+            <div class="text-center bg-gradient-to-t from-primary/20 to-transparent p-8 " data-aos="fade-up" data-aos-duration="1200">
+                <a href="./Booking/booking.html" class="hover:text-secondary transition-colors duration-300">
+                    <h2 class="text-5xl md:text-6xl  text-white drop-shadow-lg animate-slide-up carousel-text">Sleep in a Dream</h2>
                 </a>
-                <p class="mt-2 text-lg">Paternoster Lodge</p>
+                <!-- <p class="mt-4 text-xl md:text-2xl font-['Open_Sans'] text-light drop-shadow-md">Paternoster Lodge</p> -->
             </div>
         </div>
-        <div class="carousel-item flex items-center justify-center h-[600px]" style="background-image: url('images/New partenosta.PNG');">
-            <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg" data-aos="fade-up">
-                <a href="booking.html">
-                    <h2 class="text-4xl font-bold font-['Playfair_Display'] hover:text-secondary"></h2>
+        <div class="carousel-item absolute w-full h-full flex items-center justify-center" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/20220702_175208-2048x946.jpg');">
+            <div class="text-center bg-gradient-to-t from-primary/20 to-transparent p-8 " data-aos="fade-up" data-aos-duration="1200">
+                <a href="./Booking/booking.html" class="hover:text-secondary transition-colors duration-300">
+                    <h2 class="text-5xl md:text-6xl text-white drop-shadow-lg animate-slide-up carousel-text">Coastal Serenity</h2>
                 </a>
-                <p class="mt-2 text-lg">Paternoster Lodge</p>
+                <!-- <p class="mt-4 text-xl md:text-2xl font-['Open_Sans'] text-light drop-shadow-md">Paternoster Lodge</p> -->
             </div>
         </div>
-        <div class="carousel-item flex items-center justify-center h-[600px]" style="background-image: url('images/New partenosta.PNG');">
-            <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg" data-aos="fade-up">
-                <a href="booking.html">
-                    <h2 class="text-4xl font-bold font-['Playfair_Display'] hover:text-secondary">MAGICAL PLACE</h2>
+        <div class="carousel-item absolute w-full h-full flex items-center justify-center" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/IMG-20220827-WA0011.jpg');">
+            <div class="text-center bg-gradient-to-t from-primary/20 to-transparent p-8" data-aos="fade-up" data-aos-duration="1200">
+                <a href="./Booking/booking.html" class="hover:text-secondary transition-colors duration-300">
+                    <h2 class="text-5xl md:text-6xl font-bold font-['Playfair_Display'] text-white drop-shadow-lg animate-slide-up">Magical Place</h2>
                 </a>
-                <p class="mt-2 text-lg">Paternoster Lodge</p>
+                <!-- <p class="mt-4 text-xl md:text-2xl font-['Open_Sans'] text-light drop-shadow-md">Paternoster Lodge</p> -->
             </div>
         </div>
-        <div class="carousel-item flex items-center justify-center h-[600px]" style="background-image: url('images/New partenosta.PNG');">
-            <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg" data-aos="fade-up">
-                <a href="booking.html">
-                    <h2 class="text-4xl font-bold font-['Playfair_Display'] hover:text-secondary">EVERYTHING YOU NEED</h2>
+        <div class="carousel-item absolute w-full h-full flex items-center justify-center" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/IMG-20220827-WA0017.jpg');">
+            <div class="text-center bg-gradient-to-t from-primary/20 to-transparent p-8" data-aos="fade-up" data-aos-duration="1200">
+                <a href="./Booking/booking.html" class="hover:text-secondary transition-colors duration-300">
+                    <h2 class="text-5xl md:text-6xl  text-white drop-shadow-lg animate-slide-up carousel-text">Everything You Need</h2>
                 </a>
-                <p class="mt-2 text-lg">Paternoster Lodge</p>
+                <!-- <p class="mt-4 text-xl md:text-2xl font-['Open_Sans'] text-light drop-shadow-md">Paternoster Lodge</p> -->
             </div>
         </div>
     </div>
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2" data-aos="fade-up" data-aos-delay="200">
-        <a href="booking.html" class="inline-block bg-primary text-white font-normal text-lg px-6 py-3 rounded-lg border-2 border-secondary hover:bg-secondary hover:text-primary transition duration-300">Book Now</a>
+    <!-- Carousel Controls -->
+    <div class="carousel-controls absolute top-1/2 left-0 right-0 flex justify-between px-4 sm:px-8 transform -translate-y-1/2 z-10">
+        <button class="carousel-prev bg-primary/70 text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-secondary transition duration-300" aria-label="Previous slide">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-next bg-primary/70 text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-secondary transition duration-300" aria-label="Next slide">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+    <!-- Carousel Indicators -->
+    <div class="carousel-indicators absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2" data-aos="fade-up" data-aos-delay="200">
+        <span class="carousel-dot w-3 h-3 bg-white/50 rounded-full cursor-pointer hover:bg-secondary transition duration-300" data-slide="0"></span>
+        <span class="carousel-dot w-3 h-3 bg-white/50 rounded-full cursor-pointer hover:bg-secondary transition duration-300" data-slide="1"></span>
+        <span class="carousel-dot w-3 h-3 bg-white/50 rounded-full cursor-pointer hover:bg-secondary transition duration-300" data-slide="2"></span>
+        <span class="carousel-dot w-3 h-3 bg-white/50 rounded-full cursor-pointer hover:bg-secondary transition duration-300" data-slide="3"></span>
+        <span class="carousel-dot w-3 h-3 bg-white/50 rounded-full cursor-pointer hover:bg-secondary transition duration-300" data-slide="4"></span>
+        <span class="carousel-dot w-3 h-3 bg-white/50 rounded-full cursor-pointer hover:bg-secondary transition duration-300" data-slide="5"></span>
+        <span class="carousel-dot w-3 h-3 bg-white/50 rounded-full cursor-pointer hover:bg-secondary transition duration-300" data-slide="6"></span>
+    </div>
+    <!-- Book Now Button -->
+    <div class="absolute bottom-16 left-1/2 transform -translate-x-1/2" data-aos="fade-up" data-aos-delay="400">
+        <a href="./Booking/booking.html" class="bg-secondary text-primary px-6 py-3 rounded-full font-['Open_Sans'] text-lg hover:bg-white hover:text-primary transition duration-300 shadow-lg">Book Now</a>
     </div>
 </section>
 
-<!-- About Section -->
+<section class="pat-info">
+
+</section>
+
+<!-- Rest of the HTML remains unchanged -->
 <section class="about" id="about">
     <div class="section-title fade-in">
         <h2>About Us</h2>
@@ -171,7 +200,6 @@
     </div>
 </section>
 
-<!-- Accommodation Section -->
 <section class="accommodation" id="accommodation">
     <div class="section-title fade-in">
         <h2>Our Accommodation</h2>
@@ -181,7 +209,6 @@
         <p>In our cozy retreat, each en-suite room at Paternoster Lodge is a haven of coastal tranquility. Nestled by the Atlantic Ocean, our West Coast accommodations offer a perfect blend of comfort and scenic beauty. Wake up to breathtaking ocean views and indulge in the serene ambiance that defines our lodge.</p>
     </div>
     <div class="rooms-container">
-        <!-- Room 1 -->
         <div class="room-card fade-in">
             <div class="room-img" style="background-image: url('images/OCIEAN VIEW SUITE.PNG')"></div>
             <div class="room-details">
@@ -198,8 +225,6 @@
                 <a href="accommodation.html" class="inline-block bg-primary text-white font-normal text-lg px-6 py-3 rounded-lg hover:bg-secondary transition duration-300">View accommodation</a>
             </div>
         </div>
-
-        <!-- Room 2 -->
         <div class="room-card fade-in">
             <div class="room-img" style="background-image: url('images/COTTAGE NEW.PNG')"></div>
             <div class="room-details">
@@ -216,8 +241,6 @@
                 <a href="accommodation.html" class="inline-block bg-primary text-white font-normal text-lg px-6 py-3 rounded-lg hover:bg-secondary transition duration-300">View accommodation</a>
             </div>
         </div>
-
-        <!-- Room 3 -->
         <div class="room-card fade-in">
             <div class="room-img" style="background-image: url('images/DELUX NEW.PNG')"></div>
             <div class="room-details">
@@ -237,7 +260,6 @@
     </div>
 </section>
 
-<!-- Room Modals -->
 <div class="room-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden" id="oceanview-modal">
     <div class="modal-content bg-white p-8 rounded-lg max-w-lg w-full">
         <span class="close-room-modal text-2xl cursor-pointer float-right" onclick="closeRoomModal('oceanview')">×</span>
@@ -286,7 +308,6 @@
     </div>
 </div>
 
-<!-- Amenities Slider Section -->
 <section class="amenities-slider" data-aos="fade-up">
     <div class="container">
         <div class="slider">
@@ -302,18 +323,15 @@
             <div class="slide" data-index="3">
                 <img src="images/14736_5_3_4_tv-and-multimedia-2048x1152.jpg" alt="Bedroom" style="width:100%;height:100%;object-fit:cover;">
             </div>
-
             <div class="slider-controls">
                 <button class="prev-btn">❮</button>
                 <button class="next-btn">❯</button>
             </div>
         </div>
-
         <div class="info-box">
             <h1>TOP-CLASS AMENITIES</h1>
             <p id="slide-description">Luxury amenities offer every pleasure and convenience. The villa is at once state-of-the-art and discreetly in harmony with your natural surroundings.</p>
         </div>
-
         <div class="thumbnails">
             <div class="thumbnail active" data-index="0">
                 <img src="images/20210502_085438-2048x1536.jpg" alt="Living Room">
@@ -331,12 +349,10 @@
     </div>
 </section>
 
-<!-- Tripadvisor-Style Review Section -->
 <section class="testimonials py-8 bg-light text-center">
     <div class="section-title fade-in" data-aos="fade-up">
         <h2 class="text-2xl font-['Playfair_Display'] text-primary">Guest Reviews</h2>
     </div>
-    <!-- Review Submission Form -->
     <div class="max-w-2xl mx-auto mb-6" data-aos="fade-up" data-aos-delay="100">
         <div class="bg-white p-4 rounded-lg shadow-sm">
             <h3 class="text-lg font-bold text-primary mb-3 font-['Playfair_Display']">Share Your Experience</h3>
@@ -362,7 +378,6 @@
             </form>
         </div>
     </div>
-    <!-- Review Slider with Fallback -->
     <div class="max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
         <div id="review-slider">
             <p class="text-gray-500 text-sm">Loading reviews...</p>
@@ -371,37 +386,6 @@
     </div>
 </section>
 
-<!-- <!-- Location Section --
-<section class="location" id="location">
-    <div class="section-title fade-in">
-        <h2>Our Location</h2>
-    </div>
-    <div class="location-content">
-        <div class="map-container" data-aos="fade-up" data-aos-delay="100">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3353.3456021342695!2d17.885458483924307!3d-32.809606697022645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1c34984e92ce5db9%3A0xdf1e528d78a4ed3!2sPaternoster%20Lodge!5e0!3m2!1sen!2sza!4v1747402533777!5m2!1sen!2sza" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-        <div class="location-info fade-in">
-            <p>Paternoster Lodge is situated in a picturesque fishing village, just a 2-hour drive from the nearest international airport. Our location offers the perfect balance of seclusion and accessibility.</p>
-            <p>The area is known for its pristine beaches, rich marine life, and colorful local culture. Within walking distance, you'll find charming restaurants, art galleries, and opportunities to experience authentic coastal life.</p>
-            <div class="contact-details">
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <p>64 St Augustine Rd, Kliprug, Paternoster, 7381</p>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <p>+2722 880 0970</p>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <p>info@paternosterlodge.co.za</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
-
-<!-- Grootbos Private Villas Navigation Section -->
 <section class="grootbos-nav py-8 bg-light text-center">
     <div class="section-title fade-in" data-aos="fade-up">
         <h2 class="text-2xl font-['Playfair_Display'] text-primary">EXPLORE THE GROOTBOS PRIVATE VILLAS</h2>
@@ -429,54 +413,52 @@
     </div>
 </section>
 
-<!-- Footer -->
-    <footer class="bg-primary text-white pt-12 pb-6">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="footer-column">
-                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Paternoster Lodge</h3>
-                <p class="text-gray-300 text-sm">A luxury seaside accommodation offering unforgettable experiences in a breathtaking coastal setting.</p>
-                <div class="flex space-x-4 mt-4">
-                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-tripadvisor"></i></a>
-                </div>
-            </div>
-            <div class="footer-column">
-                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Quick Links</h3>
-                <ul class="space-y-2">
-                    <li><a href="#home" class="text-gray-300 hover:text-secondary transition text-sm">Home</a></li>
-                    <li><a href="about.html" class="text-gray-300 hover:text-secondary transition text-sm">About Us</a></li>
-                    <li><a href="accommodation.html" class="text-gray-300 hover:text-secondary transition text-sm">Rooms & Suites</a></li>
-                    <li><a href="location.html" class="text-gray-300 hover:text-secondary transition text-sm">Location</a></li>
-                    <li><a href="gallery.html" class="text-gray-300 hover:text-secondary transition text-sm">Gallery</a></li>
-                    <li><a href="booking.html" class="text-gray-300 hover:text-secondary transition text-sm">Book Now</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Contact Us</h3>
-                <ul class="space-y-2">
-                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-map-marker-alt mr-2 text-secondary"></i> 64 St Augustine Rd, Kliprug, Paternoster, 7381</li>
-                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-phone mr-2 text-secondary"></i> 2722 880 0970</li>
-                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-envelope mr-2 text-secondary"></i> info@paternosterlodge.co.za</li>
-                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-clock mr-2 text-secondary"></i> Reception: 07:00 - 22:00</li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Newsletter</h3>
-                <p class="text-gray-300 text-sm mb-4">Subscribe to our newsletter for special offers and updates.</p>
-                <div class="flex space-x-2">
-                    <input type="email" placeholder="Your Email Address" class="flex-1 p-2 bg-white/10 border border-secondary/50 rounded text-white placeholder-gray-400 text-sm focus:outline-none focus:border-secondary">
-                    <button type="button" class="bg-secondary text-primary px-4 py-2 rounded hover:bg-white transition text-sm">Subscribe</button>
-                </div>
+<footer class="bg-primary text-white pt-12 pb-6">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="footer-column">
+            <h3 class="text-xl font-semibold text-secondary mb-4 relative">Paternoster Lodge</h3>
+            <p class="text-gray-300 text-sm">A luxury seaside accommodation offering unforgettable experiences in a breathtaking coastal setting.</p>
+            <div class="flex space-x-4 mt-4">
+                <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-tripadvisor"></i></a>
             </div>
         </div>
-        <div class="border-t border-white/10 mt-8 pt-4 text-center">
-            <p class="text-gray-300 text-sm">© 2025 Paternoster Lodge. All Rights Reserved. | Designed by Syntax Syndicate</p>
+        <div class="footer-column">
+            <h3 class="text-xl font-semibold text-secondary mb-4 relative">Quick Links</h3>
+            <ul class="space-y-2">
+                <li><a href="#home" class="text-gray-300 hover:text-secondary transition text-sm">Home</a></li>
+                <li><a href="about.html" class="text-gray-300 hover:text-secondary transition text-sm">About Us</a></li>
+                <li><a href="accommodation.html" class="text-gray-300 hover:text-secondary transition text-sm">Rooms & Suites</a></li>
+                <li><a href="location.html" class="text-gray-300 hover:text-secondary transition text-sm">Location</a></li>
+                <li><a href="gallery.html" class="text-gray-300 hover:text-secondary transition text-sm">Gallery</a></li>
+                <li><a href="booking.html" class="text-gray-300 hover:text-secondary transition text-sm">Book Now</a></li>
+            </ul>
         </div>
-    </footer>
+        <div class="footer-column">
+            <h3 class="text-xl font-semibold text-secondary mb-4 relative">Contact Us</h3>
+            <ul class="space-y-2">
+                <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-map-marker-alt mr-2 text-secondary"></i> 64 St Augustine Rd, Kliprug, Paternoster, 7381</li>
+                <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-phone mr-2 text-secondary"></i> 2722 880 0970</li>
+                <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-envelope mr-2 text-secondary"></i> info@paternosterlodge.co.za</li>
+                <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-clock mr-2 text-secondary"></i> Reception: 07:00 - 22:00</li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3 class="text-xl font-semibold text-secondary mb-4 relative">Newsletter</h3>
+            <p class="text-gray-300 text-sm mb-4">Subscribe to our newsletter for special offers and updates.</p>
+            <div class="flex space-x-2">
+                <input type="email" placeholder="Your Email Address" class="flex-1 p-2 bg-white/10 border border-secondary/50 rounded text-white placeholder-gray-400 text-sm focus:outline-none focus:border-secondary">
+                <button type="button" class="bg-secondary text-primary px-4 py-2 rounded hover:bg-white transition text-sm">Subscribe</button>
+            </div>
+        </div>
+    </div>
+    <div class="border-t border-white/10 mt-8 pt-4 text-center">
+        <p class="text-gray-300 text-sm">© 2025 Paternoster Lodge. All Rights Reserved. | Designed by Syntax Syndicate</p>
+    </div>
+</footer>
 
-<!-- Booking Modal -->
 <div class="booking-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
     <div class="modal-content bg-white p-8 rounded-lg max-w-md w-full">
         <span class="close-modal text-2xl cursor-pointer float-right">×</span>
@@ -497,26 +479,23 @@
     </div>
 </div>
 
-<!-- JavaScript -->
- <!-- Fallback script for Supabase, defined first to avoid timing issues -->
-    <script>
-        function fallbackSupabaseScript() {
-            console.log('Attempting to load Supabase script from jsDelivr as fallback...');
-            const fallbackScript = document.createElement('script');
-            fallbackScript.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.umd.js';
-            fallbackScript.onerror = () => {
-                console.error('Both Supabase script sources failed to load. Please check your network or host the script locally.');
-                const slider = document.getElementById('review-slider');
-                if (slider) {
-                    slider.innerHTML = '<p class="text-gray-500 text-sm">Failed to load review system. Please try again later.</p>';
-                }
-            };
-            fallbackScript.onload = () => console.log('Supabase script loaded successfully from jsDelivr');
-            document.head.appendChild(fallbackScript);
-        }
-    </script>
-    <script src="./Headerfooter/headerfooter.js"></script>
-
+<script>
+    function fallbackSupabaseScript() {
+        console.log('Attempting to load Supabase script from jsDelivr as fallback...');
+        const fallbackScript = document.createElement('script');
+        fallbackScript.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.umd.js';
+        fallbackScript.onerror = () => {
+            console.error('Both Supabase script sources failed to load. Please check your network or host the script locally.');
+            const slider = document.getElementById('review-slider');
+            if (slider) {
+                slider.innerHTML = '<p class="text-gray-500 text-sm">Failed to load review system. Please try again later.</p>';
+            }
+        };
+        fallbackScript.onload = () => console.log('Supabase script loaded successfully from jsDelivr');
+        document.head.appendChild(fallbackScript);
+    }
+</script>
+<script src="./Headerfooter/headerfooter.js"></script>
 <script src="./Home/index.js"></script>
 </body>
 </html>
