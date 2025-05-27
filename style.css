@@ -74,6 +74,11 @@ img {
 }
 
 /* Header */
+header.scrolled {
+    background: var(--white);
+    color: var(--dark);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
 /* 
 header {
     background: rgba(255, 255, 255, 0.9);
@@ -838,7 +843,7 @@ nav ul li a.active::after {
 }
 
 .lg-icon {
-    color: var(--white) !important;
+    color: var(--primary) !important;
 }
 
 .lg-icon:hover {

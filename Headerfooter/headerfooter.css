@@ -32,7 +32,7 @@ nav.hidden.lg\:flex a.nav-link {
 
 /* Adjust for scrolled state */
 header.scrolled nav.hidden.lg\:flex a.nav-link {
-    color: #ffffff !important; /* White when scrolled */
+    color: #818181 !important; /* White when scrolled */
 }
 
 header.scrolled {
