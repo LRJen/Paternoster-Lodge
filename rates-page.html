@@ -14,7 +14,6 @@
             color: #333;
             font-size: 14px;
         }
-        /* Navigation Bar */
         .nav-bar {
             background: white;
             padding: 10px 20px;
@@ -39,7 +38,6 @@
         .nav-bar .auth-buttons a:hover {
             background: #0056b3;
         }
-        /* Stepper */
         .stepper {
             display: flex;
             justify-content: center;
@@ -275,17 +273,17 @@
                 <h3>Your Selection</h3>
                 <ul>
                     <li>
-                        <p><strong>Check-in:</strong> Sat, 31 May 2025 from 2:00 PM</p>
-                        <p><strong>Check-out:</strong> Sun, 1 Jun 2025 until 10:00 AM</p>
+                        <p><strong>Check-in:</strong> <span id="check-in-date"></span> from 2:00 PM</p>
+                        <p><strong>Check-out:</strong> <span id="check-out-date"></span> until 10:00 AM</p>
                     </li>
                     <li>
-                        <p><strong>1 night of stay</strong></p>
+                        <p><strong><span id="nights-count"></span> nights of stay</strong></p>
                     </li>
                     <li>
-                        <p><strong>Deluxe Room</strong></p>
+                        <p><strong id="room-type"></strong></p>
                     </li>
                     <li>
-                        <p><strong>Price for all guests:</strong> ZAR 742.29</p>
+                        <p><strong>Price for all guests:</strong> ZAR <span id="total-price"></span></p>
                     </li>
                     <li>
                         <p><strong>How are you traveling?</strong></p>
@@ -294,26 +292,26 @@
                     </li>
                     <li>
                         <p><strong>Your offer</strong></p>
-                        <p>Free cancellation until Wed, 28 May 2025</p>
+                        <p id="cancel-offer"></p>
                         <p>8.5 Sparkly clean</p>
                     </li>
                 </ul>
                 <div class="section">
                     <h4>Your booking details</h4>
-                    <p>1 room, 2 adults</p>
-                    <p>Check-in: Sat, 31 May 2025</p>
-                    <p>Check-out: Sun, 1 Jun 2025</p>
+                    <p id="guest-details"></p>
+                    <p>Check-in: <span id="check-in-detail"></span></p>
+                    <p>Check-out: <span id="check-out-detail"></span></p>
                 </div>
                 <div class="section">
                     <h4>Your price summary</h4>
-                    <p>Original price: ZAR 742.29</p>
+                    <p>Original price: ZAR <span id="original-price"></span></p>
                     <p>Taxes and fees: Included</p>
-                    <p><strong>Total: ZAR 742.29</strong></p>
+                    <p><strong>Total: ZAR <span id="total-price-summary"></span></strong></p>
                 </div>
                 <div class="section">
                     <h4>How much will it cost to cancel</h4>
-                    <p>Free cancellation until Wed, 28 May 2025</p>
-                    <p>After that: ZAR 742.29</p>
+                    <p id="cancel-cost"></p>
+                    <p>After that: ZAR <span id="cancel-fee"></span></p>
                 </div>
                 <div class="section">
                     <h4>Review your booking conditions</h4>
@@ -322,9 +320,9 @@
                 </div>
                 <div class="section">
                     <h4>Location Highlights</h4>
-                    <p>Located in the heart of Cape Town CBD</p>
-                    <p>Close to V&A Waterfront (2 km)</p>
-                    <p>Near Table Mountain (5 km)</p>
+                    <p>Located in the heart of Paternoster</p>
+                    <p>Close to Paternoster Beach (0.5 km)</p>
+                    <p>Near Cape Columbine Lighthouse (5 km)</p>
                 </div>
             </div>
             <div class="right-panel">
@@ -333,45 +331,45 @@
                     <span class="language">English (South Africa)</span>
                 </div>
                 <div class="property-details">
-                    <img src="https://via.placeholder.com/300x200?text=Property+Image" alt="Property Image">
+                    <img src="https://placehold.co/300x200?text=Property+Image" alt="Property Image">
                     <div class="property-info">
-                        <p><strong>Deluxe Room</strong></p>
-                        <p>9/9 George St, Cape Town CBD 8000, South Africa</p>
+                        <p><strong id="room-type-detail"></strong></p>
+                        <p>64 St Augustine Rd, Kliprug, Paternoster, 7381, South Africa</p>
                         <p>This property is in a good location. Guests rated it 8.2</p>
                     </div>
                 </div>
                 <div class="booking-details">
                     <h3>Great choice! We're almost done.</h3>
-                    <p>Changes to your personal booking details will complete your reservation with Deluxe Room by Paternoster Lodge, facilitated by Paternoster Lodge. You agree that your booking is subject to the hotel's cancellation and prepayment policies, and that the travel company and the customer service team will be available to assist you.</p>
+                    <p>Changes to your personal booking details will complete your reservation with <span id="room-type-message"></span> by Paternoster Lodge, facilitated by Paternoster Lodge. You agree that your booking is subject to the hotel's cancellation and prepayment policies, and that the travel company and the customer service team will be available to assist you.</p>
                 </div>
                 <div class="payment-options">
                     <h3>How do you want to pay?</h3>
                     <p>Are you signing in with used details or registering to manage your bookings on the go?</p>
                     <div class="form-group">
-                        <select>
+                        <select id="title">
                             <option value="mr">Mr</option>
                             <option value="mrs">Mrs</option>
                             <option value="ms">Ms</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="text" placeholder="First name" required>
+                        <input type="text" id="first-name" placeholder="First name" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" placeholder="Last name" required>
+                        <input type="text" id="last-name" placeholder="Last name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="Email Address" required>
+                        <input type="email" id="email" placeholder="Email Address" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" placeholder="Telephone (mobile number preferred)" required>
+                        <input type="tel" id="phone" placeholder="Telephone (mobile number preferred)" required>
                     </div>
                     <div class="form-group">
-                        <select>
-                            <option value="Deluxe Room">Deluxe Room</option>
+                        <select id="room-type-select">
+                            <!-- Populated dynamically -->
                         </select>
                     </div>
-                    <button>Next: Final Details</button>
+                    <button id="next-btn">Next: Final Details</button>
                     <p>Don't worry: you won't be charged</p>
                 </div>
             </div>
@@ -385,42 +383,101 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const checkIn = '2025-05-31';
-            const checkOut = '2025-06-01';
-            const currentDate = new Date('2025-05-22T14:39:00+02:00'); // 02:39 PM SAST, May 22, 2025
+            // Parse query parameters
+            const params = new URLSearchParams(window.location.search);
+            const checkIn = params.get('checkIn') || 'N/A';
+            const checkOut = params.get('checkOut') || 'N/A';
+            const roomType = params.get('roomType') || 'Deluxe King Room';
+            const nights = params.get('nights') || 'N/A';
+            const price = params.get('price') || '0.00';
+            const adults = params.get('adults') || '0';
+            const children = params.get('children') || '0';
+            const quantity = params.get('quantity') || '1';
+
+            // Format dates
+            const formatDate = (dateStr) => {
+                const date = new Date(dateStr);
+                return date.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
+            };
+
+            // Calculate cancellation date (3 days before check-in)
+            const currentDate = new Date('2025-05-27T09:58:00+02:00'); // 09:58 AM SAST, May 27, 2025
             const checkInDate = new Date(checkIn);
             const cancelDate = new Date(checkInDate);
-            cancelDate.setDate(cancelDate.getDate() - 3); // Free cancellation until 3 days before check-in
-            const formattedCancelDate = cancelDate.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
-            document.querySelector('.left-panel ul li:last-child p:nth-child(2)').textContent = `Free cancellation until ${formattedCancelDate}`;
-            document.querySelector('.left-panel .section:nth-child(3) p:nth-child(1)').textContent = `Free cancellation until ${formattedCancelDate}`;
+            cancelDate.setDate(cancelDate.getDate() - 3);
+            const formattedCancelDate = formatDate(cancelDate);
 
-            const nextButton = document.querySelector('button');
+            // Update DOM with dynamic data
+            document.getElementById('check-in-date').textContent = formatDate(checkIn);
+            document.getElementById('check-out-date').textContent = formatDate(checkOut);
+            document.getElementById('nights-count').textContent = nights;
+            document.getElementById('room-type').textContent = roomType;
+            document.getElementById('total-price').textContent = price;
+            document.getElementById('cancel-offer').textContent = `Free cancellation until ${formattedCancelDate}`;
+            document.getElementById('guest-details').textContent = `${quantity} rooms, ${adults} adults, ${children} children`;
+            document.getElementById('check-in-detail').textContent = formatDate(checkIn);
+            document.getElementById('check-out-detail').textContent = formatDate(checkOut);
+            document.getElementById('original-price').textContent = price;
+            document.getElementById('total-price-summary').textContent = price;
+            document.getElementById('cancel-cost').textContent = `Free cancellation until ${formattedCancelDate}`;
+            document.getElementById('cancel-fee').textContent = price;
+            document.getElementById('room-type-detail').textContent = roomType;
+            document.getElementById('room-type-message').textContent = roomType;
+
+            // Populate room type dropdown
+            const roomTypeSelect = document.getElementById('room-type-select');
+            const option = document.createElement('option');
+            option.value = roomType;
+            option.textContent = roomType;
+            option.selected = true;
+            roomTypeSelect.appendChild(option);
+            roomTypeSelect.disabled = true; // Prevent changing room type
+
+            // Button functionality with validation
+            const nextButton = document.getElementById('next-btn');
             nextButton.addEventListener('click', (e) => {
                 e.preventDefault();
 
-                const firstName = document.querySelector('input[placeholder="First name"]').value.trim();
-                const lastName = document.querySelector('input[placeholder="Last name"]').value.trim();
-                const email = document.querySelector('input[placeholder="Email Address"]').value.trim();
-                const phone = document.querySelector('input[placeholder="Telephone (mobile number preferred)"]').value.trim();
+                const firstName = document.getElementById('first-name').value.trim();
+                const lastName = document.getElementById('last-name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
 
+                // Basic validation
                 if (!firstName || !lastName || !email || !phone) {
                     alert('Please fill in all required fields.');
                     return;
                 }
 
-                const params = new URLSearchParams({
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+
+                // Phone validation (basic, accepts international formats)
+                const phoneRegex = /^\+?[1-9]\d{1,14}$/;
+                if (!phoneRegex.test(phone)) {
+                    alert('Please enter a valid phone number.');
+                    return;
+                }
+
+                const redirectParams = new URLSearchParams({
                     checkIn,
                     checkOut,
-                    nights: '1',
-                    roomType: 'Deluxe Room',
-                    price: '742.29',
+                    nights,
+                    roomType,
+                    price,
+                    adults,
+                    children,
+                    quantity,
                     firstName,
                     lastName,
                     email,
                     phone
                 }).toString();
-                window.location.href = `final-details-page.html?${params}`;
+                window.location.href = `final-details-page.html?${redirectParams}`;
             });
         });
     </script>
