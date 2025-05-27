@@ -1355,6 +1355,12 @@ footer {
 .about {
     padding: 100px 5%;
     background-color: var(--white);
+    background-image: url('	https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/20220628_142200-2048x946.jpg');
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat:no-repeat;
+    backdrop-filter: blur(5px);
 }
 
 .about-content {
@@ -1652,7 +1658,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
 }
 
