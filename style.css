@@ -74,6 +74,11 @@ img {
 }
 
 /* Header */
+header.scrolled {
+    background: var(--white);
+    color: var(--dark);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
 /* 
 header {
     background: rgba(255, 255, 255, 0.9);
@@ -838,7 +843,7 @@ nav ul li a.active::after {
 }
 
 .lg-icon {
-    color: var(--white) !important;
+    color: var(--primary) !important;
 }
 
 .lg-icon:hover {
@@ -1791,8 +1796,16 @@ footer {
 
 /* Location Section */
 .location {
+    margin-top: 120px;
     padding: 100px 5%;
     background-color: var(--white);
+    background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/20220626_113840-2048x946.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    background-position: center;
+    background-attachment: fixed;
+    backdrop-filter: blur(3px);
 }
 
 .location-content {

@@ -333,7 +333,7 @@ nav ul li a.active::after {
 
 /* Booking Form (Enhanced with style.css consistency) */
 .booking-form {
-    padding: 100px 5%;
+    padding: 100px;
     background-color: var(--white);
 }
 
@@ -758,7 +758,7 @@ nav ul li a.active::after {
 }
 
 /* Footer (Updated to match style.css) */
-footer {
+/* footer {
     background: var(--primary);
     color: var(--white);
     padding: 60px 5% 20px;
@@ -795,14 +795,14 @@ footer {
     height: 3px;
     background: var(--secondary);
     animation: waveUnderline 3s infinite ease-in-out;
-}
+} */
 
 @keyframes waveUnderline {
     0% { transform: scaleX(1); }
     50% { transform: scaleX(1.2); }
     100% { transform: scaleX(1); }
 }
-
+/* 
 .footer-column p,
 .footer-column ul li a {
     color: #ccc;
@@ -871,7 +871,7 @@ footer {
 
 .footer-subscribe button:hover {
     background: #e5e5e5;
-}
+} */
 
 .social-icons {
     display: flex;
@@ -887,7 +887,7 @@ footer {
 .social-icons a:hover {
     color: var(--secondary);
 }
-
+/* 
 .footer-bottom {
     text-align: center;
     margin-top: 2rem;
@@ -898,10 +898,10 @@ footer {
 .footer-bottom p {
     font-size: 0.9rem;
     color: #ccc;
-}
+} */
 
 @media (max-width: 768px) {
-    .footer-content {
+    /* .footer-content {
         flex-direction: column;
         align-items: center;
         text-align: center;
@@ -929,7 +929,7 @@ footer {
         width: 100%;
         max-width: 200px;
         border-radius: 5px;
-    }
+    } */
 }
 
 /* Fallback Styles for Original Elements */

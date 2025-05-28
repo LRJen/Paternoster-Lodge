@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Paternoster Lodge</title>
-    <!-- <link rel="stylesheet" href="../style.css"> -->
-    <link rel="stylesheet" href="contact.css">
-    <link rel="stylesheet" href="../Headerfooter/headerfooter.css">
-    
+    <title>Booking Confirmation | PaternosterLodge</title>
+     <link rel="stylesheet" href="../Headerfooter/headerfooter.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
     <script>
         tailwind.config = {
           theme: {
@@ -26,13 +27,15 @@
           },
         };
     </script>
-    <!-- EmailJS SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="stylesheet" href="booking-confirmation.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     
 </head>
-<body >
+<body>
     <!-- Header -->
-     <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 w-full z-50 transition-all duration-300">
+ <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 w-full z-50 transition-all duration-300">
     <!-- New Contact and Stars Section -->
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-2 border-b border-gray-200">
         <div class="flex justify-between items-center">
@@ -52,13 +55,13 @@
             <ul class="flex space-x-4">
                 <li><a href="../index.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Home</a></li>
                 <li><a href="../about.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">About</a></li>
-                <li><a href="../Accomodation/accomodation.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative ">Accommodation</a></li>
+                <li><a href="../Accomodation/accomodation.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Accommodation</a></li>
                 <li><a href="../location.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Location</a></li>
                 <li><a href="../Gallery/gallery.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative ">Gallery</a></li>
                 <li><a href="../restaurant.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Restaurant</a></li>
-                <li><a href="../Contact/contact.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative active">Contact</a></li>
-                <li><a href="../Booking/booking.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-white log">Book Now</a></li>
-                <li><a href="../register-login.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-white log">Login</a></li>
+                <li><a href="../Contact/contact.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Contact</a></li>
+                <li><a href="../Booking/booking.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base log">Book Now</a></li>
+                <li><a href="../register-login.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base log">Login</a></li>
             </ul>
         </nav>
         <button class="hamburger lg:hidden flex flex-col justify-center items-center space-y-1.5 p-2" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,105 +78,99 @@
             <li><a href="../location.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Location</a></li>
             <li><a href="../Gallery/gallery.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Gallery</a></li>
             <li><a href="../restaurant.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Restaurant</a></li>
-            <li><a href="../Contact/contact.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative active" data-nav-item>Contact</a></li>
+            <li><a href="../Contact/contact.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Contact</a></li>
             <li><a href="../Booking/booking.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Book Now</a></li>
             <li><a href="../register-login.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Login</a></li>
         </ul>
     </nav>
 </header>
 
-     <!-- <main class="flex-grow"> -->
-        <!-- Your existing main content goes here -->
-    
-    <!-- Contact Section -->
-    <section class="contact-section">
-        <div class="cont">
-            <div class="contact-container" data-aos="fade-up" data-aos-delay="100">
-                <div class="contact-info">
-                    <div>
-                        <h3>Get in Touch with Us</h3>
-                        <p>Need more info on our rooms, or about the venue? Please feel free to contact us to make use of our contact form and one of our friendly staff members will get back to you as soon as possible.</p>
-                        <div class="contact-info-item">
-                            <h4>Our Address</h4>
-                            <p>64 St Augustine Rd, Kliprug, Paternoster, 7381</p>
+    <!-- Confirmation Header -->
+    <!-- <section class="page-banner" style="background-image: url('images/booking-banner.jpg');" data-aos="fade-up">
+        <div class="banner-content">
+            <h1>Confirm Your Booking</h1>
+            <p>Review your details and complete payment to finalize your stay</p>
+        </div>
+    </section> -->
+
+    <!-- Confirmation Details -->
+    <section class="confirmation-container">
+        <!-- Booking Summary -->
+        <div class="summary-card" data-aos="fade-up">
+            <h2>Booking Summary</h2>
+            <p><strong>Room Type:</strong> <span id="summary-room-type"></span></p>
+            <p><strong>Check-In:</strong> <span id="summary-check-in"></span></p>
+            <p><strong>Check-Out:</strong> <span id="summary-check-out"></span></p>
+            <p><strong>Nights:</strong> <span id="summary-nights"></span></p>
+            <p><strong>Adults:</strong> <span id="summary-adults"></span></p>
+            <p><strong>Children (Age 0-5):</strong> <span id="summary-children"></span></p>
+            <p><strong>Total:</strong> R<span id="summary-total"></span></p>
+        </div>
+
+        <!-- Personal Information -->
+        <div class="personal-info-card" data-aos="fade-up" data-aos-delay="100">
+            <h2>Your Information</h2>
+            <p><strong>First Name:</strong> <span id="info-first-name"></span></p>
+            <p><strong>Surname:</strong> <span id="info-surname"></span></p>
+            <p><strong>Email:</strong> <span id="info-email"></span></p>
+            <p><strong>Phone Number:</strong> <span id="info-phone-number"></span></p>
+            <p><strong>Special Requests:</strong> <span id="info-special-requests"></span></p>
+        </div>
+
+        <!-- Payment Information -->
+        <div class="payment-card" data-aos="fade-up" data-aos-delay="200">
+            <h2>Payment Details</h2>
+            <div class="payment-form">
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <p id="selected-payment-method"></p>
+                </div>
+                <div id="credit-card-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+                    <div class="grid">
+                        <div class="form-group">
+                            <label for="card-expiry">Expiry Date</label>
+                            <input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5">
                         </div>
-                        <div class="contact-info-item">
-                            <h4>Our Contact Details</h4>
-                            <p>Office: +2722 880 0970</p>
-                            <p>Maria: +2783 651 7592</p>
-                            <p>Glenda: +2783 691 0292</p>
-                            <p>Email: <a href="mailto:info@paternosterlodge.co.za">info@paternosterlodge.co.za</a></p>
+                        <div class="form-group">
+                            <label for="card-cvc">CVC</label>
+                            <input type="text" id="card-cvc" placeholder="123" maxlength="4">
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardholder-name">Cardholder Name</label>
+                        <input type="text" id="cardholder-name" placeholder="John Doe">
                     </div>
                 </div>
-                <form class="contact-form" id="contact-form">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="first-name">First Name</label>
-                            <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="last-name">Last Name</label>
-                            <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
-                        </div>
+                <div id="bank-transfer-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="account-holder">Account Holder Name</label>
+                        <input type="text" id="account-holder" placeholder="John Doe">
                     </div>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="Email Address" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Contact Number</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Contact Number" required>
-                        </div>
+                    <div class="form-group">
+                        <label for="account-number">Account Number</label>
+                        <input type="text" id="account-number" placeholder="123456789">
                     </div>
-                    <div class="form-group full-width">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" placeholder="Enter your message..." required></textarea>
+                    <div class="form-group">
+                        <label for="bank-name">Bank Name</label>
+                        <input type="text" id="bank-name" placeholder="Example Bank">
                     </div>
-                    <button type="submit">Send Message</button>
-                </form>
+                    <div class="form-group">
+                        <label for="branch-code">Branch Code</label>
+                        <input type="text" id="branch-code" placeholder="123456">
+                    </div>
+                </div>
             </div>
+            <button type="button" id="finalize-booking-btn" class="finalize-btn">Finalize Booking</button>
+            <p id="confirmation-message" class="message"></p>
         </div>
     </section>
- 
-    <!-- Map Section -->
-    <section class="map-section" data-aos="fade-up">
-        <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3313.614469264388!2d17.88474731521095!3d-32.81169598095758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDQ4JzQyLjEiUyAxN8KwNTMnMDQuNSJF!5e0!3m2!1sen!2sza!4v1634567890123!5m2!1sen!2sza"  loading="lazy"></iframe>
-        </div>
-    </section>
- 
-    <!-- Contact Details -->
-    <section class="contact-details">
-        <div class="cont container">
-            <div class="contact-content" data-aos="fade-up" data-aos-delay="100">
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <p>64 St Augustine Rd, Kliprug, Paternoster, 7381</p>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <p><a href="tel:+27228800970">+2722 880 0970</a></p>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <p><a href="mailto:info@paternosterlodge.co.za">info@paternosterlodge.co.za</a></p>
-                </div>
-            </div>
-        </div>
-    </section>
- 
-    <!-- Modal for Pop-up Message -->
-    <div class="modal" id="form-modal">
-        <div class="modal-content" id="modal-content">
-            <p id="modal-message"></p>
-            <button id="modal-close">OK</button>
-        </div>
-    </div>
-    <!-- </main> -->
-    <!-- Footer -->
-     <footer class="bg-primary text-white pt-12 pb-6">
+
+    <!-- Footer (Unchanged) -->
+    <footer class="bg-primary text-white pt-12 pb-6">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="footer-column">
                 <h3 class="text-xl font-semibold text-secondary mb-4 relative">Paternoster Lodge</h3>
@@ -188,10 +185,10 @@
             <div class="footer-column">
                 <h3 class="text-xl font-semibold text-secondary mb-4 relative">Quick Links</h3>
                 <ul class="space-y-2">
-                    <li><a href="../index.html" class="text-gray-300 hover:text-secondary transition text-sm">Home</a></li>
+                    <li><a href="#home" class="text-gray-300 hover:text-secondary transition text-sm">Home</a></li>
                     <li><a href="../about.html" class="text-gray-300 hover:text-secondary transition text-sm">About Us</a></li>
-                    <li><a href="../Accomodation/accomodation.html" class="text-gray-300 hover:text-secondary transition text-sm">Rooms & Suites</a></li>
-                    <li><a href="../location.html" class="text-gray-300 hover:text-secondary transition text-sm">Location</a></li>
+                    <li><a href="accommodation.html" class="text-gray-300 hover:text-secondary transition text-sm">Rooms & Suites</a></li>
+                    <li><a href="location.html" class="text-gray-300 hover:text-secondary transition text-sm">Location</a></li>
                     <li><a href="../Gallery/gallery.html" class="text-gray-300 hover:text-secondary transition text-sm">Gallery</a></li>
                     <li><a href="../Booking/booking.html" class="text-gray-300 hover:text-secondary transition text-sm">Book Now</a></li>
                 </ul>
@@ -219,12 +216,11 @@
         </div>
     </footer>
 
- 
+    <!-- Supabase JavaScript Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <!-- JavaScript -->
+    <script src="script.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="contact.js"></script>
-    <script src="../script.js"></script>
-    <script src="../Headerfooter/headerfooter.js"></script>
+    <script src="booking-confirmation.js"></script>
 </body>
 </html>
- 

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="bookingsStyles.css">
+    <link rel="stylesheet" href="../Headerfooter/headerfooter.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     
@@ -70,12 +71,13 @@
 
         /* Booking Form Styling */
         .booking-form {
-            padding: 40px 20px;
+            /* padding: 40px 20px; */
+            width: 90%;
             background: #f5f5f5;
         }
 
         .form-wrapper {
-            max-width: 800px;
+            max-width: 100%;
             margin: 0 auto;
             background: white;
             padding: 20px;
@@ -194,7 +196,7 @@
 
         /* Availability Section Styling */
         .availability-section {
-            max-width: 1200px;
+            max-width: 90%;
             margin: 0 auto;
             padding: 20px;
         }
@@ -548,11 +550,11 @@
                 <li><a href="../about.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">About</a></li>
                 <li><a href="../Accomodation/accomodation.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Accommodation</a></li>
                 <li><a href="../location.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Location</a></li>
-                <li><a href="../gallery.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative ">Gallery</a></li>
-                <li><a href="restaurant.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Restaurant</a></li>
+                <li><a href="../Gallery/gallery.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative ">Gallery</a></li>
+                <li><a href="../restaurant.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Restaurant</a></li>
                 <li><a href="../Contact/contact.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Contact</a></li>
-                <li><a href="./booking.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base">Book Now</a></li>
-                <li><a href="../register-login.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base">Login</a></li>
+                <li><a href="./booking.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base log">Book Now</a></li>
+                <li><a href="../register-login.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base log">Login</a></li>
             </ul>
         </nav>
         <button class="hamburger lg:hidden flex flex-col justify-center items-center space-y-1.5 p-2" aria-expanded="false" aria-label="Toggle navigation">
@@ -567,7 +569,7 @@
             <li><a href="../about.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>About</a></li>
             <li><a href="../Accomodation/accomodation.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Accommodation</a></li>
             <li><a href="../location.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Location</a></li>
-            <li><a href="../gallery.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Gallery</a></li>
+            <li><a href="../Gallery/gallery.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Gallery</a></li>
             <li><a href="../restaurant.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Restaurant</a></li>
             <li><a href="../Contact/contact.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Contact</a></li>
             <li><a href="./booking.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Book Now</a></li>
@@ -642,8 +644,8 @@
     <!-- Availability Section -->
     <section class="availability-section">
         <div class="filters">
-            <label><input type="checkbox"> Apartments</label>
-            <label><input type="checkbox"> Studios</label>
+            <!-- <label><input type="checkbox"> Apartments</label>
+            <label><input type="checkbox"> Studios</label> -->
             <label><input type="checkbox"> Rooms</label>
         </div>
         <div class="table-wrapper">
@@ -680,12 +682,12 @@
             <div class="footer-column">
                 <h3 class="text-xl font-semibold text-secondary mb-4 relative">Quick Links</h3>
                 <ul class="space-y-2">
-                    <li><a href="#home" class="text-gray-300 hover:text-secondary transition text-sm">Home</a></li>
-                    <li><a href="about.html" class="text-gray-300 hover:text-secondary transition text-sm">About Us</a></li>
-                    <li><a href="accommodation.html" class="text-gray-300 hover:text-secondary transition text-sm">Rooms & Suites</a></li>
-                    <li><a href="location.html" class="text-gray-300 hover:text-secondary transition text-sm">Location</a></li>
-                    <li><a href="gallery.html" class="text-gray-300 hover:text-secondary transition text-sm">Gallery</a></li>
-                    <li><a href="booking.html" class="text-gray-300 hover:text-secondary transition text-sm">Book Now</a></li>
+                    <li><a href="../index.html" class="text-gray-300 hover:text-secondary transition text-sm">Home</a></li>
+                    <li><a href="../about.html" class="text-gray-300 hover:text-secondary transition text-sm">About Us</a></li>
+                    <li><a href="../Accomodation/accomodation.html" class="text-gray-300 hover:text-secondary transition text-sm">Rooms & Suites</a></li>
+                    <li><a href="../location.html" class="text-gray-300 hover:text-secondary transition text-sm">Location</a></li>
+                    <li><a href="../Gallery/gallery.html" class="text-gray-300 hover:text-secondary transition text-sm">Gallery</a></li>
+                    <li><a href="../Booking/booking.html" class="text-gray-300 hover:text-secondary transition text-sm">Book Now</a></li>
                 </ul>
             </div>
             <div class="footer-column">
@@ -712,9 +714,10 @@
     </footer>
 
     <!-- Scripts -->
+     <script src="../Headerfooter/headerfooter.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="booking.js"></script>
-    <script src="./Headerfooter/headerfooter.js"></script>
+    
 </body>
 </html>

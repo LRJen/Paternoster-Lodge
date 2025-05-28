@@ -1,0 +1,72 @@
+
+        .confirmation-container {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 160px;
+            padding: 40px 20px;
+        }
+        .summary-card, .personal-info-card, .payment-card {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        .summary-card h2, .personal-info-card h2, .payment-card h2 {
+            font-size: 1.5rem;
+            color: #2d6a4f;
+            margin-bottom: 15px;
+        }
+        .summary-card p, .personal-info-card p {
+            margin: 8px 0;
+            font-size: 1rem;
+            color: #333;
+        }
+        .summary-card p strong, .personal-info-card p strong {
+            color: #1b4332;
+        }
+        .payment-form .form-group {
+            margin-bottom: 15px;
+        }
+        .payment-form label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .payment-form input, .payment-form select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .payment-form .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .finalize-btn {
+            background-color: #2d6a4f;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        .finalize-btn:hover {
+            background-color: #1b4332;
+        }
+        .message {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1rem;
+        }
+    

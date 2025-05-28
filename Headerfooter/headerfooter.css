@@ -30,9 +30,15 @@ nav.hidden.lg\:flex a.nav-link {
     visibility: visible !important;
 }
 
+nav.hidden.lg\:flex a.log {
+    color: #f5f6f7 !important; /* Force Tailwind's text-gray-800 */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
 /* Adjust for scrolled state */
 header.scrolled nav.hidden.lg\:flex a.nav-link {
-    color: #ffffff !important; /* White when scrolled */
+    color: #818181 !important; /* White when scrolled */
 }
 
 header.scrolled {

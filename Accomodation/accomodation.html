@@ -53,11 +53,11 @@
                 <li><a href="../about.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">About</a></li>
                 <li><a href="../Accomodation/accomodation.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative active">Accommodation</a></li>
                 <li><a href="../location.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Location</a></li>
-                <li><a href="../gallery.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative ">Gallery</a></li>
+                <li><a href="../Gallery/gallery.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative ">Gallery</a></li>
                 <li><a href="restaurant.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Restaurant</a></li>
                 <li><a href="../Contact/contact.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Contact</a></li>
-                <li><a href="../Booking/booking.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base">Book Now</a></li>
-                <li><a href="../register-login.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base">Login</a></li>
+                <li><a href="../Booking/booking.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base log">Book Now</a></li>
+                <li><a href="../register-login.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base log">Login</a></li>
             </ul>
         </nav>
         <button class="hamburger lg:hidden flex flex-col justify-center items-center space-y-1.5 p-2" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,7 @@
             <li><a href="../about.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>About</a></li>
             <li><a href="../Accomodation/accomodation.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative active" data-nav-item>Accommodation</a></li>
             <li><a href="../location.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Location</a></li>
-            <li><a href="../gallery.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Gallery</a></li>
+            <li><a href="../Gallery/gallery.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Gallery</a></li>
             <li><a href="../restaurant.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Restaurant</a></li>
             <li><a href="../Contact/contact.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Contact</a></li>
             <li><a href="../Booking/booking.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Book Now</a></li>
@@ -82,7 +82,8 @@
 </header>
 
     <!-- Page Banner -->
-    <section class="page-banner" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2023/01/IMG-20230118-WA0013.jpg')">
+    <section class="page-banner" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2023/01/IMG-20230118-WA0013.jpg');
+    margin-top: 200px;">
         <div class="banner-content">
             <h1>THE BEST WEST COAST ACCOMMODATION</h1>
             <p>Luxury Self-Catering Units With Spectacular Ocean Views</p>
@@ -94,7 +95,7 @@
         <div class="container">
             <!-- Queen Deluxe Room -->
              <div class="room-sec" style="background-color: aqua;">
-            <div class="room-section" data-room-type="queen-deluxe">
+            <div class="room-section" data-room-type="queen-deluxe" id="QueenDeluxRoom">
                 <div class="room-gallery">
                     <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/14736_5_3_1_bed-2048x1152.jpg" alt="Queen Deluxe Room">
                     <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/14736_5_3_11_shower-2048x1152.jpg" alt="Queen Deluxe Room">
@@ -108,20 +109,20 @@
                     <p>Indulge in our deluxe double room with en-suite, offering a semi-self-catering experience. This room features a convenient kitchenette equipped with a microwave, mini-fridge, and basin. Enjoy modern comforts with air conditioning, a Smart TV featuring selected DStv channels, and complimentary Wi-Fi. The en-suite includes a walk-in shower, and guests have exclusive access to the refreshing plunge pool. Elevate your stay with us for a perfect blend of comfort and convenience.</p>
                     <div class="button-group">
                         <button class="view-btn book-btn">View</button>
-                        <a href="booking.html" class="book-now-btn book-btn">Book</a>
+                        <a href="../Booking/booking.html" class="book-now-btn book-btn">Book</a>
                     </div>
                 </div>
             </div>
             </div>
 
             <!-- Family Room -->
-            <div class="room-section" data-room-type="family">
+            <div class="room-section" data-room-type="family" id="FamilyRoom">
                 <div class="room-info">
                     <h2>Family Room</h2>
                     <p>Unwind in our inviting double family room with en-suite, where luxury meets versatility. This spacious accommodation offers the option of a luxury coach conversion into a bunk for children, providing flexibility for family stays. A camping cot, subject to availability, is an additional convenience. All our rooms feature air-conditioning and a Smart TV with selected DStv channels, with access to our refreshing plunge pool.</p>
                     <div class="button-group">
                         <button class="view-btn book-btn">View</button>
-                        <a href="booking.html" class="book-now-btn book-btn">Book</a>
+                        <a href="../Booking/booking.html" class="book-now-btn book-btn">Book</a>
                     </div>
                 </div>
                 <div class="room-gallery">
@@ -135,7 +136,7 @@
             </div>
 
             <!-- Standard Rooms -->
-            <div class="room-section" data-room-type="standard">
+            <div class="room-section" data-room-type="standard" id="StandardRoom">
                 <div class="room-gallery">
                     <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/14736_4_2_1_bed-2048x709.jpg" alt="Standard Room">
                     <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/20220628_141617-2048x946.jpg" alt="Standard Room">
@@ -149,19 +150,19 @@
                     <p>Embrace tranquility in our comfortable double room with en-suite shower. Enjoy the convenience of a camping cot, subject to availability, ensuring a restful stay. All our rooms feature air conditioning, a Smart TV with selected DStv channels, and a shared patio with a captivating view over Paternoster Beach, plus exclusive access to our plunge pool.</p>
                     <div class="button-group">
                         <button class="view-btn book-btn">View</button>
-                        <a href="booking.html" class="book-now-btn book-btn">Book</a>
+                        <a href="../Booking/booking.html" class="book-now-btn book-btn">Book</a>
                     </div>
                 </div>
             </div>
 
             <!-- Honeymoon Suite -->
-            <div class="room-section" data-room-type="honeymoon">
+            <div class="room-section" data-room-type="honeymoon" id="HoneymoonSuite">
                 <div class="room-info">
                     <h2>Honeymoon Suite</h2>
                     <p>Celebrate your love in our enchanting Honeymoon En-Suite, designed for an intimate escape. This room features a semi-self-catering experience with a kitchenette, including a microwave, mini-fridge, and basin. Enjoy air conditioning, a Smart TV with DStv channels, and Wi-Fi. Revel in a double walk-in shower and the private plunge pool for a magical stay.</p>
                     <div class="button-group">
                         <button class="view-btn book-btn">View</button>
-                        <a href="booking.html" class="book-now-btn book-btn">Book</a>
+                        <a href="../Booking/booking.html" class="book-now-btn book-btn">Book</a>
                     </div>
                 </div>
                 <div class="room-gallery">
@@ -238,10 +239,10 @@
                 <h3 class="text-xl font-semibold text-secondary mb-4 relative">Quick Links</h3>
                 <ul class="space-y-2">
                     <li><a href="#home" class="text-gray-300 hover:text-secondary transition text-sm">Home</a></li>
-                    <li><a href="about.html" class="text-gray-300 hover:text-secondary transition text-sm">About Us</a></li>
+                    <li><a href="../about.html" class="text-gray-300 hover:text-secondary transition text-sm">About Us</a></li>
                     <li><a href="accommodation.html" class="text-gray-300 hover:text-secondary transition text-sm">Rooms & Suites</a></li>
                     <li><a href="location.html" class="text-gray-300 hover:text-secondary transition text-sm">Location</a></li>
-                    <li><a href="gallery.html" class="text-gray-300 hover:text-secondary transition text-sm">Gallery</a></li>
+                    <li><a href="../Gallery/gallery.html" class="text-gray-300 hover:text-secondary transition text-sm">Gallery</a></li>
                     <li><a href="../Booking/booking.html" class="text-gray-300 hover:text-secondary transition text-sm">Book Now</a></li>
                 </ul>
             </div>
