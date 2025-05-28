@@ -259,7 +259,8 @@ nav ul li a.active::after {
 /* Page Banner */
 .page-banner {
     position: relative;
-    min-height: 60vh;
+    min-height: 80vh;
+    margin-top: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -823,6 +824,7 @@ footer {
     background-attachment: fixed;
     position: relative;
     overflow: hidden;
+    
 }
 
 .restaurant-page .dining-experience::before {
@@ -837,9 +839,9 @@ footer {
 }
 
 .restaurant-page .dining-experience .container {
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: 0 auto;
-    padding: 0 20px;
+    /* padding: 0 20px; */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -857,7 +859,7 @@ footer {
     flex: 1;
     min-width: 300px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     margin: 0;
     padding: 0;
@@ -866,7 +868,7 @@ footer {
 .restaurant-page .gallery-item {
     position: relative;
     overflow: hidden;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     border: 1px solid #e5e5e5;
     background: #f9f9f9;
 }
@@ -971,7 +973,8 @@ footer {
     } */
 
     .page-banner {
-        min-height: 60vh;
+        min-height: 80vh;
+        margin-top: 110px;
     }
 
     .banner-content h1 {
