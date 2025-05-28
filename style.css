@@ -1796,8 +1796,16 @@ footer {
 
 /* Location Section */
 .location {
+    margin-top: 120px;
     padding: 100px 5%;
     background-color: var(--white);
+    background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/20220626_113840-2048x946.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    background-position: center;
+    background-attachment: fixed;
+    backdrop-filter: blur(3px);
 }
 
 .location-content {

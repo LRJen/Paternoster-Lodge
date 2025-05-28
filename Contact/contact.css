@@ -26,12 +26,13 @@
  
         /* Contact Section */
         .contact-section {
-            padding: 10rem ;
+            margin-top: 120px;
+            
             display: grid;
             justify-content: center;
             align-content: center;
             text-align: center;
-           
+           border: 10px solid red;
             background-color: rgba(27, 60, 89, 0.0);
             width: 100%;
              /* Ensure no overlap with header */
