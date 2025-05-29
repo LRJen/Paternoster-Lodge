@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmation | Paternoster Lodge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="../Booking/bookingsStyles.css">
+  <link rel="stylesheet" href="../Headerfooter/headerfooter.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1b3c59',
+            secondary: '#d4af37',
+            light: '#f5f5f5',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <!-- New Contact and Stars Section -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-2 border-b border-gray-200">
+      <div class="flex justify-between items-center">
+        <span class="text-gray-600 text-sm">+27 22 880 0970</span>
+        <div class="flex space-x-1">
+          <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/08/STARS_HEADER.png" alt="" srcset="">
+        </div>
+      </div>
+    </div>
+    <!-- Existing Header Content -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between py-4">
+      <a href="../index.html" class="logo flex items-center">
+        <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/08/PL_LOGO.png" alt="Paternoster Lodge Logo" class="h-16 sm:h-20 lg:h-24 w-auto">
+      </a>
+      <nav class="hidden lg:flex items-center space-x-6">
+        <ul class="flex space-x-4">
+          <li><a href="../index.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Home</a></li>
+          <li><a href="../about.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">About</a></li>
+          <li><a href="../Accomodation/accomodation.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Accommodation</a></li>
+          <li><a href="../location.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Location</a></li>
+          <li><a href="../Gallery/gallery.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Gallery</a></li>
+          <li><a href="../restaurant.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Restaurant</a></li>
+          <li><a href="../Contact/contact.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Contact</a></li>
+          <li><a href="../Booking/booking.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base log">Book Now</a></li>
+          <li><a href="../register-login.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base log">Login</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger lg:hidden flex flex-col justify-center items-center space-y-1.5 p-2" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+      </button>
+    </div>
+    <nav class="mobile-nav lg:hidden w-3/4 max-w-sm bg-primary/90 text-white flex-col z-40 transition-all duration-500 hidden">
+      <ul class="flex flex-col items-start space-y-4 py-6 px-6">
+        <li><a href="../index.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Home</a></li>
+        <li><a href="../about.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>About</a></li>
+        <li><a href="../Accomodation/accomodation.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Accommodation</a></li>
+        <li><a href="../location.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Location</a></li>
+        <li><a href="../Gallery/gallery.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Gallery</a></li>
+        <li><a href="../restaurant.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Restaurant</a></li>
+        <li><a href="../Contact/contact.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Contact</a></li>
+        <li><a href="../Booking/booking.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Book Now</a></li>
+        <li><a href="../register-login.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Banner -->
+  <section class="page-banner" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2023/01/IMG-20230118-WA0004.jpg');
+  background-repeat: no-repeat; background-position: center; background-size: cover; background-attachment: fixed;" loading="lazy">
+    <div class="banner-content" style="background-color: rgb(240, 248, 255, .091);" data-aos="fade-up">
+      <h1 style="color: white; font-family: Roboto; font-weight: 100;">Booking Confirmation</h1>
+      <p>Review your booking details below</p>
+    </div>
+  </section>
+
+  <!-- Confirmation Section -->
+  <section class="booking-form">
+    <div class="form-wrapper" data-aos="fade-up">
+      <h2>Booking Details</h2>
+      <div id="confirmation-details" class="space-y-4"></div>
+      <div id="confirmation-message" class="form-message"></div>
+      <button class="book-now-btn" id="confirm-booking-btn" aria-label="Confirm Booking" disabled>Confirm Booking</button>
+    </div>
+  </section>
+
+  <!-- Rates Modal -->
+  <div class="rates-modal hidden" id="rates-modal">
+    <div class="rates-modal-content" data-aos="zoom-in">
+      <span class="close-rates-modal" id="close-rates-modal" aria-label="Close Modal">×</span>
+      <h2>Booking Summary</h2>
+      <div id="modal-confirmation-details" class="space-y-4"></div>
+      <button class="book-now-btn" id="final-confirm-btn" aria-label="Finalize Booking">Finalize Booking</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white pt-12 pb-6">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="footer-column">
+        <h3 class="text-xl font-semibold text-secondary mb-4 relative">Paternoster Lodge</h3>
+        <p class="text-gray-300 text-sm">A luxury seaside accommodation offering unforgettable experiences in a breathtaking coastal setting.</p>
+        <div class="flex space-x-4 mt-4">
+          <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-tripadvisor"></i></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3 class="text-xl font-semibold text-secondary mb-4 relative">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="../index.html" class="text-gray-300 hover:text-secondary transition text-sm">Home</a></li>
+          <li><a href="../about.html" class="text-gray-300 hover:text-secondary transition text-sm">About Us</a></li>
+          <li><a href="../Accomodation/accomodation.html" class="text-gray-300 hover:text-secondary transition text-sm">Rooms & Suites</a></li>
+          <li><a href="../location.html" class="text-gray-300 hover:text-secondary transition text-sm">Location</a></li>
+          <li><a href="../Gallery/gallery.html" class="text-gray-300 hover:text-secondary transition text-sm">Gallery</a></li>
+          <li><a href="../Booking/booking.html" class="text-gray-300 hover:text-secondary transition text-sm">Book Now</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3 class="text-xl font-semibold text-secondary mb-4 relative">Contact Us</h3>
+        <ul class="space-y-2">
+          <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-map-marker-alt mr-2 text-secondary"></i> 64 St Augustine Rd, Kliprug, Paternoster, 7381</li>
+          <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-phone mr-2 text-secondary"></i> 2722 880 0970</li>
+          <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-envelope mr-2 text-secondary"></i> info@paternosterlodge.co.za</li>
+          <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-clock mr-2 text-secondary"></i> Reception: 07:00 - 22:00</li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3 class="text-xl font-semibold text-secondary mb-4 relative">Newsletter</h3>
+        <p class="text-gray-300 text-sm mb-4">Subscribe to our newsletter for special offers and updates.</p>
+        <div class="flex space-x-2">
+          <input type="email" placeholder="Your Email Address" class="flex-1 p-2 bg-white/10 border border-secondary/50 rounded text-white placeholder-gray-400 text-sm focus:outline-none focus:border-secondary">
+          <button type="button" class="bg-secondary text-primary px-4 py-2 rounded hover:bg-white transition text-sm">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10 mt-8 pt-4 text-center">
+      <p class="text-gray-300 text-sm">© 2025 Paternoster Lodge. All Rights Reserved. | Designed by Syntax Syndicate</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="../Headerfooter/headerfooter.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Initialize AOS
+      AOS.init({ duration: 1000, once: true });
+
+      // Initialize Supabase Client
+      const supabaseClient = supabase.createClient(
+        'https://fdpcmuwwbalwofxydsds.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZkcGNtdXd3YmFsd29meHlkc2RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcwNTA3OTUsImV4cCI6MjA2MjYyNjc5NX0.FmvbrFqPepMcxJbY6eGLeS7oMIfDzXnMPAjdF-8MWGY'
+      );
+
+      // Get URL Parameters
+      const params = new URLSearchParams(window.location.search);
+      const bookingId = params.get('bookingId');
+      const roomType = params.get('roomType');
+      const checkIn = params.get('checkIn');
+      const checkOut = params.get('checkOut');
+      const nights = params.get('nights');
+      const adults = params.get('adults');
+      const children = params.get('children');
+      const quantity = params.get('quantity');
+      const price = params.get('price');
+
+      const confirmationDetails = document.getElementById('confirmation-details');
+      const confirmationMessage = document.getElementById('confirmation-message');
+      const confirmBookingBtn = document.getElementById('confirm-booking-btn');
+
+      // Check Authentication
+      const { data: { user } } = await supabaseClient.auth.getUser();
+      if (!user) {
+        confirmationMessage.textContent = 'Please log in or register to confirm your booking.';
+        confirmationMessage.classList.add('error');
+        // Preserve booking parameters for redirect
+        const redirectParams = new URLSearchParams({
+          bookingId: bookingId || '',
+          roomType: roomType || '',
+          checkIn: checkIn || '',
+          checkOut: checkOut || '',
+          nights: nights || '',
+          adults: adults || '',
+          children: children || '',
+          quantity: quantity || '',
+          price: price || ''
+        }).toString();
+        setTimeout(() => {
+          window.location.href = '../register-login.html?' + redirectParams;
+        }, 2000);
+        return;
+      } else {
+        confirmBookingBtn.disabled = false; // Enable button for authenticated users
+      }
+
+      // Format Date for Display
+      const formatDate = (dateStr) => {
+        const date = new Date(dateStr);
+        return date.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+      };
+
+      // Display Booking Details
+      async function displayBookingDetails() {
+        if (bookingId) {
+          // Fetch from Supabase
+          const { data, error } = await supabaseClient
+            .from('bookings')
+            .select(`
+              *,
+              rooms:room_id (room_type)
+            `)
+            .eq('id', bookingId)
+            .eq('user_id', user.id) // Ensure booking belongs to user
+            .single();
+
+          if (error || !data) {
+            confirmationMessage.textContent = 'Error loading booking details not found. Please try again.';
+            confirmationMessage.classList.add('error');
+            console.error('Error fetching details:', error);
+            return;
+          }
+
+          confirmationDetails.innerHTML = `
+            <p><strong>Room Type:</strong> ${data.rooms.room_type}</p>
+            <p><strong>Check-In:</strong> ${formatDate(data.check_in)}</p>
+            <p><strong>Check-Out:</strong> ${formatDate(data.check_out)}</p>
+            <p><strong>Nights:</strong> ${data.nights}${data.is_half_day ? ' (Half-Day)' : ''}</p>
+            <p><strong>Guests:</strong> ${data.adults} Adult${data.adults > 1 ? 's' : ''}, ${data.children} Child${data.children !== 1 ? 'ren' : ''}</p>
+            <p><strong>Rooms:</strong> ${data.quantity}</p>
+            <p><strong>Total Price:</strong> ZAR ${data.total_price.toFixed(2)}</p>
+            ${data.is_half_day ? '<p><strong>Note:</strong> Half-day bookings are for same-day use.</p>' : ''}
+          `;
+        } else if (roomType && checkIn && checkOut && nights && adults && children && quantity && price) {
+          // Fallback to URL parameters
+          confirmationDetails.innerHTML = `
+            <p><strong>Room Type:</strong> ${roomType}</p>
+            <p><strong>Check-In:</strong> ${formatDate(checkIn)}</p>
+            <p><strong>Check-Out:</strong> ${formatDate(checkOut)}</p>
+            <p><strong>Nights:</strong> ${nights}${nights === '0.5' ? ' (Half-Day)' : ''}</p>
+            <p><strong>Guests:</strong> ${adults} Adult${adults > 1 ? 's' : ''}, ${children} Child${children !== '1' ? 'ren' : ''}</p>
+            <p><strong>Rooms:</strong> ${quantity}</p>
+            <p><strong>Total Price:</strong> ZAR ${parseFloat(price).toFixed(2)}</p>
+          `;
+        } else {
+          confirmationMessage.textContent = 'Invalid booking details. Please return to the booking page.';
+          confirmationMessage.classList.add('error');
+          confirmBookingBtn.disabled = true;
+        }
+      }
+
+      // Initialize Booking Details
+      await displayBookingDetails();
+
+      // Confirm Booking Button
+      confirmBookingBtn.addEventListener('click', () => {
+        const modal = document.getElementById('rates-modal');
+        const modalDetails = document.getElementById('modal-confirmation-details');
+        modalDetails.innerHTML = confirmationDetails.innerHTML;
+        modal.classList.remove('hidden');
+      });
+
+      // Close Modal
+      document.getElementById('close-rates-modal').addEventListener('click', () => {
+        document.getElementById('rates-modal').classList.add('hidden');
+      });
+
+      // Finalize Booking
+      document.getElementById('final-confirm-btn').addEventListener('click', async () => {
+        // Re-check authentication
+        const { data: { user } } = await supabaseClient.auth.getUser();
+        if (!user) {
+          confirmationMessage.textContent = 'Session expired. Please log in again.';
+          confirmationMessage.classList.add('error');
+          window.location.href = '../register-login.html?' + params.toString();
+          return;
+        }
+
+        document.getElementById('rates-modal').classList.add('hidden');
+        confirmationMessage.textContent = 'Booking finalized successfully! You will receive a confirmation email shortly.';
+        confirmationMessage.classList.add('success');
+        confirmationMessage.classList.remove('error');
+        confirmBookingBtn.disabled = true;
+
+        // Update booking status in Supabase
+        if (bookingId) {
+          const { error } = await supabaseClient
+            .from('bookings')
+            .update({ updated_at: new Date().toISOString() })
+            .eq('id', bookingId)
+            .eq('user_id', user.id);
+
+          if (error) {
+            console.error('Error updating booking:', error);
+            confirmationMessage.textContent = 'Error finalizing booking. Please try again.';
+            confirmationMessage.classList.add('error');
+            confirmationMessage.classList.remove('success');
+            confirmBookingBtn.disabled = false;
+          }
+        }
+
+        // TODO: Add payment integration (e.g., Stripe) 
+      });
+    });
+  </script>
+</body>
+</html>
