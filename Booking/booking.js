@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZkcGNtdXd3YmFsd29meHlkc2RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcwNTA3OTUsImV4cCI6MjA2MjYyNjc5NX0.FmvbrFqPepMcxJbY6eGLeS7oMIfDzXnMPAjdF-8MWGY'
   );
 
-  // Current date and time (SAST, May 29, 2025, 08:08 AM)
-  const currentDate = new Date('2025-05-29T08:08:00+02:00');
+  // Current date and time (SAST, May 29, 2025, 10:23 AM)
+  const currentDate = new Date('2025-05-29T10:23:00+02:00');
 
   // Booking Form Elements
   const checkInInput = document.getElementById('check-in');
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <input type="number" class="adults-input" data-room="${roomType}" value="${room.maxGuests === 4 ? 4 : 2}" min="1" readonly>
             <button type="button" class="increment-adults" data-room="${roomType}">+</button>
             <span>Children (0-5)</span>
-            <button type="button" class="decrement-children" data-room="${roomType}">−</button>
+            <button type="button" class="decrement-adult" data-room="${roomType}">−</button>
             <input type="number" class="children-input" data-room="${roomType}" value="0" min="0" readonly>
             <button type="button" class="increment-children" data-room="${roomType}">+</button>
           </div>
@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    document.querySelectorAll('.decrement-children').forEach(btn => {
+    document.querySelectorAll('.decrement-adults').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const roomType = e.target.dataset.room;
         const input = document.querySelector(`.children-input[data-room="${roomType}"]`);
@@ -371,6 +371,28 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
+        // Check authentication
+        const { data: { user }, error: authError } = await supabaseClient.auth.getUser();
+        if (authError || !user) {
+          formMessage.textContent = 'Please log in or register to create a booking.';
+          formMessage.classList.add('error');
+          const params = new URLSearchParams({
+            roomType,
+            checkIn: checkInInput.value,
+            checkOut: checkOutInput.value,
+            nights: nightsInput.value,
+            adults: adultsInput.value,
+            children: childrenInput.value,
+            quantity: quantitySelect.value,
+            price
+          }).toString();
+          setTimeout(() => {
+            window.location.href = '../register-login.html?' + params;
+          }, 2000);
+          button.disabled = false;
+          return;
+        }
+
         // Check availability before booking
         const isAvailable = await checkAvailability(roomType, checkInDate, checkOutDate, halfDayEvent);
         if (!isAvailable) {
@@ -392,7 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
             quantity: parseInt(quantitySelect.value),
             total_price: price,
             is_half_day: halfDayEvent,
-            user_id: (await supabaseClient.auth.getUser()).data.user?.id || null
+            user_id: user.id
           })
           .select()
           .single();
