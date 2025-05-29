@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Paternoster Lodge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <link rel="stylesheet" href="../UserDashboard/dashboard.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=sum" />
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: '#1b3c59',
+                secondary: '#d4af37',
+                light: '#f5f5f5',
+              },
+            },
+          },
+        };
+    </script>
+</head>
+<body>
+    <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-2 border-b border-gray-200">
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600 text-sm">+27 22 880 0970</span>
+                <div class="flex space-x-1">
+                    <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/08/STARS_HEADER.png" alt="Stars">
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between py-4">
+            <a href="../index.html" class="logo flex items-center">
+                <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/08/PL_LOGO.png" alt="Paternoster Lodge Logo" class="h-16 sm:h-20 lg:h-24 w-auto">
+            </a>
+            <nav class="hidden lg:flex items-center space-x-6">
+                <ul class="flex space-x-4">
+                    <li><a href="../index.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Home</a></li>
+                    <li><a href="../about.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">About</a></li>
+                    <li><a href="../Accomodation/accomodation.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Accommodation</a></li>
+                    <li><a href="../location.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Location</a></li>
+                    <li><a href="../Gallery/gallery.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Gallery</a></li>
+                    <li><a href="../restaurant.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Restaurant</a></li>
+                    <li><a href="../Contact/contact.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Contact</a></li>
+                    <li><a href="../Booking/booking.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base log">Book Now</a></li>
+                    <li><a href="./dashboard.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base log">Dashboard</a></li>
+                    <li><a href="#" id="logout-btn" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base log">Logout</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger lg:hidden flex flex-col justify-center items-center space-y-1.5 p-2" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+                <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+                <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+            </button>
+        </div>
+        <nav class="mobile-nav lg:hidden w-3/4 max-w-sm bg-primary/90 text-white flex-col z-40 transition-all duration-500 hidden">
+            <ul class="flex flex-col items-start space-y-4 py-6 px-6">
+                <li><a href="../index.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Home</a></li>
+                <li><a href="../about.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>About</a></li>
+                <li><a href="../Accomodation/accomodation.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Accommodation</a></li>
+                <li><a href="../location.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Location</a></li>
+                <li><a href="../Gallery/gallery.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Gallery</a></li>
+                <li><a href="../restaurant.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Restaurant</a></li>
+                <li><a href="../Contact/contact.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Contact</a></li>
+                <li><a href="../Booking/booking.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Book Now</a></li>
+                <li><a href="./dashboard.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Dashboard</a></li>
+                <li><a href="#" id="mobile-logout-btn" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-banner" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/20220628_142200-2048x.jpg');">
+        <div class="banner-content">
+            <h1 style="color: white; font-family: 'Playfair Display', serif;">Your Dashboard</h1>
+            <p>Manage your bookings with Paternoster Lodge</p>
+        </div>
+    </section>
+
+    <section class="dashboard-section" data-aos="fade-up">
+        <div class="user-details">
+            <h3>Your Profile</h3>
+            <p id="user-name"><strong>Name:</strong> Loading...</p>
+            <p id="user-email"><strong>Email:</strong> Loading...</p>
+            <p id="user-phone"><strong>Phone:</strong> Loading...</p>
+        </div>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #003580;">Your Bookings</h2>
+        <div class="table-wrapper">
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Room Type</th>
+                        <th>Check-In</th>
+                        <th>Check-Out</th>
+                        <th>Guests</th>
+                        <th>Total Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="bookings-table-body">
+                    <!-- Bookings will be populated by JavaScript -->
+                </tbody>
+            </table>
+            <div id="no-bookings" class="no-bookings hidden">No bookings found.</div>
+            <div id="error-message" class="error hidden"></div>
+        </div>
+    </section>
+
+    <!-- View Modal -->
+    <div id="view-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="window.closeModal('view-modal')">×</span>
+            <h3>Booking Details</h3>
+            <div id="view-modal-content"></div>
+            <div class="modal-buttons">
+                <button class="close-btn" onclick="window.closeModal('view-modal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel Modal -->
+    <div id="cancel-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="window.closeModal('cancel-modal')">×</span>
+            <h3>Cancel Booking</h3>
+            <p id="cancel-modal-message"></p>
+            <p id="cancel-modal-fee"></p>
+            <textarea id="cancel-reason" placeholder="Reason for cancellation (optional)"></textarea>
+            <div id="cancel-modal-room-details"></div>
+            <div class="modal-buttons">
+                <button class="cancel-confirm-btn" id="cancel-confirm-btn">Confirm Cancellation</button>
+                <button class="close-btn" onclick="window.closeModal('cancel-modal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-primary text-white pt-12 pb-6">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Paternoster Lodge</h3>
+                <p class="text-gray-300 text-sm">A luxury seaside accommodation offering an unforgettable experience in a breathtaking coastal setting.</p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-secondary"><i class="fab fa-instagram transition"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="../index.html" class="text-gray-300 hover:text-secondary transition text-sm">Home</a></li>
+                    <li><a href="../about.html" class="text-gray-300 hover:text-secondary transition text-sm">About Us</a></li>
+                    <li><a href="../Accomodation/accomodation.html" class="text-gray-300 hover:text-secondary transition text-sm">Rooms & Suites</a></li>
+                    <li><a href="../location.html" class="text-gray-300 hover:text-secondary transition text-sm">Location</a></li>
+                    <li><a href="../Gallery/gallery.html" class="text-gray-300 hover:text-secondary transition text-sm">Gallery</a></li>
+                    <li><a href="../Booking/booking.html" class="text-gray-300 hover:text-secondary transition text-sm">Book Now</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Contact Us</h3>
+                <ul class="space-y-2">
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-map-marker-alt mr-2 text-secondary"></i> 64 St Augustine Rd, Kliprug, Paternoster, 7381</li>
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-phone mr-2 text-secondary"></i> 2722 880 0970</li>
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-envelope mr-2 text-secondary"></i> info@paternosterlodge.co.za</li>
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-clock mr-2 text-secondary"></i> Reception: 07:00 - 22:00</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Newsletter</h3>
+                <p class="text-gray-300 text-sm mb-4">Subscribe to our newsletter for special offers and updates.</p>
+                <div class="flex space-x-2">
+                    <input type="email" placeholder="Your Email Address" class="flex-1 p-2 bg-white/10 border border-secondary/50 rounded text-white placeholder-gray-400 text-sm focus:outline-none focus:border-secondary">
+                    <button type="button" class="bg-secondary text-primary px-4 py-2 rounded hover:bg-white transition text-sm">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-white/10 mt-8 pt-4 text-center">
+            <p class="text-gray-300 text-sm">© 2025 Paternoster Lodge. All Rights Reserved. | Designed by Syntax Syndicate</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init();
+
+            // Navigation toggle
+            const hamburger = document.querySelector('.hamburger');
+            const mobileNav = document.querySelector('.mobile-nav');
+            if (hamburger && mobileNav) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    mobileNav.classList.toggle('active');
+                    mobileNav.classList.toggle('hidden');
+                    const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+                    hamburger.setAttribute('aria-expanded', !isExpanded);
+                });
+                document.querySelectorAll('.mobile-nav a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        mobileNav.classList.remove('active');
+                        mobileNav.classList.add('hidden');
+                        hamburger.setAttribute('aria-expanded', 'false');
+                    });
+                });
+            }
+
+            // Dummy user data
+            const user = {
+                first_name: 'John',
+                last_name: 'Doe',
+                email: 'john.doe@example.com',
+                phone: '+27123456789'
+            };
+
+            // Update user details
+            const nameElement = document.getElementById('user-name');
+            const emailElement = document.getElementById('user-email');
+            const phoneElement = document.getElementById('user-phone');
+            if (nameElement) nameElement.textContent = `Name: ${user.first_name} ${user.last_name}`;
+            if (emailElement) emailElement.textContent = `Email: ${user.email}`;
+            if (phoneElement) phoneElement.textContent = `Phone: ${user.phone}`;
+
+            // Room types data with images and specs
+            const roomTypes = {
+                'Deluxe King Room': {
+                    image: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=100',
+                    specs: ['1 double bed', 'AC', 'TV', '18 m²', 'WiFi', 'Bathroom', 'Kitchenette']
+                },
+                'Honeymoon Suite': {
+                    image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=100',
+                    specs: ['1 king bed', 'AC', 'TV', '25 m²', 'WiFi', 'Ensuite Bathroom', 'Balcony']
+                },
+                'Family Room': {
+                    image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=100',
+                    specs: ['2 double beds', 'AC', 'TV', '30 m²', 'WiFi', 'Bathroom', 'Mini Fridge']
+                },
+                'Standard Double Room': {
+                    image: 'https://images.unsplash.com/photo-1445991842772-097fea258e7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=100',
+                    specs: ['1 double bed', 'AC', 'TV', '15 m²', 'WiFi', 'Bathroom']
+                }
+            };
+
+            // Dummy bookings data
+            let bookings = [
+                {
+                    id: '123e4567-e89b-12d3-a456-426614174000',
+                    room_type: 'Deluxe King Room',
+                    check_in: '2025-05-31',
+                    check_out: '2025-06-01',
+                    quantity: 1,
+                    adults: 2,
+                    children: 0,
+                    total_price: 1200.00,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    email: user.email,
+                    phone: user.phone,
+                    status: 'confirmed',
+                    payment_date: '2025-05-24'
+                },
+                {
+                    id: '987fcdeb-1234-5678-9012-345678901234',
+                    room_type: 'Honeymoon Suite',
+                    check_in: '2025-06-06',
+                    check_out: '2025-06-08',
+                    quantity: 1,
+                    adults: 2,
+                    children: 1,
+                    total_price: 2500.00,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    email: user.email,
+                    phone: user.phone,
+                    status: 'confirmed',
+                    payment_date: '2025-05-30'
+                },
+                {
+                    id: '456789ab-cdef-1234-5678-901234567890',
+                    room_type: 'Family Room',
+                    check_in: '2025-06-15',
+                    check_out: '2025-06-17',
+                    quantity: 2,
+                    adults: 4,
+                    children: 2,
+                    total_price: 3600.00,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    email: user.email,
+                    phone: user.phone,
+                    status: 'canceled',
+                    payment_date: '2025-06-08'
+                },
+                {
+                    id: '789abcde-f012-3456-7890-123456789012',
+                    room_type: 'Standard Double Room',
+                    check_in: '2025-05-29',
+                    check_out: '2025-05-30',
+                    quantity: 1,
+                    adults: 1,
+                    children: 0,
+                    total_price: 800.00,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    email: user.email,
+                    phone: user.phone,
+                    status: 'confirmed',
+                    payment_date: '2025-05-22'
+                }
+            ];
+
+            const tableBody = document.getElementById('bookings-table-body');
+            const noBookings = document.getElementById('no-bookings');
+
+            const formatDate = (dateStr) => {
+                const date = new Date(dateStr);
+                return date.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
+            };
+
+            // Calculate cancellation fee
+            const calculateCancellationFee = (checkInDate, totalPrice) => {
+                const currentDate = new Date('2025-05-29');
+                const checkIn = new Date(checkInDate);
+                const diffTime = checkIn - currentDate;
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+                if (diffDays < 0 || diffDays === 0) {
+                    return { percentage: 100, amount: totalPrice };
+                } else if (diffDays === 1) {
+                    return { percentage: 75, amount: totalPrice * 0.75 };
+                } else if (diffDays === 2) {
+                    return { percentage: 50, amount: totalPrice * 0.50 };
+                } else {
+                    return { percentage: 0, amount: 0 };
+                }
+            };
+
+            const renderTable = () => {
+                if (!tableBody) return;
+                tableBody.innerHTML = '';
+                if (bookings.length === 0) {
+                    if (noBookings) noBookings.classList.remove('hidden');
+                    return;
+                }
+                if (noBookings) noBookings.classList.add('hidden');
+
+                bookings.forEach(booking => {
+                    const row = document.createElement('tr');
+                    const guests = `${booking.quantity} room${booking.quantity > 1 ? 's' : ''}, ${booking.adults} adult${booking.adults > 1 ? 's' : ''}${booking.children ? `, ${booking.children} child${booking.children > 1 ? 'ren' : ''}` : ''}`;
+                    const canCancel = booking.status === 'confirmed';
+
+                    row.innerHTML = `
+                        <td>${booking.id}</td>
+                        <td>${booking.room_type}</td>
+                        <td>${formatDate(booking.check_in)}</td>
+                        <td>${formatDate(booking.check_out)}</td>
+                        <td>${guests}</td>
+                        <td>ZAR ${booking.total_price.toFixed(2)}</td>
+                        <td class="${booking.status === 'confirmed' ? 'success' : 'error'}">${booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}</td>
+                        <td>
+                            <button class="action-btn" onclick="window.openViewModal('${booking.id}')">View</button>
+                            ${canCancel ? `<button class="action-btn cancel-btn" onclick="window.openCancelModal('${booking.id}')">Cancel</button>` : ''}
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            };
+
+            // Modal functions
+            window.openViewModal = (bookingId) => {
+                const booking = bookings.find(b => b.id === bookingId);
+                if (booking) {
+                    const guests = `${booking.quantity} room${booking.quantity > 1 ? 's' : ''}, ${booking.adults} adult${booking.adults > 1 ? 's' : ''}${booking.children ? `, ${booking.children} child${booking.children > 1 ? 'ren' : ''}` : ''}`;
+                    const room = roomTypes[booking.room_type] || { image: '', specs: [] };
+                    const modalContent = document.getElementById('view-modal-content');
+                    if (modalContent) {
+                        modalContent.innerHTML = `
+                            ${room.image ? `<img src="${room.image}" alt="${booking.room_type}" class="room-image">` : ''}
+                            ${room.specs.length ? `
+                                <ul class="room-specs">
+                                    ${room.specs.map(spec => `<li><i class="fas fa-check"></i>${spec}</li>`).join('')}
+                                </ul>
+                            ` : ''}
+                            <p><strong>Booking ID:</strong> ${booking.id}</p>
+                            <p><strong>Guest:</strong> ${booking.first_name} ${booking.last_name}</p>
+                            <p><strong>Email:</strong> ${booking.email}</p>
+                            <p><strong>Phone:</strong> ${booking.phone}</p>
+                            <p><strong>Room Type:</strong> ${booking.room_type}</p>
+                            <p><strong>Check-in:</strong> ${formatDate(booking.check_in)}</p>
+                            <p><strong>Check-out:</strong> ${formatDate(booking.check_out)}</p>
+                            <p><strong>Guests:</strong> ${guests}</p>
+                            <p><strong>Total Price:</strong> ZAR ${booking.total_price.toFixed(2)}</p>
+                            <p><strong>Status:</strong> ${booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}</p>
+                            <p><strong>Payment Date:</strong> ${formatDate(booking.payment_date)}</p>
+                        `;
+                    }
+                    const modal = document.getElementById('view-modal');
+                    if (modal) modal.style.display = 'flex';
+                }
+            };
+
+            window.openCancelModal = (bookingId) => {
+                const booking = bookings.find(b => b.id === bookingId);
+                if (booking) {
+                    const { percentage, amount } = calculateCancellationFee(booking.check_in, booking.total_price);
+                    const room = roomTypes[booking.room_type] || { image: '', specs: [] };
+                    const messageElement = document.getElementById('cancel-modal-message');
+                    const feeElement = document.getElementById('cancel-modal-fee');
+                    const roomDetailsElement = document.getElementById('cancel-modal-room-details');
+                    if (messageElement) {
+                        messageElement.textContent = `Are you sure you want to cancel your booking for ${booking.room_type} on ${formatDate(booking.check_in)}?`;
+                    }
+                    if (feeElement) {
+                        feeElement.textContent = `Cancellation Fee: ZAR ${amount.toFixed(2)} (${percentage}% of ZAR ${booking.total_price.toFixed(2)})`;
+                    }
+                    if (roomDetailsElement) {
+                        roomDetailsElement.innerHTML = `
+                            ${room.image ? `<img src="${room.image}" alt="${booking.room_type}" class="room-image">` : ''}
+                            ${room.specs.length ? `
+                                <ul class="room-specs">
+                                    ${room.specs.map(spec => `<li><i class="fas fa-check"></i>${spec}</li>`).join('')}
+                                </ul>
+                            ` : ''}
+                        `;
+                    }
+                    const reasonElement = document.getElementById('cancel-reason');
+                    if (reasonElement) reasonElement.value = '';
+                    const confirmBtn = document.getElementById('cancel-confirm-btn');
+                    if (confirmBtn) {
+                        confirmBtn.onclick = () => {
+                            const reason = reasonElement ? reasonElement.value : '';
+                            alert(`Booking ${bookingId} canceled successfully. Reason: ${reason || 'None provided'}. Fee: ZAR ${amount.toFixed(2)}`);
+                            const bookingIndex = bookings.findIndex(b => b.id === bookingId);
+                            if (bookingIndex !== -1) {
+                                bookings[bookingIndex].status = 'canceled';
+                            }
+                            window.closeModal('cancel-modal');
+                            renderTable();
+                        };
+                    }
+                    const modal = document.getElementById('cancel-modal');
+                    if (modal) modal.style.display = 'flex';
+                }
+            };
+
+            window.closeModal = (modalId) => {
+                const modal = document.getElementById(modalId);
+                if (modal) modal.style.display = 'none';
+            };
+
+            // Close modal on outside click
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            });
+
+            // Logout simulation
+            const logoutBtn = document.getElementById('logout-btn');
+            const mobileLogoutBtn = document.getElementById('mobile-logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', () => {
+                    alert('Logged out successfully (simulated).');
+                    window.location.href = '../register-login.html';
+                });
+            }
+            if (mobileLogoutBtn) {
+                mobileLogoutBtn.addEventListener('click', () => {
+                    alert('Logged out successfully (simulated).');
+                    window.location.href = '../register-login.html';
+                });
+            }
+
+            // Initial table render
+            renderTable();
+        });
+    </script>
+</body>
+</html>

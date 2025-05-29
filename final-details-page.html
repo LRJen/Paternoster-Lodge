@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Paternoster Lodge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: '#1b3c59',
+                secondary: '#d4af37',
+                light: '#f5f5f5',
+              },
+            },
+          },
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            color: #333;
+        }
+        .page-banner {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            margin-top: 60px;
+        }
+        .banner-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin: 0;
+        }
+        .banner-content p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.2rem;
+        }
+        .dashboard-section {
+            max-width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .user-details {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .user-details h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #600;
+            margin: 0 0 10px;
+        }
+        .user-details p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+        .dashboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Open Sans', sans-serif;
+            margin-bottom: 1rem;
+        }
+        .dashboard-table th,
+        .dashboard-table td {
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 0.85rem;
+            min-width: 100px;
+        }
+        .dashboard-table th {
+            background: #003580;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        .action-btn {
+            background: #0071c2;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+            margin: 5px;
+        }
+        .action-btn:hover {
+            background: #005ea6;
+        }
+        .cancel-btn {
+            background: #ff4d4d;
+        }
+        .cancel-btn:hover {
+            background: #cc0000;
+        }
+        .error {
+            color: red;
+            text-align: center;
+            margin: 10px 0;
+        }
+        .no-bookings {
+            text-align: center;
+            font-size: 1rem;
+            color: #666;
+            margin: 20px 0;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .modal-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #003580;
+            margin: 0 0 15px;
+        }
+        .modal-content p {
+            font-size: 0.9rem;
+            margin: 5px 0;
+        }
+        .modal-content textarea {
+            width: 100%;
+            height: 80px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 8px;
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+        .modal-content .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .modal-content .modal-buttons button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .modal-content .modal-buttons .confirm-btn {
+            background: #0071c2;
+            color: white;
+        }
+        .modal-content .modal-buttons .confirm-btn:hover {
+            background: #005ea6;
+        }
+        .modal-content .modal-buttons .close-btn {
+            background: #e0e0e0;
+            color: #333;
+        }
+        .modal-content .modal-buttons .close-btn:hover {
+            background: #d0d0d0;
+        }
+        .modal-content .modal-buttons .cancel-confirm-btn {
+            background: #ff4d4d;
+            color: white;
+        }
+        .modal-content .modal-buttons .cancel-confirm-btn:hover {
+            background: #cc0000;
+        }
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #333;
+        }
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+        }
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .hamburger.active .line:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger.active .line:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active .line:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            height: 100%;
+            background: rgba(27, 60, 89, 0.9);
+            transition: right 0.3s ease-in-out;
+        }
+        .mobile-nav.active {
+            right: 0;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: #d4af37;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .dashboard-table th,
+            .dashboard-table td {
+                font-size: 0.75rem;
+                padding: 8px;
+                min-width: 80px;
+            }
+            .action-btn {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+            .user-details p {
+                font-size: 0.8rem;
+            }
+            .modal-content {
+                width: 95%;
+                padding: 15px;
+            }
+            .modal-content h3 {
+                font-size: 1.3rem;
+            }
+            .modal-content p,
+            .modal-content textarea {
+                font-size: 0.8rem;
+            }
+            .modal-content .modal-buttons button {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-2 border-b border-gray-200">
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600 text-sm">+27 22 880 0970</span>
+                <div class="flex space-x-1">
+                    <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/08/STARS_HEADER.png" alt="Stars">
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between py-4">
+            <a href="../index.html" class="logo flex items-center">
+                <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/08/PL_LOGO.png" alt="Paternoster Lodge Logo" class="h-16 sm:h-20 lg:h-24 w-auto">
+            </a>
+            <nav class="hidden lg:flex items-center space-x-6">
+                <ul class="flex space-x-4">
+                    <li><a href="../index.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Home</a></li>
+                    <li><a href="../about.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">About</a></li>
+                    <li><a href="../Accomodation/accomodation.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Accommodation</a></li>
+                    <li><a href="../location.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Location</a></li>
+                    <li><a href="../Gallery/gallery.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Gallery</a></li>
+                    <li><a href="../restaurant.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Restaurant</a></li>
+                    <li><a href="../Contact/contact.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Contact</a></li>
+                    <li><a href="../Booking/booking.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base log">Book Now</a></li>
+                    <li><a href="./dashboard.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base log">Dashboard</a></li>
+                    <li><a href="#" id="logout-btn" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base log">Logout</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger lg:hidden flex flex-col justify-center items-center space-y-1.5 p-2" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+                <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+                <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+            </button>
+        </div>
+        <nav class="mobile-nav lg:hidden w-3/4 max-w-sm bg-primary/90 text-white flex-col z-40 transition-all duration-500 hidden">
+            <ul class="flex flex-col items-start space-y-4 py-6 px-6">
+                <li><a href="../index.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Home</a></li>
+                <li><a href="../about.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>About</a></li>
+                <li><a href="../Accomodation/accomodation.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Accommodation</a></li>
+                <li><a href="../location.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Location</a></li>
+                <li><a href="../Gallery/gallery.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Gallery</a></li>
+                <li><a href="../restaurant.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Restaurant</a></li>
+                <li><a href="../Contact/contact.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Contact</a></li>
+                <li><a href="../Booking/booking.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Book Now</a></li>
+                <li><a href="./dashboard.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Dashboard</a></li>
+                <li><a href="#" id="mobile-logout-btn" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-banner" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/20220628_142200-2048x946.jpg');">
+        <div class="banner-content">
+            <h1 style="color: white; font-family: 'Playfair Display', serif;">Your Dashboard</h1>
+            <p>Manage your bookings with Paternoster Lodge</p>
+        </div>
+    </section>
+
+    <section class="dashboard-section" data-aos="fade-up">
+        <div class="user-details">
+            <h3>Your Profile</h3>
+            <p><strong>Name:</strong> John Doe</p>
+            <p><strong>Email:</strong> john.doe@example.com</p>
+            <p><strong>Phone:</strong> +27 123 456 789</p>
+        </div>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #003580;">Your Bookings</h2>
+        <div class="table-wrapper">
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Room Type</th>
+                        <th>Check-In</th>
+                        <th>Check-Out</th>
+                        <th>Guests</th>
+                        <th>Total Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="bookings-table-body">
+                    <tr>
+                        <td>123e4567-e89b-12d3-a456-426614174000</td>
+                        <td>Deluxe King Room</td>
+                        <td>Sat, 31 May 2025</td>
+                        <td>Sun, 1 Jun 2025</td>
+                        <td>1 room, 2 adults</td>
+                        <td>ZAR 1200.00</td>
+                        <td class="success">Confirmed</td>
+                        <td>
+                            <button class="action-btn" onclick="openViewModal('123e4567-e89b-12d3-a456-426614174000')">View</button>
+                            <button class="action-btn cancel-btn" onclick="openCancelModal('123e4567-e89b-12d3-a456-426614174000')">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>987fcdeb-1234-5678-9012-345678901234</td>
+                        <td>Honeymoon Suite</td>
+                        <td>Fri, 6 Jun 2025</td>
+                        <td>Sun, 8 Jun 2025</td>
+                        <td>1 room, 2 adults, 1 child</td>
+                        <td>ZAR 2500.00</td>
+                        <td class="success">Confirmed</td>
+                        <td>
+                            <button class="action-btn" onclick="openViewModal('987fcdeb-1234-5678-9012-345678901234')">View</button>
+                            <button class="action-btn cancel-btn" onclick="openCancelModal('987fcdeb-1234-5678-9012-345678901234')">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>456789ab-cdef-1234-5678-901234567890</td>
+                        <td>Family Room</td>
+                        <td>Mon, 15 Jun 2025</td>
+                        <td>Wed, 17 Jun 2025</td>
+                        <td>2 rooms, 4 adults, 2 children</td>
+                        <td>ZAR 3600.00</td>
+                        <td class="error">Canceled</td>
+                        <td>
+                            <button class="action-btn" onclick="openViewModal('456789ab-cdef-1234-5678-901234567890')">View</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>789abcde-f012-3456-7890-123456789012</td>
+                        <td>Standard Double Room</td>
+                        <td>Thu, 29 May 2025</td>
+                        <td>Fri, 30 May 2025</td>
+                        <td>1 room, 1 adult</td>
+                        <td>ZAR 800.00</td>
+                        <td class="success">Confirmed</td>
+                        <td>
+                            <button class="action-btn" onclick="openViewModal('789abcde-f012-3456-7890-123456789012')">View</button>
+                            <button class="action-btn cancel-btn" onclick="openCancelModal('789abcde-f012-3456-7890-123456789012')">Cancel</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div id="no-bookings" class="no-bookings" style="display: none;">No bookings found.</div>
+            <div id="error-message" class="error" style="display: none;"></div>
+        </div>
+    </section>
+
+    <!-- View Modal -->
+    <div id="view-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('view-modal')">×</span>
+            <h3>Booking Details</h3>
+            <div id="view-modal-content"></div>
+            <div class="modal-buttons">
+                <button class="close-btn" onclick="closeModal('view-modal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel Modal -->
+    <div id="cancel-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('cancel-modal')">×</span>
+            <h3>Cancel Booking</h3>
+            <p id="cancel-modal-message"></p>
+            <p id="cancel-modal-fee"></p>
+            <textarea id="cancel-reason" placeholder="Reason for cancellation (optional)"></textarea>
+            <div class="modal-buttons">
+                <button class="cancel-confirm-btn" id="cancel-confirm-btn">Confirm Cancellation</button>
+                <button class="close-btn" onclick="closeModal('cancel-modal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-primary text-white pt-12 pb-6">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Paternoster Lodge</h3>
+                <p class="text-gray-300 text-sm">A luxury seaside accommodation offering unforgettable experiences in a breathtaking coastal setting.</p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="../index.html" class="text-gray-300 hover:text-secondary transition text-sm">Home</a></li>
+                    <li><a href="../about.html" class="text-gray-300 hover:text-secondary transition text-sm">About Us</a></li>
+                    <li><a href="../Accomodation/accomodation.html" class="text-gray-300 hover:text-secondary transition text-sm">Rooms & Suites</a></li>
+                    <li><a href="../location.html" class="text-gray-300 hover:text-secondary transition text-sm">Location</a></li>
+                    <li><a href="../Gallery/gallery.html" class="text-gray-300 hover:text-secondary transition text-sm">Gallery</a></li>
+                    <li><a href="../Booking/booking.html" class="text-gray-300 hover:text-secondary transition text-sm">Book Now</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Contact Us</h3>
+                <ul class="space-y-2">
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-map-marker-alt mr-2 text-secondary"></i> 64 St Augustine Rd, Kliprug, Paternoster, 7381</li>
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-phone mr-2 text-secondary"></i> 2722 880 0970</li>
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-envelope mr-2 text-secondary"></i> info@paternosterlodge.co.za</li>
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-clock mr-2 text-secondary"></i> Reception: 07:00 - 22:00</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Newsletter</h3>
+                <p class="text-gray-300 text-sm mb-4">Subscribe to our newsletter for special offers and updates.</p>
+                <div class="flex space-x-2">
+                    <input type="email" placeholder="Your Email Address" class="flex-1 p-2 bg-white/10 border border-secondary/50 rounded text-white placeholder-gray-400 text-sm focus:outline-none focus:border-secondary">
+                    <button type="button" class="bg-secondary text-primary px-4 py-2 rounded hover:bg-white transition text-sm">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-white/10 mt-8 pt-4 text-center">
+            <p class="text-gray-300 text-sm">© 2025 Paternoster Lodge. All Rights Reserved. | Designed by Syntax Syndicate</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init();
+
+            // Navigation toggle
+            const hamburger = document.querySelector('.hamburger');
+            const mobileNav = document.querySelector('.mobile-nav');
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                mobileNav.classList.toggle('active');
+                mobileNav.classList.toggle('hidden');
+                const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+                hamburger.setAttribute('aria-expanded', !isExpanded);
+            });
+            document.querySelectorAll('.mobile-nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    mobileNav.classList.remove('active');
+                    mobileNav.classList.add('hidden');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // Dummy user data
+            const user = {
+                first_name: 'John',
+                last_name: 'Doe',
+                email: 'john.doe@example.com',
+                phone: '+27123456789'
+            };
+
+            // Update user details
+            document.querySelector('.user-details p:nth-child(1)').textContent = `Name: ${user.first_name} ${user.last_name}`;
+            document.querySelector('.user-details p:nth-child(2)').textContent = `Email: ${user.email}`;
+            document.querySelector('.user-details p:nth-child(3)').textContent = `Phone: ${user.phone}`;
+
+            // Dummy bookings data
+            let bookings = [
+                {
+                    id: '123e4567-e89b-12d3-a456-426614174000',
+                    room_type: 'Deluxe King Room',
+                    check_in: '2025-05-31',
+                    check_out: '2025-06-01',
+                    quantity: 1,
+                    adults: 2,
+                    children: 0,
+                    total_price: 1200.00,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    email: user.email,
+                    phone: user.phone,
+                    status: 'confirmed',
+                    payment_date: '2025-05-24'
+                },
+                {
+                    id: '987fcdeb-1234-5678-9012-345678901234',
+                    room_type: 'Honeymoon Suite',
+                    check_in: '2025-06-06',
+                    check_out: '2025-06-08',
+                    quantity: 1,
+                    adults: 2,
+                    children: 1,
+                    total_price: 2500.00,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    email: user.email,
+                    phone: user.phone,
+                    status: 'confirmed',
+                    payment_date: '2025-05-30'
+                },
+                {
+                    id: '456789ab-cdef-1234-5678-901234567890',
+                    room_type: 'Family Room',
+                    check_in: '2025-06-15',
+                    check_out: '2025-06-17',
+                    quantity: 2,
+                    adults: 4,
+                    children: 2,
+                    total_price: 3600.00,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    email: user.email,
+                    phone: user.phone,
+                    status: 'canceled',
+                    payment_date: '2025-06-08'
+                },
+                {
+                    id: '789abcde-f012-3456-7890-123456789012',
+                    room_type: 'Standard Double Room',
+                    check_in: '2025-05-29',
+                    check_out: '2025-05-30',
+                    quantity: 1,
+                    adults: 1,
+                    children: 0,
+                    total_price: 800.00,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    email: user.email,
+                    phone: user.phone,
+                    status: 'confirmed',
+                    payment_date: '2025-05-22'
+                }
+            ];
+
+            const tableBody = document.getElementById('bookings-table-body');
+            const noBookings = document.getElementById('no-bookings');
+
+            if (bookings.length === 0) {
+                noBookings.style.display = 'block';
+                return;
+            }
+
+            const formatDate = (dateStr) => {
+                const date = new Date(dateStr);
+                return date.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
+            };
+
+            // Calculate cancellation fee
+            const calculateCancellationFee = (checkInDate, totalPrice) => {
+                const currentDate = new Date('2025-05-29');
+                const checkIn = new Date(checkInDate);
+                const diffTime = checkIn - currentDate;
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+                if (diffDays < 0 || diffDays === 0) {
+                    return { percentage: 100, amount: totalPrice };
+                } else if (diffDays === 1) {
+                    return { percentage: 75, amount: totalPrice * 0.75 };
+                } else if (diffDays === 2) {
+                    return { percentage: 50, amount: totalPrice * 0.50 };
+                } else {
+                    return { percentage: 0, amount: 0 };
+                }
+            };
+
+            const renderTable = () => {
+                tableBody.innerHTML = '';
+                bookings.forEach(booking => {
+                    const row = document.createElement('tr');
+                    const guests = `${booking.quantity} room${booking.quantity > 1 ? 's' : ''}, ${booking.adults} adult${booking.adults > 1 ? 's' : ''}${booking.children ? `, ${booking.children} child${booking.children > 1 ? 'ren' : ''}` : ''}`;
+                    const canCancel = booking.status === 'confirmed';
+
+                    row.innerHTML = `
+                        <td>${booking.id}</td>
+                        <td>${booking.room_type}</td>
+                        <td>${formatDate(booking.check_in)}</td>
+                        <td>${formatDate(booking.check_out)}</td>
+                        <td>${guests}</td>
+                        <td>ZAR ${booking.total_price.toFixed(2)}</td>
+                        <td class="${booking.status === 'confirmed' ? 'success' : 'error'}">${booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}</td>
+                        <td>
+                            <button class="action-btn" onclick="openViewModal('${booking.id}')">View</button>
+                            ${canCancel ? `<button class="action-btn cancel-btn" onclick="openCancelModal('${booking.id}')">Cancel</button>` : ''}
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            };
+
+            renderTable();
+
+            window.openViewModal = (bookingId) => {
+                const booking = bookings.find(b => b.id === bookingId);
+                if (booking) {
+                    const guests = `${booking.quantity} room${booking.quantity > 1 ? 's' : ''}, ${booking.adults} adult${booking.adults > 1 ? 's' : ''}${booking.children ? `, ${booking.children} child${booking.children > 1 ? 'ren' : ''}` : ''}`;
+                    document.getElementById('view-modal-content').innerHTML = `
+                        <p><strong>Booking ID:</strong> ${booking.id}</p>
+                        <p><strong>Guest:</strong> ${booking.first_name} ${booking.last_name}</p>
+                        <p><strong>Email:</strong> ${booking.email}</p>
+                        <p><strong>Phone:</strong> ${booking.phone}</p>
+                        <p><strong>Room Type:</strong> ${booking.room_type}</p>
+                        <p><strong>Check-in:</strong> ${formatDate(booking.check_in)}</p>
+                        <p><strong>Check-out:</strong> ${formatDate(booking.check_out)}</p>
+                        <p><strong>Guests:</strong> ${guests}</p>
+                        <p><strong>Total Price:</strong> ZAR ${booking.total_price.toFixed(2)}</p>
+                        <p><strong>Status:</strong> ${booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}</p>
+                        <p><strong>Payment Date:</strong> ${formatDate(booking.payment_date)}</p>
+                    `;
+                    document.getElementById('view-modal').style.display = 'flex';
+                }
+            };
+
+            window.openCancelModal = (bookingId) => {
+                const booking = bookings.find(b => b.id === bookingId);
+                if (booking) {
+                    const { percentage, amount } = calculateCancellationFee(booking.check_in, booking.total_price);
+                    document.getElementById('cancel-modal-message').textContent = `Are you sure you want to cancel your booking for ${booking.room_type} on ${formatDate(booking.check_in)}?`;
+                    document.getElementById('cancel-modal-fee').textContent = `Cancellation Fee: ZAR ${amount.toFixed(2)} (${percentage}% of ZAR ${booking.total_price.toFixed(2)})`;
+                    document.getElementById('cancel-reason').value = '';
+                    const confirmBtn = document.getElementById('cancel-confirm-btn');
+                    confirmBtn.onclick = () => {
+                        const reason = document.getElementById('cancel-reason').value;
+                        alert(`Booking ${bookingId} canceled successfully. Reason: ${reason || 'None provided'}. Fee: ZAR ${amount.toFixed(2)}`);
+                        const bookingIndex = bookings.findIndex(b => b.id === bookingId);
+                        if (bookingIndex !== -1) {
+                            bookings[bookingIndex].status = 'canceled';
+                        }
+                        closeModal('cancel-modal');
+                        renderTable();
+                    };
+                    document.getElementById('cancel-modal').style.display = 'flex';
+                }
+            };
+
+            window.closeModal = (modalId) => {
+                document.getElementById(modalId).style.display = 'none';
+            };
+
+            // Close modal on outside click
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            });
+
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                alert('Logged out successfully (simulated).');
+                window.location.href = '../register-login.html';
+            });
+
+            document.getElementById('mobile-logout-btn').addEventListener('click', () => {
+                alert('Logged out successfully (simulated).');
+                window.location.href = '../register-login.html';
+            });
+        });
+    </script>
+</body>
+</html>
