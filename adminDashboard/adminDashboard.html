@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Paternoster Lodge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <link rel="stylesheet" href="../adminDashboard/adminDashboard.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: '#1b3c59',
+                secondary: '#d4af37',
+                light: '#f5f5f5',
+              },
+            },
+          },
+        };
+    </script>
+    
+</head>
+<body>
+    <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 w-full z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-2 border-b border-gray-200">
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600 text-sm">+27 22 880 0970</span>
+                <div class="flex space-x-1">
+                    <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/08/STARS_HEADER.png" alt="Stars">
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between py-4">
+            <a href="../index.html" class="logo flex items-center">
+                <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/08/PL_LOGO.png" alt="Paternoster Lodge Logo" class="h-16 sm:h-20 lg:h-24 w-auto">
+            </a>
+            <nav class="hidden lg:flex items-center space-x-6">
+                <ul class="flex space-x-4">
+                    <li><a href="../index.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Home</a></li>
+                    <li><a href="../about.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">About</a></li>
+                    <li><a href="../Accomodation/accomodation.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Accommodation</a></li>
+                    <li><a href="../location.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Location</a></li>
+                    <li><a href="../Gallery/gallery.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Gallery</a></li>
+                    <li><a href="../restaurant.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Restaurant</a></li>
+                    <li><a href="../Contact/contact.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Contact</a></li>
+                    <li><a href="../Booking/booking.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base">Book Now</a></li>
+                    <li><a href="./dashboard.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base">User Dashboard</a></li>
+                    <li><a href="#" id="logout-btn" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base">Logout</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger lg:hidden flex flex-col justify-center items-center space-y-1.5 p-2" aria-expanded="false">
+                <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+                <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+                <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+            </button>
+        </div>
+        <nav class="mobile-nav lg:hidden w-3/4 max-w-sm bg-primary/90 text-white flex-col z-40 transition-all duration-500 hidden">
+            <ul class="flex flex-col items-start space-y-4 py-6 px-6">
+                <li><a href="../index.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Home</a></li>
+                <li><a href="../about.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>About</a></li>
+                <li><a href="../Accomodation/accomodation.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Accommodation</a></li>
+                <li><a href="../location.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Location</a></li>
+                <li><a href="../Gallery/gallery.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Gallery</a></li>
+                <li><a href="../restaurant.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Restaurant</a></li>
+                <li><a href="../Contact/contact.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Contact</a></li>
+                <li><a href="../Booking/booking.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Book Now</a></li>
+                <li><a href="./dashboard.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>User Dashboard</a></li>
+                <li><a href="#" id="mobile-logout-btn" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-banner" style="background-image: url('https://paternosterlodge.co.za/wp/wp-content/uploads/2022/09/20220628_142200-2048x.jpg');">
+        <div class="banner-content">
+            <h1 style="color: white; font-family: 'Playfair Display', serif;">Admin Dashboard</h1>
+            <p>Manage Paternoster Lodge operations</p>
+        </div>
+    </section>
+
+    <section class="dashboard-section" data-aos="fade-up">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #003580;">Admin Control Panel</h2>
+        <div class="tabs">
+            <div class="tab active" data-tab="bookings-tab">Bookings</div>
+            <div class="tab" data-tab="users-tab">Users</div>
+            <div class="tab" data-tab="rooms-tab">Rooms</div>
+            <div class="tab" data-tab="analytics-tab">Analytics</div>
+        </div>
+
+        <!-- Bookings Tab -->
+        <div id="bookings-tab" class="tab-content active">
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>User</th>
+                        <th>Room Type</th>
+                        <th>Check-In</th>
+                        <th>Check-Out</th>
+                        <th>Guests</th>
+                        <th>Total Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-bookings-table-body"></tbody>
+            </table>
+            <div id="bookings-error" class="error"></div>
+        </div>
+
+        <!-- Users Tab -->
+        <div id="users-tab" class="tab-content">
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Admin</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="users-table-body"></tbody>
+            </table>
+            <div id="users-error" class="error"></div>
+        </div>
+
+        <!-- Rooms Tab -->
+        <div id="rooms-tab" class="tab-content">
+            <div class="form-group">
+                <h3>Add/Edit Room</h3>
+                <form id="room-form">
+                    <input type="hidden" id="room-id">
+                    <div class="form-group">
+                        <label for="room-type">Room Type*</label>
+                        <input id="room-type" type="text" placeholder="e.g., Deluxe King Room" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="room-price">Price per Night (ZAR)*</label>
+                        <input id="room-price" type="number" step="0.01" placeholder="e.g., 1000.00" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="room-image-url">Image URL</label>
+                        <input id="room-image-url" type="url" placeholder="e.g., https://example.com/image.jpg">
+                    </div>
+                    <div class="form-group">
+                        <label for="room-specs">Specifications (comma-separated)*</label>
+                        <textarea id="room-specs" placeholder="e.g., 1 double bed, AC, WiFi" required></textarea>
+                    </div>
+                    <button type="submit" class="action-btn">Save Room</button>
+                </form>
+            </div>
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Room Type</th>
+                        <th>Price</th>
+                        <th>Specifications</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="rooms-table-body"></tbody>
+            </table>
+            <div id="rooms-error" class="error"></div>
+        </div>
+
+        <!-- Analytics Tab -->
+        <div id="analytics-tab" class="tab-content">
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <h3>Total Bookings</h3>
+                    <p id="total-bookings">0</p>
+                </div>
+                <div class="analytics-card">
+                    <h3>Total Revenue</h3>
+                    <p id="total-revenue">ZAR 0.00</p>
+                </div>
+                <div class="analytics-card">
+                    <h3>Active Bookings</h3>
+                    <p id="active-bookings">0</p>
+                </div>
+            </div>
+            <div id="analytics-error" class="error"></div>
+        </div>
+    </section>
+
+    <!-- Edit Booking Modal -->
+    <div id="edit-booking-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="window.closeModal('edit-booking-modal')">&times;</span>
+            <h3>Edit Booking</h3>
+            <form id="edit-booking-form">
+                <input type="hidden" id="edit-booking-id">
+                <div class="form-group">
+                    <label for="edit-room-type">Room Type</label>
+                    <select id="edit-room-type" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-check-in">Check-In</label>
+                    <input id="edit-check-in" type="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-check-out">Check-Out</label>
+                    <input id="edit-check-out" type="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-adults">Adults</label>
+                    <input id="edit-adults" type="number" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-children">Children</label>
+                    <input id="edit-children" type="number" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-status">Status</label>
+                    <select id="edit-status" required>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="pending">Pending</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit" class="confirm-btn">Save</button>
+                    <button type="button" class="close-btn" onclick="window.closeModal('edit-booking-modal')">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div id="edit-user-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="window.closeModal('edit-user-modal')">&times;</span>
+            <h3>Edit User</h3>
+            <form id="edit-user-form">
+                <input type="hidden" id="edit-user-id">
+                <div class="form-group">
+                    <label for="edit-user-name">Name</label>
+                    <input id="edit-user-name" type="text" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-user-email">Email</label>
+                    <input id="edit-user-email" type="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-user-phone">Phone</label>
+                    <input id="edit-user-phone" type="tel" placeholder="+1234567890">
+                </div>
+                <div class="form-group">
+                    <label for="edit-user-is-admin">Admin Role</label>
+                    <input id="edit-user-is-admin" type="checkbox">
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit" class="confirm-btn">Save</button>
+                    <button type="button" class="close-btn" onclick="window.closeModal('edit-user-modal')">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../adminDashboard/adminDashboard..js"></script>
+</body>
+</html>
