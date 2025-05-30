@@ -14,7 +14,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
+    <style>
+        .wedding-link:hover{
+            transition: all .4s ease-in-out;
+            color: white;
+            background-color: rgb(5, 66, 63, .5);
+        }
+    </style>
     <script>
         tailwind.config = {
           theme: {
@@ -58,6 +64,7 @@
                 <li><a href="../Contact/contact.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Contact</a></li>
                 <li><a href="../Booking/booking.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base log">Book Now</a></li>
                 <li><a href="../register-login.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base log">Login</a></li>
+                
             </ul>
         </nav>
         <button class="hamburger lg:hidden flex flex-col justify-center items-center space-y-1.5 p-2" aria-expanded="false" aria-label="Toggle navigation">
@@ -262,7 +269,9 @@ Elevate the professionalism of your conference with our stylish and well-equippe
     </div>
 
     <!-- CTA Section -->
-    
+    <div class="book-wedding" style="margin-block: 20px; display: grid; justify-content: center; padding-inline: 200px;">
+        <a class="wedding-link" href="../weddings.html" style="border: 1px solid #4a4a4a; padding: 20px; border-radius: 30px; text-align: center;"> Book Weddding </a>
+    </div>
 
     <!-- Footer (Unchanged) -->
     <footer class="bg-primary text-white pt-12 pb-6">

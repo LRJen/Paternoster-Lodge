@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weddings - Paternoster Lodge</title>
+    <link rel="stylesheet" href="restaurantStyles.css">
+    <link rel="stylesheet" href="./Headerfooter/headerfooter.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: '#1b3c59',
+                secondary: '#d4af37',
+                light: '#f5f5f5',
+              },
+            },
+          },
+        };
+    </script>
+
+</head>
+<body class="restaurant-page">
+    <!-- Header -->
+ <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <!-- New Contact and Stars Section -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-2 border-b border-gray-200">
+        <div class="flex justify-between items-center">
+            <span class="text-gray-600 text-sm">+27 22 880 0970</span>
+            <div class="flex space-x-1">
+                <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/08/STARS_HEADER.png" alt="" srcset="">
+            </div>
+        </div>
+    </div>
+
+    <!-- Existing Header Content -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between py-4">
+        <a href="index.html" class="logo flex items-center">
+            <img src="https://paternosterlodge.co.za/wp/wp-content/uploads/2022/08/PL_LOGO.png" alt="Paternoster Lodge Logo" class="h-16 sm:h-20 lg:h-24 w-auto">
+        </a>
+        <nav class="hidden lg:flex items-center space-x-6">
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Home</a></li>
+                <li><a href="./about.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">About</a></li>
+                <li><a href="./Accomodation/accomodation.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Accommodation</a></li>
+                <li><a href="./location.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Location</a></li>
+                <li><a href="./Gallery/gallery.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative ">Gallery</a></li>
+                <li><a href="./restaurant.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative  active">Restaurant</a></li>
+                <li><a href="./Contact/contact.html" class="nav-link text-gray-800 hover:text-secondary font-medium text-sm lg:text-base relative">Contact</a></li>
+                <li><a href="./Booking/booking.html" class="nav-link log bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base"
+                    style="color: white;">Book Now</a></li>
+                <li><a href="./register-login.html" class="nav-link bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition text-sm lg:text-base log"
+                    style="color: white;">Login</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger lg:hidden flex flex-col justify-center items-center space-y-1.5 p-2" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+            <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+            <span class="line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        </button>
+    </div>
+    <nav class="mobile-nav lg:hidden w-3/4 max-w-sm bg-primary/90 text-white flex-col z-40 transition-all duration-500 hidden">
+        <ul class="flex flex-col items-start space-y-4 py-6 px-6">
+            <li><a href="index.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Home</a></li>
+            <li><a href="./about.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>About</a></li>
+            <li><a href="./Accomodation/accomodation.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Accommodation</a></li>
+            <li><a href="./location.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Location</a></li>
+            <li><a href="./Gallery/gallery.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Gallery</a></li>
+            <li><a href="./restaurant.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative  active" data-nav-item>Restaurant</a></li>
+            <li><a href="./Contact/contact.html" class="nav-link text-white hover:text-secondary font-medium text-lg relative" data-nav-item>Contact</a></li>
+            <li><a href="./Booking/booking.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Book Now</a></li>
+            <li><a href="./register-login.html" class="nav-link bg-secondary text-primary px-4 py-2 rounded-full hover:bg-white transition text-lg" data-nav-item>Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <section class="page-banner" style="background-image: url('./images/56555901_579133709237875_6082235451383480320_n.jpg')" data-aos="fade-up">
+        <div class="banner-content">
+            <h1 style="font-family: Roboto; font-weight: 100;">Paternoster Lodge Wedding Venues</h1>
+            <p>Your Dream Wedding Start Here</p>
+        </div>
+    </section>
+
+    <section class="restaurant-section" data-aos="fade-up">
+        <div class="container">
+            <div class="section-title">
+                <h2>Wedding Packages & Pricing 20225/2026</h2>
+            </div>
+            <div class="restaurant-content">
+                <p>Paternoster Lodge is located in picturesque Cape West Coast boasting sea views only dreams are made of, with 180 degree views over the white sandy beaches and the fishing village, this gives that extra special touch to that once in a lifetime wedding photos. We also offer seven 4- star luxury rooms and amazing wedding packages.</p>
+                <p>We have been making dream weddings come true since 2005, we are passionate about making every wedding unique and special with our wedding packages. We pride ourselves in providing each bride with a wedding of her dreams.</p>
+                <p>Looking forward to hosting your dream wedding.
+
+Paternoster Lodge & Restaurant Team</p>
+            </div>
+            <div class="room-grid">
+                <div class="room-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="images/PL-Wedding-Information (1)123.jpg" alt="Seafood Platter">
+                    <h3>Venue Hire Fee</h3>
+                </div>
+                <div class="room-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="images/20220628_142038-2048x946 (1)123456.jpg" alt="Breakfast Plate">
+                    <h3>Rooms</h3>
+                </div>
+                <div class="room-card" data-aos="fade-up" data-aos-delay="300">
+                    <img src="images/how-to-grill-steak-14-3.webp" alt="Grilled Steak">
+                    <h3>Catering</h3>
+                </div>
+                <div class="room-card" data-aos="fade-up" data-aos-delay="400">
+                    <img src="images/cocktail.jpg" alt="Coastal Cocktail">
+                    <h3>Bar & Staffing</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dining-experience" style="background-image: url('images/PL-Wedding-Information.jpg')" data-aos="fade-up">
+        <div class="container">
+            <div class="experience-grid">
+                <div class="image-gallery">
+                    <div class="gallery-item"><img src="./images/PL_FRONT.png.crdownload" alt="Steak Dish"></div>
+                    <div class="gallery-item"><img src="./images/PL-Wedding-Bar-Staffing (1).jpg" alt="Seafood Platter"></div>
+                    <div class="gallery-item"><img src="./images/PL-Wedding-Bar-Staffing (2).jpg" alt="Cocktail by Ocean"></div>
+                    <div class="gallery-item"><img src="./images/PL-Wedding-Bar-Staffing (3).jpg" alt="Breakfast with View"></div>
+                    <div class="gallery-item"><img src="./images/PL-Wedding-Information.jpg" alt="Fresh Salad"></div>
+                    <div class="gallery-item"><img src="./images/PL-Wedding-Bar-Staffing.jpg" alt="Pizza with Ocean View"></div>
+                    
+                    <div class="gallery-item"><img src="./images/PL-Wedding-Bar-Staffing (2).jpg" alt="Breakfast with View"></div>
+                    <div class="gallery-item"><img src="./images/PL-Wedding-Information.jpg" alt="Fresh Salad"></div>
+                    <div class="gallery-item"><img src="./images/pate table view.PNG" alt="Pizza with Ocean View"></div>
+                </div>
+                <div class="experience-text">
+                    <div class="text-section">
+                        <h2>Venu Hire Excludes</h2>
+                        <p>- Fully Stocked bar supplied: A selection of local Spirits, Wine and Beer. - Services staff - Waitrons and Barmen (determined as per number of guests) Catering. - Flowers and décor: We have a list of local suppliers in the area. - Photography / Videography: We have a list of local suppliers in the area. - We have 2 Generators available during load shedding at additional costs.</p>
+                    </div>
+                    <div class="text-section">
+                        <h2>Venue Viewing</h2>
+                        <p>- Please note that venue viewing is available by appointment only and must be made 24 hours in advance. - Our operating hours are from 08:00 - 19:00 Monday to Saturday. Sunday viewing can be arranged between 08:00 - 16:00. - For viewings, packages, and information as well as quotes, kindly contact us.</p>
+                    </div>
+                    <div class="text-section">
+                        <h2>Relax and Relish</h2>
+                        <p>Whether you’re a local seeking a familiar spot or a tourist looking for an ideal dining experience, our restaurant welcomes you to unwind and savor the moment. Enjoy the serene ambiance and exceptional cuisine.</p>
+                    </div>
+                  <div class="view-menu" style="display: flex; justify-content: center; margin-top: 2rem;" data-aos="fade-up" data-aos-delay="100">
+                     <a class="cta-btn" onclick="showPDFModal()">View Menu</a>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PDF Modal -->
+    <div class="pdf-modal hidden">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closePDFModal()">×</span>
+            <h2>Restaurant Menu</h2>
+            <embed src="documents/menu.pdf" type="application/pdf" width="150%" height="590px">
+        </div>
+    </div>
+
+    <!-- <section class="cta-section" data-aos="fade-up">
+        <div class="cta-container">
+            <h2>Reserve Your Table</h2>
+            <p>Join us for an unforgettable dining experience at Paternoster Lodge.</p>
+            <a href="contact.html" class="cta-btn">Contact Us</a>
+        </div>
+    </section> -->
+
+    <div class="booking-modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">×</span>
+            <h2>Book Your Room</h2>
+            <form>
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="date" id="check-in" placeholder="Check-In Date" required>
+                <input type="date" id="check-out" placeholder="Check-Out Date" required>
+                <input type="number" id="nights" placeholder="Nights" readonly>
+                <select required>
+                    <option value="" disabled selected>Room Type</option>
+                    <option value="standard">Standard</option>
+                    <option value="deluxe">Deluxe</option>
+                    <option value="suite">Suite</option>
+                </select>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+  <footer class="bg-primary text-white pt-12 pb-6">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Paternoster Lodge</h3>
+                <p class="text-gray-300 text-sm">A luxury seaside accommodation offering unforgettable experiences in a breathtaking coastal setting.</p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-secondary transition"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="text-gray-300 hover:text-secondary transition text-sm">Home</a></li>
+                    <li><a href="./about.html" class="text-gray-300 hover:text-secondary transition text-sm">About Us</a></li>
+                    <li><a href="./Accomodation/accomodation.html" class="text-gray-300 hover:text-secondary transition text-sm">Rooms & Suites</a></li>
+                    <li><a href="./location.html" class="text-gray-300 hover:text-secondary transition text-sm">Location</a></li>
+                    <li><a href="./Gallery/gallery.html" class="text-gray-300 hover:text-secondary transition text-sm">Gallery</a></li>
+                    <li><a href="./Booking/booking.html" class="text-gray-300 hover:text-secondary transition text-sm">Book Now</a></li>
+                    
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Contact Us</h3>
+                <ul class="space-y-2">
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-map-marker-alt mr-2 text-secondary"></i> 64 St Augustine Rd, Kliprug, Paternoster, 7381</li>
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-phone mr-2 text-secondary"></i> 2722 880 0970</li>
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-envelope mr-2 text-secondary"></i> info@paternosterlodge.co.za</li>
+                    <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-clock mr-2 text-secondary"></i> Reception: 07:00 - 22:00</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="text-xl font-semibold text-secondary mb-4 relative">Newsletter</h3>
+                <p class="text-gray-300 text-sm mb-4">Subscribe to our newsletter for special offers and updates.</p>
+                <div class="flex space-x-2">
+                    <input type="email" placeholder="Your Email Address" class="flex-1 p-2 bg-white/10 border border-secondary/50 rounded text-white placeholder-gray-400 text-sm focus:outline-none focus:border-secondary">
+                    <button type="button" class="bg-secondary text-primary px-4 py-2 rounded hover:bg-white transition text-sm">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-white/10 mt-8 pt-4 text-center">
+            <p class="text-gray-300 text-sm">© 2025 Paternoster Lodge. All Rights Reserved. | Designed by Syntax Syndicate</p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+    <script src="./Headerfooter/headerfooter.js"></script>
+    <script>
+function showPDFModal() {
+    const pdfModal = document.querySelector('.pdf-modal');
+    pdfModal.classList.remove('hidden');
+}
+
+function closePDFModal() {
+    const pdfModal = document.querySelector('.pdf-modal');
+    pdfModal.classList.add('hidden');
+}
+
+// Initialize AOS when DOM and scripts are loaded
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    }
+});
+    </script>
+</script></body>
+</html>
