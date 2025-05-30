@@ -297,10 +297,10 @@ function initAmenitiesSlider() {
     }
 
     const slideContent = [
-        "Luxury amenities offer every pleasure and convenience. The villa is at once state-of-the-art and discreetly in harmony with your natural surroundings.",
-        "Experience the perfect blend of indoor and outdoor living with expansive glass walls that frame breathtaking ocean views.",
-        "Cool off in the infinity pool with panoramic views that stretch to the horizon. Perfect for relaxing or entertaining guests.",
-        "Elegantly appointed bedroom spaces feature premium linens and thoughtful design elements that ensure ultimate comfort."
+        "Our team is committed to ensuring the success of your conference. From planning to execution, we offer professional support to make your event a seamless and successful experience.",
+        "Our conference area is set against the breathtaking backdrop of the Atlantic Ocean, creating a tranquil and inspiring setting for productive gatherings.",
+        "We provide state-of-the-art technology to meet all your conference needs, ensuring that your presentations and discussions run smoothly.",
+        "Elevate the professionalism of your conference with our stylish and well-equipped venue, designed to impress both clients and colleagues."
     ];
 
     let currentAmenityIndex = 0;
